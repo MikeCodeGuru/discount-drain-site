@@ -1,5 +1,5 @@
 /*
- * DESIGN: Contek "Trusted Since 1970" — Warm Authority
+ * DESIGN: Contek "Trusted Since 1970" - Warm Authority
  * Charcoal #3F4049 | Gold #FEDA86 | Off-White #F9F7F0
  * Taviraj serif headings | Inter Tight body/UI
  * 0px border-radius buttons | 4px card radius
@@ -90,19 +90,19 @@ const residentialServices = [
   {
     icon: Camera,
     title: "Free Sewer Video Camera Inspections",
-    desc: "Don't just clean your sewer line — see it. We show you your sewer line on the spot, in minutes. A $400 value, absolutely free.",
+    desc: "Don't just clean your sewer line - see it. We show you your sewer line on the spot, in minutes. A $400 value, absolutely free.",
     img: CAMERA_IMG,
   },
   {
     icon: Wrench,
-    title: "No Dig — Trenchless Systems",
+    title: "No Dig - Trenchless Systems",
     desc: "Stop! Don't go digging up your driveway or landscaping. Our no-dig trenchless technology saves you time and money.",
     img: TRENCHLESS_IMG,
   },
   {
     icon: Droplets,
     title: "Wet Basements",
-    desc: "We fix wet and leaky basements permanently — backed by a 20-year warranty. Call our 24-hour Emergency Dispatch.",
+    desc: "We fix wet and leaky basements permanently - backed by a 20-year warranty. Call our 24-hour Emergency Dispatch.",
     img: BASEMENT_IMG,
   },
   {
@@ -120,7 +120,7 @@ const residentialServices = [
   {
     icon: Truck,
     title: "Dump Trucks & Machine Excavating",
-    desc: "From deep excavations to parking lot preparation and pool installation — our fleet handles any excavation project.",
+    desc: "From deep excavations to parking lot preparation and pool installation - our fleet handles any excavation project.",
     img: EXCAVATION_IMG,
   },
 ];
@@ -134,17 +134,17 @@ const commercialServices = [
   {
     icon: Building2,
     title: "Municipal Services",
-    desc: "From sewer lining to manhole restoration and water main repair — effective solutions for all municipal drainage needs.",
+    desc: "From sewer lining to manhole restoration and water main repair - effective solutions for all municipal drainage needs.",
   },
   {
     icon: Wrench,
-    title: "No Dig — Trenchless Systems",
+    title: "No Dig - Trenchless Systems",
     desc: "Replace underground pipe without disturbing any surface materials. Minimal disruption to your business operations.",
   },
   {
     icon: Droplets,
     title: "Catch Basin Cleaning",
-    desc: "We solve catch basin problems quickly and professionally using the latest technology — affordable and effective.",
+    desc: "We solve catch basin problems quickly and professionally using the latest technology - affordable and effective.",
   },
   {
     icon: Wrench,
@@ -220,7 +220,7 @@ export default function Home() {
       {/* ─── ANNOUNCEMENT BAR ─── */}
       <div style={{ backgroundColor: "#FEDA86" }} className="py-3 px-4 text-center">
         <p className="text-sm font-medium" style={{ color: "#2A2A31", fontFamily: "'Inter Tight', sans-serif" }}>
-          <strong>Free Sewer Video Camera Inspection</strong> — A $400 value, included with every service call.{" "}
+          <strong>Free Sewer Video Camera Inspection</strong> - A $400 value, included with every service call.{" "}
           <a href="tel:5194518342" className="underline font-semibold" style={{ color: "#2A2A31" }}>
             Call Now →
           </a>
@@ -360,7 +360,7 @@ export default function Home() {
                 maxWidth: "520px",
               }}
             >
-              Family-owned and operated since 1970. We solve any drain and sewer problem — residential or commercial — with the latest technology and a 20-year warranty.
+              Family-owned and operated since 1970. We solve any drain and sewer problem - residential or commercial - with the latest technology and a 20-year warranty.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="tel:5194518342" className="btn-gold" style={{ fontSize: "16px", padding: "18px 32px" }}>
@@ -465,7 +465,7 @@ export default function Home() {
               Our Services
             </h2>
             <p style={{ color: "#535353", maxWidth: "520px", margin: "0 auto", fontFamily: "'Inter Tight', sans-serif" }}>
-              From free camera inspections to trenchless repairs — we have the expertise and equipment to solve any drain or sewer problem.
+              From free camera inspections to trenchless repairs - we have the expertise and equipment to solve any drain or sewer problem.
             </p>
           </div>
 
@@ -570,7 +570,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── FEATURED SERVICE — TRENCHLESS ─── */}
+      {/* ─── FEATURED SERVICE - TRENCHLESS ─── */}
       <section className="py-20 overflow-hidden" style={{ backgroundColor: "#FFFFFF" }}>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -614,13 +614,13 @@ export default function Home() {
                   lineHeight: "1.15",
                 }}
               >
-                No Dig — Trenchless Pipe Repair
+                No Dig - Trenchless Pipe Repair
               </h2>
               <p style={{ color: "#535353", lineHeight: "26px", marginBottom: "16px", fontFamily: "'Inter Tight', sans-serif" }}>
-                Stop! Don't go digging up your driveway or landscaping. Our no-dig trenchless technology replaces underground pipe without disturbing any surface materials — saving you time, money, and the headache of restoration.
+                Stop! Don't go digging up your driveway or landscaping. Our no-dig trenchless technology replaces underground pipe without disturbing any surface materials - saving you time, money, and the headache of restoration.
               </p>
               <p style={{ color: "#535353", lineHeight: "26px", marginBottom: "28px", fontFamily: "'Inter Tight', sans-serif" }}>
-                Our CIPP (Cured-In-Place Pipe) system creates a new pipe within the existing one — no excavation, no mess, no weeks of disruption. Most jobs are completed in a single day.
+                Our CIPP (Cured-In-Place Pipe) system creates a new pipe within the existing one - no excavation, no mess, no weeks of disruption. Most jobs are completed in a single day.
               </p>
               <div className="flex flex-col gap-3 mb-8">
                 {[
@@ -842,7 +842,7 @@ export default function Home() {
               lineHeight: "28px",
             }}
           >
-            Call today and get your free sewer video camera inspection — a $400 value, on us. Available 24/7 for emergencies.
+            Call today and get your free sewer video camera inspection - a $400 value, on us. Available 24/7 for emergencies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="tel:5194518342" className="btn-gold" style={{ fontSize: "16px", padding: "18px 36px" }}>
