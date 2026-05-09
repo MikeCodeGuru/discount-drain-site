@@ -165,15 +165,13 @@ export default function HomeV2() {
       <nav style={{ position: "sticky", top: 0, zIndex: 50, backgroundColor: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${F.pebbleGray}`, height: "70px" }}>
         <div style={{ maxWidth: "1560px", margin: "0 auto", padding: `0 ${px}`, height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           {/* Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <div style={{ width: "36px", height: "36px", backgroundColor: F.blue, borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Droplets size={18} style={{ color: F.white }} />
-            </div>
-            <div>
-              <div style={{ fontSize: "16px", fontWeight: 700, color: F.black, lineHeight: 1 }}>Discount Drain</div>
-              <div style={{ fontSize: "11px", color: F.steelGray, lineHeight: 1, marginTop: "2px" }}>Est. 1970</div>
-            </div>
-          </div>
+          <a href="/v2" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+            <img
+              src="/manus-storage/discount-drain-logo_4ef71404.png"
+              alt="Discount Drain"
+              style={{ height: "48px", width: "auto", objectFit: "contain" }}
+            />
+          </a>
 
           {/* Desktop Nav */}
           {!isMobile && (
@@ -582,15 +580,11 @@ export default function HomeV2() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr 1fr", gap: isMobile ? "40px" : "64px", marginBottom: "40px" }}>
             {/* Brand */}
             <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
-                <div style={{ width: "36px", height: "36px", backgroundColor: F.blue, borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <Droplets size={18} style={{ color: F.white }} />
-                </div>
-                <div>
-                  <div style={{ fontSize: "16px", fontWeight: 700, color: F.white }}>Discount Drain</div>
-                  <div style={{ fontSize: "11px", color: F.steelGray }}>Est. 1970</div>
-                </div>
-              </div>
+              <img
+                src="/manus-storage/discount-drain-logo_4ef71404.png"
+                alt="Discount Drain"
+                style={{ height: "56px", width: "auto", objectFit: "contain", marginBottom: "14px", filter: "brightness(0) invert(1)" }}
+              />
               <p style={{ fontSize: "14px", color: F.steelGray, lineHeight: 1.6, maxWidth: "280px", marginBottom: "20px" }}>
                 Family-owned drain and sewer specialists serving London and Southwestern Ontario since 1970.
               </p>

@@ -273,11 +273,12 @@ export default function HomeV3() {
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: `0 ${px}`, width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           {/* Logo */}
-          <a href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
-            <div style={{ width: "28px", height: "28px", background: T.spectrum, borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Droplets size={14} style={{ color: T.snow }} />
-            </div>
-            <span style={{ fontSize: "14px", fontWeight: 500, color: T.inkBlack, letterSpacing: "-0.2px" }}>Discount Drain</span>
+          <a href="/v3" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+            <img
+              src="/manus-storage/discount-drain-logo_4ef71404.png"
+              alt="Discount Drain"
+              style={{ height: "40px", width: "auto", objectFit: "contain" }}
+            />
           </a>
 
           {/* Desktop Nav */}
@@ -664,12 +665,11 @@ export default function HomeV3() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "2fr 1fr 1fr 1fr", gap: isMobile ? "32px" : "40px", marginBottom: "48px" }}>
             {/* Brand */}
             <div style={{ gridColumn: isMobile ? "span 2" : "span 1" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-                <div style={{ width: "28px", height: "28px", background: T.spectrum, borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <Droplets size={14} style={{ color: T.snow }} />
-                </div>
-                <span style={{ fontSize: "14px", fontWeight: 500, color: T.inkBlack }}>Discount Drain</span>
-              </div>
+              <img
+                src="/manus-storage/discount-drain-logo_4ef71404.png"
+                alt="Discount Drain"
+                style={{ height: "52px", width: "auto", objectFit: "contain", marginBottom: "12px" }}
+              />
               <p style={{ fontSize: "14px", fontWeight: 400, color: T.graphite, lineHeight: 1.5, maxWidth: "220px", marginBottom: "16px" }}>
                 Family-owned drain and sewer specialists serving London and Southwestern Ontario since 1970.
               </p>
