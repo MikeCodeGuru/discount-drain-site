@@ -195,19 +195,19 @@ export default function Home() {
 
       {/* ─── TOP BAR ─── */}
       <div style={{ backgroundColor: "#2A2A31" }} className="py-2 px-4">
-        <div className="container flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-0">
-          <div className="flex items-center gap-6">
-            <a href="tel:5194518342" className="flex items-center gap-2 text-sm transition-colors"
-              style={{ color: "#FEDA86", fontFamily: "'Inter Tight', sans-serif" }}>
-              <Phone size={14} />
-              <span className="font-medium">519-451-8342</span>
-            </a>
-            <a href="mailto:office@discountdrain.ca" className="flex items-center gap-2 text-sm transition-colors"
-              style={{ color: "#FFFFFF", fontFamily: "'Inter Tight', sans-serif" }}>
-              <Mail size={14} />
-              <span>office@discountdrain.ca</span>
-            </a>
-          </div>
+        <div className="container flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-0 text-center sm:text-left">
+            <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
+              <a href="tel:5194518342" className="flex items-center gap-2 text-sm transition-colors"
+                style={{ color: "#FEDA86", fontFamily: "'Inter Tight', sans-serif" }}>
+                <Phone size={14} />
+                <span className="font-medium">519-451-8342</span>
+              </a>
+              <a href="mailto:office@discountdrain.ca" className="hidden sm:flex items-center gap-2 text-sm transition-colors"
+                style={{ color: "#FFFFFF", fontFamily: "'Inter Tight', sans-serif" }}>
+                <Mail size={14} />
+                <span>office@discountdrain.ca</span>
+              </a>
+            </div>
           <div className="flex items-center gap-2" style={{ color: "#FEDA86" }}>
             <Clock size={14} />
             <span className="text-sm font-medium" style={{ fontFamily: "'Inter Tight', sans-serif" }}>
@@ -704,7 +704,7 @@ export default function Home() {
             </div>
 
             {/* Image collage */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 mt-8 lg:mt-0">
               <div
                 className="col-span-2"
                 style={{
