@@ -325,6 +325,15 @@ export default function HomeV4() {
         </div>
       </div>
 
+      {/* ── ANNOUNCEMENT BAR ── */}
+      <div style={{ background: "#f5c518", padding: "11px 24px", textAlign: "center" }}>
+        <p style={{ margin: 0, fontFamily: "'Outfit', sans-serif", fontSize: "0.88rem", color: "#0d0d0b", letterSpacing: "0.01em", lineHeight: 1.4 }}>
+          <strong style={{ fontWeight: 700 }}>Free Sewer Video Camera Inspection</strong>
+          {" "}- A $400 value, included with every service call.{" "}
+          <a href="tel:+15197694900" style={{ color: "#0d0d0b", fontWeight: 700, textDecoration: "underline", textUnderlineOffset: "3px" }}>Call Now &rarr;</a>
+        </p>
+      </div>
+
       {/* ── STICKY MAIN NAV ── */}
       <nav style={{
         position: "sticky", top: 0, zIndex: 100,
