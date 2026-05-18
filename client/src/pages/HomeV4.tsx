@@ -12,6 +12,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Phone, Mail, MapPin, Clock, ChevronRight, Menu, X, Youtube, Instagram, Facebook, Star, Quote } from "lucide-react";
+import { useIsMobile } from "@/hooks/useMobile";
 
 const LOGO_URL = "/manus-storage/discount-drain-logo_fc6d4187.png";
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
@@ -72,6 +73,7 @@ function useScrollReveal(threshold = 0.15) {
 }
 
 export default function HomeV4() {
+  const isMobile = useIsMobile();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -298,12 +300,31 @@ export default function HomeV4() {
           .hide-mobile { display: none !important; }
           .show-mobile { display: flex !important; }
           .grid-2col { grid-template-columns: 1fr !important; }
-          .grid-4col { grid-template-columns: repeat(2, 1fr) !important; }
+          .grid-4col { grid-template-columns: 1fr 1fr !important; }
+          .kwc-body { max-width: 100%; }
+          .kwc-btn-yellow, .kwc-btn-ghost { width: 100%; justify-content: center; }
+          .section-label { font-size: 0.65rem; }
+        }
+        @media (max-width: 480px) {
+          .grid-4col { grid-template-columns: 1fr !important; }
         }
         @media (min-width: 769px) {
           .show-mobile { display: none !important; }
         }
       `}</style>
+
+      {/* ── STICKY MOBILE CALL BAR ── */}
+      {isMobile && (
+        <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 200, background: "#f5c518", padding: "12px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", boxShadow: "0 -4px 20px rgba(0,0,0,0.4)" }}>
+          <div>
+            <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "0.65rem", letterSpacing: "0.18em", color: "rgba(0,0,0,0.55)", textTransform: "uppercase", marginBottom: 2 }}>24/7 Emergency</div>
+            <div style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700, fontSize: "0.95rem", color: "#0d0d0b" }}>(519) 769-4900</div>
+          </div>
+          <a href="tel:+15197694900" className="kwc-btn-yellow" style={{ padding: "10px 22px", fontSize: "0.78rem", width: "auto" }}>
+            Call Now <ChevronRight size={13} />
+          </a>
+        </div>
+      )}
 
       {/* ── TOP UTILITY BAR ── */}
       <div style={{ background: "#080807", borderBottom: "1px solid #1c1c1a", padding: "8px 0" }}>
@@ -342,10 +363,10 @@ export default function HomeV4() {
         backdropFilter: scrolled ? "blur(12px)" : "none",
         transition: "background 0.3s, backdrop-filter 0.3s",
       }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 84 }}>
-          {/* Logo — enlarged per design-taste-frontend */}
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px" : "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: isMobile ? 68 : 84 }}>
+          {/* Logo */}
           <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0 }}>
-            <img src={LOGO_URL} alt="Discount Drain logo" style={{ height: 80, width: "auto", objectFit: "contain", maxWidth: 220 }} />
+            <img src={LOGO_URL} alt="Discount Drain logo" style={{ height: isMobile ? 52 : 80, width: "auto", objectFit: "contain", maxWidth: isMobile ? 160 : 220 }} />
           </a>
 
           {/* Desktop Nav — wider gap, Outfit font */}
@@ -387,7 +408,7 @@ export default function HomeV4() {
       </nav>
 
       {/* ── HERO SECTION — VIDEO BACKGROUND ── */}
-      <section style={{ position: "relative", minHeight: "100dvh", overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
+      <section style={{ position: "relative", minHeight: isMobile ? "100svh" : "100dvh", overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
         <video
           autoPlay muted loop playsInline
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}
@@ -402,7 +423,7 @@ export default function HomeV4() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(13,13,11,0.5) 0%, transparent 60%)", zIndex: 1 }} />
 
         {/* Content */}
-        <div style={{ position: "relative", zIndex: 2, maxWidth: 1280, margin: "0 auto", padding: "0 24px 96px", width: "100%" }}>
+        <div style={{ position: "relative", zIndex: 2, maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px 80px" : "0 24px 96px", width: "100%" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
             <div style={{ width: 48, height: 2, background: "#f5c518" }} />
             <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: "0.78rem", letterSpacing: "0.25em", color: "rgba(255,255,255,0.7)", textTransform: "uppercase" }}>Since 1970</span>
@@ -419,7 +440,7 @@ export default function HomeV4() {
             Expert drain & sewer services.<br />Serving Southwestern Ontario for 55+ years.
           </p>
 
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", flexDirection: isMobile ? "column" : "row" }}>
             <a href="tel:+15197694900" className="kwc-btn-yellow" style={{ fontSize: "0.85rem", padding: "14px 28px" }}>
               Call Now <ChevronRight size={15} /><ChevronRight size={15} style={{ marginLeft: -10 }} />
             </a>
@@ -429,19 +450,19 @@ export default function HomeV4() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div style={{ position: "absolute", bottom: 28, right: 36, zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+        {/* Scroll indicator — hidden on mobile */}
+        {!isMobile && <div style={{ position: "absolute", bottom: 28, right: 36, zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <div style={{ width: 1, height: 52, background: "linear-gradient(to bottom, transparent, #f5c518)" }} />
           <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: "0.6rem", letterSpacing: "0.25em", color: "#f5c518", writingMode: "vertical-rl", textTransform: "uppercase" }}>Scroll</span>
-        </div>
+        </div>}
       </section>
 
       {/* ── ABOUT SECTION ── */}
-      <section style={{ background: "#0d0d0b", padding: "110px 0" }}>
+      <section style={{ background: "#0d0d0b", padding: isMobile ? "64px 0" : "110px 0" }}>
         <div
           ref={aboutReveal.ref}
-          className={`grid-2col reveal${aboutReveal.visible ? " visible" : ""}`}
-          style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}
+          className={`reveal${aboutReveal.visible ? " visible" : ""}`}
+          style={{ maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 40 : 80, alignItems: "center" }}
         >
           {/* Left: Text */}
           <div>
@@ -463,12 +484,12 @@ export default function HomeV4() {
           </div>
 
           {/* Right: Image with offset border + badge */}
-          <div style={{ position: "relative", paddingBottom: 16, paddingRight: 16 }}>
-            <img src={ABOUT_IMG} alt="Discount Drain crew working on a drain repair" style={{ width: "100%", height: 480, objectFit: "cover", display: "block", position: "relative", zIndex: 1 }} />
+          <div style={{ position: "relative", paddingBottom: isMobile ? 12 : 16, paddingRight: isMobile ? 12 : 16 }}>
+            <img src={ABOUT_IMG} alt="Discount Drain crew working on a drain repair" style={{ width: "100%", height: isMobile ? 280 : 480, objectFit: "cover", display: "block", position: "relative", zIndex: 1 }} />
             {/* Offset yellow border — behind image */}
             <div style={{ position: "absolute", bottom: 0, right: 0, width: "72%", height: "72%", border: "3px solid #f5c518", zIndex: 0 }} />
             {/* Stats badge */}
-            <div style={{ position: "absolute", bottom: 32, left: -28, background: "#f5c518", padding: "22px 30px", zIndex: 2 }}>
+            <div style={{ position: "absolute", bottom: isMobile ? 16 : 32, left: isMobile ? -8 : -28, background: "#f5c518", padding: isMobile ? "14px 18px" : "22px 30px", zIndex: 2 }}>
               <div className="kwc-headline" style={{ fontSize: "3.2rem", color: "#0d0d0b", lineHeight: 1 }}>55+</div>
               <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "0.7rem", letterSpacing: "0.18em", color: "#0d0d0b", textTransform: "uppercase", marginTop: 4 }}>Years of service</div>
             </div>
@@ -488,8 +509,8 @@ export default function HomeV4() {
       </div>
 
       {/* ── SERVICES SECTION ── */}
-      <section id="services" style={{ background: "#0d0d0b", padding: "110px 0" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+      <section id="services" style={{ background: "#0d0d0b", padding: isMobile ? "64px 0 80px" : "110px 0" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px" }}>
           <div
             ref={servicesReveal.ref}
             className={`reveal${servicesReveal.visible ? " visible" : ""}`}
@@ -501,7 +522,7 @@ export default function HomeV4() {
           </div>
 
           {/* Services grid — 4-col top row, 2-col bottom to break symmetry */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 3 }} className="grid-4col">
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)", gap: 3 }}>
             {services.slice(0, 4).map((svc, i) => (
               <div
                 key={i}
@@ -522,7 +543,7 @@ export default function HomeV4() {
             ))}
           </div>
           {/* Bottom 2 cards — wider for visual rhythm */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3, marginTop: 3 }} className="grid-2col">
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 3, marginTop: 3 }}>
             {services.slice(4).map((svc, i) => (
               <div
                 key={i}
@@ -549,17 +570,17 @@ export default function HomeV4() {
       <section style={{ background: "#080807", padding: "0", overflow: "hidden" }}>
         <div
           ref={testimonialsReveal.ref}
-          className={`reveal${testimonialsReveal.visible ? " visible" : ""} grid-2col`}
-          style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "stretch" }}
+          className={`reveal${testimonialsReveal.visible ? " visible" : ""}`}
+          style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", alignItems: "stretch" }}
         >
           {/* Left: Photo */}
-          <div style={{ position: "relative", minHeight: 520 }}>
+          <div style={{ position: "relative", minHeight: isMobile ? 240 : 520 }}>
             <img src={TESTIMONIAL_TRUCK} alt="Discount Drain service truck" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", minHeight: 400 }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(8,8,7,0.1), rgba(8,8,7,0.35))" }} />
           </div>
 
           {/* Right: Testimonial — off-white warm panel */}
-          <div style={{ background: "#f7f4ef", padding: "72px 52px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div style={{ background: "#f7f4ef", padding: isMobile ? "44px 24px" : "72px 52px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "0.7rem", letterSpacing: "0.22em", color: "#f5c518", textTransform: "uppercase", marginBottom: 14, display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{ width: 36, height: 2, background: "#f5c518" }} /> Success stories
             </div>
@@ -615,9 +636,9 @@ export default function HomeV4() {
       <div
         ref={statsReveal.ref}
         className={`reveal${statsReveal.visible ? " visible" : ""}`}
-        style={{ background: "#f5c518", padding: "48px 0" }}
+        style={{ background: "#f5c518", padding: isMobile ? "36px 0" : "48px 0" }}
       >
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0 }} className="grid-4col">
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px", display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? "24px 0" : 0 }}>
           {[
             { num: "55+", label: "Years in business" },
             { num: "20+", label: "Expert technicians" },
@@ -627,7 +648,7 @@ export default function HomeV4() {
             <div
               key={i}
               className={`reveal${statsReveal.visible ? " visible" : ""} reveal-delay-${i + 1}`}
-              style={{ textAlign: "center", padding: "8px 0", borderRight: i < 3 ? "1px solid rgba(0,0,0,0.12)" : "none" }}
+              style={{ textAlign: "center", padding: "8px 0", borderRight: isMobile ? (i % 2 === 0 ? "1px solid rgba(0,0,0,0.12)" : "none") : (i < 3 ? "1px solid rgba(0,0,0,0.12)" : "none") }}
             >
               <div className="kwc-headline" style={{ fontSize: "clamp(2.5rem, 4vw, 3.8rem)", color: "#0d0d0b", lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>{stat.num}</div>
               <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", color: "rgba(0,0,0,0.55)", textTransform: "uppercase", marginTop: 6 }}>{stat.label}</div>
@@ -637,7 +658,7 @@ export default function HomeV4() {
       </div>
 
       {/* ── CTA SECTION ── */}
-      <section style={{ position: "relative", padding: "120px 0", overflow: "hidden" }}>
+      <section style={{ position: "relative", padding: isMobile ? "80px 0 120px" : "120px 0", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${SERVICE_COMMERCIAL})`, backgroundSize: "cover", backgroundPosition: "center" }} />
         {/* Layered overlay for depth */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(13,13,11,0.82)" }} />
@@ -646,7 +667,7 @@ export default function HomeV4() {
         <div
           ref={ctaReveal.ref}
           className={`reveal${ctaReveal.visible ? " visible" : ""}`}
-          style={{ position: "relative", zIndex: 1, maxWidth: 1280, margin: "0 auto", padding: "0 24px", textAlign: "center" }}
+          style={{ position: "relative", zIndex: 1, maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px", textAlign: "center" }}
         >
           <div className="section-label" style={{ justifyContent: "center" }}>Get started today</div>
           <h2 className="kwc-headline" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)", color: "#ffffff", marginBottom: 16 }}>
@@ -667,13 +688,13 @@ export default function HomeV4() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ position: "relative", paddingTop: 88, paddingBottom: 44, overflow: "hidden" }}>
+      <footer style={{ position: "relative", paddingTop: isMobile ? 56 : 88, paddingBottom: isMobile ? 96 : 44, overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${TESTIMONIAL_TRUCK})`, backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.14) saturate(0.5)" }} />
         {/* Subtle warm tint overlay */}
         <div style={{ position: "absolute", inset: 0, background: "rgba(13,13,11,0.7)" }} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 48, marginBottom: 64 }}>
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(auto-fit, minmax(180px, 1fr))", gap: isMobile ? 32 : 48, marginBottom: isMobile ? 40 : 64 }}>
             {/* Company */}
             <div>
               <div className="kwc-subhead" style={{ color: "#f5c518", fontSize: "0.72rem", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 20, paddingBottom: 10, borderBottom: "1px solid rgba(245,197,24,0.3)" }}>Company</div>
@@ -734,7 +755,7 @@ export default function HomeV4() {
           </div>
 
           {/* Footer bottom */}
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 28, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 28, display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", flexWrap: "wrap", gap: 16 }}>
             <img src={LOGO_URL} alt="Discount Drain" style={{ height: 56, width: "auto", objectFit: "contain", maxWidth: 160 }} />
             <div style={{ display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
               <a href="#" style={{ color: "#444", textDecoration: "none", fontFamily: "'Outfit', sans-serif", fontSize: "0.75rem", letterSpacing: "0.06em", transition: "color 0.2s" }}
