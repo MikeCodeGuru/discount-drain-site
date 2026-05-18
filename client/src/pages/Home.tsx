@@ -231,13 +231,33 @@ export default function Home() {
       <nav className="sticky top-0 z-50 bg-white" style={{ borderBottom: "1px solid #F7F6F3", height: "76px" }}>
         <div className="container h-full flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center">
-            <img
-              src="/manus-storage/discount-drain-logo_4ef71404.png"
-              alt="Discount Drain"
-              style={{ height: "52px", width: "auto", objectFit: "contain" }}
-            />
-          </a>
+          <div className="flex items-center gap-3">
+            <div className="flex flex-col leading-none">
+              <span style={{
+                fontFamily: "'Taviraj', Georgia, serif",
+                fontSize: "22px",
+                fontWeight: 600,
+                color: "#3F4049",
+                letterSpacing: "-0.01em"
+              }}>
+                DISCOUNT
+              </span>
+              <span style={{
+                fontFamily: "'Taviraj', Georgia, serif",
+                fontSize: "22px",
+                fontWeight: 600,
+                color: "#FEDA86",
+                letterSpacing: "-0.01em",
+                lineHeight: "1"
+              }}>
+                DRAIN
+              </span>
+            </div>
+            <div style={{ width: "1px", height: "32px", backgroundColor: "#F7F6F3" }} className="hidden sm:block" />
+            <span className="hidden sm:block text-xs" style={{ color: "#535353", fontFamily: "'Inter Tight', sans-serif" }}>
+              Est. 1970
+            </span>
+          </div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
@@ -846,11 +866,14 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             {/* Brand */}
             <div className="md:col-span-2">
-              <img
-                src="/manus-storage/discount-drain-logo_4ef71404.png"
-                alt="Discount Drain"
-                style={{ height: "60px", width: "auto", objectFit: "contain", marginBottom: "16px", filter: "brightness(0) invert(1)" }}
-              />
+              <div className="flex flex-col leading-none mb-4">
+                <span style={{ fontFamily: "'Taviraj', Georgia, serif", fontSize: "24px", fontWeight: 600, color: "#FFFFFF" }}>
+                  DISCOUNT
+                </span>
+                <span style={{ fontFamily: "'Taviraj', Georgia, serif", fontSize: "24px", fontWeight: 600, color: "#FEDA86", lineHeight: "1" }}>
+                  DRAIN
+                </span>
+              </div>
               <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "14px", lineHeight: "22px", maxWidth: "280px", fontFamily: "'Inter Tight', sans-serif", marginBottom: "20px" }}>
                 Family-owned drain and sewer specialists serving London & Southwestern Ontario since 1970.
               </p>
