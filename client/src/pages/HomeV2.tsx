@@ -38,6 +38,7 @@ import {
 } from "lucide-react";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v2-hero-tech-KczYDTF2pWhFyfmmZkMDtE.webp";
+const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 const TRENCHLESS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v2-trenchless-DjpSv2N9wWDMeaKfaNriGB.webp";
 const TEAM_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v2-team-gRpx7mF2YQoNsWPJsg9wrv.webp";
 const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v2-camera-screen-gMfFqgwcH4HCSCTCTfqVKR.webp";
@@ -285,8 +286,17 @@ export default function HomeV2() {
             {/* Right: Hero image — hidden on mobile */}
             {!isMobile && (
               <div style={{ position: "relative" }}>
-                <div style={{ borderRadius: "32px", overflow: "hidden", aspectRatio: "4/3", boxShadow: "rgba(0,0,0,0.06) 0px 0px 18px 0px" }}>
-                  <img src={HERO_IMG} alt="Drain technician" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <div style={{ borderRadius: "32px", overflow: "hidden", aspectRatio: "4/3", boxShadow: "rgba(0,0,0,0.06) 0px 0px 18px 0px", position: "relative", backgroundColor: "#000" }}>
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  >
+                    <source src={HERO_VIDEO} type="video/mp4" />
+                    <img src={HERO_IMG} alt="Drain technician" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </video>
                 </div>
                 <div style={{ position: "absolute", bottom: "24px", left: "-24px", backgroundColor: F.white, borderRadius: "20px", padding: "16px 20px", boxShadow: "rgba(0,0,0,0.06) 0px 0px 18px 0px", border: `1px solid ${F.pebbleGray}`, minWidth: "160px" }}>
                   <div style={{ fontSize: "32px", fontWeight: 700, color: F.blue, lineHeight: 1 }}>55+</div>

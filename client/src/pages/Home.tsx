@@ -31,6 +31,7 @@ import {
 
 // Image URLs from generated assets
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/hero-drain-7Qr6hJCJVsmcjoSkPJtcfU.webp";
+const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 const TRENCHLESS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/trenchless-tech-aq27wqzhBVwtJcMqn5vyp6.webp";
 const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp";
 const BASEMENT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/wet-basement-KCdDkXrFxEYTLvyifn5MV5.webp";
@@ -327,15 +328,23 @@ export default function Home() {
         className="relative overflow-hidden"
         style={{ minHeight: "88vh", display: "flex", alignItems: "center" }}
       >
-        {/* Background image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_IMG})` }}
-        />
+        {/* Background video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: 0 }}
+        >
+          <source src={HERO_VIDEO} type="video/mp4" />
+          {/* Fallback image */}
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${HERO_IMG})` }} />
+        </video>
         {/* Dark overlay */}
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.58)" }} />
+        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.60)", zIndex: 1 }} />
 
-        <div className="relative container py-20 md:py-28">
+        <div className="relative container py-20 md:py-28" style={{ zIndex: 2 }}>
           <div ref={heroRef} className="fade-in-up max-w-2xl">
             <div className="section-label mb-5">London & Southwestern Ontario</div>
             <h1
