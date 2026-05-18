@@ -19,7 +19,7 @@ const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v4-about-truck-e6AkZCF8YEoHjoucv2jvLp.webp";
 const SERVICE_RESIDENTIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v4-service-residential-JHxA8XQUKygYSZfgyWbhp8.webp";
 const SERVICE_COMMERCIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v4-service-commercial-HcqNWAqFXHx2hAxSPWMYtW.webp";
-const TESTIMONIAL_TRUCK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v4-testimonial-truck-Dnjpx3dg6e473VwskTxKNj.webp";
+const TESTIMONIAL_TRUCK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v4-testimonial-truck-v2-NbJHkcJxRTtPJmUshG6msj.webp";
 
 // Alternate images per service card for visual variety
 const serviceImages = [SERVICE_RESIDENTIAL, SERVICE_COMMERCIAL, SERVICE_RESIDENTIAL, SERVICE_COMMERCIAL, SERVICE_RESIDENTIAL, SERVICE_COMMERCIAL];
