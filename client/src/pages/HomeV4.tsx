@@ -407,7 +407,7 @@ export default function HomeV4() {
       </nav>
 
       {/* ── HERO SECTION — VIDEO BACKGROUND ── */}
-      <section style={{ position: "relative", minHeight: isMobile ? "100svh" : "100dvh", overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
+      <section style={{ position: "relative", minHeight: isMobile ? "100svh" : "100dvh", overflow: "hidden", display: "flex", alignItems: "center" }}>
         <video
           autoPlay muted loop playsInline
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}
@@ -422,7 +422,7 @@ export default function HomeV4() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(13,13,11,0.5) 0%, transparent 60%)", zIndex: 1 }} />
 
         {/* Content */}
-        <div style={{ position: "relative", zIndex: 2, maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px 80px" : "0 24px 96px", width: "100%" }}>
+        <div style={{ position: "relative", zIndex: 2, maxWidth: 1280, margin: "0 auto", padding: isMobile ? "120px 16px 0" : "200px 24px 0", width: "100%" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
             <div style={{ width: 48, height: 2, background: "#f5c518" }} />
             <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: "0.78rem", letterSpacing: "0.25em", color: "rgba(255,255,255,0.7)", textTransform: "uppercase" }}>Since 1970</span>
