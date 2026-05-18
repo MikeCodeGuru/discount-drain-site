@@ -29,7 +29,6 @@ const services = [
   { title: "Sewer Camera Inspection", subtitle: "CCTV pipe inspection", img: serviceImages[1] },
   { title: "Trenchless Pipe Repair", subtitle: "No-dig technology", img: serviceImages[2] },
   { title: "Wet Basement Solutions", subtitle: "Waterproofing & drainage", img: serviceImages[3] },
-  { title: "Excavation & Pipe Replacement", subtitle: "Full excavation services", img: serviceImages[4] },
   { title: "Emergency Drain Service", subtitle: "24/7 emergency response", img: serviceImages[5] },
 ];
 
@@ -53,7 +52,7 @@ const testimonials = [
 
 const serviceLinks = [
   "Drain Cleaning", "Sewer Camera Inspection", "Trenchless Repair",
-  "Wet Basement", "Excavation", "Emergency Service", "Waterproofing",
+  "Wet Basement", "Emergency Service", "Waterproofing",
 ];
 
 // Simple scroll-reveal hook
@@ -366,7 +365,7 @@ export default function HomeV4() {
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px" : "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: isMobile ? 68 : 84 }}>
           {/* Logo */}
           <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0 }}>
-            <img src={LOGO_URL} alt="Discount Drain logo" style={{ height: isMobile ? 52 : 80, width: "auto", objectFit: "contain", maxWidth: isMobile ? 160 : 220 }} />
+            <img src={LOGO_URL} alt="Discount Drain logo" style={{ height: isMobile ? 68 : 80, width: "auto", objectFit: "contain", maxWidth: isMobile ? 200 : 220 }} />
           </a>
 
           {/* Desktop Nav — wider gap, Outfit font */}
