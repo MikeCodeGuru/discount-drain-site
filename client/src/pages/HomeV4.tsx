@@ -96,11 +96,11 @@ export default function HomeV4() {
   }, []);
 
   return (
-    <div style={{ background: "#0d0d0b", color: "#ffffff", fontFamily: "'Inter', sans-serif", minHeight: "100vh" }}>
+    <div style={{ background: "#0d0d0b", color: "#ffffff", fontFamily: "'Outfit', sans-serif", minHeight: "100vh" }}>
 
       {/* ── FONTS + GLOBAL STYLES ── */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
 
         html { scroll-behavior: smooth; }
 
@@ -116,12 +116,13 @@ export default function HomeV4() {
           letter-spacing: 0.05em;
         }
         .kwc-body {
-          font-family: 'Inter', sans-serif;
+          font-family: 'Outfit', sans-serif;
           font-weight: 400;
-          line-height: 1.75;
-          max-width: 58ch;
-          color: #999;
-          font-size: 0.95rem;
+          line-height: 1.8;
+          max-width: 62ch;
+          color: #b0b0aa;
+          font-size: 1rem;
+          letter-spacing: 0.01em;
         }
 
         /* Buttons */
@@ -181,16 +182,17 @@ export default function HomeV4() {
 
         /* Nav links — single accent only */
         .kwc-nav-link {
-          font-family: 'Oswald', sans-serif;
+          font-family: 'Outfit', sans-serif;
           font-weight: 500;
-          font-size: 0.78rem;
-          letter-spacing: 0.14em;
+          font-size: 0.82rem;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.75);
+          color: rgba(255,255,255,0.72);
           text-decoration: none;
-          padding: 4px 0;
+          padding: 6px 2px;
           border-bottom: 2px solid transparent;
-          transition: color 0.2s, border-color 0.2s;
+          transition: color 0.25s cubic-bezier(0.16,1,0.3,1), border-color 0.25s cubic-bezier(0.16,1,0.3,1);
+          white-space: nowrap;
         }
         .kwc-nav-link:hover {
           color: #f5c518;
@@ -307,17 +309,17 @@ export default function HomeV4() {
       <div style={{ background: "#080807", borderBottom: "1px solid #1c1c1a", padding: "8px 0" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
           <div style={{ display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
-            <a href="tel:+15197694900" style={{ display: "flex", alignItems: "center", gap: 6, color: "#fff", textDecoration: "none", fontSize: "0.72rem", fontFamily: "'Oswald', sans-serif", letterSpacing: "0.1em" }}>
+            <a href="tel:+15197694900" style={{ display: "flex", alignItems: "center", gap: 6, color: "#fff", textDecoration: "none", fontSize: "0.75rem", fontFamily: "'Outfit', sans-serif", fontWeight: 500, letterSpacing: "0.06em" }}>
               <Phone size={11} color="#f5c518" /> +1 (519) 769-4900
             </a>
-            <a href="mailto:info@discountdrain.ca" className="hide-mobile" style={{ display: "flex", alignItems: "center", gap: 6, color: "#888", textDecoration: "none", fontSize: "0.72rem", fontFamily: "'Oswald', sans-serif", letterSpacing: "0.1em" }}>
+            <a href="mailto:info@discountdrain.ca" className="hide-mobile" style={{ display: "flex", alignItems: "center", gap: 6, color: "#888", textDecoration: "none", fontSize: "0.75rem", fontFamily: "'Outfit', sans-serif", fontWeight: 400, letterSpacing: "0.04em" }}>
               <Mail size={11} color="#f5c518" /> info@discountdrain.ca
             </a>
-            <span className="hide-mobile" style={{ display: "flex", alignItems: "center", gap: 6, color: "#888", fontSize: "0.72rem", fontFamily: "'Oswald', sans-serif", letterSpacing: "0.1em" }}>
+            <span className="hide-mobile" style={{ display: "flex", alignItems: "center", gap: 6, color: "#888", fontSize: "0.75rem", fontFamily: "'Outfit', sans-serif", fontWeight: 400, letterSpacing: "0.04em" }}>
               <MapPin size={11} color="#f5c518" /> London, ON & Southwestern Ontario
             </span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#888", fontSize: "0.72rem", fontFamily: "'Oswald', sans-serif", letterSpacing: "0.1em" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#888", fontSize: "0.75rem", fontFamily: "'Outfit', sans-serif", fontWeight: 400, letterSpacing: "0.04em" }}>
             <Clock size={11} color="#f5c518" /> 24/7 Emergency Service
           </div>
         </div>
@@ -331,14 +333,14 @@ export default function HomeV4() {
         backdropFilter: scrolled ? "blur(12px)" : "none",
         transition: "background 0.3s, backdrop-filter 0.3s",
       }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 70 }}>
-          {/* Logo */}
-          <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-            <img src={LOGO_URL} alt="Discount Drain logo" style={{ height: 60, width: "auto", objectFit: "contain", maxWidth: 170 }} />
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 84 }}>
+          {/* Logo — enlarged per design-taste-frontend */}
+          <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0 }}>
+            <img src={LOGO_URL} alt="Discount Drain logo" style={{ height: 80, width: "auto", objectFit: "contain", maxWidth: 220 }} />
           </a>
 
-          {/* Desktop Nav */}
-          <div className="hide-mobile" style={{ display: "flex", gap: 36, alignItems: "center" }}>
+          {/* Desktop Nav — wider gap, Outfit font */}
+          <div className="hide-mobile" style={{ display: "flex", gap: 52, alignItems: "center" }}>
             {["About", "Services", "Residential", "Commercial", "Contact"].map((item) => (
               <a key={item} href="#" className="kwc-nav-link">{item}</a>
             ))}
@@ -346,8 +348,8 @@ export default function HomeV4() {
 
           {/* CTA + Hamburger */}
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <a href="tel:+15197694900" className="kwc-btn-yellow hide-mobile" style={{ fontSize: "0.78rem", padding: "10px 20px" }}>
-              Free Estimate <ChevronRight size={13} />
+            <a href="tel:+15197694900" className="kwc-btn-yellow hide-mobile" style={{ fontSize: "0.8rem", padding: "12px 24px", fontFamily: "'Outfit', sans-serif", letterSpacing: "0.1em" }}>
+              Free Estimate <ChevronRight size={14} />
             </a>
             <button
               className="show-mobile"
@@ -364,11 +366,11 @@ export default function HomeV4() {
         <div className={`mobile-menu${mobileMenuOpen ? " open" : ""}`} style={{ background: "#0d0d0b", borderTop: "1px solid #1c1c1a" }}>
           <div style={{ padding: "16px 24px 24px" }}>
             {["About", "Services", "Residential", "Commercial", "Contact"].map((item) => (
-              <a key={item} href="#" onClick={() => setMobileMenuOpen(false)} style={{ display: "block", padding: "13px 0", borderBottom: "1px solid #1a1a18", color: "rgba(255,255,255,0.8)", textDecoration: "none", fontFamily: "'Oswald', sans-serif", fontSize: "0.9rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              <a key={item} href="#" onClick={() => setMobileMenuOpen(false)} style={{ display: "block", padding: "14px 0", borderBottom: "1px solid #1a1a18", color: "rgba(255,255,255,0.85)", textDecoration: "none", fontFamily: "'Outfit', sans-serif", fontWeight: 500, fontSize: "0.95rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>
                 {item}
               </a>
             ))}
-            <a href="tel:+15197694900" className="kwc-btn-yellow" style={{ marginTop: 20, width: "100%", justifyContent: "center" }}>
+            <a href="tel:+15197694900" className="kwc-btn-yellow" style={{ marginTop: 20, width: "100%", justifyContent: "center", fontFamily: "'Outfit', sans-serif" }}>
               Free Estimate <ChevronRight size={14} />
             </a>
           </div>
@@ -404,7 +406,7 @@ export default function HomeV4() {
             DRAIN
           </h1>
 
-          <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: "clamp(1rem, 2vw, 1.25rem)", color: "rgba(255,255,255,0.75)", marginBottom: 44, maxWidth: 520, lineHeight: 1.6, letterSpacing: "0.01em" }}>
+          <p style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 300, fontSize: "clamp(1.05rem, 2vw, 1.3rem)", color: "rgba(255,255,255,0.78)", marginBottom: 44, maxWidth: 520, lineHeight: 1.65, letterSpacing: "0.01em" }}>
             Expert drain & sewer services.<br />Serving Southwestern Ontario for 55+ years.
           </p>
 
@@ -505,7 +507,7 @@ export default function HomeV4() {
                 </div>
                 <div style={{ padding: "18px 18px 22px" }}>
                   <h3 className="kwc-subhead" style={{ fontSize: "0.95rem", color: "#ffffff", marginBottom: 5 }}>{svc.title}</h3>
-                  <p style={{ color: "#666", fontSize: "0.78rem", fontFamily: "'Inter', sans-serif", fontWeight: 400, letterSpacing: "0.02em" }}>{svc.subtitle}</p>
+                  <p style={{ color: "#666", fontSize: "0.8rem", fontFamily: "'Outfit', sans-serif", fontWeight: 400, letterSpacing: "0.02em" }}>{svc.subtitle}</p>
                 </div>
               </div>
             ))}
@@ -526,7 +528,7 @@ export default function HomeV4() {
                 </div>
                 <div style={{ padding: "18px 18px 22px" }}>
                   <h3 className="kwc-subhead" style={{ fontSize: "0.95rem", color: "#ffffff", marginBottom: 5 }}>{svc.title}</h3>
-                  <p style={{ color: "#666", fontSize: "0.78rem", fontFamily: "'Inter', sans-serif", fontWeight: 400, letterSpacing: "0.02em" }}>{svc.subtitle}</p>
+                  <p style={{ color: "#666", fontSize: "0.8rem", fontFamily: "'Outfit', sans-serif", fontWeight: 400, letterSpacing: "0.02em" }}>{svc.subtitle}</p>
                 </div>
               </div>
             ))}
@@ -563,13 +565,13 @@ export default function HomeV4() {
 
             <div className="testimonial-content" style={{ opacity: 1 }}>
               <Quote size={28} color="#f5c518" style={{ marginBottom: 12, opacity: 0.6 }} />
-              <blockquote style={{ color: "#444", lineHeight: 1.8, fontSize: "0.95rem", marginBottom: 24, fontFamily: "'Inter', sans-serif", fontWeight: 400, fontStyle: "italic", borderLeft: "3px solid #f5c518", paddingLeft: 20, maxWidth: "52ch" }}>
+              <blockquote style={{ color: "#3a3a3a", lineHeight: 1.85, fontSize: "1rem", marginBottom: 24, fontFamily: "'Outfit', sans-serif", fontWeight: 400, fontStyle: "italic", borderLeft: "3px solid #f5c518", paddingLeft: 20, maxWidth: "52ch" }}>
                 {testimonials[activeTestimonial].quote}
               </blockquote>
 
               <div>
                 <div className="kwc-subhead" style={{ color: "#0d0d0b", fontSize: "0.82rem", textTransform: "uppercase" }}>{testimonials[activeTestimonial].name}</div>
-                <div style={{ color: "#999", fontSize: "0.72rem", fontFamily: "'Inter', sans-serif", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 3 }}>{testimonials[activeTestimonial].location}</div>
+                <div style={{ color: "#888", fontSize: "0.75rem", fontFamily: "'Outfit', sans-serif", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 3 }}>{testimonials[activeTestimonial].location}</div>
               </div>
             </div>
 
@@ -641,7 +643,7 @@ export default function HomeV4() {
           <h2 className="kwc-headline" style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)", color: "#ffffff", marginBottom: 16 }}>
             Need a <span style={{ color: "#f5c518" }}>drain</span> specialist?
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, color: "rgba(255,255,255,0.6)", fontSize: "1.05rem", marginBottom: 52, letterSpacing: "0.01em" }}>
+          <p style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 300, color: "rgba(255,255,255,0.65)", fontSize: "1.1rem", marginBottom: 52, letterSpacing: "0.01em" }}>
             Free camera inspection with any drain service. A $400 value.
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
@@ -667,7 +669,7 @@ export default function HomeV4() {
             <div>
               <div className="kwc-subhead" style={{ color: "#f5c518", fontSize: "0.72rem", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 20, paddingBottom: 10, borderBottom: "1px solid rgba(245,197,24,0.3)" }}>Company</div>
               {["Home", "About us", "Our history", "Meet the team", "Careers", "Contact us"].map((l) => (
-                <a key={l} href="#" style={{ display: "block", color: "#666", textDecoration: "none", fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "0.85rem", marginBottom: 11, transition: "color 0.2s" }}
+                <a key={l} href="#" style={{ display: "block", color: "#666", textDecoration: "none", fontFamily: "'Outfit', sans-serif", fontWeight: 400, fontSize: "0.87rem", marginBottom: 11, transition: "color 0.2s" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c518")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}
                 >{l}</a>
@@ -678,7 +680,7 @@ export default function HomeV4() {
             <div>
               <div className="kwc-subhead" style={{ color: "#f5c518", fontSize: "0.72rem", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 20, paddingBottom: 10, borderBottom: "1px solid rgba(245,197,24,0.3)" }}>Services</div>
               {serviceLinks.map((l) => (
-                <a key={l} href="#" style={{ display: "block", color: "#666", textDecoration: "none", fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "0.85rem", marginBottom: 11, transition: "color 0.2s" }}
+                <a key={l} href="#" style={{ display: "block", color: "#666", textDecoration: "none", fontFamily: "'Outfit', sans-serif", fontWeight: 400, fontSize: "0.87rem", marginBottom: 11, transition: "color 0.2s" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c518")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}
                 >{l}</a>
@@ -694,7 +696,7 @@ export default function HomeV4() {
                 { icon: <Clock size={13} />, text: "24/7 emergency service", href: "#" },
                 { icon: <MapPin size={13} />, text: "London, ON & Southwestern Ontario", href: "#" },
               ].map((item, i) => (
-                <a key={i} href={item.href} style={{ display: "flex", alignItems: "flex-start", gap: 10, color: "#666", textDecoration: "none", fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "0.85rem", marginBottom: 14, transition: "color 0.2s", lineHeight: 1.5 }}
+                <a key={i} href={item.href} style={{ display: "flex", alignItems: "flex-start", gap: 10, color: "#666", textDecoration: "none", fontFamily: "'Outfit', sans-serif", fontWeight: 400, fontSize: "0.87rem", marginBottom: 14, transition: "color 0.2s", lineHeight: 1.55 }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c518")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}
                 >
@@ -712,7 +714,7 @@ export default function HomeV4() {
                 { icon: <Instagram size={15} />, label: "Instagram" },
                 { icon: <Facebook size={15} />, label: "Facebook" },
               ].map((s, i) => (
-                <a key={i} href="#" style={{ display: "flex", alignItems: "center", gap: 10, color: "#666", textDecoration: "none", fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: "0.85rem", marginBottom: 14, transition: "color 0.2s" }}
+                <a key={i} href="#" style={{ display: "flex", alignItems: "center", gap: 10, color: "#666", textDecoration: "none", fontFamily: "'Outfit', sans-serif", fontWeight: 400, fontSize: "0.87rem", marginBottom: 14, transition: "color 0.2s" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c518")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}
                 >
@@ -726,15 +728,15 @@ export default function HomeV4() {
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 28, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
             <img src={LOGO_URL} alt="Discount Drain" style={{ height: 56, width: "auto", objectFit: "contain", maxWidth: 160 }} />
             <div style={{ display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
-              <a href="#" style={{ color: "#444", textDecoration: "none", fontFamily: "'Inter', sans-serif", fontSize: "0.72rem", letterSpacing: "0.06em", transition: "color 0.2s" }}
+              <a href="#" style={{ color: "#444", textDecoration: "none", fontFamily: "'Outfit', sans-serif", fontSize: "0.75rem", letterSpacing: "0.06em", transition: "color 0.2s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c518")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#444")}
               >Privacy Policy</a>
-              <a href="#" style={{ color: "#444", textDecoration: "none", fontFamily: "'Inter', sans-serif", fontSize: "0.72rem", letterSpacing: "0.06em", transition: "color 0.2s" }}
+              <a href="#" style={{ color: "#444", textDecoration: "none", fontFamily: "'Outfit', sans-serif", fontSize: "0.75rem", letterSpacing: "0.06em", transition: "color 0.2s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c518")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#444")}
               >Terms of Service</a>
-              <p style={{ color: "#333", fontFamily: "'Inter', sans-serif", fontSize: "0.72rem", letterSpacing: "0.06em" }}>
+              <p style={{ color: "#333", fontFamily: "'Outfit', sans-serif", fontSize: "0.75rem", letterSpacing: "0.06em" }}>
                 © {new Date().getFullYear()} Discount Drain. All rights reserved.
               </p>
             </div>
