@@ -14,7 +14,7 @@ import { useState, useEffect, useRef } from "react";
 import { Phone, Mail, MapPin, Clock, ChevronRight, Menu, X, Youtube, Instagram, Facebook, Star, Quote } from "lucide-react";
 import { useIsMobile } from "@/hooks/useMobile";
 
-const LOGO_URL = "/manus-storage/discount-drain-logo_fc6d4187.png";
+const LOGO_URL = "/manus-storage/discount-drain-logo-transparent_3a90008a.png";
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v4-about-truck-e6AkZCF8YEoHjoucv2jvLp.webp";
 const SERVICE_RESIDENTIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/v4-service-residential-JHxA8XQUKygYSZfgyWbhp8.webp";

@@ -15,7 +15,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/useMobile";
 
-const LOGO_URL = "/manus-storage/discount-drain-logo_fc6d4187.png";
+const LOGO_URL = "/manus-storage/discount-drain-logo-transparent_3a90008a.png";
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 
 const IMAGES = {
