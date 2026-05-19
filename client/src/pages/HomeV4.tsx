@@ -449,6 +449,24 @@ export default function HomeV4() {
           </div>
         </div>
 
+        {/* Watermark logo — bottom-right, semi-transparent */}
+        <img
+          src={LOGO_URL}
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: isMobile ? "12%" : "8%",
+            right: isMobile ? 16 : 48,
+            width: isMobile ? 140 : 220,
+            opacity: 0.30,
+            zIndex: 2,
+            pointerEvents: "none",
+            filter: "none",
+            mixBlendMode: "normal",
+          }}
+        />
+
         {/* Scroll indicator — hidden on mobile */}
         {!isMobile && <div style={{ position: "absolute", bottom: 28, right: 36, zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <div style={{ width: 1, height: 52, background: "linear-gradient(to bottom, transparent, #f5c518)" }} />

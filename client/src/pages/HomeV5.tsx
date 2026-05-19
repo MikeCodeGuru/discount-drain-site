@@ -335,6 +335,24 @@ export default function HomeV5() {
           </div>
         </div>
 
+        {/* Watermark logo — bottom-right, semi-transparent */}
+        <img
+          src={LOGO_URL}
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: isMobile ? "12%" : "8%",
+            right: isMobile ? 16 : 48,
+            width: isMobile ? 140 : 220,
+            opacity: 0.30,
+            zIndex: 4,
+            pointerEvents: "none",
+            filter: "none",
+            mixBlendMode: "normal",
+          }}
+        />
+
         {/* Scroll indicator */}
         <div style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", zIndex: 4, display: "flex", flexDirection: "column", alignItems: "center", gap: 8, animation: "bounce 2s infinite" }}>
           <style>{`@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }`}</style>
