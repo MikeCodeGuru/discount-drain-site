@@ -241,7 +241,7 @@ export default function HomeV5() {
         transition: "background 0.3s ease",
       }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px", display: "flex", alignItems: "center", justifyContent: "space-between", height: isMobile ? 68 : 80 }}>
-          <img src={LOGO_URL} alt="Discount Drain" style={{ height: isMobile ? 52 : 68, width: "auto", objectFit: "contain", maxWidth: isMobile ? 180 : 210 }} />
+          <img src={LOGO_URL} alt="Discount Drain" style={{ height: isMobile ? 68 : 88, width: "auto", objectFit: "contain", maxWidth: isMobile ? 210 : 250 }} />
 
           {isMobile ? (
             <button onClick={() => setMenuOpen(!menuOpen)} className="v5-pill-btn v5-pill-btn-ghost" style={{ padding: "8px 16px", fontSize: 13 }}>

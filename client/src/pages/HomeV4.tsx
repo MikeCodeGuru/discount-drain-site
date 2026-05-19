@@ -365,7 +365,7 @@ export default function HomeV4() {
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: isMobile ? "0 16px" : "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: isMobile ? 68 : 84 }}>
           {/* Logo */}
           <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0 }}>
-            <img src={LOGO_URL} alt="Discount Drain logo" style={{ height: isMobile ? 68 : 80, width: "auto", objectFit: "contain", maxWidth: isMobile ? 200 : 220 }} />
+            <img src={LOGO_URL} alt="Discount Drain logo" style={{ height: isMobile ? 80 : 100, width: "auto", objectFit: "contain", maxWidth: isMobile ? 220 : 260 }} />
           </a>
 
           {/* Desktop Nav — wider gap, Outfit font */}
