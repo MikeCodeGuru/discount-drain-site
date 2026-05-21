@@ -178,61 +178,128 @@ export default function DDHome() {
       <link rel="canonical" href="https://discountdrain.ca/site" />
 
       {/* ─── HERO ─── */}
-      <section className="relative overflow-hidden" style={{ minHeight: "90vh", display: "flex", alignItems: "center" }}>
-        <video
-          autoPlay muted loop playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ zIndex: 0 }}
-          poster={HERO_FALLBACK}
-        >
-          <source src={HERO_VIDEO} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 100%)", zIndex: 1 }} />
+      <section
+        className="relative overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #e8f3ff 0%, #f0f7ff 40%, #dbeeff 100%)",
+          minHeight: "88vh",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {/* Subtle decorative blobs */}
+        <div className="absolute blob-bg" style={{ width: "500px", height: "500px", top: "-120px", left: "-180px", backgroundColor: "rgba(0,128,255,0.07)", zIndex: 0 }} />
+        <div className="absolute blob-bg" style={{ width: "300px", height: "300px", bottom: "-80px", left: "30%", backgroundColor: "rgba(0,128,255,0.06)", zIndex: 0 }} />
 
-        {/* Blue blob accent */}
-        <div
-          className="absolute blob-bg"
-          style={{ width: "600px", height: "600px", top: "-100px", right: "-150px", backgroundColor: "rgba(0,128,255,0.18)", zIndex: 1 }}
-        />
+        <div className="relative container py-10 md:py-14" style={{ zIndex: 1 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-        <div className="relative container py-24 md:py-32" style={{ zIndex: 2 }}>
-          <div ref={heroRef} className="fade-in-up max-w-2xl">
-            <div className="eyebrow mb-5" style={{ color: "#60b3ff", backgroundColor: "rgba(0,128,255,0.2)", border: "1px solid rgba(0,128,255,0.3)" }}>
-              London and Southwestern Ontario
+            {/* ── LEFT: text content ── */}
+            <div ref={heroRef} className="fade-in-up">
+              <div
+                className="eyebrow mb-5 inline-flex"
+                style={{ color: "#0060d0", backgroundColor: "rgba(0,128,255,0.1)", border: "1px solid rgba(0,128,255,0.25)" }}
+              >
+                London's Drain Specialists Since 1970
+              </div>
+              <h1
+                style={{
+                  fontSize: "clamp(36px, 4.5vw, 64px)",
+                  fontWeight: 800,
+                  lineHeight: 1.08,
+                  letterSpacing: "-0.02em",
+                  color: "#0d1b2a",
+                  marginBottom: "20px",
+                }}
+              >
+                London's Most Trusted Drain and Sewer Specialists
+              </h1>
+              <p style={{ fontSize: "17px", lineHeight: "28px", color: "#4a5568", maxWidth: "480px", marginBottom: "32px" }}>
+                Family-owned and operated since 1970. We solve any drain and sewer problem for homes and businesses across Southwestern Ontario, backed by a 20-year warranty.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 mb-10">
+                <a href="tel:5194518342" className="btn-primary" style={{ fontSize: "16px", padding: "16px 28px" }}>
+                  <Phone size={16} />
+                  Call 519-451-8342
+                </a>
+                <Link href="/about" className="btn-outline" style={{ fontSize: "16px", padding: "16px 28px" }}>
+                  About Us
+                  <ChevronRight size={16} />
+                </Link>
+              </div>
+
+              {/* Trust badges */}
+              <div className="flex flex-wrap gap-3">
+                {["BBB Accredited", "WSIB Compliant", "Fully Insured", "24/7 Emergency"].map((badge) => (
+                  <div
+                    key={badge}
+                    className="flex items-center gap-2 px-3 py-2 rounded-full"
+                    style={{ backgroundColor: "#ffffff", border: "1px solid #d0e4ff", boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}
+                  >
+                    <CheckCircle2 size={13} style={{ color: "#0080ff" }} />
+                    <span style={{ color: "#0d1b2a", fontSize: "13px", fontWeight: 500 }}>{badge}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h1
-              className="text-white mb-6"
-              style={{ fontSize: "clamp(38px, 5.5vw, 72px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em" }}
-            >
-              London's Most Trusted Drain and Sewer Specialists
-            </h1>
-            <p className="mb-8 text-white/85" style={{ fontSize: "18px", lineHeight: "30px", maxWidth: "520px" }}>
-              Family-owned and operated since 1970. We solve any drain and sewer problem for homes and businesses across Southwestern Ontario, backed by a 20-year warranty.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href="tel:5194518342" className="btn-primary" style={{ fontSize: "16px", padding: "18px 32px" }}>
-                <Phone size={16} />
-                Call 519-451-8342
-              </a>
-              <Link href="/quote" className="btn-white" style={{ fontSize: "16px", padding: "18px 32px" }}>
-                Get a Free Quote
-                <ChevronRight size={16} />
-              </Link>
-            </div>
 
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-3">
-              {["BBB Accredited", "WSIB Compliant", "Fully Insured", "Free Camera Inspection"].map((badge) => (
-                <div
-                  key={badge}
-                  className="flex items-center gap-2 px-3 py-2 rounded-full"
-                  style={{ backgroundColor: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)" }}
+            {/* ── RIGHT: video card ── */}
+            <div className="relative flex justify-center lg:justify-end">
+              {/* Main video card */}
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  width: "100%",
+                  maxWidth: "620px",
+                  aspectRatio: "4/3",
+                  borderRadius: "20px",
+                  boxShadow: "0 24px 64px rgba(0,80,200,0.18), 0 4px 16px rgba(0,0,0,0.10)",
+                  background: "#0d1b2a",
+                }}
+              >
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                  poster={HERO_FALLBACK}
                 >
-                  <CheckCircle2 size={13} style={{ color: "#60b3ff" }} />
-                  <span style={{ color: "#ffffff", fontSize: "13px", fontWeight: 500 }}>{badge}</span>
+                  <source src={HERO_VIDEO} type="video/mp4" />
+                </video>
+
+                {/* Free Camera Inspection badge — top right */}
+                <div
+                  className="absolute top-4 right-4 flex items-center gap-2 px-3 py-2"
+                  style={{
+                    backgroundColor: "rgba(255,255,255,0.95)",
+                    borderRadius: "10px",
+                    boxShadow: "0 2px 12px rgba(0,0,0,0.12)",
+                    backdropFilter: "blur(8px)",
+                  }}
+                >
+                  <Star size={14} fill="#0080ff" style={{ color: "#0080ff" }} />
+                  <span style={{ fontSize: "13px", fontWeight: 600, color: "#0d1b2a" }}>Free Camera Inspection</span>
                 </div>
-              ))}
+
+                {/* 55+ Years in Business stat — bottom left */}
+                <div
+                  className="absolute bottom-4 left-4"
+                  style={{
+                    backgroundColor: "rgba(255,255,255,0.97)",
+                    borderRadius: "12px",
+                    padding: "14px 20px",
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.14)",
+                    backdropFilter: "blur(8px)",
+                    minWidth: "130px",
+                  }}
+                >
+                  <div style={{ fontSize: "28px", fontWeight: 800, color: "#0080ff", lineHeight: 1 }}>55+</div>
+                  <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "4px", fontWeight: 500 }}>Years in Business</div>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
