@@ -148,6 +148,6 @@
 - [x] Save checkpoint
 
 ## Phase 18: Active Card Scale-Up
-- [ ] Add scale(1.02) on active card and scale(0.97) on inactive cards via RAF loop
-- [ ] Driven by lerped position — no extra React state
-- [ ] Save checkpoint
+- [x] Add scale(1.02) on active card and scale(0.97) on inactive cards via RAF loop
+- [x] Driven by lerped position — no extra React state
+- [x] Save checkpoint

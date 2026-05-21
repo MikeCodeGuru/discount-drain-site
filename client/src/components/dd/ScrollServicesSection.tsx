@@ -181,18 +181,17 @@ function ArrowCTA({ href, label }: { href: string; label: string }) {
 }
 
 // ─── RAF lerp scroll hook ─────────────────────────────────────────────────────
-// Drives both the card track translateX and per-card image parallax from a
-// single RAF loop. No React state is touched during scroll — zero re-renders.
+// Drives the card track translateX, per-card image parallax, and per-card
+// scale from a single RAF loop. No React state is touched during scroll.
 //
-// Parallax strategy:
-//   Each card's image panel gets a counter-scroll translateX applied.
-//   When a card is perfectly centred (its own step offset == currentX) the
-//   image sits at 0. As the card slides in from the right the image is pushed
-//   slightly right (positive X), and as it exits left the image shifts left —
-//   creating a depth/3D feel without any extra libraries.
+// Scale strategy:
+//   The active card (closest to centre) scales to 1.02.
+//   All other cards scale to 0.97.
+//   The scale is lerped per-card so it eases in/out smoothly.
 function useLerpScroll(
   wrapperRef: React.RefObject<HTMLDivElement | null>,
   imageRefs: React.RefObject<(HTMLDivElement | null)[]>,
+  cardRefs: React.RefObject<(HTMLDivElement | null)[]>,
   count: number,
   activeTab: string,
   onActiveIdxChange: (idx: number) => void
@@ -216,11 +215,17 @@ function useLerpScroll(
     imgs.forEach((el) => {
       if (el) el.style.transform = "translateX(0px)";
     });
+    const cards = cardRefs.current ?? [];
+    cards.forEach((el) => {
+      if (el) el.style.transform = "scale(1)";
+    });
 
     let currentX = 0;
     let targetX = 0;
     let rafId = 0;
     let lastActiveIdx = 0;
+    // Per-card lerped scale values (start at 1 for all)
+    const cardScales: number[] = Array.from({ length: count }, () => 1);
 
     const computeTarget = () => {
       const rect = wrapper.getBoundingClientRect();
@@ -276,6 +281,18 @@ function useLerpScroll(
         onActiveIdxChange(newIdx);
       }
 
+      // ── Per-card scale: active = 1.02, inactive = 0.97 ──────────────────
+      const SCALE_ACTIVE = 1.02;
+      const SCALE_INACTIVE = 0.97;
+      const SCALE_LERP = 0.1; // slightly slower than position for a floaty feel
+      const currentCards = cardRefs.current ?? [];
+      currentCards.forEach((cardEl, i) => {
+        if (!cardEl) return;
+        const targetScale = i === newIdx ? SCALE_ACTIVE : SCALE_INACTIVE;
+        cardScales[i] = (cardScales[i] ?? 1) + (targetScale - (cardScales[i] ?? 1)) * SCALE_LERP;
+        cardEl.style.transform = `scale(${cardScales[i].toFixed(4)})`;
+      });
+
       rafId = requestAnimationFrame(tick);
     };
 
@@ -297,11 +314,14 @@ export default function ScrollServicesSection() {
 
   // Refs for each card's image panel — populated via callback refs below
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // Refs for each card wrapper — used for scale animation
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Reset active dot and image refs when tab changes
   useEffect(() => {
     setActiveIdx(0);
     imageRefs.current = [];
+    cardRefs.current = [];
   }, [activeTab]);
 
   // Listen for custom event from nav to switch tabs
@@ -316,7 +336,7 @@ export default function ScrollServicesSection() {
     return () => window.removeEventListener("services:setTab", handler);
   }, []);
 
-  const trackRef = useLerpScroll(wrapperRef, imageRefs, count, activeTab, setActiveIdx);
+  const trackRef = useLerpScroll(wrapperRef, imageRefs, cardRefs, count, activeTab, setActiveIdx);
 
   // 400px scroll travel per card
   const scrollTravel = (count - 1) * 400;
@@ -387,11 +407,14 @@ export default function ScrollServicesSection() {
             {services.map((service, i) => (
               <div
                 key={`${activeTab}-${i}`}
+                ref={(el) => { cardRefs.current[i] = el; }}
                 className="flex-shrink-0 rounded-2xl overflow-hidden flex"
                 style={{
                   width: "74%",
                   height: "400px",
                   border: "1px solid #E2E8F0",
+                  willChange: "transform",
+                  transformOrigin: "center center",
                 }}
               >
                 {/* Left: image panel — overflow hidden so parallax shift stays clipped */}
