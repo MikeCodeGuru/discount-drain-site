@@ -238,7 +238,10 @@ function useLerpScroll(
       const cardW = containerW * 0.74;
       const gap = containerW * 0.025;
       const stepPx = cardW + gap;
-      const maxTranslate = stepPx * (count - 1);
+      // Cap the translation so the last card stops at ~30% from the left edge
+      // of the viewport rather than scrolling fully off-screen.
+      // This keeps the final card visible when the section ends.
+      const maxTranslate = stepPx * (count - 1) * 0.72;
 
       return -(progress * maxTranslate);
     };
@@ -474,8 +477,9 @@ export default function ScrollServicesSection() {
 
   const trackRef = useLerpScroll(wrapperRef, imageRefs, cardRefs, count, activeTab, setActiveIdx);
 
-  // 400px scroll travel per card
-  const scrollTravel = (count - 1) * 400;
+  // 260px scroll travel per card — enough to animate between cards without
+  // creating a long dead-scroll zone at the end of the section.
+  const scrollTravel = (count - 1) * 260;
 
   // ── Shared section header ──────────────────────────────────────────────────
   const SectionHeader = () => (
