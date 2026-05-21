@@ -166,8 +166,12 @@ export default function DDHome() {
   const statsRef = useScrollReveal();
   const servicesRef = useScrollReveal();
   const trenchlessSectionRef = useScrollReveal<HTMLElement>();
+  const trenchlessImageRef = useScrollReveal();
   const trenchlessRef = useScrollReveal();
+  const aboutSectionRef = useScrollReveal<HTMLElement>();
+  const testimonialsSectionRef = useScrollReveal<HTMLElement>();
   const testimonialsRef = useScrollReveal();
+  const ctaSectionRef = useScrollReveal<HTMLElement>();
   const ctaRef = useScrollReveal();
 
   const featuredServices = services?.filter((s) => s.featured) ?? [];
@@ -339,7 +343,7 @@ export default function DDHome() {
       </section>
 
       {/* ─── WHY CHOOSE US / ABOUT ─── */}
-      <section className="py-20" style={{ backgroundColor: "#f5f7fa" }}>
+      <section ref={aboutSectionRef} className="py-20 section-entrance" style={{ backgroundColor: "#f5f7fa" }}>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             {/* Content */}
@@ -423,8 +427,8 @@ export default function DDHome() {
       <section ref={trenchlessSectionRef} className="py-20 overflow-hidden bg-white section-entrance">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-            {/* Image */}
-            <div className="relative">
+            {/* Image — appears first (0ms delay) */}
+            <div ref={trenchlessImageRef} className="relative fade-in-up">
               <div
                 className="w-full rounded-3xl overflow-hidden"
                 style={{ aspectRatio: "4/3", backgroundImage: `url(${TRENCHLESS_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
@@ -438,8 +442,8 @@ export default function DDHome() {
               </div>
             </div>
 
-            {/* Content */}
-            <div ref={trenchlessRef} className="fade-in-up">
+            {/* Content — slides in after image (150ms delay) */}
+            <div ref={trenchlessRef} className="fade-in-up" style={{ transitionDelay: "150ms" }}>
               <div className="eyebrow mb-4">Signature Technology</div>
               <h2 style={{ fontSize: "clamp(28px, 3vw, 44px)", color: "#111111", marginBottom: "20px", lineHeight: "1.15" }}>
                 No-Dig Trenchless Pipe Repair
@@ -473,7 +477,7 @@ export default function DDHome() {
       </section>
 
       {/* ─── TESTIMONIALS ─── */}
-      <section className="py-20 bg-white">
+      <section ref={testimonialsSectionRef} className="py-20 bg-white section-entrance">
         <div ref={testimonialsRef} className="fade-in-up container">
           <div className="text-center mb-14">
             <div className="eyebrow mx-auto mb-4">Customer Reviews</div>
@@ -514,7 +518,8 @@ export default function DDHome() {
 
       {/* ─── CTA SECTION ─── */}
       <section
-        className="relative py-24 overflow-hidden"
+        ref={ctaSectionRef}
+        className="relative py-24 overflow-hidden section-entrance"
         style={{ background: "linear-gradient(135deg, #0060d0 0%, #0080ff 50%, #3298fe 100%)" }}
       >
         {/* Background blob */}

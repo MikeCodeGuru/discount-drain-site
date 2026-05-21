@@ -735,6 +735,47 @@ export default function ScrollServicesSection() {
           </div>
         </div>
       </div>
+
+      {/* Desktop CTA — centred below the sticky viewport, sits in the scroll-travel space */}
+      <div
+        className="flex justify-center items-center"
+        style={{
+          position: "absolute",
+          bottom: "32px",
+          left: 0,
+          right: 0,
+          pointerEvents: "none",
+        }}
+      >
+        <Link
+          href={`/services?tab=${activeTab}`}
+          className="flex items-center gap-2 font-semibold rounded-full"
+          style={{
+            pointerEvents: "auto",
+            backgroundColor: "#0080ff",
+            color: "#ffffff",
+            padding: "14px 32px",
+            fontSize: "15px",
+            fontFamily: "'Inter Tight', sans-serif",
+            textDecoration: "none",
+            boxShadow: "0 4px 20px rgba(0,128,255,0.35)",
+            transition: "background-color 0.2s, box-shadow 0.2s, transform 0.15s",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0060d0";
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 28px rgba(0,128,255,0.5)";
+            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0080ff";
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(0,128,255,0.35)";
+            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
+          }}
+        >
+          View All Services
+          <ArrowRight size={15} />
+        </Link>
+      </div>
     </div>
   );
 }
