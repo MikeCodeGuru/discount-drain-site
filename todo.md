@@ -167,3 +167,12 @@
 - [x] Ensure each service detail page has contextually accurate images for that specific service
 - [x] Generate service-specific images for each of the 6 services
 - [x] Save checkpoint
+
+## Phase 22: Mobile Responsive ScrollServicesSection (Vertical Stacked List)
+- [x] Detect mobile (≤767px) and disable sticky scroll trap + lerp RAF loop
+- [x] Mobile layout: portrait cards stacked vertically, full-width image on top (300px tall), text below
+- [x] Mobile: remove fixed height wrapper, let section flow naturally in document
+- [x] Mobile: tab toggle remains functional
+- [x] Mobile: ArrowCTA replaced with a simple text link (hover expand doesn't work on touch)
+- [x] Desktop layout unchanged (lerp, parallax, scale all preserved)
+- [ ] Save checkpoint

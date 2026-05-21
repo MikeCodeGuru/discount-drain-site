@@ -125,8 +125,8 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
   },
 ];
 
-// Arrow button that expands to show a CTA label on hover
-function ArrowCTA({ href, label }: { href: string; label: string }) {
+// ─── Arrow CTA (desktop only — hover expand) ─────────────────────────────────
+function ArrowCTA({ label }: { label: string }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -136,44 +136,44 @@ function ArrowCTA({ href, label }: { href: string; label: string }) {
       onMouseLeave={() => setHovered(false)}
       style={{ display: "inline-flex", alignItems: "center" }}
     >
-        {/* CTA label — slides in from the left when hovered */}
-        <div
+      {/* CTA label — slides in from the left when hovered */}
+      <div
+        style={{
+          overflow: "hidden",
+          maxWidth: hovered ? "220px" : "0px",
+          opacity: hovered ? 1 : 0,
+          transition: "max-width 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease",
+          whiteSpace: "nowrap",
+          marginRight: hovered ? "10px" : "0px",
+        }}
+      >
+        <span
           style={{
-            overflow: "hidden",
-            maxWidth: hovered ? "220px" : "0px",
-            opacity: hovered ? 1 : 0,
-            transition: "max-width 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease",
-            whiteSpace: "nowrap",
-            marginRight: hovered ? "10px" : "0px",
+            fontSize: "14px",
+            fontWeight: 600,
+            color: "#0F172A",
+            fontFamily: "'Inter Tight', sans-serif",
           }}
         >
-          <span
-            style={{
-              fontSize: "14px",
-              fontWeight: 600,
-              color: "#0F172A",
-              fontFamily: "'Inter Tight', sans-serif",
-            }}
-          >
-            {label}
-          </span>
-        </div>
+          {label}
+        </span>
+      </div>
 
-        {/* Arrow circle */}
-        <div
-          className="flex items-center justify-center rounded-full transition-all duration-300"
-          style={{
-            width: "48px",
-            height: "48px",
-            backgroundColor: hovered ? "#2563EB" : "#0F172A",
-            color: "#FFFFFF",
-            flexShrink: 0,
-            transform: hovered ? "scale(1.08)" : "scale(1)",
-            boxShadow: hovered ? "0 4px 16px rgba(37,99,235,0.35)" : "none",
-          }}
-        >
-          <ArrowRight size={18} />
-        </div>
+      {/* Arrow circle */}
+      <div
+        className="flex items-center justify-center rounded-full transition-all duration-300"
+        style={{
+          width: "48px",
+          height: "48px",
+          backgroundColor: hovered ? "#2563EB" : "#0F172A",
+          color: "#FFFFFF",
+          flexShrink: 0,
+          transform: hovered ? "scale(1.08)" : "scale(1)",
+          boxShadow: hovered ? "0 4px 16px rgba(37,99,235,0.35)" : "none",
+        }}
+      >
+        <ArrowRight size={18} />
+      </div>
     </div>
   );
 }
@@ -302,8 +302,121 @@ function useLerpScroll(
   return trackRef;
 }
 
+// ─── Mobile card (portrait: image on top, text below) ────────────────────────
+function MobileServiceCard({ service, isFirst, activeTab }: { service: ServiceCard; isFirst: boolean; activeTab: string }) {
+  return (
+    <Link
+      href={service.href}
+      style={{ textDecoration: "none", display: "block" }}
+    >
+      <div
+        style={{
+          borderRadius: "16px",
+          overflow: "hidden",
+          border: "1px solid #E2E8F0",
+          backgroundColor: "#FFFFFF",
+        }}
+      >
+        {/* Image — full width, fixed height */}
+        <div style={{ position: "relative", width: "100%", height: "260px", overflow: "hidden" }}>
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${service.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundColor: "#CBD5E1",
+            }}
+          />
+          {/* Flagship badge — only on first residential card */}
+          {activeTab === "residential" && isFirst && (
+            <div
+              style={{
+                position: "absolute",
+                top: "12px",
+                left: "12px",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "6px 12px",
+                borderRadius: "999px",
+                backgroundColor: "#FBBF24",
+                boxShadow: "0 2px 8px rgba(251,191,36,0.45)",
+                zIndex: 1,
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#92400E" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+              <span style={{ fontSize: "12px", fontWeight: 700, color: "#92400E", fontFamily: "'Inter Tight', sans-serif", whiteSpace: "nowrap" }}>
+                Free Camera Inspection
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Text content */}
+        <div style={{ padding: "20px", backgroundColor: "#F1F5F9" }}>
+          <p
+            style={{
+              fontSize: "11px",
+              fontWeight: 700,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "#94A3B8",
+              marginBottom: "8px",
+              fontFamily: "'Inter Tight', sans-serif",
+            }}
+          >
+            {service.category}
+          </p>
+          <h3
+            style={{
+              fontSize: "18px",
+              fontWeight: 700,
+              color: "#0F172A",
+              fontFamily: "'Inter Tight', sans-serif",
+              lineHeight: "1.3",
+              marginBottom: "10px",
+            }}
+          >
+            {service.title}
+          </h3>
+          <p
+            style={{
+              fontSize: "14px",
+              color: "#475569",
+              lineHeight: "1.6",
+              marginBottom: "16px",
+            }}
+          >
+            {service.description}
+          </p>
+          {/* Simple text CTA with arrow */}
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "#2563EB",
+              fontFamily: "'Inter Tight', sans-serif",
+            }}
+          >
+            {service.cta}
+            <ArrowRight size={14} />
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default function ScrollServicesSection() {
   const [activeTab, setActiveTab] = useState<"residential" | "commercial">("residential");
+  const [isMobile, setIsMobile] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
 
@@ -314,6 +427,14 @@ export default function ScrollServicesSection() {
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   // Refs for each card wrapper — used for scale animation
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
+
+  // Detect mobile breakpoint
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Reset active dot and image refs when tab changes
   useEffect(() => {
@@ -339,6 +460,75 @@ export default function ScrollServicesSection() {
   // 400px scroll travel per card
   const scrollTravel = (count - 1) * 400;
 
+  // ── Shared section header ──────────────────────────────────────────────────
+  const SectionHeader = () => (
+    <div className="container pt-12 pb-8 flex items-start justify-between flex-wrap gap-4">
+      <div>
+        <span
+          className="inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1 rounded-full"
+          style={{ backgroundColor: "#EEF4FF", color: "#2563EB" }}
+        >
+          Our Services
+        </span>
+        <h2
+          className="text-4xl md:text-5xl font-bold leading-tight"
+          style={{ color: "#0F172A", fontFamily: "'Inter Tight', sans-serif" }}
+        >
+          Everything You Need,
+          <br />
+          Under One Roof
+        </h2>
+      </div>
+
+      {/* Tab toggle */}
+      <div className="flex items-center gap-2 mt-2">
+        <button
+          onClick={() => setActiveTab("residential")}
+          className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all"
+          style={{
+            backgroundColor: activeTab === "residential" ? "#2563EB" : "#F1F5F9",
+            color: activeTab === "residential" ? "#FFFFFF" : "#475569",
+          }}
+        >
+          Residential
+        </button>
+        <button
+          onClick={() => setActiveTab("commercial")}
+          className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all"
+          style={{
+            backgroundColor: activeTab === "commercial" ? "#2563EB" : "#F1F5F9",
+            color: activeTab === "commercial" ? "#FFFFFF" : "#475569",
+          }}
+        >
+          Commercial
+        </button>
+      </div>
+    </div>
+  );
+
+  // ── MOBILE LAYOUT: plain vertical stacked list ─────────────────────────────
+  if (isMobile) {
+    return (
+      <div id="services-section" style={{ backgroundColor: "#FFFFFF" }}>
+        <SectionHeader />
+        <div
+          className="container"
+          style={{ paddingBottom: "48px", display: "flex", flexDirection: "column", gap: "16px" }}
+        >
+          {services.map((service, i) => (
+            <MobileServiceCard
+              key={`${activeTab}-${i}`}
+              service={service}
+              isFirst={i === 0}
+              activeTab={activeTab}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // ── DESKTOP LAYOUT: sticky scroll trap with lerp animation ─────────────────
   return (
     <div
       id="services-section"
@@ -352,48 +542,7 @@ export default function ScrollServicesSection() {
         style={{ height: "100vh" }}
       >
         {/* Section header */}
-        <div className="container pt-16 pb-8 flex items-start justify-between flex-wrap gap-4">
-          <div>
-            <span
-              className="inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1 rounded-full"
-              style={{ backgroundColor: "#EEF4FF", color: "#2563EB" }}
-            >
-              Our Services
-            </span>
-            <h2
-              className="text-4xl md:text-5xl font-bold leading-tight"
-              style={{ color: "#0F172A", fontFamily: "'Inter Tight', sans-serif" }}
-            >
-              Everything You Need,
-              <br />
-              Under One Roof
-            </h2>
-          </div>
-
-          {/* Tab toggle */}
-          <div className="flex items-center gap-2 mt-2">
-            <button
-              onClick={() => setActiveTab("residential")}
-              className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all"
-              style={{
-                backgroundColor: activeTab === "residential" ? "#2563EB" : "#F1F5F9",
-                color: activeTab === "residential" ? "#FFFFFF" : "#475569",
-              }}
-            >
-              Residential
-            </button>
-            <button
-              onClick={() => setActiveTab("commercial")}
-              className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all"
-              style={{
-                backgroundColor: activeTab === "commercial" ? "#2563EB" : "#F1F5F9",
-                color: activeTab === "commercial" ? "#FFFFFF" : "#475569",
-              }}
-            >
-              Commercial
-            </button>
-          </div>
-        </div>
+        <SectionHeader />
 
         {/* Card track */}
         <div className="container overflow-hidden">
@@ -504,7 +653,7 @@ export default function ScrollServicesSection() {
 
                   {/* Bottom row: expanding arrow CTA + progress dots */}
                   <div className="flex items-center justify-between mt-6">
-                    <ArrowCTA href={service.href} label={service.cta} />
+                    <ArrowCTA label={service.cta} />
 
                     <div className="flex items-center gap-2">
                       {services.map((_, dotIdx) => (
