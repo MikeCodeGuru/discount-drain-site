@@ -604,7 +604,7 @@ export default function ScrollServicesSection() {
         {/* Section header */}
         <SectionHeader />
 
-        {/* Card track */}
+        {/* Card track + CTA row */}
         <div className="container overflow-hidden">
           <div
             ref={trackRef}
@@ -734,75 +734,67 @@ export default function ScrollServicesSection() {
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Desktop CTAs — two side-by-side buttons close below the sticky viewport */}
-      <div
-        className="flex justify-center items-center gap-4"
-        style={{
-          position: "absolute",
-          bottom: "24px",
-          left: 0,
-          right: 0,
-          pointerEvents: "none",
-        }}
-      >
-        {/* Primary: View All Services */}
-        <Link
-          href={`/services?tab=${activeTab}`}
-          className="flex items-center gap-2 font-semibold rounded-full"
-          style={{
-            pointerEvents: "auto",
-            backgroundColor: "#0080ff",
-            color: "#ffffff",
-            padding: "14px 32px",
-            fontSize: "15px",
-            fontFamily: "'Inter Tight', sans-serif",
-            textDecoration: "none",
-            boxShadow: "0 4px 20px rgba(0,128,255,0.35)",
-            transition: "background-color 0.2s, box-shadow 0.2s, transform 0.15s",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0060d0";
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(0,128,255,0.55)";
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px) scale(1.04)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0080ff";
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(0,128,255,0.35)";
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0) scale(1)";
-          }}
+        {/* Desktop CTAs — inside sticky container, directly below the card track */}
+        <div
+          className="flex justify-center items-center gap-4"
+          style={{ marginTop: "28px" }}
         >
-          View All Services
-          <ArrowRight size={15} />
-        </Link>
+          {/* Primary: View All Services */}
+          <Link
+            href={`/services?tab=${activeTab}`}
+            className="flex items-center gap-2 font-semibold rounded-full"
+            style={{
+              backgroundColor: "#0080ff",
+              color: "#ffffff",
+              padding: "14px 32px",
+              fontSize: "15px",
+              fontFamily: "'Inter Tight', sans-serif",
+              textDecoration: "none",
+              boxShadow: "0 4px 20px rgba(0,128,255,0.35)",
+              transition: "background-color 0.2s, box-shadow 0.2s, transform 0.15s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0060d0";
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(0,128,255,0.55)";
+              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px) scale(1.04)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0080ff";
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(0,128,255,0.35)";
+              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0) scale(1)";
+            }}
+          >
+            View All Services
+            <ArrowRight size={15} />
+          </Link>
 
-        {/* Ghost: Get a Free Quote */}
-        <Link
-          href="/contact"
-          className="flex items-center gap-2 font-semibold rounded-full"
-          style={{
-            pointerEvents: "auto",
-            backgroundColor: "transparent",
-            color: "#0080ff",
-            padding: "13px 32px",
-            fontSize: "15px",
-            fontFamily: "'Inter Tight', sans-serif",
-            textDecoration: "none",
-            border: "2px solid #0080ff",
-            transition: "background-color 0.2s, color 0.2s, transform 0.15s",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(0,128,255,0.08)";
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px) scale(1.04)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "transparent";
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0) scale(1)";
-          }}
-        >
-          Get a Free Quote
-        </Link>
+          {/* Ghost: Get a Free Quote */}
+          <Link
+            href="/contact"
+            className="flex items-center gap-2 font-semibold rounded-full"
+            style={{
+              backgroundColor: "transparent",
+              color: "#0080ff",
+              padding: "13px 32px",
+              fontSize: "15px",
+              fontFamily: "'Inter Tight', sans-serif",
+              textDecoration: "none",
+              border: "2px solid #0080ff",
+              transition: "background-color 0.2s, color 0.2s, transform 0.15s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(0,128,255,0.08)";
+              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px) scale(1.04)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "transparent";
+              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0) scale(1)";
+            }}
+          >
+            Get a Free Quote
+          </Link>
+        </div>
       </div>
     </div>
   );
