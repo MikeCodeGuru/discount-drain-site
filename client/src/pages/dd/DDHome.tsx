@@ -330,63 +330,7 @@ export default function DDHome() {
         </div>
       </section>
 
-      {/* ─── SCROLL SERVICES SECTION ─── */}
-      <ScrollServicesSection />
-
-      {/* ─── TRENCHLESS FEATURE ─── */}
-      <section className="py-20 overflow-hidden bg-white">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-            {/* Image */}
-            <div className="relative">
-              <div
-                className="w-full rounded-3xl overflow-hidden"
-                style={{ aspectRatio: "4/3", backgroundImage: `url(${TRENCHLESS_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
-              />
-              <div
-                className="absolute bottom-6 left-6 bg-white rounded-2xl p-4"
-                style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.12)", maxWidth: "220px" }}
-              >
-                <div style={{ color: "#0080ff", fontSize: "13px", fontWeight: 700, marginBottom: "4px" }}>No Excavation Required</div>
-                <div style={{ color: "#8c9baa", fontSize: "13px" }}>Trenchless technology saves your driveway and landscaping.</div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div ref={trenchlessRef} className="fade-in-up">
-              <div className="eyebrow mb-4">Signature Technology</div>
-              <h2 style={{ fontSize: "clamp(28px, 3vw, 44px)", color: "#111111", marginBottom: "20px", lineHeight: "1.15" }}>
-                No-Dig Trenchless Pipe Repair
-              </h2>
-              <p style={{ color: "#8c9baa", lineHeight: "28px", marginBottom: "16px" }}>
-                Stop before you let anyone dig up your driveway or landscaping. Our trenchless technology replaces underground pipe from the inside out, with no excavation required.
-              </p>
-              <p style={{ color: "#8c9baa", lineHeight: "28px", marginBottom: "28px" }}>
-                Our CIPP (Cured-In-Place Pipe) system creates a new pipe within the existing one. No excavation, no mess, no weeks of disruption. Most jobs are completed in a single day.
-              </p>
-              <div className="flex flex-col gap-3 mb-8">
-                {[
-                  "No excavation of driveways or landscaping",
-                  "Completed in as little as one day",
-                  "Suitable for residential and commercial pipes",
-                  "Long-lasting, seamless pipe lining",
-                ].map((point) => (
-                  <div key={point} className="flex items-start gap-3">
-                    <CheckCircle2 size={16} style={{ color: "#0080ff", marginTop: "3px", flexShrink: 0 }} />
-                    <span style={{ color: "#222222", fontSize: "15px" }}>{point}</span>
-                  </div>
-                ))}
-              </div>
-              <Link href="/services/trenchless-pipe-repair" className="btn-primary">
-                Learn About Trenchless
-                <ArrowRight size={15} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── WHY CHOOSE US ─── */}
+      {/* ─── WHY CHOOSE US / ABOUT ─── */}
       <section className="py-20" style={{ backgroundColor: "#f5f7fa" }}>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
@@ -439,6 +383,62 @@ export default function DDHome() {
                 className="rounded-2xl overflow-hidden"
                 style={{ aspectRatio: "1", backgroundImage: `url(${EXCAVATION_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SCROLL SERVICES SECTION ─── */}
+      <ScrollServicesSection />
+
+      {/* ─── TRENCHLESS FEATURE ─── */}
+      <section className="py-20 overflow-hidden bg-white">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+            {/* Image */}
+            <div className="relative">
+              <div
+                className="w-full rounded-3xl overflow-hidden"
+                style={{ aspectRatio: "4/3", backgroundImage: `url(${TRENCHLESS_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+              />
+              <div
+                className="absolute bottom-6 left-6 bg-white rounded-2xl p-4"
+                style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.12)", maxWidth: "220px" }}
+              >
+                <div style={{ color: "#0080ff", fontSize: "13px", fontWeight: 700, marginBottom: "4px" }}>No Excavation Required</div>
+                <div style={{ color: "#8c9baa", fontSize: "13px" }}>Trenchless technology saves your driveway and landscaping.</div>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div ref={trenchlessRef} className="fade-in-up">
+              <div className="eyebrow mb-4">Signature Technology</div>
+              <h2 style={{ fontSize: "clamp(28px, 3vw, 44px)", color: "#111111", marginBottom: "20px", lineHeight: "1.15" }}>
+                No-Dig Trenchless Pipe Repair
+              </h2>
+              <p style={{ color: "#8c9baa", lineHeight: "28px", marginBottom: "16px" }}>
+                Stop before you let anyone dig up your driveway or landscaping. Our trenchless technology replaces underground pipe from the inside out, with no excavation required.
+              </p>
+              <p style={{ color: "#8c9baa", lineHeight: "28px", marginBottom: "28px" }}>
+                Our CIPP (Cured-In-Place Pipe) system creates a new pipe within the existing one. No excavation, no mess, no weeks of disruption. Most jobs are completed in a single day.
+              </p>
+              <div className="flex flex-col gap-3 mb-8">
+                {[
+                  "No excavation of driveways or landscaping",
+                  "Completed in as little as one day",
+                  "Suitable for residential and commercial pipes",
+                  "Long-lasting, seamless pipe lining",
+                ].map((point) => (
+                  <div key={point} className="flex items-start gap-3">
+                    <CheckCircle2 size={16} style={{ color: "#0080ff", marginTop: "3px", flexShrink: 0 }} />
+                    <span style={{ color: "#222222", fontSize: "15px" }}>{point}</span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/services/trenchless-pipe-repair" className="btn-primary">
+                Learn About Trenchless
+                <ArrowRight size={15} />
+              </Link>
             </div>
           </div>
         </div>

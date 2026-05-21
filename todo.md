@@ -135,3 +135,19 @@
 - [x] Flagship badge z-index raised above parallax layer
 - [x] Single RAF loop drives both track translateX and all image parallax — zero extra re-renders
 - [x] TypeScript passes cleanly (0 errors)
+
+## Phase 16: Homepage Section Reorder (Hero → About Us → Our Services)
+- [x] Move About Us section to immediately after the Stats Strip in DDHome.tsx
+- [x] Our Services (ScrollServicesSection) follows directly after About Us
+- [x] All other sections remain in their existing order below
+- [x] Verify no broken imports or missing section IDs
+- [x] Save checkpoint
+
+## Phase 17: Parallax Factor 0.2
+- [ ] Bump PARALLAX_FACTOR from 0.12 to 0.2 in ScrollServicesSection.tsx
+- [ ] Save checkpoint
+
+## Phase 18: Active Card Scale-Up
+- [ ] Add scale(1.02) on active card and scale(0.97) on inactive cards via RAF loop
+- [ ] Driven by lerped position — no extra React state
+- [ ] Save checkpoint
