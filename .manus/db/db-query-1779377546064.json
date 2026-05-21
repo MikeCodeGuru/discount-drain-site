@@ -1,0 +1,16 @@
+{
+  "query": "SELECT slug, title, shortDesc, faqs FROM services WHERE slug = 'wet-basement-repair';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, shortDesc, faqs FROM services WHERE slug = 'wet-basement-repair';",
+  "rows": [
+    {
+      "slug": "wet-basement-repair",
+      "title": "Wet Basement Waterproofing",
+      "shortDesc": "Permanent wet basement fixes backed by a 20-year warranty. 24-hour emergency dispatch available.",
+      "faqs": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tshortDesc\tfaqs\nwet-basement-repair\tWet Basement Waterproofing\tPermanent wet basement fixes backed by a 20-year warranty. 24-hour emergency dispatch available.\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 268
+}

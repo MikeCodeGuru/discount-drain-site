@@ -1,0 +1,404 @@
+import { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
+import {
+  Phone,
+  Camera,
+  Wrench,
+  Droplets,
+  Truck,
+  Shield,
+  Star,
+  CheckCircle2,
+  ArrowRight,
+  ChevronRight,
+  Clock,
+  Award,
+  Users,
+} from "lucide-react";
+import DDLayout from "./DDLayout";
+import { trpc } from "@/lib/trpc";
+
+const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
+const HERO_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/hero-drain-7Qr6hJCJVsmcjoSkPJtcfU.webp";
+const TRENCHLESS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/trenchless-tech-aq27wqzhBVwtJcMqn5vyp6.webp";
+const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp";
+const BASEMENT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/wet-basement-KCdDkXrFxEYTLvyifn5MV5.webp";
+const EXCAVATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/excavation-truck-hn3hyopRK6GMkwRppqE9JE.webp";
+
+function useScrollReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return ref;
+}
+
+function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        let start = 0;
+        const step = (ts: number) => {
+          if (!start) start = ts;
+          const p = Math.min((ts - start) / 1600, 1);
+          setCount(Math.floor(p * target));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        obs.disconnect();
+      }
+    }, { threshold: 0.5 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [target]);
+  return <span ref={ref}>{count}{suffix}</span>;
+}
+
+const ICON_MAP: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
+  Camera, Wrench, Droplets, Truck, Shield,
+};
+
+export default function DDHome() {
+  const { data: services } = trpc.services.list.useQuery();
+  const { data: testimonials } = trpc.testimonials.list.useQuery();
+
+  const heroRef = useScrollReveal();
+  const statsRef = useScrollReveal();
+  const servicesRef = useScrollReveal();
+  const trenchlessRef = useScrollReveal();
+  const testimonialsRef = useScrollReveal();
+  const ctaRef = useScrollReveal();
+
+  const featuredServices = services?.filter((s) => s.featured) ?? [];
+  const displayServices = featuredServices.length > 0 ? featuredServices : services?.slice(0, 6) ?? [];
+
+  return (
+    <DDLayout>
+      {/* SEO */}
+      <title>Discount Drain | London Ontario Drain and Sewer Specialists Since 1970</title>
+      <meta name="description" content="Family-owned drain and sewer specialists serving London and Southwestern Ontario since 1970. Free sewer video camera inspection with every service call. Available 24/7. Call 519-451-8342." />
+      <link rel="canonical" href="https://discountdrain.ca/site" />
+
+      {/* ─── HERO ─── */}
+      <section className="relative overflow-hidden" style={{ minHeight: "90vh", display: "flex", alignItems: "center" }}>
+        <video
+          autoPlay muted loop playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: 0 }}
+          poster={HERO_FALLBACK}
+        >
+          <source src={HERO_VIDEO} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 100%)", zIndex: 1 }} />
+
+        {/* Blue blob accent */}
+        <div
+          className="absolute blob-bg"
+          style={{ width: "600px", height: "600px", top: "-100px", right: "-150px", backgroundColor: "rgba(0,128,255,0.18)", zIndex: 1 }}
+        />
+
+        <div className="relative container py-24 md:py-32" style={{ zIndex: 2 }}>
+          <div ref={heroRef} className="fade-in-up max-w-2xl">
+            <div className="eyebrow mb-5" style={{ color: "#60b3ff", backgroundColor: "rgba(0,128,255,0.2)", border: "1px solid rgba(0,128,255,0.3)" }}>
+              London and Southwestern Ontario
+            </div>
+            <h1
+              className="text-white mb-6"
+              style={{ fontSize: "clamp(38px, 5.5vw, 72px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em" }}
+            >
+              London's Most Trusted Drain and Sewer Specialists
+            </h1>
+            <p className="mb-8 text-white/85" style={{ fontSize: "18px", lineHeight: "30px", maxWidth: "520px" }}>
+              Family-owned and operated since 1970. We solve any drain and sewer problem for homes and businesses across Southwestern Ontario, backed by a 20-year warranty.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              <a href="tel:5194518342" className="btn-primary" style={{ fontSize: "16px", padding: "18px 32px" }}>
+                <Phone size={16} />
+                Call 519-451-8342
+              </a>
+              <Link href="/site/quote" className="btn-white" style={{ fontSize: "16px", padding: "18px 32px" }}>
+                Get a Free Quote
+                <ChevronRight size={16} />
+              </Link>
+            </div>
+
+            {/* Trust badges */}
+            <div className="flex flex-wrap gap-3">
+              {["BBB Accredited", "WSIB Compliant", "Fully Insured", "Free Camera Inspection"].map((badge) => (
+                <div
+                  key={badge}
+                  className="flex items-center gap-2 px-3 py-2 rounded-full"
+                  style={{ backgroundColor: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)" }}
+                >
+                  <CheckCircle2 size={13} style={{ color: "#60b3ff" }} />
+                  <span style={{ color: "#ffffff", fontSize: "13px", fontWeight: 500 }}>{badge}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── STATS STRIP ─── */}
+      <section style={{ backgroundColor: "#0080ff" }} className="py-12">
+        <div ref={statsRef} className="fade-in-up container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { value: 55, suffix: "+", label: "Years in Business", icon: Award },
+              { value: 20, suffix: "+", label: "Skilled Technicians", icon: Users },
+              { value: 20, suffix: "-Year", label: "Basement Warranty", icon: Shield },
+              { value: 24, suffix: "/7", label: "Emergency Dispatch", icon: Clock },
+            ].map(({ value, suffix, label, icon: Icon }) => (
+              <div key={label} className="flex flex-col items-center">
+                <Icon size={24} style={{ color: "rgba(255,255,255,0.7)", marginBottom: "8px" }} />
+                <div className="text-white font-extrabold" style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1, marginBottom: "6px" }}>
+                  <Counter target={value} suffix={suffix} />
+                </div>
+                <div style={{ color: "rgba(255,255,255,0.75)", fontSize: "13px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                  {label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SERVICES GRID ─── */}
+      <section className="py-20" style={{ backgroundColor: "#f5f7fa" }}>
+        <div ref={servicesRef} className="fade-in-up container">
+          <div className="text-center mb-14">
+            <div className="eyebrow mx-auto mb-4">What We Do</div>
+            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 48px)", color: "#111111", marginBottom: "16px" }}>
+              Drain and Sewer Services for Every Situation
+            </h2>
+            <p style={{ color: "#8c9baa", maxWidth: "520px", margin: "0 auto", fontSize: "17px", lineHeight: "28px" }}>
+              From free camera inspections to trenchless repairs and wet basement waterproofing, we have the expertise and equipment to handle any job.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {displayServices.map((service) => {
+              const Icon = ICON_MAP[service.iconName ?? "Wrench"] ?? Wrench;
+              return (
+                <Link key={service.slug} href={`/site/services/${service.slug}`}>
+                  <div className="service-card-v2 h-full flex flex-col cursor-pointer">
+                    <div
+                      className="flex items-center justify-center mb-5 rounded-2xl"
+                      style={{ width: "52px", height: "52px", backgroundColor: "#e8f3ff" }}
+                    >
+                      <Icon size={22} style={{ color: "#0080ff" }} />
+                    </div>
+                    <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#111111", marginBottom: "10px", lineHeight: "1.3" }}>
+                      {service.title}
+                    </h3>
+                    <p style={{ color: "#8c9baa", fontSize: "15px", lineHeight: "24px", flex: 1 }}>
+                      {service.shortDesc}
+                    </p>
+                    <div className="flex items-center gap-1 mt-4 text-sm font-semibold" style={{ color: "#0080ff" }}>
+                      Learn More <ArrowRight size={14} />
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link href="/site/services" className="btn-outline">
+              View All Services
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TRENCHLESS FEATURE ─── */}
+      <section className="py-20 overflow-hidden bg-white">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+            {/* Image */}
+            <div className="relative">
+              <div
+                className="w-full rounded-3xl overflow-hidden"
+                style={{ aspectRatio: "4/3", backgroundImage: `url(${TRENCHLESS_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+              />
+              <div
+                className="absolute bottom-6 left-6 bg-white rounded-2xl p-4"
+                style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.12)", maxWidth: "220px" }}
+              >
+                <div style={{ color: "#0080ff", fontSize: "13px", fontWeight: 700, marginBottom: "4px" }}>No Excavation Required</div>
+                <div style={{ color: "#8c9baa", fontSize: "13px" }}>Trenchless technology saves your driveway and landscaping.</div>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div ref={trenchlessRef} className="fade-in-up">
+              <div className="eyebrow mb-4">Signature Technology</div>
+              <h2 style={{ fontSize: "clamp(28px, 3vw, 44px)", color: "#111111", marginBottom: "20px", lineHeight: "1.15" }}>
+                No-Dig Trenchless Pipe Repair
+              </h2>
+              <p style={{ color: "#8c9baa", lineHeight: "28px", marginBottom: "16px" }}>
+                Stop before you let anyone dig up your driveway or landscaping. Our trenchless technology replaces underground pipe from the inside out, with no excavation required.
+              </p>
+              <p style={{ color: "#8c9baa", lineHeight: "28px", marginBottom: "28px" }}>
+                Our CIPP (Cured-In-Place Pipe) system creates a new pipe within the existing one. No excavation, no mess, no weeks of disruption. Most jobs are completed in a single day.
+              </p>
+              <div className="flex flex-col gap-3 mb-8">
+                {[
+                  "No excavation of driveways or landscaping",
+                  "Completed in as little as one day",
+                  "Suitable for residential and commercial pipes",
+                  "Long-lasting, seamless pipe lining",
+                ].map((point) => (
+                  <div key={point} className="flex items-start gap-3">
+                    <CheckCircle2 size={16} style={{ color: "#0080ff", marginTop: "3px", flexShrink: 0 }} />
+                    <span style={{ color: "#222222", fontSize: "15px" }}>{point}</span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/site/services/trenchless-pipe-repair" className="btn-primary">
+                Learn About Trenchless
+                <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WHY CHOOSE US ─── */}
+      <section className="py-20" style={{ backgroundColor: "#f5f7fa" }}>
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+            {/* Content */}
+            <div>
+              <div className="eyebrow mb-4">Family-Owned Since 1970</div>
+              <h2 style={{ fontSize: "clamp(28px, 3vw, 44px)", color: "#111111", marginBottom: "20px", lineHeight: "1.15" }}>
+                London's Drain and Sewer Specialists
+              </h2>
+              <p style={{ color: "#8c9baa", lineHeight: "28px", marginBottom: "16px" }}>
+                We are family owned and operated since 1970 when Herman Marche set out to help London residents and business owners with their sewer, drainage, and plumbing problems. In 1991, his son Barry took over ownership, and today we are London's finest sewer, septic, and drainage repair, replace, and install company.
+              </p>
+              <p style={{ color: "#8c9baa", lineHeight: "28px", marginBottom: "28px" }}>
+                With over 20 employees, our professional team is friendly, highly trained in safety, and certified in industry-specific instruction. We are WSIB compliant and fully insured.
+              </p>
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {[
+                  { icon: Shield, label: "WSIB Compliant" },
+                  { icon: CheckCircle2, label: "Fully Insured" },
+                  { icon: Star, label: "BBB Accredited" },
+                  { icon: Clock, label: "24/7 Emergency" },
+                ].map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <div
+                      style={{ width: "40px", height: "40px", backgroundColor: "#e8f3ff", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}
+                    >
+                      <Icon size={18} style={{ color: "#0080ff" }} />
+                    </div>
+                    <span style={{ fontSize: "14px", color: "#222222", fontWeight: 600 }}>{label}</span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/site/about" className="btn-outline">
+                Meet Our Team
+                <ArrowRight size={15} />
+              </Link>
+            </div>
+
+            {/* Image grid */}
+            <div className="grid grid-cols-2 gap-4">
+              <div
+                className="col-span-2 rounded-3xl overflow-hidden"
+                style={{ aspectRatio: "16/7", backgroundImage: `url(${CAMERA_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+              />
+              <div
+                className="rounded-2xl overflow-hidden"
+                style={{ aspectRatio: "1", backgroundImage: `url(${BASEMENT_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+              />
+              <div
+                className="rounded-2xl overflow-hidden"
+                style={{ aspectRatio: "1", backgroundImage: `url(${EXCAVATION_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TESTIMONIALS ─── */}
+      <section className="py-20 bg-white">
+        <div ref={testimonialsRef} className="fade-in-up container">
+          <div className="text-center mb-14">
+            <div className="eyebrow mx-auto mb-4">Customer Reviews</div>
+            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", color: "#111111", marginBottom: "12px" }}>
+              What Our Customers Say
+            </h2>
+            <p style={{ color: "#8c9baa", maxWidth: "480px", margin: "0 auto" }}>
+              Trusted by homeowners and businesses across London and Southwestern Ontario.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {(testimonials ?? []).slice(0, 3).map((t) => (
+              <div key={t.id} className="testimonial-card">
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star key={i} size={14} fill="#0080ff" style={{ color: "#0080ff" }} />
+                  ))}
+                </div>
+                <p style={{ color: "#222222", fontSize: "15px", lineHeight: "26px", marginBottom: "20px", fontStyle: "italic" }}>
+                  "{t.body}"
+                </p>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: "14px", color: "#111111" }}>{t.name}</div>
+                  <div style={{ color: "#8c9baa", fontSize: "13px" }}>{t.location}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CTA SECTION ─── */}
+      <section
+        className="relative py-24 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0060d0 0%, #0080ff 50%, #3298fe 100%)" }}
+      >
+        {/* Background blob */}
+        <div className="absolute blob-bg" style={{ width: "500px", height: "500px", top: "-100px", right: "-100px", backgroundColor: "rgba(255,255,255,0.08)" }} />
+        <div className="absolute blob-bg" style={{ width: "400px", height: "400px", bottom: "-100px", left: "-80px", backgroundColor: "rgba(0,0,0,0.08)" }} />
+
+        <div ref={ctaRef} className="fade-in-up relative container text-center" style={{ zIndex: 2 }}>
+          <div className="eyebrow mx-auto mb-5" style={{ color: "rgba(255,255,255,0.9)", backgroundColor: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)" }}>
+            Available 24/7
+          </div>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 800, color: "#ffffff", marginBottom: "16px", letterSpacing: "-0.02em" }}>
+            Ready to Solve Your Drain Problem?
+          </h2>
+          <p style={{ color: "rgba(255,255,255,0.85)", fontSize: "18px", maxWidth: "520px", margin: "0 auto 36px", lineHeight: "30px" }}>
+            Call today and get your free sewer video camera inspection. A $400 value, included with every service call. We pick up 24 hours a day, 7 days a week.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:5194518342" className="btn-white" style={{ fontSize: "16px", padding: "18px 36px" }}>
+              <Phone size={16} />
+              Call 519-451-8342
+            </a>
+            <Link href="/site/quote" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "18px 36px" }}>
+              Get a Free Quote
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </DDLayout>
+  );
+}

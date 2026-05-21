@@ -1,0 +1,40 @@
+{
+  "query": "SELECT slug, title, JSON_LENGTH(faqs) as faq_count FROM services ORDER BY sortOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, JSON_LENGTH(faqs) as faq_count FROM services ORDER BY sortOrder;",
+  "rows": [
+    {
+      "slug": "sewer-camera-inspection",
+      "title": "Free Sewer Video Camera Inspection",
+      "faq_count": "13"
+    },
+    {
+      "slug": "trenchless-pipe-repair",
+      "title": "No-Dig Trenchless Pipe Repair",
+      "faq_count": "13"
+    },
+    {
+      "slug": "wet-basement-repair",
+      "title": "Wet Basement Waterproofing",
+      "faq_count": "NULL"
+    },
+    {
+      "slug": "sewer-repair-installation",
+      "title": "Sewer Repair and Installation",
+      "faq_count": "13"
+    },
+    {
+      "slug": "drain-cleaning",
+      "title": "Drain Cleaning and Power Flushing",
+      "faq_count": "13"
+    },
+    {
+      "slug": "excavation-services",
+      "title": "Excavation and Machine Services",
+      "faq_count": "13"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tfaq_count\nsewer-camera-inspection\tFree Sewer Video Camera Inspection\t13\ntrenchless-pipe-repair\tNo-Dig Trenchless Pipe Repair\t13\nwet-basement-repair\tWet Basement Waterproofing\tNULL\nsewer-repair-installation\tSewer Repair and Installation\t13\ndrain-cleaning\tDrain Cleaning and Power Flushing\t13\nexcavation-services\tExcavation and Machine Services\t13\n",
+  "stderr": "",
+  "execution_time_ms": 945
+}

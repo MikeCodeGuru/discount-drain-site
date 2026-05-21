@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /site/
+Disallow: /site/admin
+Disallow: /api/
+Disallow: /v1
+Disallow: /v2
+Disallow: /v3
+Disallow: /v4
+Disallow: /v5
+
+Sitemap: https://discountdrain.ca/sitemap.xml
