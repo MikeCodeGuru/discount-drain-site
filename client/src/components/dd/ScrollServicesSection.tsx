@@ -8,6 +8,7 @@ interface ServiceCard {
   description: string;
   image: string;
   href: string;
+  cta: string;
 }
 
 const RESIDENTIAL_SERVICES: ServiceCard[] = [
@@ -17,7 +18,8 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     description:
       "Don't just clean your sewer line — see it. We show you your sewer line on the spot, in minutes. A $400 value, absolutely free with every service call.",
     image: "/manus-storage/sewer-camera_89fadfa4.jpg",
-    href: "/services/free-camera-inspection",
+    href: "/services/sewer-camera-inspection",
+    cta: "Book Your Free Inspection",
   },
   {
     category: "RESIDENTIAL",
@@ -26,6 +28,7 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
       "Stop before you let anyone dig up your driveway or landscaping. Our CIPP trenchless technology replaces underground pipe from the inside out with no excavation required.",
     image: "/manus-storage/trenchless-cipp_0e8cbbf0.jpg",
     href: "/services/trenchless-pipe-repair",
+    cta: "Get a Free Assessment",
   },
   {
     category: "RESIDENTIAL",
@@ -33,7 +36,8 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     description:
       "We fix wet and leaky basements permanently, backed by a 20-year warranty. Stop basement leaks and protect your home's foundation with our proven waterproofing solutions.",
     image: "/manus-storage/wet-basement_f9b9e799.jpg",
-    href: "/services/wet-basement-waterproofing",
+    href: "/services/wet-basement-repair",
+    cta: "Stop Your Basement Leaks",
   },
   {
     category: "RESIDENTIAL",
@@ -42,6 +46,7 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
       "Our certified technicians solve your sewer and drain problems quickly and professionally. We handle everything from minor repairs to full replacements.",
     image: "/manus-storage/sewer-excavation_2011c5b0.jpg",
     href: "/services/sewer-repair-installation",
+    cta: "Get a Free Quote",
   },
   {
     category: "RESIDENTIAL",
@@ -50,6 +55,7 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
       "Proper maintenance prevents clogging. We use the latest hydro-jetting technology to keep your drains flowing cleanly and affordably, clearing years of buildup in a single visit.",
     image: "/manus-storage/drain-cleaning_89acad85.jpg",
     href: "/services/drain-cleaning",
+    cta: "Schedule a Cleaning",
   },
   {
     category: "RESIDENTIAL",
@@ -57,7 +63,8 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     description:
       "From deep excavations to parking lot preparation and pool installation, our fleet of dump trucks and excavators handles any earthmoving project with precision and speed.",
     image: "/manus-storage/dump-truck_92b5ca4e.jpg",
-    href: "/services/excavation",
+    href: "/services/excavation-services",
+    cta: "Request an Estimate",
   },
 ];
 
@@ -68,7 +75,8 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     description:
       "Commercial-grade video inspection to diagnose sewer and drain problems quickly. We document everything on video so you have a clear record for insurance and compliance.",
     image: "/manus-storage/sewer-camera_89fadfa4.jpg",
-    href: "/services/commercial-camera-inspection",
+    href: "/services/sewer-camera-inspection",
+    cta: "Book a Commercial Inspection",
   },
   {
     category: "COMMERCIAL",
@@ -76,7 +84,8 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     description:
       "From sewer lining to manhole restoration and water main repair, we deliver effective solutions for all municipal drainage infrastructure needs.",
     image: "/manus-storage/municipal-manhole_1ff6ab05.jpg",
-    href: "/services/municipal-services",
+    href: "/commercial",
+    cta: "Discuss Your Project",
   },
   {
     category: "COMMERCIAL",
@@ -84,7 +93,8 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     description:
       "Replace underground pipe without disturbing surface materials or parking lots. Minimal disruption to your business operations, completed in as little as one day.",
     image: "/manus-storage/trenchless-cipp_0e8cbbf0.jpg",
-    href: "/services/commercial-trenchless",
+    href: "/services/trenchless-pipe-repair",
+    cta: "Get a Free Assessment",
   },
   {
     category: "COMMERCIAL",
@@ -92,7 +102,8 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     description:
       "We solve catch basin problems quickly using vacuum trucks and the latest technology. Regular cleaning prevents flooding, property damage, and regulatory issues.",
     image: "/manus-storage/catch-basin_834522ce.jpg",
-    href: "/services/catch-basin-cleaning",
+    href: "/services/drain-cleaning",
+    cta: "Schedule a Cleaning",
   },
   {
     category: "COMMERCIAL",
@@ -100,7 +111,8 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     description:
       "Highly trained technicians working to solve commercial sewer and drain problems using the latest products and methods. We minimize downtime and get your business back to normal fast.",
     image: "/manus-storage/sewer-excavation_2011c5b0.jpg",
-    href: "/services/commercial-sewer-repair",
+    href: "/services/sewer-repair-installation",
+    cta: "Get a Free Quote",
   },
   {
     category: "COMMERCIAL",
@@ -108,9 +120,65 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     description:
       "Preventative maintenance and a full service line of repairs and replacements on septic beds and sewers for commercial properties and rural businesses across Southwestern Ontario.",
     image: "/manus-storage/septic-service_baff70a9.jpg",
-    href: "/services/septic-service",
+    href: "/commercial",
+    cta: "Request an Estimate",
   },
 ];
+
+// Arrow button that expands to show a CTA label on hover
+function ArrowCTA({ href, label }: { href: string; label: string }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <Link href={href}>
+      <div
+        className="flex items-center cursor-pointer"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{ display: "inline-flex", alignItems: "center" }}
+      >
+        {/* CTA label — slides in from the left when hovered */}
+        <div
+          style={{
+            overflow: "hidden",
+            maxWidth: hovered ? "220px" : "0px",
+            opacity: hovered ? 1 : 0,
+            transition: "max-width 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease",
+            whiteSpace: "nowrap",
+            marginRight: hovered ? "10px" : "0px",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "#0F172A",
+              fontFamily: "'Inter Tight', sans-serif",
+            }}
+          >
+            {label}
+          </span>
+        </div>
+
+        {/* Arrow circle */}
+        <div
+          className="flex items-center justify-center rounded-full transition-all duration-300"
+          style={{
+            width: "48px",
+            height: "48px",
+            backgroundColor: hovered ? "#2563EB" : "#0F172A",
+            color: "#FFFFFF",
+            flexShrink: 0,
+            transform: hovered ? "scale(1.08)" : "scale(1)",
+            boxShadow: hovered ? "0 4px 16px rgba(37,99,235,0.35)" : "none",
+          }}
+        >
+          <ArrowRight size={18} />
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export default function ScrollServicesSection() {
   const [activeTab, setActiveTab] = useState<"residential" | "commercial">("residential");
@@ -138,15 +206,12 @@ export default function ScrollServicesSection() {
       const rect = wrapper.getBoundingClientRect();
       const totalHeight = wrapper.offsetHeight;
       const vh = window.innerHeight;
-      // scrolled = how many px of the wrapper have gone above the viewport top
       const scrolled = -rect.top;
-      // scrollable = total scroll distance available in this section
       const scrollable = totalHeight - vh;
       if (scrollable <= 0) return;
 
       const progress = Math.max(0, Math.min(1, scrolled / scrollable));
 
-      // Card width = 74% of container width, gap = 2.5%
       const containerW = wrapper.offsetWidth;
       const cardW = containerW * 0.74;
       const gap = containerW * 0.025;
@@ -165,9 +230,8 @@ export default function ScrollServicesSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [count, activeTab]);
 
-  // Section height: viewport height + scroll travel per card
-  // 300px scroll travel per card transition feels natural
-  const scrollTravel = (count - 1) * 300;
+  // 400px scroll travel per card for a more deliberate, readable animation
+  const scrollTravel = (count - 1) * 400;
 
   return (
     <div
@@ -175,7 +239,7 @@ export default function ScrollServicesSection() {
       style={{ height: `calc(100vh + ${scrollTravel}px)` }}
       className="relative"
     >
-      {/* Sticky container — fills exactly one viewport, no empty space */}
+      {/* Sticky container */}
       <div
         className="sticky top-0 overflow-hidden bg-white"
         style={{ height: "100vh" }}
@@ -199,7 +263,7 @@ export default function ScrollServicesSection() {
             </h2>
           </div>
 
-          {/* Tab toggle — top right, matching SwiftForm CTA button position */}
+          {/* Tab toggle */}
           <div className="flex items-center gap-2 mt-2">
             <button
               onClick={() => setActiveTab("residential")}
@@ -224,7 +288,7 @@ export default function ScrollServicesSection() {
           </div>
         </div>
 
-        {/* Card track — horizontally panning row */}
+        {/* Card track */}
         <div className="container overflow-hidden">
           <div
             ref={trackRef}
@@ -284,23 +348,9 @@ export default function ScrollServicesSection() {
                     </p>
                   </div>
 
-                  {/* Bottom row: arrow CTA + progress dots */}
+                  {/* Bottom row: expanding arrow CTA + progress dots */}
                   <div className="flex items-center justify-between mt-6">
-                    <Link href={service.href}>
-                      <button
-                        className="flex items-center justify-center rounded-full transition-all hover:opacity-80"
-                        style={{
-                          width: "48px",
-                          height: "48px",
-                          backgroundColor: "#0F172A",
-                          color: "#FFFFFF",
-                          flexShrink: 0,
-                        }}
-                        aria-label={`Learn more about ${service.title}`}
-                      >
-                        <ArrowRight size={18} />
-                      </button>
-                    </Link>
+                    <ArrowCTA href={service.href} label={service.cta} />
 
                     <div className="flex items-center gap-2">
                       {services.map((_, dotIdx) => (

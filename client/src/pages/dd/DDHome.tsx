@@ -330,55 +330,6 @@ export default function DDHome() {
         </div>
       </section>
 
-      {/* ─── SERVICES GRID ─── */}
-      <section className="py-20" style={{ backgroundColor: "#f5f7fa" }}>
-        <div ref={servicesRef} className="fade-in-up container">
-          <div className="text-center mb-14">
-            <div className="eyebrow mx-auto mb-4">What We Do</div>
-            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 48px)", color: "#111111", marginBottom: "16px" }}>
-              Drain and Sewer Services for Every Situation
-            </h2>
-            <p style={{ color: "#8c9baa", maxWidth: "520px", margin: "0 auto", fontSize: "17px", lineHeight: "28px" }}>
-              From free camera inspections to trenchless repairs and wet basement waterproofing, we have the expertise and equipment to handle any job.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayServices.map((service) => {
-              const Icon = ICON_MAP[service.iconName ?? "Wrench"] ?? Wrench;
-              return (
-                <Link key={service.slug} href={`/services/${service.slug}`}>
-                  <div className="service-card-v2 h-full flex flex-col cursor-pointer">
-                    <div
-                      className="flex items-center justify-center mb-5 rounded-2xl"
-                      style={{ width: "52px", height: "52px", backgroundColor: "#e8f3ff" }}
-                    >
-                      <Icon size={22} style={{ color: "#0080ff" }} />
-                    </div>
-                    <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#111111", marginBottom: "10px", lineHeight: "1.3" }}>
-                      {service.title}
-                    </h3>
-                    <p style={{ color: "#8c9baa", fontSize: "15px", lineHeight: "24px", flex: 1 }}>
-                      {service.shortDesc}
-                    </p>
-                    <div className="flex items-center gap-1 mt-4 text-sm font-semibold" style={{ color: "#0080ff" }}>
-                      Learn More <ArrowRight size={14} />
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-10">
-            <Link href="/services" className="btn-outline">
-              View All Services
-              <ArrowRight size={15} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* ─── SCROLL SERVICES SECTION ─── */}
       <ScrollServicesSection />
 

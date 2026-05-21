@@ -108,3 +108,8 @@
 - [x] Register all 12 town routes in App.tsx (/service-area/:townSlug)
 - [x] Add all 12 town pages + /service-area to sitemap.xml
 - [x] Update service area page town cards to link to individual landing pages
+
+## Phase 12: Scroll Services Section Improvements
+- [x] Increase scroll travel per card from 300px to 400px
+- [x] Remove old services grid section from DDHome
+- [x] Add hover-expanding CTA on arrow button of each scroll service card
