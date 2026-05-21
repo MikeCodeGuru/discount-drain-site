@@ -224,10 +224,17 @@ export default function DDHome() {
                   <Phone size={16} />
                   Call 519-451-8342
                 </a>
-                <Link href="/about" className="btn-outline" style={{ fontSize: "16px", padding: "16px 28px" }}>
-                  About Us
+                <button
+                  className="btn-outline"
+                  style={{ fontSize: "16px", padding: "16px 28px" }}
+                  onClick={() => {
+                    const el = document.getElementById("services-section");
+                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                >
+                  Our Services
                   <ChevronRight size={16} />
-                </Link>
+                </button>
               </div>
 
               {/* Trust badges */}
