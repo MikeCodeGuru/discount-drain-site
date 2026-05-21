@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
+import ScrollServicesSection from "@/components/dd/ScrollServicesSection";
 import {
   Phone,
   Camera,
@@ -377,6 +378,9 @@ export default function DDHome() {
           </div>
         </div>
       </section>
+
+      {/* ─── SCROLL SERVICES SECTION ─── */}
+      <ScrollServicesSection />
 
       {/* ─── TRENCHLESS FEATURE ─── */}
       <section className="py-20 overflow-hidden bg-white">
