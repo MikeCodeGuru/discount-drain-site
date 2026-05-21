@@ -34,7 +34,7 @@ export default function DDResidential() {
   const ref2 = useScrollReveal();
   const ref3 = useScrollReveal();
 
-  const residentialServices = services?.filter((s) => s.category === "residential" || s.category === "both") ?? services ?? [];
+  const residentialServices = services ?? [];
 
   return (
     <DDLayout>
@@ -62,7 +62,7 @@ export default function DDResidential() {
               <Phone size={15} />
               Call 519-451-8342
             </a>
-            <Link href="/site/quote" className="btn-white">
+            <Link href="/quote" className="btn-white">
               Get a Free Quote
               <ArrowRight size={15} />
             </Link>
@@ -104,7 +104,7 @@ export default function DDResidential() {
             {residentialServices.map((service) => {
               const Icon = ICON_MAP[service.iconName ?? "Wrench"] ?? Wrench;
               return (
-                <Link key={service.slug} href={`/site/services/${service.slug}`}>
+                <Link key={service.slug} href={`/services/${service.slug}`}>
                   <div className="service-card-v2 h-full flex flex-col cursor-pointer">
                     <div className="flex items-center justify-center mb-5 rounded-2xl" style={{ width: "52px", height: "52px", backgroundColor: "#e8f3ff" }}>
                       <Icon size={22} style={{ color: "#0080ff" }} />
@@ -155,7 +155,7 @@ export default function DDResidential() {
                   </div>
                 ))}
               </div>
-              <Link href="/site/services/trenchless-pipe-repair" className="btn-primary">
+              <Link href="/services/trenchless-pipe-repair" className="btn-primary">
                 Learn About Trenchless
                 <ArrowRight size={15} />
               </Link>
@@ -233,7 +233,7 @@ export default function DDResidential() {
               <Phone size={16} />
               Call 519-451-8342
             </a>
-            <Link href="/site/quote" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "16px 32px" }}>
+            <Link href="/quote" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "16px 32px" }}>
               Get a Free Quote
               <ArrowRight size={15} />
             </Link>

@@ -18,22 +18,22 @@ const LOGO_URL =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/discount-drain-logo-transparent-manus-storage-discount-drain-logo-transparent-png-1748042756.png";
 
 const NAV_LINKS = [
-  { label: "Services", href: "/site/services", hasDropdown: true },
-  { label: "Residential", href: "/site/residential" },
-  { label: "Commercial", href: "/site/commercial" },
-  { label: "Blog", href: "/site/blog" },
-  { label: "About", href: "/site/about" },
-  { label: "Contact", href: "/site/contact" },
-  { label: "Service Area", href: "/site/service-area" },
+  { label: "Services", href: "/services", hasDropdown: true },
+  { label: "Residential", href: "/residential" },
+  { label: "Commercial", href: "/commercial" },
+  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Service Area", href: "/service-area" },
 ];
 
 const SERVICE_LINKS = [
-  { label: "Free Sewer Camera Inspection", href: "/site/services/sewer-camera-inspection" },
-  { label: "No-Dig Trenchless Repair", href: "/site/services/trenchless-pipe-repair" },
-  { label: "Wet Basement Waterproofing", href: "/site/services/wet-basement-repair" },
-  { label: "Sewer Repair and Installation", href: "/site/services/sewer-repair-installation" },
-  { label: "Drain Cleaning and Power Flushing", href: "/site/services/drain-cleaning" },
-  { label: "Excavation Services", href: "/site/services/excavation-services" },
+  { label: "Free Sewer Camera Inspection", href: "/services/sewer-camera-inspection" },
+  { label: "No-Dig Trenchless Repair", href: "/services/trenchless-pipe-repair" },
+  { label: "Wet Basement Waterproofing", href: "/services/wet-basement-repair" },
+  { label: "Sewer Repair and Installation", href: "/services/sewer-repair-installation" },
+  { label: "Drain Cleaning and Power Flushing", href: "/services/drain-cleaning" },
+  { label: "Excavation Services", href: "/services/excavation-services" },
 ];
 
 interface DDLayoutProps {
@@ -106,7 +106,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
       >
         <div className="container h-20 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/site">
+          <Link href="/">
             <img
               src={LOGO_URL}
               alt="Discount Drain"
@@ -128,7 +128,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                   <Link
                     href={link.href}
                     className="flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded-full transition-colors"
-                    style={{ color: location.startsWith("/site/services") ? "#0080ff" : "#222222" }}
+                    style={{ color: location.startsWith("/services") ? "#0080ff" : "#222222" }}
                   >
                     {link.label}
                     <ChevronDown size={14} className={`transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
@@ -157,7 +157,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                       ))}
                       <div style={{ borderTop: "1px solid #dee0e4", margin: "8px 0" }} />
                       <Link
-                        href="/site/services"
+                        href="/services"
                         className="block px-5 py-3 text-sm font-semibold transition-colors"
                         style={{ color: "#0080ff" }}
                       >
@@ -181,7 +181,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link href="/site/quote" className="btn-outline" style={{ padding: "10px 20px", fontSize: "14px" }}>
+            <Link href="/quote" className="btn-outline" style={{ padding: "10px 20px", fontSize: "14px" }}>
               Free Quote
             </Link>
             <a href="tel:5194518342" className="btn-primary" style={{ padding: "10px 20px", fontSize: "14px" }}>
@@ -218,7 +218,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                 </Link>
               ))}
               <div className="flex flex-col gap-3 mt-4">
-                <Link href="/site/quote" className="btn-outline justify-center">
+                <Link href="/quote" className="btn-outline justify-center">
                   Get a Free Quote
                 </Link>
                 <a href="tel:5194518342" className="btn-primary justify-center">
@@ -314,13 +314,13 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                 Company
               </h4>
               {[
-                { label: "About Us", href: "/site/about" },
-                { label: "Residential", href: "/site/residential" },
-                { label: "Commercial", href: "/site/commercial" },
-                { label: "Blog and Resources", href: "/site/blog" },
-                { label: "Service Area", href: "/site/service-area" },
-                { label: "Contact Us", href: "/site/contact" },
-                { label: "Free Quote", href: "/site/quote" },
+                { label: "About Us", href: "/about" },
+                { label: "Residential", href: "/residential" },
+                { label: "Commercial", href: "/commercial" },
+                { label: "Blog and Resources", href: "/blog" },
+                { label: "Service Area", href: "/service-area" },
+                { label: "Contact Us", href: "/contact" },
+                { label: "Free Quote", href: "/quote" },
               ].map((item) => (
                 <Link
                   key={item.href}
@@ -396,7 +396,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
           Call Now
         </a>
         <Link
-          href="/site/quote"
+          href="/quote"
           className="flex-1 flex items-center justify-center gap-2 py-4 font-bold text-sm"
           style={{ backgroundColor: "#111111", color: "#ffffff" }}
         >

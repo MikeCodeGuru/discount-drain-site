@@ -61,7 +61,7 @@ export default function DDCommercial() {
               <Phone size={15} />
               Call 519-451-8342
             </a>
-            <Link href="/site/quote" className="btn-white">
+            <Link href="/quote" className="btn-white">
               Get a Commercial Quote
               <ArrowRight size={15} />
             </Link>
@@ -200,7 +200,7 @@ export default function DDCommercial() {
               <Phone size={16} />
               Call 519-451-8342
             </a>
-            <Link href="/site/quote" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "16px 32px" }}>
+            <Link href="/quote" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "16px 32px" }}>
               Get a Commercial Quote
               <ArrowRight size={15} />
             </Link>

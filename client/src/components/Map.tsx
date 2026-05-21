@@ -69,9 +69,9 @@
  *
  * -------------------------------
  * ✅ SUMMARY
- * - “map-attached” → AdvancedMarkerElement, DirectionsRenderer, Layers.
- * - “standalone” → Geocoder, DirectionsService, DistanceMatrixService, ElevationService.
- * - “data-only” → Place, Geometry utilities.
+ * - "map-attached" → AdvancedMarkerElement, DirectionsRenderer, Layers.
+ * - "standalone" → Geocoder, DirectionsService, DistanceMatrixService, ElevationService.
+ * - "data-only" → Place, Geometry utilities.
  */
 
 /// <reference types="@types/google.maps" />
@@ -92,21 +92,39 @@ const FORGE_BASE_URL =
   "https://forge.butterfly-effect.dev";
 const MAPS_PROXY_URL = `${FORGE_BASE_URL}/v1/maps/proxy`;
 
-function loadMapScript() {
-  return new Promise(resolve => {
+// Singleton promise — ensures the script is only ever injected once,
+// even when multiple MapView instances mount simultaneously.
+let mapScriptPromise: Promise<void> | null = null;
+
+function loadMapScript(): Promise<void> {
+  // If Google Maps is already loaded, resolve immediately.
+  if (window.google?.maps) {
+    return Promise.resolve();
+  }
+
+  // If a load is already in progress, return the same promise.
+  if (mapScriptPromise) {
+    return mapScriptPromise;
+  }
+
+  mapScriptPromise = new Promise<void>((resolve, reject) => {
     const script = document.createElement("script");
     script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
     script.async = true;
     script.crossOrigin = "anonymous";
     script.onload = () => {
-      resolve(null);
-      script.remove(); // Clean up immediately
+      resolve();
     };
     script.onerror = () => {
+      // Reset so a future attempt can retry.
+      mapScriptPromise = null;
       console.error("Failed to load Google Maps script");
+      reject(new Error("Failed to load Google Maps script"));
     };
     document.head.appendChild(script);
   });
+
+  return mapScriptPromise;
 }
 
 interface MapViewProps {
@@ -126,12 +144,17 @@ export function MapView({
   const map = useRef<google.maps.Map | null>(null);
 
   const init = usePersistFn(async () => {
-    await loadMapScript();
+    try {
+      await loadMapScript();
+    } catch {
+      // Error already logged in loadMapScript; bail out gracefully.
+      return;
+    }
     if (!mapContainer.current) {
       console.error("Map container not found");
       return;
     }
-    map.current = new window.google.maps.Map(mapContainer.current, {
+    map.current = new window.google!.maps.Map(mapContainer.current, {
       zoom: initialZoom,
       center: initialCenter,
       mapTypeControl: true,

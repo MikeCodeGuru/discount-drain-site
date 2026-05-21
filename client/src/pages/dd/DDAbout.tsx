@@ -176,7 +176,7 @@ export default function DDAbout() {
               <Phone size={16} />
               Call 519-451-8342
             </a>
-            <Link href="/site/contact" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "16px 32px" }}>
+            <Link href="/contact" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "16px 32px" }}>
               Contact Us
               <ArrowRight size={15} />
             </Link>

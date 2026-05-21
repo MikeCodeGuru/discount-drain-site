@@ -53,14 +53,14 @@ export default function DDBlog() {
           ) : posts && posts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post) => (
-                <Link key={post.slug} href={`/site/blog/${post.slug}`}>
+                <Link key={post.slug} href={`/blog/${post.slug}`}>
                   <article className="service-card-v2 h-full flex flex-col cursor-pointer group" style={{ padding: 0, overflow: "hidden" }}>
-                    {post.coverImage && (
+                    {post.imageUrl && (
                       <div
                         className="w-full"
                         style={{
                           height: "200px",
-                          backgroundImage: `url(${post.coverImage})`,
+                          backgroundImage: `url(${post.imageUrl})`,
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                           transition: "transform 0.3s ease",
@@ -83,12 +83,7 @@ export default function DDBlog() {
                         {post.excerpt}
                       </p>
                       <div className="flex items-center justify-between">
-                        {post.readTime && (
-                          <div className="flex items-center gap-1" style={{ color: "#8c9baa", fontSize: "12px" }}>
-                            <Clock size={11} />
-                            <span>{post.readTime} min read</span>
-                          </div>
-                        )}
+
                         <div className="flex items-center gap-1 text-sm font-semibold" style={{ color: "#0080ff" }}>
                           Read More <ArrowRight size={13} />
                         </div>

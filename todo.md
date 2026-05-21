@@ -93,3 +93,10 @@
 - [x] Add Google Reviews widget to homepage and all 6 service detail pages
 - [x] Create interactive service area map with London and surrounding towns on homepage and a dedicated service area page
 - [x] Save V2 checkpoint
+
+## V2 Route Migration (/site/* -> root paths)
+- [x] Audit all /site/* routes in App.tsx
+- [x] Update App.tsx to serve V2 pages at root paths (/, /about, /services, etc.)
+- [x] Remove old /site/* routes
+- [x] Update all internal links in DDLayout, DDHome, and all DD pages
+- [x] Verify all pages at root paths and save checkpoint

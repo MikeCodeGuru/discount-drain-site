@@ -16,8 +16,8 @@ export default function DDAdmin() {
   const [authError, setAuthError] = useState("");
   const [activeTab, setActiveTab] = useState<AdminTab>("dashboard");
 
-  const verifyAdmin = trpc.admin.verify.useMutation({
-    onSuccess: (data) => {
+  const verifyAdmin = trpc.admin.login.useMutation({
+    onSuccess: (data: { success: boolean }) => {
       if (data.success) {
         sessionStorage.setItem("dd_admin_auth", "true");
         setAuthenticated(true);
@@ -81,7 +81,7 @@ export default function DDAdmin() {
             </form>
           </div>
           <div className="text-center mt-6">
-            <Link href="/site" style={{ color: "#8c9baa", fontSize: "13px", textDecoration: "none" }}>
+            <Link href="/" style={{ color: "#8c9baa", fontSize: "13px", textDecoration: "none" }}>
               Back to Website
             </Link>
           </div>
@@ -100,7 +100,7 @@ export default function DDAdmin() {
             <span style={{ fontWeight: 700, fontSize: "15px", color: "#111111" }}>Admin Panel</span>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/site" style={{ color: "#8c9baa", fontSize: "13px", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}>
+            <Link href="/" style={{ color: "#8c9baa", fontSize: "13px", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}>
               <Eye size={14} />
               View Site
             </Link>
@@ -163,8 +163,8 @@ export default function DDAdmin() {
 }
 
 function AdminDashboard() {
-  const { data: submissions } = trpc.admin.contactSubmissions.useQuery();
-  const { data: quotes } = trpc.admin.quoteSubmissions.useQuery();
+  const { data: submissions } = trpc.admin.submissions.contacts.useQuery();
+  const { data: quotes } = trpc.admin.submissions.quotes.useQuery();
   const { data: testimonials } = trpc.testimonials.list.useQuery();
   const { data: posts } = trpc.blog.list.useQuery();
 
@@ -205,7 +205,7 @@ function AdminDashboard() {
 }
 
 function AdminSubmissions() {
-  const { data: submissions, isLoading } = trpc.admin.contactSubmissions.useQuery();
+  const { data: submissions, isLoading } = trpc.admin.submissions.contacts.useQuery();
 
   return (
     <div>
@@ -255,7 +255,7 @@ function AdminSubmissions() {
 }
 
 function AdminQuotes() {
-  const { data: quotes, isLoading } = trpc.admin.quoteSubmissions.useQuery();
+  const { data: quotes, isLoading } = trpc.admin.submissions.quotes.useQuery();
 
   return (
     <div>
@@ -284,10 +284,10 @@ function AdminQuotes() {
               </div>
               <div className="flex flex-wrap gap-3 text-sm mb-3">
                 <span style={{ backgroundColor: "#e8f3ff", color: "#0080ff", padding: "4px 10px", borderRadius: "20px", fontSize: "12px", fontWeight: 600 }}>
-                  {q.service}
+                  {q.serviceType}
                 </span>
-                <span style={{ backgroundColor: q.urgency === "emergency" ? "#fee2e2" : "#f5f7fa", color: q.urgency === "emergency" ? "#e53e3e" : "#555555", padding: "4px 10px", borderRadius: "20px", fontSize: "12px", fontWeight: 600 }}>
-                  {q.urgency?.replace("_", " ")}
+                <span style={{ backgroundColor: q.preferredTime ? "#f5f7fa" : "#f5f7fa", color: "#555555", padding: "4px 10px", borderRadius: "20px", fontSize: "12px", fontWeight: 600 }}>
+                  {q.preferredTime ?? "Flexible"}
                 </span>
               </div>
               {q.address && <div style={{ color: "#8c9baa", fontSize: "13px", marginBottom: "8px" }}>{q.address}</div>}
@@ -311,7 +311,7 @@ function AdminQuotes() {
 
 function AdminTestimonials() {
   const { data: testimonials, refetch } = trpc.testimonials.list.useQuery();
-  const deleteTestimonial = trpc.admin.deleteTestimonial.useMutation({
+  const deleteTestimonial = trpc.admin.testimonials.delete.useMutation({
     onSuccess: () => { refetch(); toast.success("Testimonial deleted."); },
   });
 
@@ -352,7 +352,7 @@ function AdminTestimonials() {
 
 function AdminBlog() {
   const { data: posts, refetch } = trpc.blog.list.useQuery();
-  const deletePost = trpc.admin.deleteBlogPost.useMutation({
+  const deletePost = trpc.admin.blog.delete.useMutation({
     onSuccess: () => { refetch(); toast.success("Blog post deleted."); },
   });
 
@@ -360,7 +360,7 @@ function AdminBlog() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#111111" }}>Blog Posts</h2>
-        <Link href="/site/blog" className="btn-secondary text-sm" style={{ padding: "8px 16px" }}>
+        <Link href="/blog" className="btn-secondary text-sm" style={{ padding: "8px 16px" }}>
           <Eye size={13} />
           View Blog
         </Link>
@@ -372,11 +372,11 @@ function AdminBlog() {
               <div className="flex-1">
                 <div style={{ fontWeight: 700, fontSize: "14px", color: "#111111" }}>{p.title}</div>
                 <div style={{ color: "#8c9baa", fontSize: "12px" }}>
-                  {p.category} · {p.readTime} min read · {p.publishedAt ? new Date(p.publishedAt).toLocaleDateString("en-CA") : "Draft"}
+                  {p.category} · {p.publishedAt ? new Date(p.publishedAt).toLocaleDateString("en-CA") : "Draft"}
                 </div>
               </div>
               <div className="flex gap-2">
-                <Link href={`/site/blog/${p.slug}`} style={{ color: "#0080ff" }}>
+                <Link href={`/blog/${p.slug}`} style={{ color: "#0080ff" }}>
                   <Eye size={14} />
                 </Link>
                 <button onClick={() => deletePost.mutate({ id: p.id })} style={{ color: "#e53e3e" }}>
@@ -403,7 +403,7 @@ function AdminServices() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#111111" }}>Services</h2>
-        <Link href="/site/services" className="btn-secondary text-sm" style={{ padding: "8px 16px" }}>
+        <Link href="/services" className="btn-secondary text-sm" style={{ padding: "8px 16px" }}>
           <Eye size={13} />
           View Services
         </Link>
@@ -414,9 +414,9 @@ function AdminServices() {
             <div key={s.id} className="service-card-v2 flex items-center justify-between gap-4">
               <div className="flex-1">
                 <div style={{ fontWeight: 700, fontSize: "14px", color: "#111111" }}>{s.title}</div>
-                <div style={{ color: "#8c9baa", fontSize: "12px" }}>{s.category} · /{s.slug}</div>
+                <div style={{ color: "#8c9baa", fontSize: "12px" }}>/{s.slug}</div>
               </div>
-              <Link href={`/site/services/${s.slug}`} style={{ color: "#0080ff" }}>
+              <Link href={`/services/${s.slug}`} style={{ color: "#0080ff" }}>
                 <Eye size={14} />
               </Link>
             </div>
@@ -442,8 +442,8 @@ function AdminTeam() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {team.map((m) => (
             <div key={m.id} className="service-card-v2 flex items-center gap-4">
-              {m.photo ? (
-                <img src={m.photo} alt={m.name} style={{ width: "56px", height: "56px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+              {m.imageUrl ? (
+                <img src={m.imageUrl} alt={m.name} style={{ width: "56px", height: "56px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
               ) : (
                 <div style={{ width: "56px", height: "56px", borderRadius: "50%", backgroundColor: "#e8f3ff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <Users size={22} style={{ color: "#0080ff" }} />
@@ -451,7 +451,7 @@ function AdminTeam() {
               )}
               <div>
                 <div style={{ fontWeight: 700, fontSize: "14px", color: "#111111" }}>{m.name}</div>
-                <div style={{ color: "#0080ff", fontSize: "13px" }}>{m.role}</div>
+                <div style={{ color: "#0080ff", fontSize: "13px" }}>{m.jobTitle}</div>
                 {m.bio && <div style={{ color: "#8c9baa", fontSize: "12px", marginTop: "2px" }}>{m.bio.slice(0, 80)}...</div>}
               </div>
             </div>

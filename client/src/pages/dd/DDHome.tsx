@@ -137,7 +137,7 @@ function ServiceAreaTeaser() {
                 </span>
               ))}
             </div>
-            <Link href="/site/service-area" className="btn-outline">
+            <Link href="/service-area" className="btn-outline">
               View Full Service Area Map
               <ArrowRight size={15} />
             </Link>
@@ -214,7 +214,7 @@ export default function DDHome() {
                 <Phone size={16} />
                 Call 519-451-8342
               </a>
-              <Link href="/site/quote" className="btn-white" style={{ fontSize: "16px", padding: "18px 32px" }}>
+              <Link href="/quote" className="btn-white" style={{ fontSize: "16px", padding: "18px 32px" }}>
                 Get a Free Quote
                 <ChevronRight size={16} />
               </Link>
@@ -278,7 +278,7 @@ export default function DDHome() {
             {displayServices.map((service) => {
               const Icon = ICON_MAP[service.iconName ?? "Wrench"] ?? Wrench;
               return (
-                <Link key={service.slug} href={`/site/services/${service.slug}`}>
+                <Link key={service.slug} href={`/services/${service.slug}`}>
                   <div className="service-card-v2 h-full flex flex-col cursor-pointer">
                     <div
                       className="flex items-center justify-center mb-5 rounded-2xl"
@@ -302,7 +302,7 @@ export default function DDHome() {
           </div>
 
           <div className="text-center mt-10">
-            <Link href="/site/services" className="btn-outline">
+            <Link href="/services" className="btn-outline">
               View All Services
               <ArrowRight size={15} />
             </Link>
@@ -354,7 +354,7 @@ export default function DDHome() {
                   </div>
                 ))}
               </div>
-              <Link href="/site/services/trenchless-pipe-repair" className="btn-primary">
+              <Link href="/services/trenchless-pipe-repair" className="btn-primary">
                 Learn About Trenchless
                 <ArrowRight size={15} />
               </Link>
@@ -396,7 +396,7 @@ export default function DDHome() {
                   </div>
                 ))}
               </div>
-              <Link href="/site/about" className="btn-outline">
+              <Link href="/about" className="btn-outline">
                 Meet Our Team
                 <ArrowRight size={15} />
               </Link>
@@ -485,7 +485,7 @@ export default function DDHome() {
               <Phone size={16} />
               Call 519-451-8342
             </a>
-            <Link href="/site/quote" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "18px 36px" }}>
+            <Link href="/quote" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "18px 36px" }}>
               Get a Free Quote
               <ArrowRight size={15} />
             </Link>

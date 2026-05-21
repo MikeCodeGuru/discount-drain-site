@@ -74,7 +74,7 @@ export default function DDServices() {
               {(services ?? []).map((service) => {
                 const Icon = ICON_MAP[service.iconName ?? "Wrench"] ?? Wrench;
                 return (
-                  <Link key={service.slug} href={`/site/services/${service.slug}`}>
+                  <Link key={service.slug} href={`/services/${service.slug}`}>
                     <div className="service-card-v2 h-full flex flex-col cursor-pointer">
                       <div
                         className="flex items-center justify-center mb-5 rounded-2xl"
@@ -140,7 +140,7 @@ export default function DDServices() {
                   <Phone size={15} />
                   Call 519-451-8342
                 </a>
-                <Link href="/site/quote" className="btn-outline justify-center" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff" }}>
+                <Link href="/quote" className="btn-outline justify-center" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff" }}>
                   Request a Free Quote
                 </Link>
               </div>

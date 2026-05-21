@@ -44,7 +44,7 @@ export default function DDBlogPost() {
         <div className="min-h-screen flex flex-col items-center justify-center text-center py-20">
           <h1 style={{ fontSize: "32px", fontWeight: 800, color: "#111111", marginBottom: "16px" }}>Article Not Found</h1>
           <p style={{ color: "#8c9baa", marginBottom: "24px" }}>The article you are looking for does not exist.</p>
-          <Link href="/site/blog" className="btn-primary">View All Articles</Link>
+          <Link href="/blog" className="btn-primary">View All Articles</Link>
         </div>
       </DDLayout>
     );
@@ -52,8 +52,8 @@ export default function DDBlogPost() {
 
   return (
     <DDLayout>
-      <title>{post.seoTitle ?? post.title} | Discount Drain Blog</title>
-      {post.seoDesc && <meta name="description" content={post.seoDesc} />}
+      <title>{post.metaTitle ?? post.title} | Discount Drain Blog</title>
+      {post.metaDesc && <meta name="description" content={post.metaDesc} />}
 
       {/* Structured Data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -64,7 +64,7 @@ export default function DDBlogPost() {
         "author": { "@type": "Organization", "name": "Discount Drain" },
         "publisher": { "@type": "Organization", "name": "Discount Drain", "url": "https://discountdrain.ca" },
         "datePublished": post.publishedAt,
-        "image": post.coverImage,
+        "image": post.imageUrl,
       })}} />
 
       {/* Hero */}
@@ -72,16 +72,16 @@ export default function DDBlogPost() {
         className="relative py-20 flex items-end"
         style={{
           minHeight: "360px",
-          backgroundImage: post.coverImage ? `url(${post.coverImage})` : "none",
+          backgroundImage: post.imageUrl ? `url(${post.imageUrl})` : "none",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundColor: post.coverImage ? undefined : "#0080ff",
+          backgroundColor: post.imageUrl ? undefined : "#0080ff",
         }}
       >
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.2) 100%)" }} />
         <div className="relative container pb-8" style={{ zIndex: 2 }}>
           <div className="flex items-center gap-2 mb-4 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-            <Link href="/site/blog" style={{ color: "#60b3ff", textDecoration: "none" }}>Blog</Link>
+            <Link href="/blog" style={{ color: "#60b3ff", textDecoration: "none" }}>Blog</Link>
             <span>/</span>
             <span className="text-white">{post.title}</span>
           </div>
@@ -97,12 +97,7 @@ export default function DDBlogPost() {
             {post.title}
           </h1>
           <div className="flex items-center gap-4 text-white/60 text-sm">
-            {post.readTime && (
-              <div className="flex items-center gap-1">
-                <Clock size={13} />
-                <span>{post.readTime} min read</span>
-              </div>
-            )}
+
             {post.publishedAt && (
               <span>{new Date(post.publishedAt).toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" })}</span>
             )}
@@ -142,7 +137,7 @@ export default function DDBlogPost() {
                     <Phone size={14} />
                     Call 519-451-8342
                   </a>
-                  <Link href="/site/quote" className="btn-outline text-sm" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "12px 24px" }}>
+                  <Link href="/quote" className="btn-outline text-sm" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "12px 24px" }}>
                     Get a Free Quote
                     <ArrowRight size={13} />
                   </Link>
@@ -163,7 +158,7 @@ export default function DDBlogPost() {
                     <Phone size={13} />
                     519-451-8342
                   </a>
-                  <Link href="/site/quote" className="btn-secondary justify-center text-sm" style={{ padding: "12px 20px" }}>
+                  <Link href="/quote" className="btn-secondary justify-center text-sm" style={{ padding: "12px 20px" }}>
                     Free Quote
                   </Link>
                 </div>
@@ -199,13 +194,13 @@ export default function DDBlogPost() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPosts.map((p) => (
-                <Link key={p.slug} href={`/site/blog/${p.slug}`}>
+                <Link key={p.slug} href={`/blog/${p.slug}`}>
                   <article className="service-card-v2 cursor-pointer h-full flex flex-col" style={{ padding: 0, overflow: "hidden" }}>
-                    {p.coverImage && (
+                    {p.imageUrl && (
                       <div
                         style={{
                           height: "160px",
-                          backgroundImage: `url(${p.coverImage})`,
+                          backgroundImage: `url(${p.imageUrl})`,
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                         }}

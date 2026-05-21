@@ -84,7 +84,7 @@ export default function DDServiceDetail() {
         <div className="min-h-screen flex flex-col items-center justify-center text-center py-20">
           <h1 style={{ fontSize: "32px", fontWeight: 800, color: "#111111", marginBottom: "16px" }}>Service Not Found</h1>
           <p style={{ color: "#8c9baa", marginBottom: "24px" }}>The service you are looking for does not exist.</p>
-          <Link href="/site/services" className="btn-primary">View All Services</Link>
+          <Link href="/services" className="btn-primary">View All Services</Link>
         </div>
       </DDLayout>
     );
@@ -95,8 +95,8 @@ export default function DDServiceDetail() {
 
   return (
     <DDLayout>
-      <title>{service.seoTitle ?? service.title} | Discount Drain | London Ontario</title>
-      {service.seoDesc && <meta name="description" content={service.seoDesc} />}
+      <title>{service.metaTitle ?? service.title} | Discount Drain | London Ontario</title>
+      {service.metaDesc && <meta name="description" content={service.metaDesc} />}
 
       {/* Structured Data - Service */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -137,7 +137,7 @@ export default function DDServiceDetail() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.45) 100%)" }} />
         <div className="relative container" style={{ zIndex: 2 }}>
           <div className="flex items-center gap-2 mb-4 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-            <Link href="/site/services" style={{ color: "#60b3ff", textDecoration: "none" }}>Services</Link>
+            <Link href="/services" style={{ color: "#60b3ff", textDecoration: "none" }}>Services</Link>
             <span>/</span>
             <span className="text-white">{service.title}</span>
           </div>
@@ -152,7 +152,7 @@ export default function DDServiceDetail() {
               <Phone size={15} />
               Call 519-451-8342
             </a>
-            <Link href="/site/quote" className="btn-white">
+            <Link href="/quote" className="btn-white">
               Get a Free Quote
               <ArrowRight size={15} />
             </Link>
@@ -230,7 +230,7 @@ export default function DDServiceDetail() {
                       <Phone size={14} />
                       519-451-8342
                     </a>
-                    <Link href="/site/quote" className="btn-outline justify-center text-sm" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "14px 20px" }}>
+                    <Link href="/quote" className="btn-outline justify-center text-sm" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "14px 20px" }}>
                       Free Quote
                     </Link>
                   </div>
@@ -301,7 +301,7 @@ export default function DDServiceDetail() {
               <Phone size={16} />
               Call 519-451-8342
             </a>
-            <Link href="/site/quote" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "16px 32px" }}>
+            <Link href="/quote" className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#ffffff", padding: "16px 32px" }}>
               Get a Free Quote
               <ArrowRight size={15} />
             </Link>
