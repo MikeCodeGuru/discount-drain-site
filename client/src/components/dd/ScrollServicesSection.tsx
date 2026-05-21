@@ -548,7 +548,7 @@ export default function ScrollServicesSection() {
             paddingBottom: `${extraBottomPadding + 48}px`,
             display: "flex",
             flexDirection: "column",
-            gap: 0,
+            gap: "12px",
           }}
         >
           {services.map((service, i) => (
