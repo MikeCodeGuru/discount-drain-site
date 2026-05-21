@@ -1,0 +1,46 @@
+{
+  "query": "SELECT id, slug, title, LEFT(content, 100) as content_preview FROM blog_posts ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT id, slug, title, LEFT(content, 100) as content_preview FROM blog_posts ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "slug": "how-to-tell-if-your-sewer-line-is-broken",
+      "title": "How to Tell If Your Sewer Line Is Broken (Ontario Homeowner Guide)",
+      "content_preview": "If you live in an older London neighbourhood, your sewer line is probably made of clay tile. Clay ti"
+    },
+    {
+      "id": "2",
+      "slug": "trenchless-vs-traditional-sewer-repair-ontario",
+      "title": "Trenchless vs. Traditional Sewer Repair: What Ontario Homeowners Need to Know",
+      "content_preview": "If you have gotten a quote for sewer line repair in London and the number started with a two and had"
+    },
+    {
+      "id": "3",
+      "slug": "wet-basement-causes-ontario",
+      "title": "Why Is My Basement Wet? The Most Common Causes in Ontario Homes",
+      "content_preview": "Water in the basement is one of the most common calls we get from London and Southwestern Ontario ho"
+    },
+    {
+      "id": "4",
+      "slug": "drain-cleaning-how-often-ontario",
+      "title": "How Often Should You Clean Your Drains? A Guide for Ontario Homeowners",
+      "content_preview": "Full content here"
+    },
+    {
+      "id": "5",
+      "slug": "sewer-backup-what-to-do-ontario",
+      "title": "Sewer Backup: What to Do Right Now (Ontario Emergency Guide)",
+      "content_preview": "Full content here"
+    },
+    {
+      "id": "6",
+      "slug": "weeping-tile-replacement-ontario",
+      "title": "Weeping Tile Replacement in Ontario: What It Costs and What to Expect",
+      "content_preview": "Full content here"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tslug\ttitle\tcontent_preview\n1\thow-to-tell-if-your-sewer-line-is-broken\tHow to Tell If Your Sewer Line Is Broken (Ontario Homeowner Guide)\tIf you live in an older London neighbourhood, your sewer line is probably made of clay tile. Clay ti\n2\ttrenchless-vs-traditional-sewer-repair-ontario\tTrenchless vs. Traditional Sewer Repair: What Ontario Homeowners Need to Know\tIf you have gotten a quote for sewer line repair in London and the number started with a two and had\n3\twet-basement-causes-ontario\tWhy Is My Basement Wet? The Most Common Causes in Ontario Homes\tWater in the basement is one of the most common calls we get from London and Southwestern Ontario ho\n4\tdrain-cleaning-how-often-ontario\tHow Often Should You Clean Your Drains? A Guide for Ontario Homeowners\tFull content here\n5\tsewer-backup-what-to-do-ontario\tSewer Backup: What to Do Right Now (Ontario Emergency Guide)\tFull content here\n6\tweeping-tile-replacement-ontario\tWeeping Tile Replacement in Ontario: What It Costs and What to Expect\tFull content here\n",
+  "stderr": "",
+  "execution_time_ms": 319
+}

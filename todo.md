@@ -50,7 +50,7 @@
 - [x] /blog/[slug] — Individual blog post page
 - [x] 6 seed articles targeting top Ontario drain search queries
 - [x] Blog articles: no em dashes, humanized copy
-- [ ] Rewrite all 6 blog articles with real Ontario/London homeowner search intent
+- [x] Rewrite all 6 blog articles with real Ontario/London homeowner search intent
 - [x] Add 12-14 Ontario-researched FAQs to each of the 6 dedicated service pages
 
 ## Phase 7: CMS Admin Panel
