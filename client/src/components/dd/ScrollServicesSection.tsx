@@ -322,7 +322,7 @@ function MobileServiceCard({
     <div
       style={{
         position: "sticky",
-        top: "24px",
+        top: "64px",
         zIndex: stackIndex + 1,
         // Solid background is essential — without it the card below shows through
         backgroundColor: "#FFFFFF",
@@ -542,7 +542,7 @@ export default function ScrollServicesSection() {
             paddingBottom: "48px",
             display: "flex",
             flexDirection: "column",
-            gap: "12px",
+            gap: "16px",
           }}
         >
           {services.map((service, i) => (
@@ -554,6 +554,31 @@ export default function ScrollServicesSection() {
               stackIndex={i}
             />
           ))}
+
+          {/* Full-width View All Services CTA — immediately after last stacked card */}
+          <Link
+            href="/services"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              width: "100%",
+              padding: "18px 24px",
+              borderRadius: "16px",
+              backgroundColor: "#2563EB",
+              color: "#FFFFFF",
+              fontSize: "16px",
+              fontWeight: 700,
+              fontFamily: "'Inter Tight', sans-serif",
+              textDecoration: "none",
+              boxShadow: "0 4px 16px rgba(37,99,235,0.30)",
+              marginTop: "4px",
+            }}
+          >
+            View All Services
+            <ArrowRight size={18} />
+          </Link>
         </div>
       </div>
     );
