@@ -8,7 +8,18 @@ import App from "./App";
 import { getLoginUrl } from "./const";
 import "./index.css";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // Don't retry on tRPC errors (which includes gateway HTML responses parsed as JSON)
+      retry: (failureCount, error) => {
+        if (error instanceof TRPCClientError) return false;
+        return failureCount < 2;
+      },
+      staleTime: 30_000,
+    },
+  },
+});
 
 const redirectToLoginIfUnauthorized = (error: unknown) => {
   if (!(error instanceof TRPCClientError)) return;
