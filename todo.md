@@ -175,4 +175,13 @@
 - [x] Mobile: tab toggle remains functional
 - [x] Mobile: ArrowCTA replaced with a simple text link (hover expand doesn't work on touch)
 - [x] Desktop layout unchanged (lerp, parallax, scale all preserved)
+- [x] Save checkpoint
+
+## Phase 23: Mobile Sticky-Stacking Cards (SwiftForm pattern)
+- [x] Replace plain vertical scroll with sticky-stacking: each card wrapper position:sticky; top:24px on mobile (≤767px)
+- [x] Incrementing z-index per card (1, 2, 3…) so later cards paint on top
+- [x] Solid background on each card so it covers the card beneath
+- [x] Parent container tall enough (sum of card heights) for scroll room before each card sticks
+- [x] Disable lerp RAF loop and sticky scroll trap on mobile (already done, preserve)
+- [x] Desktop behaviour unchanged
 - [ ] Save checkpoint

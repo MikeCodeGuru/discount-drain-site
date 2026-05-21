@@ -303,20 +303,37 @@ function useLerpScroll(
 }
 
 // ─── Mobile card (portrait: image on top, text below) ────────────────────────
-function MobileServiceCard({ service, isFirst, activeTab }: { service: ServiceCard; isFirst: boolean; activeTab: string }) {
+// Each card has a solid white background so it fully covers the card beneath it
+// when the sticky-stacking effect slides it into view.
+function MobileServiceCard({
+  service,
+  isFirst,
+  activeTab,
+  stackIndex,
+}: {
+  service: ServiceCard;
+  isFirst: boolean;
+  activeTab: string;
+  stackIndex: number;
+}) {
+  // The sticky offset: each card sticks at top:24px.
+  // Later cards (higher stackIndex) have a higher z-index so they paint on top.
   return (
-    <Link
-      href={service.href}
-      style={{ textDecoration: "none", display: "block" }}
+    <div
+      style={{
+        position: "sticky",
+        top: "24px",
+        zIndex: stackIndex + 1,
+        // Solid background is essential — without it the card below shows through
+        backgroundColor: "#FFFFFF",
+        borderRadius: "16px",
+        overflow: "hidden",
+        border: "1px solid #E2E8F0",
+        // Subtle shadow so stacked cards have visible depth separation
+        boxShadow: "0 4px 24px rgba(15,23,42,0.10)",
+      }}
     >
-      <div
-        style={{
-          borderRadius: "16px",
-          overflow: "hidden",
-          border: "1px solid #E2E8F0",
-          backgroundColor: "#FFFFFF",
-        }}
-      >
+      <Link href={service.href} style={{ textDecoration: "none", display: "block" }}>
         {/* Image — full width, fixed height */}
         <div style={{ position: "relative", width: "100%", height: "260px", overflow: "hidden" }}>
           <div
@@ -409,8 +426,8 @@ function MobileServiceCard({ service, isFirst, activeTab }: { service: ServiceCa
             <ArrowRight size={14} />
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
@@ -506,14 +523,32 @@ export default function ScrollServicesSection() {
     </div>
   );
 
-  // ── MOBILE LAYOUT: plain vertical stacked list ─────────────────────────────
+  // ── MOBILE LAYOUT: SwiftForm-style sticky-stacking cards ──────────────────
+  // Each card wrapper is position:sticky; top:24px.
+  // Cards are stacked vertically in a single column.
+  // As the user scrolls, each card slides up and stacks over the previous one
+  // (later DOM elements naturally paint on top — no JS needed).
+  // The container must be tall enough so each card has scroll room before it sticks.
+  // We give it a bottom padding equal to (count - 1) * card-height so the last
+  // card has room to fully slide in before the section ends.
   if (isMobile) {
+    // Approximate card height (image 260px + text ~200px + border) = ~470px.
+    // We add (count - 1) * 470px of extra bottom space so all cards can stack.
+    const APPROX_CARD_HEIGHT = 470;
+    const extraBottomPadding = (services.length - 1) * APPROX_CARD_HEIGHT;
+
     return (
       <div id="services-section" style={{ backgroundColor: "#FFFFFF" }}>
         <SectionHeader />
+        {/* Stacking container: single column, no gap (cards overlap via sticky) */}
         <div
           className="container"
-          style={{ paddingBottom: "48px", display: "flex", flexDirection: "column", gap: "16px" }}
+          style={{
+            paddingBottom: `${extraBottomPadding + 48}px`,
+            display: "flex",
+            flexDirection: "column",
+            gap: 0,
+          }}
         >
           {services.map((service, i) => (
             <MobileServiceCard
@@ -521,6 +556,7 @@ export default function ScrollServicesSection() {
               service={service}
               isFirst={i === 0}
               activeTab={activeTab}
+              stackIndex={i}
             />
           ))}
         </div>
