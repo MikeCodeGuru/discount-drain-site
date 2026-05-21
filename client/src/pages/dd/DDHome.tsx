@@ -251,8 +251,8 @@ export default function DDHome() {
                 className="relative overflow-hidden"
                 style={{
                   width: "100%",
-                  maxWidth: "620px",
-                  aspectRatio: "4/3",
+                  maxWidth: "740px",
+                  aspectRatio: "5/4",
                   borderRadius: "20px",
                   boxShadow: "0 24px 64px rgba(0,80,200,0.18), 0 4px 16px rgba(0,0,0,0.10)",
                   background: "#0d1b2a",
