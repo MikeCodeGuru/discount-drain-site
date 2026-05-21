@@ -557,7 +557,7 @@ export default function ScrollServicesSection() {
 
           {/* Full-width View All Services CTA — immediately after last stacked card */}
           <Link
-            href="/services"
+            href={`/services?tab=${activeTab}`}
             style={{
               display: "flex",
               alignItems: "center",

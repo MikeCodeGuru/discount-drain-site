@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
-import { Link } from "wouter";
-import { Phone, Camera, Wrench, Droplets, Truck, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Link, useSearch } from "wouter";
+import { Camera, Wrench, Droplets, Truck, Shield, ArrowRight } from "lucide-react";
 import DDLayout from "./DDLayout";
 import { trpc } from "@/lib/trpc";
 
@@ -28,6 +28,18 @@ function useScrollReveal() {
 export default function DDServices() {
   const { data: services, isLoading } = trpc.services.list.useQuery();
   const ref1 = useScrollReveal();
+
+  // Read ?tab= query param passed from the mobile Services section CTA
+  const search = useSearch();
+  const params = new URLSearchParams(search);
+  const tabParam = params.get("tab");
+  const [activeTab, setActiveTab] = useState<"residential" | "commercial">(
+    tabParam === "commercial" ? "commercial" : "residential"
+  );
+
+  const filteredServices = (services ?? []).filter((s) =>
+    activeTab === "residential" ? s.category !== "Commercial" : s.category === "Commercial"
+  );
 
   return (
     <DDLayout>
@@ -57,6 +69,30 @@ export default function DDServices() {
       {/* Services Grid */}
       <section className="py-20 bg-white">
         <div ref={ref1} className="fade-in-up container">
+          {/* Tab toggle */}
+          <div className="flex items-center gap-3 mb-10">
+            <button
+              onClick={() => setActiveTab("residential")}
+              className="px-6 py-2.5 rounded-full text-sm font-semibold transition-all"
+              style={{
+                backgroundColor: activeTab === "residential" ? "#2563EB" : "#F1F5F9",
+                color: activeTab === "residential" ? "#FFFFFF" : "#475569",
+              }}
+            >
+              Residential
+            </button>
+            <button
+              onClick={() => setActiveTab("commercial")}
+              className="px-6 py-2.5 rounded-full text-sm font-semibold transition-all"
+              style={{
+                backgroundColor: activeTab === "commercial" ? "#2563EB" : "#F1F5F9",
+                color: activeTab === "commercial" ? "#FFFFFF" : "#475569",
+              }}
+            >
+              Commercial
+            </button>
+          </div>
+
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
@@ -71,7 +107,7 @@ export default function DDServices() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(services ?? []).map((service) => {
+              {(filteredServices.length > 0 ? filteredServices : (services ?? [])).map((service) => {
                 const Icon = ICON_MAP[service.iconName ?? "Wrench"] ?? Wrench;
                 return (
                   <Link key={service.slug} href={`/services/${service.slug}`}>
