@@ -100,3 +100,11 @@
 - [x] Remove old /site/* routes
 - [x] Update all internal links in DDLayout, DDHome, and all DD pages
 - [x] Verify all pages at root paths and save checkpoint
+
+## Phase 11: Live Google Reviews + Town Landing Pages
+- [x] Replace placeholder reviews with real 5-star Google reviews from Discount Drain's Google Business page
+- [x] Write unique geo-targeted copy and 5 FAQs for all 12 town pages
+- [x] Build DDTownLanding component with FAQ JSON-LD and LocalBusiness structured data
+- [x] Register all 12 town routes in App.tsx (/service-area/:townSlug)
+- [x] Add all 12 town pages + /service-area to sitemap.xml
+- [x] Update service area page town cards to link to individual landing pages

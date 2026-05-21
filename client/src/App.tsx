@@ -17,6 +17,7 @@ import DDBlog from "@/pages/dd/DDBlog";
 import DDBlogPost from "@/pages/dd/DDBlogPost";
 import DDQuote from "@/pages/dd/DDQuote";
 import DDServiceArea from "@/pages/dd/DDServiceArea";
+import DDTownLanding from "@/pages/dd/DDTownLanding";
 
 // Admin CMS
 import DDAdmin from "@/pages/dd/DDAdmin";
@@ -36,6 +37,7 @@ function Router() {
       <Route path={"/blog/:slug"} component={DDBlogPost} />
       <Route path={"/quote"} component={DDQuote} />
       <Route path={"/service-area"} component={DDServiceArea} />
+      <Route path={"/service-area/:townSlug"} component={DDTownLanding} />
 
       {/* Admin CMS */}
       <Route path={"/admin"} component={DDAdmin} />

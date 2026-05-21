@@ -15,18 +15,18 @@ import { MapView } from "@/components/Map";
 const LONDON_CENTER = { lat: 42.9849, lng: -81.2453 };
 
 const SERVICE_TOWNS = [
-  { name: "London", lat: 42.9849, lng: -81.2453, primary: true, desc: "Main service hub" },
-  { name: "Strathroy", lat: 42.9581, lng: -81.6168, primary: false, desc: "~40 min west" },
-  { name: "St. Thomas", lat: 42.7759, lng: -81.1789, primary: false, desc: "~25 min south" },
-  { name: "Woodstock", lat: 43.1306, lng: -80.7465, primary: false, desc: "~45 min east" },
-  { name: "Ingersoll", lat: 43.0395, lng: -80.8836, primary: false, desc: "~35 min east" },
-  { name: "Tillsonburg", lat: 42.8597, lng: -80.7275, primary: false, desc: "~50 min southeast" },
-  { name: "Aylmer", lat: 42.7706, lng: -80.9842, primary: false, desc: "~40 min southeast" },
-  { name: "Exeter", lat: 43.3500, lng: -81.4833, primary: false, desc: "~45 min northwest" },
-  { name: "Parkhill", lat: 43.1500, lng: -81.6833, primary: false, desc: "~50 min northwest" },
-  { name: "Dorchester", lat: 42.9833, lng: -81.0667, primary: false, desc: "~20 min east" },
-  { name: "Komoka", lat: 42.9667, lng: -81.4167, primary: false, desc: "~15 min west" },
-  { name: "Belmont", lat: 42.8833, lng: -81.0833, primary: false, desc: "~25 min southeast" },
+  { name: "London", slug: "london", lat: 42.9849, lng: -81.2453, primary: true, desc: "Main service hub" },
+  { name: "Strathroy", slug: "strathroy", lat: 42.9581, lng: -81.6168, primary: false, desc: "~40 min west" },
+  { name: "St. Thomas", slug: "st-thomas", lat: 42.7759, lng: -81.1789, primary: false, desc: "~25 min south" },
+  { name: "Woodstock", slug: "woodstock", lat: 43.1306, lng: -80.7465, primary: false, desc: "~45 min east" },
+  { name: "Ingersoll", slug: "ingersoll", lat: 43.0395, lng: -80.8836, primary: false, desc: "~35 min east" },
+  { name: "Tillsonburg", slug: "tillsonburg", lat: 42.8597, lng: -80.7275, primary: false, desc: "~50 min southeast" },
+  { name: "Aylmer", slug: "aylmer", lat: 42.7706, lng: -80.9842, primary: false, desc: "~40 min southeast" },
+  { name: "Exeter", slug: "exeter", lat: 43.3500, lng: -81.4833, primary: false, desc: "~45 min northwest" },
+  { name: "Parkhill", slug: "parkhill", lat: 43.1500, lng: -81.6833, primary: false, desc: "~50 min northwest" },
+  { name: "Dorchester", slug: "dorchester", lat: 42.9833, lng: -81.0667, primary: false, desc: "~20 min east" },
+  { name: "Komoka", slug: "komoka", lat: 42.9667, lng: -81.4167, primary: false, desc: "~15 min west" },
+  { name: "Belmont", slug: "belmont", lat: 42.8833, lng: -81.0833, primary: false, desc: "~25 min southeast" },
 ];
 
 const COVERAGE_AREAS = [
@@ -217,12 +217,15 @@ export default function DDServiceArea() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {SERVICE_TOWNS.map((town) => (
-              <div
+              <Link
                 key={town.name}
-                className="rounded-2xl p-4 flex items-start gap-3"
+                href={`/service-area/${town.slug}`}
+                className="rounded-2xl p-4 flex items-start gap-3 transition-shadow hover:shadow-md"
                 style={{
                   backgroundColor: town.primary ? "#f0f6ff" : "#f9fafb",
                   border: town.primary ? "1px solid #c2d9ff" : "1px solid #e8eaed",
+                  textDecoration: "none",
+                  display: "flex",
                 }}
               >
                 <div
@@ -248,8 +251,9 @@ export default function DDServiceArea() {
                     )}
                   </div>
                   <div style={{ fontSize: "12px", color: "#8c9baa", marginTop: "2px" }}>{town.desc}</div>
+                  <div style={{ fontSize: "11px", color: "#0080ff", marginTop: "4px", fontWeight: 600 }}>View page &rarr;</div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
