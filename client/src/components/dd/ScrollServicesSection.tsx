@@ -202,8 +202,8 @@ function useLerpScroll(
   // 0.15 = snappy but still has a pleasant ease-out feel
   const LERP = 0.15;
   // Parallax strength: how many px the image moves per px of card offset.
-  // 0.12 is subtle — visible but not distracting.
-  const PARALLAX_FACTOR = 0.12;
+  // 0.2 gives a more pronounced, dramatic 3D depth feel.
+  const PARALLAX_FACTOR = 0.2;
 
   useEffect(() => {
     const wrapper = wrapperRef.current;

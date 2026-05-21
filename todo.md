@@ -144,8 +144,8 @@
 - [x] Save checkpoint
 
 ## Phase 17: Parallax Factor 0.2
-- [ ] Bump PARALLAX_FACTOR from 0.12 to 0.2 in ScrollServicesSection.tsx
-- [ ] Save checkpoint
+- [x] Bump PARALLAX_FACTOR from 0.12 to 0.2 in ScrollServicesSection.tsx
+- [x] Save checkpoint
 
 ## Phase 18: Active Card Scale-Up
 - [ ] Add scale(1.02) on active card and scale(0.97) on inactive cards via RAF loop
