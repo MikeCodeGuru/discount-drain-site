@@ -241,7 +241,7 @@ function useLerpScroll(
       // Cap the translation so the last card stops at ~30% from the left edge
       // of the viewport rather than scrolling fully off-screen.
       // This keeps the final card visible when the section ends.
-      const maxTranslate = stepPx * (count - 1) * 0.72;
+      const maxTranslate = stepPx * (count - 1) * 0.65;
 
       return -(progress * maxTranslate);
     };

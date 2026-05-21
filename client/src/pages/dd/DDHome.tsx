@@ -28,8 +28,8 @@ const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4
 const BASEMENT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-wet-basement-FsuMvi3AAMgHsP38ad6WDp.webp";
 const EXCAVATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-excavation-nJgwHt9PRg2kHnpUSugtnt.webp";
 
-function useScrollReveal() {
-  const ref = useRef<HTMLDivElement>(null);
+function useScrollReveal<T extends HTMLElement = HTMLDivElement>() {
+  const ref = useRef<T>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -165,6 +165,7 @@ export default function DDHome() {
   const heroVideoRef = useScrollReveal();
   const statsRef = useScrollReveal();
   const servicesRef = useScrollReveal();
+  const trenchlessSectionRef = useScrollReveal<HTMLElement>();
   const trenchlessRef = useScrollReveal();
   const testimonialsRef = useScrollReveal();
   const ctaRef = useScrollReveal();
@@ -419,7 +420,7 @@ export default function DDHome() {
       <ScrollServicesSection />
 
       {/* ─── TRENCHLESS FEATURE ─── */}
-      <section className="py-20 overflow-hidden bg-white">
+      <section ref={trenchlessSectionRef} className="py-20 overflow-hidden bg-white section-entrance">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             {/* Image */}
