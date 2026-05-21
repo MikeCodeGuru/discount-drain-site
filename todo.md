@@ -185,3 +185,9 @@
 - [x] Disable lerp RAF loop and sticky scroll trap on mobile (already done, preserve)
 - [x] Desktop behaviour unchanged
 - [x] Save checkpoint
+
+## Phase 24: Stagger Animations + Desktop CTA Improvements
+- [x] TestimonialCard staggered entrance animation (75ms stagger per card, fade-in-up via IntersectionObserver)
+- [x] Desktop ScrollServicesSection: Add "Get a Free Quote" ghost/outline button next to "View All Services"
+- [x] Desktop ScrollServicesSection: Move both CTA buttons closer to the bento cards (bottom:24px, reduced from 32px)
+- [x] Save checkpoint

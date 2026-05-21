@@ -736,17 +736,18 @@ export default function ScrollServicesSection() {
         </div>
       </div>
 
-      {/* Desktop CTA — centred below the sticky viewport, sits in the scroll-travel space */}
+      {/* Desktop CTAs — two side-by-side buttons close below the sticky viewport */}
       <div
-        className="flex justify-center items-center"
+        className="flex justify-center items-center gap-4"
         style={{
           position: "absolute",
-          bottom: "32px",
+          bottom: "24px",
           left: 0,
           right: 0,
           pointerEvents: "none",
         }}
       >
+        {/* Primary: View All Services */}
         <Link
           href={`/services?tab=${activeTab}`}
           className="flex items-center gap-2 font-semibold rounded-full"
@@ -774,6 +775,33 @@ export default function ScrollServicesSection() {
         >
           View All Services
           <ArrowRight size={15} />
+        </Link>
+
+        {/* Ghost: Get a Free Quote */}
+        <Link
+          href="/contact"
+          className="flex items-center gap-2 font-semibold rounded-full"
+          style={{
+            pointerEvents: "auto",
+            backgroundColor: "transparent",
+            color: "#0080ff",
+            padding: "13px 32px",
+            fontSize: "15px",
+            fontFamily: "'Inter Tight', sans-serif",
+            textDecoration: "none",
+            border: "2px solid #0080ff",
+            transition: "background-color 0.2s, color 0.2s, transform 0.15s",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(0,128,255,0.08)";
+            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px) scale(1.04)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "transparent";
+            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0) scale(1)";
+          }}
+        >
+          Get a Free Quote
         </Link>
       </div>
     </div>

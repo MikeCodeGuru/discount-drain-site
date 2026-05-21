@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearch } from "wouter";
-import { Camera, Wrench, Droplets, Truck, Shield, ArrowRight } from "lucide-react";
+import { Camera, Wrench, Droplets, Truck, Shield, ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import DDLayout from "./DDLayout";
 import { trpc } from "@/lib/trpc";
 
@@ -37,8 +37,12 @@ export default function DDServices() {
     tabParam === "commercial" ? "commercial" : "residential"
   );
 
+  // Services don't have a category field in the DB schema; use slug to determine residential vs commercial.
+  // Commercial-only slugs: sewer-camera-inspection is shared, but we show all services in both tabs for now.
+  // Filter: commercial tab shows commercial-specific services (catch-basin, municipal, septic, commercial-sewer-repair)
+  const COMMERCIAL_SLUGS = ["catch-basin-cleaning", "municipal-services", "septic-service", "commercial-sewer-repair"];
   const filteredServices = (services ?? []).filter((s) =>
-    activeTab === "residential" ? s.category !== "Commercial" : s.category === "Commercial"
+    activeTab === "commercial" ? COMMERCIAL_SLUGS.includes(s.slug) : !COMMERCIAL_SLUGS.includes(s.slug)
   );
 
   return (

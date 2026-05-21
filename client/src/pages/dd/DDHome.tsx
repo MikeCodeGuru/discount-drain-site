@@ -108,6 +108,47 @@ function StatTile({
   );
 }
 
+// ─── Staggered testimonial card ─────────────────────────────────────────────────────
+function TestimonialCard({
+  testimonial,
+  delay,
+}: {
+  testimonial: { id: number; name: string; location: string | null; body: string; rating: number };
+  delay: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div
+      ref={ref}
+      className="testimonial-card fade-in-up"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <div className="flex gap-1 mb-4">
+        {Array.from({ length: testimonial.rating }).map((_, i) => (
+          <Star key={i} size={14} fill="#0080ff" style={{ color: "#0080ff" }} />
+        ))}
+      </div>
+      <p style={{ color: "#222222", fontSize: "15px", lineHeight: "26px", marginBottom: "20px", fontStyle: "italic" }}>
+        "{testimonial.body}"
+      </p>
+      <div>
+        <div style={{ fontWeight: 700, fontSize: "14px", color: "#111111" }}>{testimonial.name}</div>
+        <div style={{ color: "#8c9baa", fontSize: "13px" }}>{testimonial.location}</div>
+      </div>
+    </div>
+  );
+}
+
 const ICON_MAP: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
   Camera, Wrench, Droplets, Truck, Shield,
 };
@@ -510,8 +551,8 @@ export default function DDHome() {
 
       {/* ─── TESTIMONIALS ─── */}
       <section ref={testimonialsSectionRef} className="py-20 bg-white section-entrance">
-        <div ref={testimonialsRef} className="fade-in-up container">
-          <div className="text-center mb-14">
+        <div className="container">
+          <div ref={testimonialsRef} className="fade-in-up text-center mb-14">
             <div className="eyebrow mx-auto mb-4">Customer Reviews</div>
             <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", color: "#111111", marginBottom: "12px" }}>
               What Our Customers Say
@@ -522,21 +563,8 @@ export default function DDHome() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(testimonials ?? []).slice(0, 3).map((t) => (
-              <div key={t.id} className="testimonial-card">
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} size={14} fill="#0080ff" style={{ color: "#0080ff" }} />
-                  ))}
-                </div>
-                <p style={{ color: "#222222", fontSize: "15px", lineHeight: "26px", marginBottom: "20px", fontStyle: "italic" }}>
-                  "{t.body}"
-                </p>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: "14px", color: "#111111" }}>{t.name}</div>
-                  <div style={{ color: "#8c9baa", fontSize: "13px" }}>{t.location}</div>
-                </div>
-              </div>
+            {(testimonials ?? []).slice(0, 3).map((t, idx) => (
+              <TestimonialCard key={t.id} testimonial={t} delay={idx * 75} />
             ))}
           </div>
         </div>
