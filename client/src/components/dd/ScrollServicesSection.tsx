@@ -532,20 +532,14 @@ export default function ScrollServicesSection() {
   // We give it a bottom padding equal to (count - 1) * card-height so the last
   // card has room to fully slide in before the section ends.
   if (isMobile) {
-    // Each card only needs enough scroll travel to slide over the previous one.
-    // Since all cards stick at the same top:24px, the travel needed per card is
-    // just the card height minus the sticky offset — roughly 100px per card.
-    // Using a small value here eliminates the dead-scroll gap after the last card.
-    const extraBottomPadding = (services.length - 1) * 100;
-
     return (
       <div id="services-section" style={{ backgroundColor: "#FFFFFF" }}>
         <SectionHeader />
-        {/* Stacking container: single column, no gap (cards overlap via sticky) */}
+        {/* Stacking container: cards stack via position:sticky, no extra bottom padding needed */}
         <div
           className="container"
           style={{
-            paddingBottom: `${extraBottomPadding + 48}px`,
+            paddingBottom: "48px",
             display: "flex",
             flexDirection: "column",
             gap: "12px",
