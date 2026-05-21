@@ -180,21 +180,103 @@ function ArrowCTA({ href, label }: { href: string; label: string }) {
   );
 }
 
+// ─── RAF lerp scroll hook ─────────────────────────────────────────────────────
+// Returns a ref to attach to the scrolling track element.
+// Reads the wrapper's scroll progress and lerps the translateX toward the
+// target value every animation frame — completely bypassing React state for
+// the position update so there are zero re-renders during scroll.
+function useLerpScroll(
+  wrapperRef: React.RefObject<HTMLDivElement | null>,
+  count: number,
+  activeTab: string,
+  onActiveIdxChange: (idx: number) => void
+) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  // Lerp factor: higher = snappier, lower = more floaty. 0.09 gives a silky feel.
+  const LERP = 0.09;
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    const track = trackRef.current;
+    if (!wrapper || !track) return;
+
+    // Reset immediately on tab change
+    track.style.transform = "translateX(0px)";
+
+    let currentX = 0;
+    let targetX = 0;
+    let rafId = 0;
+    let lastActiveIdx = 0;
+
+    const computeTarget = () => {
+      const rect = wrapper.getBoundingClientRect();
+      const totalHeight = wrapper.offsetHeight;
+      const vh = window.innerHeight;
+      const scrolled = -rect.top;
+      const scrollable = totalHeight - vh;
+      if (scrollable <= 0) return 0;
+
+      const progress = Math.max(0, Math.min(1, scrolled / scrollable));
+
+      const containerW = wrapper.offsetWidth;
+      const cardW = containerW * 0.74;
+      const gap = containerW * 0.025;
+      const stepPx = cardW + gap;
+      const maxTranslate = stepPx * (count - 1);
+
+      return -(progress * maxTranslate);
+    };
+
+    const tick = () => {
+      targetX = computeTarget();
+
+      // Lerp: ease current toward target
+      currentX += (targetX - currentX) * LERP;
+
+      // Only write to DOM when the delta is meaningful (avoid sub-pixel noise)
+      if (Math.abs(targetX - currentX) < 0.05) {
+        currentX = targetX;
+      }
+
+      track.style.transform = `translateX(${currentX}px)`;
+
+      // Derive active index from current position (not target) for smooth dot tracking
+      const containerW = wrapper.offsetWidth;
+      const cardW = containerW * 0.74;
+      const gap = containerW * 0.025;
+      const stepPx = cardW + gap;
+      const rawIdx = stepPx > 0 ? -currentX / stepPx : 0;
+      const newIdx = Math.min(count - 1, Math.max(0, Math.round(rawIdx)));
+      if (newIdx !== lastActiveIdx) {
+        lastActiveIdx = newIdx;
+        onActiveIdxChange(newIdx);
+      }
+
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count, activeTab]);
+
+  return trackRef;
+}
+
 export default function ScrollServicesSection() {
   const [activeTab, setActiveTab] = useState<"residential" | "commercial">("residential");
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
 
   const services = activeTab === "residential" ? RESIDENTIAL_SERVICES : COMMERCIAL_SERVICES;
   const count = services.length;
 
-  // Reset when tab changes
+  // Reset active dot when tab changes
   useEffect(() => {
     setActiveIdx(0);
-    if (trackRef.current) {
-      trackRef.current.style.transform = "translateX(0px)";
-    }
   }, [activeTab]);
 
   // Listen for custom event from nav to switch tabs
@@ -209,40 +291,9 @@ export default function ScrollServicesSection() {
     return () => window.removeEventListener("services:setTab", handler);
   }, []);
 
-  useEffect(() => {
-    const wrapper = wrapperRef.current;
-    const track = trackRef.current;
-    if (!wrapper || !track) return;
+  const trackRef = useLerpScroll(wrapperRef, count, activeTab, setActiveIdx);
 
-    const onScroll = () => {
-      const rect = wrapper.getBoundingClientRect();
-      const totalHeight = wrapper.offsetHeight;
-      const vh = window.innerHeight;
-      const scrolled = -rect.top;
-      const scrollable = totalHeight - vh;
-      if (scrollable <= 0) return;
-
-      const progress = Math.max(0, Math.min(1, scrolled / scrollable));
-
-      const containerW = wrapper.offsetWidth;
-      const cardW = containerW * 0.74;
-      const gap = containerW * 0.025;
-      const stepPx = cardW + gap;
-      const maxTranslate = stepPx * (count - 1);
-
-      const translateX = -(progress * maxTranslate);
-      track.style.transform = `translateX(${translateX}px)`;
-
-      const newIdx = Math.min(count - 1, Math.round(progress * (count - 1)));
-      setActiveIdx(newIdx);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [count, activeTab]);
-
-  // 400px scroll travel per card for a more deliberate, readable animation
+  // 400px scroll travel per card
   const scrollTravel = (count - 1) * 400;
 
   return (
@@ -306,11 +357,11 @@ export default function ScrollServicesSection() {
           <div
             ref={trackRef}
             className="flex"
-            style={{ gap: "2.5%", willChange: "transform", transition: "transform 0.05s linear" }}
+            style={{ gap: "2.5%", willChange: "transform" }}
           >
             {services.map((service, i) => (
               <div
-                key={i}
+                key={`${activeTab}-${i}`}
                 className="flex-shrink-0 rounded-2xl overflow-hidden flex"
                 style={{
                   width: "74%",

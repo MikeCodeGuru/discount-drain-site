@@ -119,3 +119,11 @@
 - [x] Commercial nav link: smooth scroll to #services-section + switch to commercial tab on homepage; navigate to /commercial on other pages
 - [x] Both desktop nav and mobile menu updated
 - [x] TypeScript passes cleanly (0 errors)
+
+## Phase 14: Smooth Scroll Services Section (RAF lerp)
+- [x] Replace scroll event + inline style approach with RAF lerp animation loop
+- [x] Cards ease toward target position every frame (LERP=0.09) — no React re-renders during scroll
+- [x] Progress dots still track active card via lerped position
+- [x] Tab switch resets position instantly
+- [x] ArrowCTA hover behaviour preserved exactly
+- [x] TypeScript passes cleanly (0 errors)
