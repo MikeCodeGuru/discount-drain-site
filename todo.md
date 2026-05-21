@@ -184,4 +184,4 @@
 - [x] Parent container tall enough (sum of card heights) for scroll room before each card sticks
 - [x] Disable lerp RAF loop and sticky scroll trap on mobile (already done, preserve)
 - [x] Desktop behaviour unchanged
-- [ ] Save checkpoint
+- [x] Save checkpoint

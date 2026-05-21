@@ -532,10 +532,11 @@ export default function ScrollServicesSection() {
   // We give it a bottom padding equal to (count - 1) * card-height so the last
   // card has room to fully slide in before the section ends.
   if (isMobile) {
-    // Approximate card height (image 260px + text ~200px + border) = ~470px.
-    // We add (count - 1) * 470px of extra bottom space so all cards can stack.
-    const APPROX_CARD_HEIGHT = 470;
-    const extraBottomPadding = (services.length - 1) * APPROX_CARD_HEIGHT;
+    // Each card only needs enough scroll travel to slide over the previous one.
+    // Since all cards stick at the same top:24px, the travel needed per card is
+    // just the card height minus the sticky offset — roughly 100px per card.
+    // Using a small value here eliminates the dead-scroll gap after the last card.
+    const extraBottomPadding = (services.length - 1) * 100;
 
     return (
       <div id="services-section" style={{ backgroundColor: "#FFFFFF" }}>
