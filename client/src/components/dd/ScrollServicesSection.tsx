@@ -238,10 +238,10 @@ function useLerpScroll(
       const cardW = containerW * 0.74;
       const gap = containerW * 0.025;
       const stepPx = cardW + gap;
-      // Cap the translation so the last card stops at ~30% from the left edge
-      // of the viewport rather than scrolling fully off-screen.
-      // This keeps the final card visible when the section ends.
-      const maxTranslate = stepPx * (count - 1) * 0.65;
+      // Cap the translation so the last card stops roughly centred in the
+      // viewport (≈50% of one card-step from the left edge) before the section
+      // releases. 0.45 keeps it clearly visible without cutting off too early.
+      const maxTranslate = stepPx * (count - 1) * 0.45;
 
       return -(progress * maxTranslate);
     };
@@ -477,9 +477,9 @@ export default function ScrollServicesSection() {
 
   const trackRef = useLerpScroll(wrapperRef, imageRefs, cardRefs, count, activeTab, setActiveIdx);
 
-  // 260px scroll travel per card — enough to animate between cards without
-  // creating a long dead-scroll zone at the end of the section.
-  const scrollTravel = (count - 1) * 260;
+  // 180px scroll travel per card — tighter travel eliminates the dead-scroll
+  // zone while still giving the lerp animation enough room to feel smooth.
+  const scrollTravel = (count - 1) * 180;
 
   // ── Shared section header ──────────────────────────────────────────────────
   const SectionHeader = () => (
@@ -763,13 +763,13 @@ export default function ScrollServicesSection() {
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0060d0";
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 28px rgba(0,128,255,0.5)";
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(0,128,255,0.55)";
+            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px) scale(1.04)";
           }}
           onMouseLeave={(e) => {
             (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0080ff";
             (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(0,128,255,0.35)";
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
+            (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0) scale(1)";
           }}
         >
           View All Services

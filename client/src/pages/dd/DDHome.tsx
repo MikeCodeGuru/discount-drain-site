@@ -68,6 +68,46 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
+// ─── Staggered stat tile for the Stats strip ────────────────────────────────
+function StatTile({
+  value, suffix, label,
+  icon: Icon,
+  delay,
+}: {
+  value: number;
+  suffix: string;
+  label: string;
+  icon: React.ComponentType<{ size?: number; style?: React.CSSProperties }>;
+  delay: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div
+      ref={ref}
+      className="flex flex-col items-center fade-in-up"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <Icon size={24} style={{ color: "rgba(255,255,255,0.7)", marginBottom: "8px" }} />
+      <div className="text-white font-extrabold" style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1, marginBottom: "6px" }}>
+        <Counter target={value} suffix={suffix} />
+      </div>
+      <div style={{ color: "rgba(255,255,255,0.75)", fontSize: "13px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+        {label}
+      </div>
+    </div>
+  );
+}
+
 const ICON_MAP: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
   Camera, Wrench, Droplets, Truck, Shield,
 };
@@ -320,23 +360,15 @@ export default function DDHome() {
 
       {/* ─── STATS STRIP ─── */}
       <section style={{ backgroundColor: "#0080ff" }} className="py-12">
-        <div ref={statsRef} className="fade-in-up container">
+        <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: 55, suffix: "+", label: "Years in Business", icon: Award },
-              { value: 20, suffix: "+", label: "Skilled Technicians", icon: Users },
-              { value: 20, suffix: "-Year", label: "Basement Warranty", icon: Shield },
-              { value: 24, suffix: "/7", label: "Emergency Dispatch", icon: Clock },
-            ].map(({ value, suffix, label, icon: Icon }) => (
-              <div key={label} className="flex flex-col items-center">
-                <Icon size={24} style={{ color: "rgba(255,255,255,0.7)", marginBottom: "8px" }} />
-                <div className="text-white font-extrabold" style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1, marginBottom: "6px" }}>
-                  <Counter target={value} suffix={suffix} />
-                </div>
-                <div style={{ color: "rgba(255,255,255,0.75)", fontSize: "13px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em" }}>
-                  {label}
-                </div>
-              </div>
+              { value: 55, suffix: "+", label: "Years in Business", icon: Award, delay: 0 },
+              { value: 20, suffix: "+", label: "Skilled Technicians", icon: Users, delay: 75 },
+              { value: 20, suffix: "-Year", label: "Basement Warranty", icon: Shield, delay: 150 },
+              { value: 24, suffix: "/7", label: "Emergency Dispatch", icon: Clock, delay: 225 },
+            ].map(({ value, suffix, label, icon: Icon, delay }) => (
+              <StatTile key={label} value={value} suffix={suffix} label={label} icon={Icon} delay={delay} />
             ))}
           </div>
         </div>
@@ -346,8 +378,8 @@ export default function DDHome() {
       <section ref={aboutSectionRef} className="py-20 section-entrance" style={{ backgroundColor: "#f5f7fa" }}>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-            {/* Content */}
-            <div>
+            {/* Content — slides in first (0ms) */}
+            <div ref={statsRef} className="fade-in-up">
               <div className="eyebrow mb-4">Family-Owned Since 1970</div>
               <h2 style={{ fontSize: "clamp(28px, 3vw, 44px)", color: "#111111", marginBottom: "20px", lineHeight: "1.15" }}>
                 London's Drain and Sewer Specialists
