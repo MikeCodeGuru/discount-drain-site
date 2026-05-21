@@ -130,13 +130,12 @@ function ArrowCTA({ href, label }: { href: string; label: string }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Link href={href}>
-      <div
-        className="flex items-center cursor-pointer"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{ display: "inline-flex", alignItems: "center" }}
-      >
+    <div
+      className="flex items-center cursor-pointer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ display: "inline-flex", alignItems: "center" }}
+    >
         {/* CTA label — slides in from the left when hovered */}
         <div
           style={{
@@ -175,8 +174,7 @@ function ArrowCTA({ href, label }: { href: string; label: string }) {
         >
           <ArrowRight size={18} />
         </div>
-      </div>
-    </Link>
+    </div>
   );
 }
 
