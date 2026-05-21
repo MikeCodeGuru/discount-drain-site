@@ -197,6 +197,18 @@ export default function ScrollServicesSection() {
     }
   }, [activeTab]);
 
+  // Listen for custom event from nav to switch tabs
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const tab = (e as CustomEvent).detail as "residential" | "commercial";
+      if (tab === "residential" || tab === "commercial") {
+        setActiveTab(tab);
+      }
+    };
+    window.addEventListener("services:setTab", handler);
+    return () => window.removeEventListener("services:setTab", handler);
+  }, []);
+
   useEffect(() => {
     const wrapper = wrapperRef.current;
     const track = trackRef.current;
@@ -235,6 +247,7 @@ export default function ScrollServicesSection() {
 
   return (
     <div
+      id="services-section"
       ref={wrapperRef}
       style={{ height: `calc(100vh + ${scrollTravel}px)` }}
       className="relative"
@@ -307,7 +320,7 @@ export default function ScrollServicesSection() {
               >
                 {/* Left: image panel */}
                 <div
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 relative"
                   style={{
                     width: "42%",
                     backgroundImage: `url(${service.image})`,
@@ -315,7 +328,33 @@ export default function ScrollServicesSection() {
                     backgroundPosition: "center",
                     backgroundColor: "#CBD5E1",
                   }}
-                />
+                >
+                  {/* Flagship badge — only on the first residential card */}
+                  {activeTab === "residential" && i === 0 && (
+                    <div
+                      className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full"
+                      style={{
+                        backgroundColor: "#FBBF24",
+                        boxShadow: "0 2px 8px rgba(251,191,36,0.45)",
+                      }}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#92400E" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          fontWeight: 700,
+                          color: "#92400E",
+                          fontFamily: "'Inter Tight', sans-serif",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        Free Camera Inspection
+                      </span>
+                    </div>
+                  )}
+                </div>
 
                 {/* Right: content panel */}
                 <div

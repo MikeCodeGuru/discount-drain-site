@@ -19,8 +19,8 @@ const LOGO_URL =
 
 const NAV_LINKS = [
   { label: "Services", href: "/services", hasDropdown: true },
-  { label: "Residential", href: "/residential" },
-  { label: "Commercial", href: "/commercial" },
+  { label: "Residential", href: "/residential", servicesTab: "residential" as const },
+  { label: "Commercial", href: "/commercial", servicesTab: "commercial" as const },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -45,7 +45,29 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
+
+  // On homepage: scroll to services section and switch tab.
+  // On other pages: navigate to the full page.
+  const handleServicesTabLink = (
+    e: React.MouseEvent,
+    tab: "residential" | "commercial",
+    href: string
+  ) => {
+    e.preventDefault();
+    if (location === "/") {
+      const section = document.getElementById("services-section");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent("services:setTab", { detail: tab }));
+        }, 150);
+      }
+    } else {
+      navigate(href);
+    }
+    setMobileOpen(false);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -166,6 +188,16 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                     </div>
                   )}
                 </div>
+              ) : link.servicesTab ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleServicesTabLink(e, link.servicesTab!, link.href)}
+                  className="px-4 py-2 text-sm font-semibold rounded-full transition-colors cursor-pointer"
+                  style={{ color: location === link.href ? "#0080ff" : "#222222", textDecoration: "none" }}
+                >
+                  {link.label}
+                </a>
               ) : (
                 <Link
                   key={link.label}
@@ -207,16 +239,28 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
             style={{ borderTop: "1px solid #dee0e4" }}
           >
             <div className="container py-4 flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="py-3 px-3 text-sm font-semibold rounded-xl transition-colors hover:bg-blue-50"
-                  style={{ color: location === link.href ? "#0080ff" : "#222222", borderBottom: "1px solid #f5f7fa" }}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {NAV_LINKS.map((link) =>
+                link.servicesTab ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => handleServicesTabLink(e, link.servicesTab!, link.href)}
+                    className="py-3 px-3 text-sm font-semibold rounded-xl transition-colors hover:bg-blue-50 cursor-pointer"
+                    style={{ color: location === link.href ? "#0080ff" : "#222222", borderBottom: "1px solid #f5f7fa", textDecoration: "none", display: "block" }}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="py-3 px-3 text-sm font-semibold rounded-xl transition-colors hover:bg-blue-50"
+                    style={{ color: location === link.href ? "#0080ff" : "#222222", borderBottom: "1px solid #f5f7fa" }}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
               <div className="flex flex-col gap-3 mt-4">
                 <Link href="/quote" className="btn-outline justify-center">
                   Get a Free Quote

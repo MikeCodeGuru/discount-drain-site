@@ -113,3 +113,9 @@
 - [x] Increase scroll travel per card from 300px to 400px
 - [x] Remove old services grid section from DDHome
 - [x] Add hover-expanding CTA on arrow button of each scroll service card
+
+## Phase 13: Nav Smart-Scroll
+- [x] Residential nav link: smooth scroll to #services-section + switch to residential tab on homepage; navigate to /residential on other pages
+- [x] Commercial nav link: smooth scroll to #services-section + switch to commercial tab on homepage; navigate to /commercial on other pages
+- [x] Both desktop nav and mobile menu updated
+- [x] TypeScript passes cleanly (0 errors)
