@@ -87,3 +87,9 @@
 - [x] Vitest tests passing
 - [x] Final checkpoint saved
 - [x] Deliver to user
+
+## V2 Improvements
+- [x] Audit all 6 service pages for copy uniqueness and rewrite to 85%+ unique content per page
+- [x] Add Google Reviews widget to homepage and all 6 service detail pages
+- [x] Create interactive service area map with London and surrounding towns on homepage and a dedicated service area page
+- [x] Save V2 checkpoint

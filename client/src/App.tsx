@@ -23,6 +23,7 @@ import DDContact from "@/pages/dd/DDContact";
 import DDBlog from "@/pages/dd/DDBlog";
 import DDBlogPost from "@/pages/dd/DDBlogPost";
 import DDQuote from "@/pages/dd/DDQuote";
+import DDServiceArea from "@/pages/dd/DDServiceArea";
 
 // Admin CMS
 
@@ -42,6 +43,7 @@ function Router() {
       <Route path={"/site/blog"} component={DDBlog} />
       <Route path={"/site/blog/:slug"} component={DDBlogPost} />
       <Route path={"/site/quote"} component={DDQuote} />
+      <Route path={"/site/service-area"} component={DDServiceArea} />
 
       {/* Admin CMS */}
       <Route path={"/site/admin"} component={DDAdmin} />

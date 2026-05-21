@@ -3,6 +3,7 @@ import { Link, useParams } from "wouter";
 import { Phone, CheckCircle2, ArrowRight, Star, Clock, Shield, ChevronDown } from "lucide-react";
 import DDLayout from "./DDLayout";
 import { trpc } from "@/lib/trpc";
+import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 
 const HERO_IMGS: Record<string, string> = {
   "drain-cleaning": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp",
@@ -168,7 +169,7 @@ export default function DDServiceDetail() {
                 </h2>
                 <div
                   style={{ color: "#555555", lineHeight: "30px", fontSize: "16px" }}
-                  dangerouslySetInnerHTML={{ __html: service.fullDesc ?? service.shortDesc ?? "" }}
+                  dangerouslySetInnerHTML={{ __html: (service.longDesc ?? service.shortDesc ?? "").replace(/\n\n/g, '</p><p style="margin-top:16px">').replace(/\n/g, '<br/>') }}
                 />
 
                 {benefits.length > 0 && (
@@ -176,11 +177,20 @@ export default function DDServiceDetail() {
                     <h3 style={{ fontSize: "22px", fontWeight: 700, color: "#111111", marginBottom: "16px" }}>
                       What You Get
                     </h3>
-                    <div className="flex flex-col gap-3">
-                      {benefits.map((b: string, i: number) => (
-                        <div key={i} className="flex items-start gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {benefits.map((b: { title: string; desc: string } | string, i: number) => (
+                        <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{ backgroundColor: "#f0f6ff", border: "1px solid #d0e8ff" }}>
                           <CheckCircle2 size={16} style={{ color: "#0080ff", marginTop: "3px", flexShrink: 0 }} />
-                          <span style={{ color: "#222222", fontSize: "15px" }}>{b}</span>
+                          <div>
+                            {typeof b === 'object' ? (
+                              <>
+                                <div style={{ color: "#111111", fontSize: "14px", fontWeight: 700, marginBottom: "4px" }}>{b.title}</div>
+                                <div style={{ color: "#555555", fontSize: "13px", lineHeight: "20px" }}>{b.desc}</div>
+                              </>
+                            ) : (
+                              <span style={{ color: "#222222", fontSize: "15px" }}>{b}</span>
+                            )}
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -222,6 +232,9 @@ export default function DDServiceDetail() {
                     </Link>
                   </div>
                 </div>
+
+                {/* Google Reviews */}
+                <GoogleReviewsWidget variant="service" maxReviews={3} />
 
                 {/* Trust Badges */}
                 <div className="service-card-v2">

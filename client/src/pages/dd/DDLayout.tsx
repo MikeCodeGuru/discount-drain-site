@@ -24,6 +24,7 @@ const NAV_LINKS = [
   { label: "Blog", href: "/site/blog" },
   { label: "About", href: "/site/about" },
   { label: "Contact", href: "/site/contact" },
+  { label: "Service Area", href: "/site/service-area" },
 ];
 
 const SERVICE_LINKS = [
@@ -317,6 +318,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                 { label: "Residential", href: "/site/residential" },
                 { label: "Commercial", href: "/site/commercial" },
                 { label: "Blog and Resources", href: "/site/blog" },
+                { label: "Service Area", href: "/site/service-area" },
                 { label: "Contact Us", href: "/site/contact" },
                 { label: "Free Quote", href: "/site/quote" },
               ].map((item) => (

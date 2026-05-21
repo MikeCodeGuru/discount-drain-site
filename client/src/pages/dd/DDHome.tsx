@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import DDLayout from "./DDLayout";
 import { trpc } from "@/lib/trpc";
+import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
+import { MapView } from "@/components/Map";
 
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 const HERO_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/hero-drain-7Qr6hJCJVsmcjoSkPJtcfU.webp";
@@ -68,6 +70,91 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
 const ICON_MAP: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
   Camera, Wrench, Droplets, Truck, Shield,
 };
+
+const LONDON_CENTER = { lat: 42.9849, lng: -81.2453 };
+
+const SERVICE_TOWNS_MINI = [
+  { name: "London", lat: 42.9849, lng: -81.2453, primary: true },
+  { name: "Strathroy", lat: 42.9581, lng: -81.6168, primary: false },
+  { name: "St. Thomas", lat: 42.7759, lng: -81.1789, primary: false },
+  { name: "Woodstock", lat: 43.1306, lng: -80.7465, primary: false },
+  { name: "Ingersoll", lat: 43.0395, lng: -80.8836, primary: false },
+  { name: "Tillsonburg", lat: 42.8597, lng: -80.7275, primary: false },
+  { name: "Aylmer", lat: 42.7706, lng: -80.9842, primary: false },
+  { name: "Exeter", lat: 43.3500, lng: -81.4833, primary: false },
+  { name: "Dorchester", lat: 42.9833, lng: -81.0667, primary: false },
+  { name: "Komoka", lat: 42.9667, lng: -81.4167, primary: false },
+  { name: "Belmont", lat: 42.8833, lng: -81.0833, primary: false },
+  { name: "Parkhill", lat: 43.1500, lng: -81.6833, primary: false },
+];
+
+function ServiceAreaTeaser() {
+  const mapRef = useRef<google.maps.Map | null>(null);
+
+  function handleMapReady(map: google.maps.Map) {
+    mapRef.current = map;
+    // Coverage circle
+    new google.maps.Circle({
+      map,
+      center: LONDON_CENTER,
+      radius: 80000,
+      strokeColor: "#0080ff",
+      strokeOpacity: 0.25,
+      strokeWeight: 2,
+      fillColor: "#0080ff",
+      fillOpacity: 0.07,
+    });
+    // Town markers
+    SERVICE_TOWNS_MINI.forEach((town) => {
+      const pin = document.createElement("div");
+      pin.style.cssText = `width:${town.primary ? 40 : 28}px;height:${town.primary ? 40 : 28}px;background:${town.primary ? "#0080ff" : "#fff"};border:${town.primary ? "3px solid #fff" : "2px solid #0080ff"};border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.2);`;
+      pin.innerHTML = `<svg width="${town.primary ? 18 : 12}" height="${town.primary ? 18 : 12}" viewBox="0 0 24 24" fill="${town.primary ? "#fff" : "#0080ff"}"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>`;
+      new google.maps.marker.AdvancedMarkerElement({
+        map,
+        position: { lat: town.lat, lng: town.lng },
+        title: town.name,
+        content: pin,
+      });
+    });
+  }
+
+  return (
+    <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="eyebrow mb-4">Service Coverage</div>
+            <h2 style={{ fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 800, color: "#111111", letterSpacing: "-0.02em", marginBottom: "16px" }}>
+              Serving London and All of Southwestern Ontario
+            </h2>
+            <p style={{ color: "#8c9baa", lineHeight: "28px", marginBottom: "24px", fontSize: "16px" }}>
+              Based in London, we dispatch to over 12 communities within an 80 km radius. From Strathroy in the west to Woodstock in the east, St. Thomas in the south to Exeter in the north, we come to you.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {SERVICE_TOWNS_MINI.map((t) => (
+                <span key={t.name} className="px-3 py-1 rounded-full text-sm font-medium" style={{ backgroundColor: t.primary ? "#0080ff" : "#e8f3ff", color: t.primary ? "#fff" : "#0060d0" }}>
+                  {t.name}
+                </span>
+              ))}
+            </div>
+            <Link href="/site/service-area" className="btn-outline">
+              View Full Service Area Map
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+          <div className="rounded-3xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)", border: "1px solid #e8eaed" }}>
+            <MapView
+              initialCenter={LONDON_CENTER}
+              initialZoom={9}
+              onMapReady={handleMapReady}
+              className="h-[420px]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function DDHome() {
   const { data: services } = trpc.services.list.useQuery();
@@ -367,6 +454,12 @@ export default function DDHome() {
           </div>
         </div>
       </section>
+
+      {/* ─── GOOGLE REVIEWS ─── */}
+      <GoogleReviewsWidget variant="homepage" maxReviews={6} />
+
+      {/* ─── SERVICE AREA MAP TEASER ─── */}
+      <ServiceAreaTeaser />
 
       {/* ─── CTA SECTION ─── */}
       <section
