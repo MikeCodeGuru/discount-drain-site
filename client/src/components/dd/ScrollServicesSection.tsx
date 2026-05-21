@@ -181,19 +181,29 @@ function ArrowCTA({ href, label }: { href: string; label: string }) {
 }
 
 // ─── RAF lerp scroll hook ─────────────────────────────────────────────────────
-// Returns a ref to attach to the scrolling track element.
-// Reads the wrapper's scroll progress and lerps the translateX toward the
-// target value every animation frame — completely bypassing React state for
-// the position update so there are zero re-renders during scroll.
+// Drives both the card track translateX and per-card image parallax from a
+// single RAF loop. No React state is touched during scroll — zero re-renders.
+//
+// Parallax strategy:
+//   Each card's image panel gets a counter-scroll translateX applied.
+//   When a card is perfectly centred (its own step offset == currentX) the
+//   image sits at 0. As the card slides in from the right the image is pushed
+//   slightly right (positive X), and as it exits left the image shifts left —
+//   creating a depth/3D feel without any extra libraries.
 function useLerpScroll(
   wrapperRef: React.RefObject<HTMLDivElement | null>,
+  imageRefs: React.RefObject<(HTMLDivElement | null)[]>,
   count: number,
   activeTab: string,
   onActiveIdxChange: (idx: number) => void
 ) {
   const trackRef = useRef<HTMLDivElement>(null);
-  // Lerp factor: higher = snappier, lower = more floaty. 0.09 gives a silky feel.
-  const LERP = 0.09;
+
+  // 0.15 = snappy but still has a pleasant ease-out feel
+  const LERP = 0.15;
+  // Parallax strength: how many px the image moves per px of card offset.
+  // 0.12 is subtle — visible but not distracting.
+  const PARALLAX_FACTOR = 0.12;
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
@@ -202,6 +212,10 @@ function useLerpScroll(
 
     // Reset immediately on tab change
     track.style.transform = "translateX(0px)";
+    const imgs = imageRefs.current ?? [];
+    imgs.forEach((el) => {
+      if (el) el.style.transform = "translateX(0px)";
+    });
 
     let currentX = 0;
     let targetX = 0;
@@ -217,7 +231,6 @@ function useLerpScroll(
       if (scrollable <= 0) return 0;
 
       const progress = Math.max(0, Math.min(1, scrolled / scrollable));
-
       const containerW = wrapper.offsetWidth;
       const cardW = containerW * 0.74;
       const gap = containerW * 0.025;
@@ -230,21 +243,32 @@ function useLerpScroll(
     const tick = () => {
       targetX = computeTarget();
 
-      // Lerp: ease current toward target
+      // Lerp toward target
       currentX += (targetX - currentX) * LERP;
+      if (Math.abs(targetX - currentX) < 0.05) currentX = targetX;
 
-      // Only write to DOM when the delta is meaningful (avoid sub-pixel noise)
-      if (Math.abs(targetX - currentX) < 0.05) {
-        currentX = targetX;
-      }
-
+      // Apply track translation
       track.style.transform = `translateX(${currentX}px)`;
 
-      // Derive active index from current position (not target) for smooth dot tracking
+      // ── Parallax: each image panel moves opposite to the track ──────────
       const containerW = wrapper.offsetWidth;
       const cardW = containerW * 0.74;
       const gap = containerW * 0.025;
       const stepPx = cardW + gap;
+
+      const currentImgs = imageRefs.current ?? [];
+      currentImgs.forEach((imgEl, i) => {
+        if (!imgEl) return;
+        // Offset of this card's natural position relative to currentX
+        // When card i is perfectly in view: cardOffset ≈ 0
+        const cardNaturalX = i * stepPx; // where card i sits in the track
+        const cardOffset = cardNaturalX + currentX; // how far it is from the left edge
+        // Shift the background in the opposite direction, scaled down
+        const parallaxX = -cardOffset * PARALLAX_FACTOR;
+        imgEl.style.transform = `translateX(${parallaxX}px)`;
+      });
+
+      // Active index from lerped position for smooth dot tracking
       const rawIdx = stepPx > 0 ? -currentX / stepPx : 0;
       const newIdx = Math.min(count - 1, Math.max(0, Math.round(rawIdx)));
       if (newIdx !== lastActiveIdx) {
@@ -256,10 +280,7 @@ function useLerpScroll(
     };
 
     rafId = requestAnimationFrame(tick);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-    };
+    return () => cancelAnimationFrame(rafId);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count, activeTab]);
 
@@ -274,9 +295,13 @@ export default function ScrollServicesSection() {
   const services = activeTab === "residential" ? RESIDENTIAL_SERVICES : COMMERCIAL_SERVICES;
   const count = services.length;
 
-  // Reset active dot when tab changes
+  // Refs for each card's image panel — populated via callback refs below
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Reset active dot and image refs when tab changes
   useEffect(() => {
     setActiveIdx(0);
+    imageRefs.current = [];
   }, [activeTab]);
 
   // Listen for custom event from nav to switch tabs
@@ -291,7 +316,7 @@ export default function ScrollServicesSection() {
     return () => window.removeEventListener("services:setTab", handler);
   }, []);
 
-  const trackRef = useLerpScroll(wrapperRef, count, activeTab, setActiveIdx);
+  const trackRef = useLerpScroll(wrapperRef, imageRefs, count, activeTab, setActiveIdx);
 
   // 400px scroll travel per card
   const scrollTravel = (count - 1) * 400;
@@ -369,17 +394,30 @@ export default function ScrollServicesSection() {
                   border: "1px solid #E2E8F0",
                 }}
               >
-                {/* Left: image panel */}
+                {/* Left: image panel — overflow hidden so parallax shift stays clipped */}
                 <div
-                  className="flex-shrink-0 relative"
-                  style={{
-                    width: "42%",
-                    backgroundImage: `url(${service.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundColor: "#CBD5E1",
-                  }}
+                  className="flex-shrink-0 relative overflow-hidden"
+                  style={{ width: "42%" }}
                 >
+                  {/* Inner image div — this is what gets the parallax translateX.
+                      It is slightly wider than its container so the shift never
+                      reveals a gap at the edges. */}
+                  <div
+                    ref={(el) => { imageRefs.current[i] = el; }}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      // Extra width on each side to absorb the parallax travel
+                      left: "-8%",
+                      right: "-8%",
+                      backgroundImage: `url(${service.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundColor: "#CBD5E1",
+                      willChange: "transform",
+                    }}
+                  />
+
                   {/* Flagship badge — only on the first residential card */}
                   {activeTab === "residential" && i === 0 && (
                     <div
@@ -387,6 +425,7 @@ export default function ScrollServicesSection() {
                       style={{
                         backgroundColor: "#FBBF24",
                         boxShadow: "0 2px 8px rgba(251,191,36,0.45)",
+                        zIndex: 1,
                       }}
                     >
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="#92400E" xmlns="http://www.w3.org/2000/svg">

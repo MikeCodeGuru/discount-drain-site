@@ -127,3 +127,11 @@
 - [x] Tab switch resets position instantly
 - [x] ArrowCTA hover behaviour preserved exactly
 - [x] TypeScript passes cleanly (0 errors)
+
+## Phase 15: Lerp speed 0.15 + Image parallax
+- [x] Bump LERP from 0.09 to 0.15 for snappier scroll response
+- [x] Add per-card image parallax: inner image div shifts counter to card travel at 0.12x factor
+- [x] Image panel uses overflow:hidden + -8% left/right bleed to absorb parallax travel without gaps
+- [x] Flagship badge z-index raised above parallax layer
+- [x] Single RAF loop drives both track translateX and all image parallax — zero extra re-renders
+- [x] TypeScript passes cleanly (0 errors)
