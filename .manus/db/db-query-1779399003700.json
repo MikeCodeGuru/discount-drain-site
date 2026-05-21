@@ -1,0 +1,46 @@
+{
+  "query": "SELECT id, title, slug, imageUrl FROM blog_posts ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT id, title, slug, imageUrl FROM blog_posts ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "How to Tell If Your Sewer Line Is Broken (Ontario Homeowner Guide)",
+      "slug": "how-to-tell-if-your-sewer-line-is-broken",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp"
+    },
+    {
+      "id": "2",
+      "title": "Trenchless vs. Traditional Sewer Repair: What Ontario Homeowners Need to Know",
+      "slug": "trenchless-vs-traditional-sewer-repair-ontario",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/trenchless-tech-aq27wqzhBVwtJcMqn5vyp6.webp"
+    },
+    {
+      "id": "3",
+      "title": "Why Is My Basement Wet? The Most Common Causes in Ontario Homes",
+      "slug": "wet-basement-causes-ontario",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/wet-basement-KCdDkXrFxEYTLvyifn5MV5.webp"
+    },
+    {
+      "id": "4",
+      "title": "How Often Should You Clean Your Drains? A Guide for Ontario Homeowners",
+      "slug": "drain-cleaning-how-often-ontario",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp"
+    },
+    {
+      "id": "5",
+      "title": "Sewer Backup: What to Do Right Now (Ontario Emergency Guide)",
+      "slug": "sewer-backup-what-to-do-ontario",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/excavation-truck-hn3hyopRK6GMkwRppqE9JE.webp"
+    },
+    {
+      "id": "6",
+      "title": "Weeping Tile Replacement in Ontario: What It Costs and What to Expect",
+      "slug": "weeping-tile-replacement-ontario",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/wet-basement-KCdDkXrFxEYTLvyifn5MV5.webp"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\timageUrl\n1\tHow to Tell If Your Sewer Line Is Broken (Ontario Homeowner Guide)\thow-to-tell-if-your-sewer-line-is-broken\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp\n2\tTrenchless vs. Traditional Sewer Repair: What Ontario Homeowners Need to Know\ttrenchless-vs-traditional-sewer-repair-ontario\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/trenchless-tech-aq27wqzhBVwtJcMqn5vyp6.webp\n3\tWhy Is My Basement Wet? The Most Common Causes in Ontario Homes\twet-basement-causes-ontario\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/wet-basement-KCdDkXrFxEYTLvyifn5MV5.webp\n4\tHow Often Should You Clean Your Drains? A Guide for Ontario Homeowners\tdrain-cleaning-how-often-ontario\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp\n5\tSewer Backup: What to Do Right Now (Ontario Emergency Guide)\tsewer-backup-what-to-do-ontario\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/excavation-truck-hn3hyopRK6GMkwRppqE9JE.webp\n6\tWeeping Tile Replacement in Ontario: What It Costs and What to Expect\tweeping-tile-replacement-ontario\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/wet-basement-KCdDkXrFxEYTLvyifn5MV5.webp\n",
+  "stderr": "",
+  "execution_time_ms": 340
+}

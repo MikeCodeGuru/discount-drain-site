@@ -14,7 +14,7 @@ import { getTownBySlug, TOWNS } from "@/data/townContent";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 
 const HERO_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-hero-drain-WKMvFCE4cPmTCNbq2xjkum.webp";
+  "/manus-storage/dd-hero-drain_7551245e.jpg";
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);

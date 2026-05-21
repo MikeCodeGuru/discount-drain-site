@@ -191,7 +191,7 @@ function ArrowCTA({ href, label }: { href: string; label: string }) {
 function useLerpScroll(
   wrapperRef: React.RefObject<HTMLDivElement | null>,
   imageRefs: React.RefObject<(HTMLDivElement | null)[]>,
-  cardRefs: React.RefObject<(HTMLDivElement | null)[]>,
+  cardRefs: React.RefObject<(HTMLElement | null)[]>,
   count: number,
   activeTab: string,
   onActiveIdxChange: (idx: number) => void
@@ -315,7 +315,7 @@ export default function ScrollServicesSection() {
   // Refs for each card's image panel — populated via callback refs below
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   // Refs for each card wrapper — used for scale animation
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
 
   // Reset active dot and image refs when tab changes
   useEffect(() => {
@@ -405,9 +405,10 @@ export default function ScrollServicesSection() {
             style={{ gap: "2.5%", willChange: "transform" }}
           >
             {services.map((service, i) => (
-              <div
+              <Link
                 key={`${activeTab}-${i}`}
-                ref={(el) => { cardRefs.current[i] = el; }}
+                href={service.href}
+                ref={(el: HTMLAnchorElement | null) => { cardRefs.current[i] = el; }}
                 className="flex-shrink-0 rounded-2xl overflow-hidden flex"
                 style={{
                   width: "74%",
@@ -415,6 +416,9 @@ export default function ScrollServicesSection() {
                   border: "1px solid #E2E8F0",
                   willChange: "transform",
                   transformOrigin: "center center",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  display: "flex",
                 }}
               >
                 {/* Left: image panel — overflow hidden so parallax shift stays clipped */}
@@ -519,7 +523,7 @@ export default function ScrollServicesSection() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

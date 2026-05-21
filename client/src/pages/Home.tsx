@@ -31,7 +31,7 @@ import {
 } from "lucide-react";
 
 // Image URLs from generated assets
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-hero-drain-WKMvFCE4cPmTCNbq2xjkum.webp";
+const HERO_IMG = "/manus-storage/dd-hero-drain_7551245e.jpg";
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 const TRENCHLESS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-trenchless-S93Mm3avhZ8CR5CSuviEck.webp";
 const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-sewer-camera-fxX5uEXYMHW3AiBoSwi2aa.webp";

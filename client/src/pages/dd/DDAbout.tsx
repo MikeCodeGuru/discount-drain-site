@@ -4,7 +4,7 @@ import { Phone, Shield, CheckCircle2, Star, Clock, Award, Users, Truck, ArrowRig
 import DDLayout from "./DDLayout";
 import { trpc } from "@/lib/trpc";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-hero-drain-WKMvFCE4cPmTCNbq2xjkum.webp";
+const HERO_IMG = "/manus-storage/dd-hero-drain_7551245e.jpg";
 const EXCAVATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-excavation-nJgwHt9PRg2kHnpUSugtnt.webp";
 const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-sewer-camera-fxX5uEXYMHW3AiBoSwi2aa.webp";
 

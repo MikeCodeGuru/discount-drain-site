@@ -22,7 +22,7 @@ import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 import { MapView } from "@/components/Map";
 
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
-const HERO_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-hero-drain-WKMvFCE4cPmTCNbq2xjkum.webp";
+const HERO_FALLBACK = "/manus-storage/dd-hero-drain_7551245e.jpg";
 const TRENCHLESS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-trenchless-S93Mm3avhZ8CR5CSuviEck.webp";
 const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-sewer-camera-fxX5uEXYMHW3AiBoSwi2aa.webp";
 const BASEMENT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-wet-basement-FsuMvi3AAMgHsP38ad6WDp.webp";
@@ -378,10 +378,30 @@ export default function DDHome() {
 
             {/* Image grid */}
             <div className="grid grid-cols-2 gap-4">
-              <div
-                className="col-span-2 rounded-3xl overflow-hidden"
-                style={{ aspectRatio: "16/7", backgroundImage: `url(${CAMERA_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
-              />
+              {/* Top wide image with DD logo overlay */}
+              <div className="col-span-2 rounded-3xl overflow-hidden relative" style={{ aspectRatio: "16/7" }}>
+                <div
+                  className="absolute inset-0"
+                  style={{ backgroundImage: `url(${CAMERA_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+                />
+                {/* Discount Drain logo badge */}
+                <div
+                  className="absolute bottom-4 left-4 flex items-center justify-center"
+                  style={{
+                    backgroundColor: "rgba(255,255,255,0.92)",
+                    backdropFilter: "blur(8px)",
+                    borderRadius: "12px",
+                    padding: "8px 14px",
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+                  }}
+                >
+                  <img
+                    src="/manus-storage/Dd_blacklogo_71ca30a8.png"
+                    alt="Discount Drain"
+                    style={{ height: "44px", width: "auto", display: "block" }}
+                  />
+                </div>
+              </div>
               <div
                 className="rounded-2xl overflow-hidden"
                 style={{ aspectRatio: "1", backgroundImage: `url(${BASEMENT_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
