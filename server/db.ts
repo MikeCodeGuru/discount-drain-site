@@ -77,9 +77,9 @@ export async function getFeaturedServices() {
 
 export async function getServiceBySlug(slug: string) {
   const db = await getDb();
-  if (!db) return undefined;
+  if (!db) return null;
   const result = await db.select().from(services).where(eq(services.slug, slug)).limit(1);
-  return result[0];
+  return result[0] ?? null;
 }
 
 export async function upsertService(data: InsertService & { id?: number }) {
@@ -182,11 +182,11 @@ export async function getAllBlogPosts() {
 
 export async function getBlogPostBySlug(slug: string) {
   const db = await getDb();
-  if (!db) return undefined;
+  if (!db) return null;
   const result = await db.select().from(blogPosts)
     .where(and(eq(blogPosts.slug, slug), eq(blogPosts.published, true)))
     .limit(1);
-  return result[0];
+  return result[0] ?? null;
 }
 
 export async function upsertBlogPost(data: InsertBlogPost & { id?: number }) {

@@ -58,7 +58,10 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 
 export default function DDServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const { data: service, isLoading } = trpc.services.bySlug.useQuery({ slug: slug ?? "" });
+  const { data: service, isLoading } = trpc.services.bySlug.useQuery(
+    { slug: slug ?? "" },
+    { enabled: !!slug && slug !== ":slug" }
+  );
   const { data: testimonials } = trpc.testimonials.list.useQuery();
   const ref1 = useScrollReveal();
   const ref2 = useScrollReveal();
