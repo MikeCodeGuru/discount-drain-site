@@ -31,12 +31,12 @@ import {
 } from "lucide-react";
 
 // Image URLs from generated assets
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/hero-drain-7Qr6hJCJVsmcjoSkPJtcfU.webp";
+const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-hero-drain-WKMvFCE4cPmTCNbq2xjkum.webp";
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
-const TRENCHLESS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/trenchless-tech-aq27wqzhBVwtJcMqn5vyp6.webp";
-const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp";
-const BASEMENT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/wet-basement-KCdDkXrFxEYTLvyifn5MV5.webp";
-const EXCAVATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/excavation-truck-hn3hyopRK6GMkwRppqE9JE.webp";
+const TRENCHLESS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-trenchless-S93Mm3avhZ8CR5CSuviEck.webp";
+const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-sewer-camera-fxX5uEXYMHW3AiBoSwi2aa.webp";
+const BASEMENT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-wet-basement-FsuMvi3AAMgHsP38ad6WDp.webp";
+const EXCAVATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-excavation-nJgwHt9PRg2kHnpUSugtnt.webp";
 
 // Scroll animation hook
 function useScrollAnimation() {

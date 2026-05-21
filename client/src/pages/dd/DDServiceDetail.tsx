@@ -6,12 +6,12 @@ import { trpc } from "@/lib/trpc";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 
 const HERO_IMGS: Record<string, string> = {
-  "drain-cleaning": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp",
-  "sewer-camera-inspection": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp",
-  "trenchless-pipe-repair": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/trenchless-tech-aq27wqzhBVwtJcMqn5vyp6.webp",
-  "wet-basement-waterproofing": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/wet-basement-KCdDkXrFxEYTLvyifn5MV5.webp",
-  "sewer-repair-installation": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/excavation-truck-hn3hyopRK6GMkwRppqE9JE.webp",
-  "excavation-services": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/excavation-truck-hn3hyopRK6GMkwRppqE9JE.webp",
+  "drain-cleaning": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-sewer-camera-fxX5uEXYMHW3AiBoSwi2aa.webp",
+  "sewer-camera-inspection": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-sewer-camera-fxX5uEXYMHW3AiBoSwi2aa.webp",
+  "trenchless-pipe-repair": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-trenchless-S93Mm3avhZ8CR5CSuviEck.webp",
+  "wet-basement-waterproofing": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-wet-basement-FsuMvi3AAMgHsP38ad6WDp.webp",
+  "sewer-repair-installation": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-excavation-nJgwHt9PRg2kHnpUSugtnt.webp",
+  "excavation-services": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-excavation-nJgwHt9PRg2kHnpUSugtnt.webp",
 };
 
 function useScrollReveal() {
@@ -66,7 +66,7 @@ export default function DDServiceDetail() {
   const ref1 = useScrollReveal();
   const ref2 = useScrollReveal();
 
-  const heroImg = HERO_IMGS[slug ?? ""] ?? "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/hero-drain-7Qr6hJCJVsmcjoSkPJtcfU.webp";
+  const heroImg = HERO_IMGS[slug ?? ""] ?? "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-hero-drain-WKMvFCE4cPmTCNbq2xjkum.webp";
 
   if (isLoading) {
     return (

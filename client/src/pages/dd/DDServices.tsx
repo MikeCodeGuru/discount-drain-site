@@ -4,7 +4,7 @@ import { Phone, Camera, Wrench, Droplets, Truck, Shield, ArrowRight, CheckCircle
 import DDLayout from "./DDLayout";
 import { trpc } from "@/lib/trpc";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp";
+const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-sewer-camera-fxX5uEXYMHW3AiBoSwi2aa.webp";
 
 const ICON_MAP: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
   Camera, Wrench, Droplets, Truck, Shield,
