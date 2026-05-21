@@ -161,6 +161,7 @@ export default function DDHome() {
   const { data: testimonials } = trpc.testimonials.list.useQuery();
 
   const heroRef = useScrollReveal();
+  const heroVideoRef = useScrollReveal();
   const statsRef = useScrollReveal();
   const servicesRef = useScrollReveal();
   const trenchlessRef = useScrollReveal();
@@ -244,7 +245,7 @@ export default function DDHome() {
             </div>
 
             {/* ── RIGHT: video card ── */}
-            <div className="relative flex justify-center lg:justify-end">
+            <div ref={heroVideoRef} className="slide-in-right relative flex justify-center lg:justify-end">
               {/* Main video card */}
               <div
                 className="relative overflow-hidden"
