@@ -611,19 +611,20 @@ export default function ScrollServicesSection() {
               border: "none",
               cursor: "pointer",
               transition: "background-color 0.22s cubic-bezier(0.4,0,0.2,1), color 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s",
-              backgroundColor: activeTab === tab ? "#0060d0" : "transparent",
-              color: activeTab === tab ? "#0080ff" : "#6B7280",
-              boxShadow: activeTab === tab ? "0 2px 8px rgba(63,64,73,0.22)" : "none",
+              backgroundColor: activeTab === tab ? "#0080ff" : "transparent",
+              color: activeTab === tab ? "#ffffff" : "#374151",
+              boxShadow: activeTab === tab ? "0 2px 12px rgba(0,128,255,0.30)" : "none",
+              fontWeight: activeTab === tab ? 700 : 600,
             }}
             onMouseEnter={(e) => {
               if (activeTab !== tab) {
-                (e.currentTarget as HTMLButtonElement).style.color = "#0060d0";
-                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(63,64,73,0.06)";
+                (e.currentTarget as HTMLButtonElement).style.color = "#0080ff";
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#e8f3ff";
               }
             }}
             onMouseLeave={(e) => {
               if (activeTab !== tab) {
-                (e.currentTarget as HTMLButtonElement).style.color = "#6B7280";
+                (e.currentTarget as HTMLButtonElement).style.color = "#374151";
                 (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
               }
             }}
