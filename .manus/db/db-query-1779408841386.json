@@ -1,0 +1,66 @@
+{
+  "query": "SELECT id, slug, title, category, sortOrder FROM services ORDER BY sortOrder, id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT id, slug, title, category, sortOrder FROM services ORDER BY sortOrder, id;",
+  "rows": [
+    {
+      "id": "1",
+      "slug": "sewer-camera-inspection",
+      "title": "Free Sewer Video Camera Inspection",
+      "category": "both",
+      "sortOrder": "1"
+    },
+    {
+      "id": "2",
+      "slug": "trenchless-pipe-repair",
+      "title": "No-Dig Trenchless Pipe Repair",
+      "category": "both",
+      "sortOrder": "2"
+    },
+    {
+      "id": "3",
+      "slug": "wet-basement-repair",
+      "title": "Wet Basement Waterproofing",
+      "category": "residential",
+      "sortOrder": "3"
+    },
+    {
+      "id": "4",
+      "slug": "sewer-repair-installation",
+      "title": "Sewer Repair and Installation",
+      "category": "both",
+      "sortOrder": "4"
+    },
+    {
+      "id": "5",
+      "slug": "drain-cleaning",
+      "title": "Drain Cleaning and Power Flushing",
+      "category": "both",
+      "sortOrder": "5"
+    },
+    {
+      "id": "6",
+      "slug": "excavation-services",
+      "title": "Excavation and Machine Services",
+      "category": "both",
+      "sortOrder": "6"
+    },
+    {
+      "id": "30001",
+      "slug": "municipal-services",
+      "title": "Municipal Services",
+      "category": "commercial",
+      "sortOrder": "7"
+    },
+    {
+      "id": "30002",
+      "slug": "catch-basin-cleaning",
+      "title": "Catch Basin Cleaning",
+      "category": "commercial",
+      "sortOrder": "8"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tslug\ttitle\tcategory\tsortOrder\n1\tsewer-camera-inspection\tFree Sewer Video Camera Inspection\tboth\t1\n2\ttrenchless-pipe-repair\tNo-Dig Trenchless Pipe Repair\tboth\t2\n3\twet-basement-repair\tWet Basement Waterproofing\tresidential\t3\n4\tsewer-repair-installation\tSewer Repair and Installation\tboth\t4\n5\tdrain-cleaning\tDrain Cleaning and Power Flushing\tboth\t5\n6\texcavation-services\tExcavation and Machine Services\tboth\t6\n30001\tmunicipal-services\tMunicipal Services\tcommercial\t7\n30002\tcatch-basin-cleaning\tCatch Basin Cleaning\tcommercial\t8\n",
+  "stderr": "",
+  "execution_time_ms": 268
+}

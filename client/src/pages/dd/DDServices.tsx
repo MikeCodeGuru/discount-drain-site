@@ -37,12 +37,13 @@ export default function DDServices() {
     tabParam === "commercial" ? "commercial" : "residential"
   );
 
-  // Services don't have a category field in the DB schema; use slug to determine residential vs commercial.
-  // Commercial-only slugs: sewer-camera-inspection is shared, but we show all services in both tabs for now.
-  // Filter: commercial tab shows commercial-specific services (catch-basin, municipal, septic, commercial-sewer-repair)
-  const COMMERCIAL_SLUGS = ["catch-basin-cleaning", "municipal-services", "septic-service", "commercial-sewer-repair"];
+  // Filter by category field from DB:
+  // residential tab: show services with category 'residential' or 'both'
+  // commercial tab: show services with category 'commercial' or 'both'
   const filteredServices = (services ?? []).filter((s) =>
-    activeTab === "commercial" ? COMMERCIAL_SLUGS.includes(s.slug) : !COMMERCIAL_SLUGS.includes(s.slug)
+    activeTab === "commercial"
+      ? s.category === "commercial" || s.category === "both"
+      : s.category === "residential" || s.category === "both"
   );
 
   return (

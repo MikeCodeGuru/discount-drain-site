@@ -47,6 +47,7 @@ export const services = mysqlTable("services", {
   metaDesc: text("metaDesc"),
   iconName: varchar("iconName", { length: 60 }),
   imageUrl: text("imageUrl"),
+  category: mysqlEnum("category", ["residential", "commercial", "both"]).default("both").notNull(),
   featured: boolean("featured").default(false).notNull(),
   sortOrder: int("sortOrder").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),

@@ -191,3 +191,12 @@
 - [x] Desktop ScrollServicesSection: Add "Get a Free Quote" ghost/outline button next to "View All Services"
 - [x] Desktop ScrollServicesSection: Move both CTA buttons closer to the bento cards (bottom:24px, reduced from 32px)
 - [x] Save checkpoint
+
+## Phase 25: Correct Residential vs Commercial Service Categorization
+- [x] Add category field to services table in drizzle/schema.ts (enum: residential | commercial | both)
+- [x] Run pnpm db:push to push schema change
+- [x] Seed/update all services in DB with correct category values based on discountdrain.ca
+- [x] Add commercial-only services to DB: Municipal Services, Catch Basin Cleaning
+- [x] Update DDServices.tsx filter to use category field from DB
+- [x] Verify Residential tab shows 6 residential services (5 both + 1 residential-only) and Commercial tab shows 7 commercial services (5 both + 2 commercial-only)
+- [x] Save checkpoint

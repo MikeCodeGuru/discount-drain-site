@@ -1,0 +1,1 @@
+ALTER TABLE `services` ADD `category` enum('residential','commercial','both') DEFAULT 'both' NOT NULL;
