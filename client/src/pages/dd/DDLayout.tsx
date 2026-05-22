@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import BackToTop from "@/components/dd/BackToTop";
 import {
@@ -46,6 +46,21 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [location, navigate] = useLocation();
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openMenu = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setServicesOpen(true);
+  };
+
+  const scheduleClose = () => {
+    closeTimerRef.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 150);
+  };
 
   // On homepage: scroll to services section and switch tab.
   // On other pages: navigate to the full page.
@@ -73,6 +88,13 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
     const onScroll = () => setScrolled(window.scrollY > 12);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Clean up close timer on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
   }, []);
 
   // Close mobile menu on route change
@@ -144,8 +166,8 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                 <div
                   key={link.label}
                   className="relative"
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
+                  onMouseEnter={openMenu}
+                  onMouseLeave={scheduleClose}
                 >
                   <Link
                     href={link.href}
@@ -160,8 +182,10 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                   {servicesOpen && (
                     <div
                       className="absolute z-50"
+                      onMouseEnter={openMenu}
+                      onMouseLeave={scheduleClose}
                       style={{
-                        top: "calc(100% + 8px)",
+                        top: "calc(100% + 4px)",
                         left: "-24px",
                         width: "640px",
                         background: "#FFFFFF",
