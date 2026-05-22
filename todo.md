@@ -352,3 +352,12 @@
 - [x] Add dns-prefetch + preconnect tags for Google Maps (Contact page map pin)
 - [x] Confirmed all 9 service pages already have FAQPage JSON-LD with rich FAQ content
 - [x] Vite build succeeds
+
+## Phase 39: Code Splitting + Page Loader UI
+
+- [x] Build reusable PageLoader component (skeleton + spinner, matches DD brand)
+- [x] Convert all route-level pages in App.tsx to React.lazy imports
+- [x] Wrap all routes in Suspense with PageLoader fallback
+- [x] Verify JS bundle splits into multiple chunks (< 500 KB each)
+- [x] Vite build succeeds
+EOF
