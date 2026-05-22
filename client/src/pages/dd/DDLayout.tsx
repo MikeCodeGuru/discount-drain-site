@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
+import BackToTop from "@/components/dd/BackToTop";
 import {
   Phone,
   Mail,
@@ -446,6 +447,8 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
           Free Quote
         </Link>
       </div>
+      {/* Back-to-top button — visible on all long pages after 400 px scroll */}
+      <BackToTop />
     </div>
   );
 }
