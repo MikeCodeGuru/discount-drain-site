@@ -1,0 +1,64 @@
+{
+  "query": "SELECT slug, CHAR_LENGTH(shortDesc) as short_len, CHAR_LENGTH(longDesc) as long_len, CHAR_LENGTH(benefits) as benefits_len FROM services;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, CHAR_LENGTH(shortDesc) as short_len, CHAR_LENGTH(longDesc) as long_len, CHAR_LENGTH(benefits) as benefits_len FROM services;",
+  "rows": [
+    {
+      "slug": "sewer-camera-inspection",
+      "short_len": "162",
+      "long_len": "1403",
+      "benefits_len": "1299"
+    },
+    {
+      "slug": "trenchless-pipe-repair",
+      "short_len": "195",
+      "long_len": "1715",
+      "benefits_len": "1237"
+    },
+    {
+      "slug": "wet-basement-repair",
+      "short_len": "188",
+      "long_len": "1483",
+      "benefits_len": "1238"
+    },
+    {
+      "slug": "sewer-repair-installation",
+      "short_len": "210",
+      "long_len": "1521",
+      "benefits_len": "1240"
+    },
+    {
+      "slug": "drain-cleaning",
+      "short_len": "181",
+      "long_len": "1360",
+      "benefits_len": "1185"
+    },
+    {
+      "slug": "excavation-services",
+      "short_len": "191",
+      "long_len": "1363",
+      "benefits_len": "1212"
+    },
+    {
+      "slug": "municipal-services",
+      "short_len": "290",
+      "long_len": "2660",
+      "benefits_len": "1265"
+    },
+    {
+      "slug": "catch-basin-cleaning",
+      "short_len": "246",
+      "long_len": "2393",
+      "benefits_len": "1296"
+    },
+    {
+      "slug": "septic-repairs",
+      "short_len": "218",
+      "long_len": "1572",
+      "benefits_len": "924"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\tshort_len\tlong_len\tbenefits_len\nsewer-camera-inspection\t162\t1403\t1299\ntrenchless-pipe-repair\t195\t1715\t1237\nwet-basement-repair\t188\t1483\t1238\nsewer-repair-installation\t210\t1521\t1240\ndrain-cleaning\t181\t1360\t1185\nexcavation-services\t191\t1363\t1212\nmunicipal-services\t290\t2660\t1265\ncatch-basin-cleaning\t246\t2393\t1296\nseptic-repairs\t218\t1572\t924\n",
+  "stderr": "",
+  "execution_time_ms": 253
+}

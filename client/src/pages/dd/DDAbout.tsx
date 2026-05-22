@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Phone, Shield, CheckCircle2, Star, Clock, Award, Users, Truck, ArrowRight } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+import { TEAM_MEMBERS } from "@/data/team";
 
 const HERO_IMG = "/manus-storage/dd-hero-drain_7551245e.jpg";
 const EXCAVATION_IMG = "/manus-storage/sewer-repair-1_b9db9364.jpeg";
@@ -32,7 +32,7 @@ function useScrollReveal() {
 }
 
 export default function DDAbout() {
-  const { data: team } = trpc.team.list.useQuery();
+  const team = TEAM_MEMBERS;
   const ref1 = useScrollReveal();
   const ref2 = useScrollReveal();
   const ref3 = useScrollReveal();
@@ -141,7 +141,7 @@ export default function DDAbout() {
       </section>
 
       {/* Team */}
-      {team && team.length > 0 && (
+      {team.length > 0 && (
         <section className="py-20 bg-white">
           <div ref={ref3} className="fade-in-up container">
             <div className="text-center mb-14">

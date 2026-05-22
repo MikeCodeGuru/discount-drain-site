@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Clock, Tag } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+import { BLOG_POSTS } from "@/data/blogPosts";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -56,21 +56,17 @@ function normalizeCategory(cat: string): string {
 }
 
 export default function DDBlog() {
-  const { data: posts, isLoading } = trpc.blog.list.useQuery();
+  const posts = BLOG_POSTS;
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const ref1 = useScrollReveal();
   const ref2 = useScrollReveal();
 
   // Derive unique categories from posts — normalize to deduplicate title-case vs kebab-case
-  const categories = posts
-    ? ["all", ...Array.from(new Set(posts.map((p) => p.category ? normalizeCategory(p.category) : "").filter(Boolean)))]
-    : ["all"];
+  const categories = ["all", ...Array.from(new Set(posts.map((p) => p.category ? normalizeCategory(p.category) : "").filter(Boolean)))];
 
-  const filteredPosts = posts
-    ? activeCategory === "all"
-      ? posts
-      : posts.filter((p) => p.category && normalizeCategory(p.category) === activeCategory)
-    : [];
+  const filteredPosts = activeCategory === "all"
+    ? posts
+    : posts.filter((p) => p.category && normalizeCategory(p.category) === activeCategory);
 
   const featuredPost = filteredPosts[0];
   const remainingPosts = filteredPosts.slice(1);
@@ -113,7 +109,7 @@ export default function DDBlog() {
       </section>
 
       {/* Category Filter */}
-      {!isLoading && categories.length > 1 && (
+      {categories.length > 1 && (
         <section className="py-6 bg-white" style={{ borderBottom: "1px solid #f0f2f5" }}>
           <div className="container">
             <div className="flex flex-wrap gap-2">
@@ -140,13 +136,7 @@ export default function DDBlog() {
       {/* Blog Content */}
       <section className="py-16 bg-white">
         <div className="container">
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="rounded-3xl overflow-hidden animate-pulse" style={{ backgroundColor: "#f5f7fa", height: "380px" }} />
-              ))}
-            </div>
-          ) : filteredPosts.length === 0 ? (
+          {filteredPosts.length === 0 ? (
             <div className="text-center py-20">
               <p style={{ color: "#8c9baa" }}>No articles in this category yet. Check back soon.</p>
             </div>
@@ -181,13 +171,13 @@ export default function DDBlog() {
                             <div className="flex items-center gap-1">
                               <Tag size={11} style={{ color: "#0080ff" }} />
                               <span style={{ color: "#0080ff", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                                {CATEGORY_LABELS[normalizeCategory(featuredPost.category)] ?? featuredPost.category}
+                                {CATEGORY_LABELS[normalizeCategory(featuredPost.category ?? "")] ?? featuredPost.category}
                               </span>
                             </div>
                           )}
                           <div className="flex items-center gap-1" style={{ color: "#8c9baa" }}>
                             <Clock size={11} />
-                            <span style={{ fontSize: "11px" }}>{estimateReadTime(featuredPost.content)} min read</span>
+                            <span style={{ fontSize: "11px" }}>{estimateReadTime(featuredPost.content ?? "")} min read</span>
                           </div>
                           {featuredPost.publishedAt && (
                             <span style={{ color: "#aab4be", fontSize: "11px" }}>
@@ -240,7 +230,7 @@ export default function DDBlog() {
                             )}
                             <div className="flex items-center gap-1" style={{ color: "#8c9baa" }}>
                               <Clock size={11} />
-                              <span style={{ fontSize: "11px" }}>{estimateReadTime(post.content)} min read</span>
+                              <span style={{ fontSize: "11px" }}>{estimateReadTime(post.content ?? "")} min read</span>
                             </div>
                           </div>
                           <h2 style={{ fontSize: "17px", fontWeight: 700, color: "#111111", marginBottom: "10px", lineHeight: "1.4" }}>

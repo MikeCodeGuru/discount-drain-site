@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { marked } from "marked";
 import { Link, useParams } from "wouter";
 import { Phone, ArrowRight, Clock, Tag, CheckCircle2 } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+import { getBlogPostBySlug, getRelatedBlogPosts } from "@/data/blogPosts";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -43,25 +43,10 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 export default function DDBlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const [slugValue] = useMemo(() => [slug ?? ""], [slug]);
-
-  const { data: post, isLoading } = trpc.blog.bySlug.useQuery({ slug: slugValue });
-  const { data: relatedPosts } = trpc.blog.related.useQuery(
-    { slug: slugValue, category: post?.category ?? undefined },
-    { enabled: !!post }
-  );
+  const post = slug ? getBlogPostBySlug(slug) : undefined;
+  const relatedPosts = post ? getRelatedBlogPosts(post.slug, post.category ?? undefined) : [];
 
   const ref1 = useScrollReveal();
-
-  if (isLoading) {
-    return (
-      <DDLayout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
-        </div>
-      </DDLayout>
-    );
-  }
 
   if (!post) {
     return (
@@ -75,7 +60,7 @@ export default function DDBlogPost() {
     );
   }
 
-  const readTime = estimateReadTime(post.content);
+  const readTime = estimateReadTime(post.content ?? "");
 
   return (
     <DDLayout>
@@ -271,7 +256,7 @@ export default function DDBlogPost() {
       </section>
 
       {/* Related Posts */}
-      {relatedPosts && relatedPosts.length > 0 && (
+      {relatedPosts.length > 0 && (
         <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>
           <div className="container">
             <h2 style={{ fontSize: "clamp(22px, 2.5vw, 32px)", fontWeight: 800, color: "#111111", marginBottom: "28px" }}>
@@ -300,7 +285,7 @@ export default function DDBlogPost() {
                         )}
                         <div className="flex items-center gap-1" style={{ color: "#aab4be" }}>
                           <Clock size={10} />
-                          <span style={{ fontSize: "10px" }}>{estimateReadTime(p.content)} min</span>
+                          <span style={{ fontSize: "10px" }}>{estimateReadTime(p.content ?? "")} min</span>
                         </div>
                       </div>
                       <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#111111", marginBottom: "8px", lineHeight: "1.4" }}>

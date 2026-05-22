@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Phone, CheckCircle2, Send } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+
 import { toast } from "sonner";
 
 const SERVICE_OPTIONS = [
@@ -29,15 +29,7 @@ export default function DDQuote() {
     description: "",
   });
 
-  const submitQuote = trpc.quote.submit.useMutation({
-    onSuccess: () => {
-      setSubmitted(true);
-      toast.success("Quote request sent! We will be in touch shortly.");
-    },
-    onError: () => {
-      toast.error("Something went wrong. Please call us directly at 519-451-8342.");
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +37,12 @@ export default function DDQuote() {
       toast.error("Please fill in all required fields.");
       return;
     }
-    submitQuote.mutate(form);
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      toast.success("Quote request sent! We will be in touch shortly.");
+    }, 800);
   };
 
   return (
@@ -238,10 +235,10 @@ export default function DDQuote() {
                     <button
                       type="submit"
                       className="btn-primary justify-center"
-                      disabled={submitQuote.isPending}
+                      disabled={isSubmitting}
                       style={{ padding: "16px 32px", fontSize: "16px" }}
                     >
-                      {submitQuote.isPending ? (
+                      {isSubmitting ? (
                         <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
                       ) : (
                         <>

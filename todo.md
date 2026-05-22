@@ -305,3 +305,15 @@
 - [x] TypeScript check passes (0 errors)
 - [x] Browser verify all fixed pages
 - [x] Save checkpoint
+
+## Phase 34: Convert to Static React Site
+- [x] Remove trpc imports from all DD pages - use static data files
+- [x] Remove trpc mutation from DDContact.tsx - use client-side state only
+- [x] Remove trpc mutation from DDQuote.tsx - use client-side state only
+- [x] Rewrite DDAdmin.tsx to use static data (no trpc queries/mutations)
+- [x] Remove useAuth import from Home.tsx
+- [x] Rewrite main.tsx to remove trpc/react-query providers
+- [x] Update package.json scripts to use pure Vite build
+- [x] Add vercel.json for SPA routing
+- [x] TypeScript check passes (0 errors)
+- [x] Vite build succeeds (1645 modules, no errors)

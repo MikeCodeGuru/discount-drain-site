@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Phone, Camera, Wrench, Droplets, Building2, Shield, CheckCircle2, ArrowRight, Star } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+import { TESTIMONIALS } from "@/data/testimonials";
 
 const HERO_IMG = "/manus-storage/sewer-repair-1_b9db9364.jpeg";
 
@@ -31,7 +31,7 @@ const commercialServices = [
 ];
 
 export default function DDCommercial() {
-  const { data: testimonials } = trpc.testimonials.list.useQuery();
+  const testimonials = TESTIMONIALS;
   const ref1 = useScrollReveal();
   const ref2 = useScrollReveal();
 
@@ -160,7 +160,7 @@ export default function DDCommercial() {
       </section>
 
       {/* Testimonials */}
-      {testimonials && testimonials.length > 0 && (
+      {testimonials.length > 0 && (
         <section className="py-16 bg-white">
           <div className="container">
             <h2 style={{ fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 800, color: "#111111", marginBottom: "32px", textAlign: "center" }}>

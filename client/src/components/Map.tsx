@@ -76,7 +76,7 @@
 
 /// <reference types="@types/google.maps" />
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePersistFn } from "@/hooks/usePersistFn";
 import { cn } from "@/lib/utils";
 
@@ -86,11 +86,10 @@ declare global {
   }
 }
 
+// Use the server-side proxy route to avoid origin validation issues with the Forge maps proxy.
+// The server at /api/maps-proxy/* forwards requests to forge.manus.ai with the correct credentials.
 const API_KEY = import.meta.env.VITE_FRONTEND_FORGE_API_KEY;
-const FORGE_BASE_URL =
-  import.meta.env.VITE_FRONTEND_FORGE_API_URL ||
-  "https://forge.butterfly-effect.dev";
-const MAPS_PROXY_URL = `${FORGE_BASE_URL}/v1/maps/proxy`;
+const MAPS_PROXY_URL = "/api/maps-proxy";
 
 // Singleton promise — ensures the script is only ever injected once,
 // even when multiple MapView instances mount simultaneously.
@@ -142,36 +141,55 @@ export function MapView({
 }: MapViewProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<google.maps.Map | null>(null);
-
+  const [mapError, setMapError] = useState(false);
   const init = usePersistFn(async () => {
     try {
       await loadMapScript();
     } catch {
-      // Error already logged in loadMapScript; bail out gracefully.
+      // Script failed to load (e.g. origin not registered in dev mode).
+      setMapError(true);
       return;
     }
-    if (!mapContainer.current) {
-      console.error("Map container not found");
-      return;
-    }
-    map.current = new window.google!.maps.Map(mapContainer.current, {
-      zoom: initialZoom,
-      center: initialCenter,
-      mapTypeControl: true,
-      fullscreenControl: true,
-      zoomControl: true,
-      streetViewControl: true,
-      mapId: "DEMO_MAP_ID",
-    });
-    if (onMapReady) {
-      onMapReady(map.current);
+    if (!mapContainer.current) return;
+    try {
+      map.current = new window.google!.maps.Map(mapContainer.current, {
+        zoom: initialZoom,
+        center: initialCenter,
+        mapTypeControl: true,
+        fullscreenControl: true,
+        zoomControl: true,
+        streetViewControl: true,
+        mapId: "DEMO_MAP_ID",
+      });
+      if (onMapReady) {
+        onMapReady(map.current);
+      }
+    } catch {
+      setMapError(true);
     }
   });
-
   useEffect(() => {
     init();
   }, [init]);
-
+  if (mapError) {
+    return (
+      <div
+        className={cn(
+          "w-full h-[500px] flex flex-col items-center justify-center gap-3 rounded-lg",
+          "bg-[#F7F6F3] border border-[#E8E6DF] text-[#8A8A8A]",
+          className
+        )}
+      >
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        <p className="text-sm font-medium" style={{ fontFamily: "'Inter Tight', sans-serif" }}>
+          Map preview available on the published site
+        </p>
+      </div>
+    );
+  }
   return (
     <div ref={mapContainer} className={cn("w-full h-[500px]", className)} />
   );

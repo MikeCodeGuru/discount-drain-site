@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Phone, Camera, Wrench, Droplets, Truck, Shield, CheckCircle2, ArrowRight, Star } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+import { getAllServices } from "@/data/services";
+import { TESTIMONIALS } from "@/data/testimonials";
 
 const HERO_IMG = "/manus-storage/wet-basement-1_5eff930f.jpeg";
 const CAMERA_IMG = "/manus-storage/sewer-camera_39c33547.jpg";
@@ -28,13 +29,13 @@ function useScrollReveal() {
 }
 
 export default function DDResidential() {
-  const { data: services } = trpc.services.list.useQuery();
-  const { data: testimonials } = trpc.testimonials.list.useQuery();
+  const services = getAllServices();
+  const testimonials = TESTIMONIALS;
   const ref1 = useScrollReveal();
   const ref2 = useScrollReveal();
   const ref3 = useScrollReveal();
 
-  const residentialServices = services ?? [];
+  const residentialServices = services;
 
   return (
     <DDLayout>
@@ -193,7 +194,7 @@ export default function DDResidential() {
       </section>
 
       {/* Testimonials */}
-      {testimonials && testimonials.length > 0 && (
+      {testimonials.length > 0 && (
         <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>
           <div className="container">
             <h2 style={{ fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 800, color: "#111111", marginBottom: "32px", textAlign: "center" }}>

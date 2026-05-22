@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Phone, Mail, MapPin, Clock, CheckCircle2, Send } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+
 import { MapView } from "@/components/Map";
 import { toast } from "sonner";
 
@@ -25,15 +25,7 @@ export default function DDContact() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
 
-  const submitContact = trpc.contact.submit.useMutation({
-    onSuccess: () => {
-      setSubmitted(true);
-      toast.success("Message sent! We will get back to you shortly.");
-    },
-    onError: () => {
-      toast.error("Something went wrong. Please call us directly at 519-451-8342.");
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +33,13 @@ export default function DDContact() {
       toast.error("Please fill in all required fields.");
       return;
     }
-    submitContact.mutate(form);
+    setIsSubmitting(true);
+    // Simulate submission delay for demo purposes
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      toast.success("Message sent! We will get back to you shortly.");
+    }, 800);
   };
 
   return (
@@ -210,10 +208,10 @@ export default function DDContact() {
                     <button
                       type="submit"
                       className="btn-primary justify-center"
-                      disabled={submitContact.isPending}
+                      disabled={isSubmitting}
                       style={{ padding: "16px 32px", fontSize: "16px" }}
                     >
-                      {submitContact.isPending ? (
+                      {isSubmitting ? (
                         <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
                       ) : (
                         <>

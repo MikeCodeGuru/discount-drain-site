@@ -17,7 +17,8 @@ import {
   Users,
 } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+import { getAllServices, getFeaturedServices } from "@/data/services";
+import { TESTIMONIALS } from "@/data/testimonials";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 import { MapView } from "@/components/Map";
 
@@ -245,8 +246,8 @@ function ServiceAreaTeaser() {
 }
 
 export default function DDHome() {
-  const { data: services } = trpc.services.list.useQuery();
-  const { data: testimonials } = trpc.testimonials.list.useQuery();
+  const services = getAllServices();
+  const testimonials = TESTIMONIALS;
 
   const heroRef = useScrollReveal();
   const heroVideoRef = useScrollReveal();
@@ -261,8 +262,8 @@ export default function DDHome() {
   const ctaSectionRef = useScrollReveal<HTMLElement>();
   const ctaRef = useScrollReveal();
 
-  const featuredServices = services?.filter((s) => s.featured) ?? [];
-  const displayServices = featuredServices.length > 0 ? featuredServices : services?.slice(0, 6) ?? [];
+  const featuredServices = getFeaturedServices();
+  const displayServices = featuredServices.length > 0 ? featuredServices : services.slice(0, 6);
 
   return (
     <DDLayout>

@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "wouter";
 import { Phone, CheckCircle2, ArrowRight, Star, Clock, Shield, ChevronDown } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+import { getServiceBySlug } from "@/data/services";
+import { TESTIMONIALS } from "@/data/testimonials";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 
 // Related services shown at the bottom of specific service pages
@@ -209,19 +210,14 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 
 export default function DDServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const { data: service, isLoading, isFetching } = trpc.services.bySlug.useQuery(
-    { slug: slug ?? "" },
-    { enabled: !!slug && slug !== ":slug" }
-  );
-  const { data: testimonials } = trpc.testimonials.list.useQuery();
+  const service = slug && slug !== ":slug" ? getServiceBySlug(slug) : undefined;
+  const testimonials = TESTIMONIALS;
   const ref1 = useScrollReveal();
   const ref2 = useScrollReveal();
 
   const heroImg = HERO_IMGS[slug ?? ""] ?? "/manus-storage/dd-hero-drain_7551245e.jpg";
 
-  // In React Query v5, isLoading is true even when the query is disabled (enabled:false).
-  // Only show the spinner when the query is actually fetching (isFetching) or slug is missing.
-  if (!slug || (isLoading && isFetching)) {
+  if (!slug) {
     return (
       <DDLayout>
         <div className="min-h-screen flex items-center justify-center">
@@ -427,7 +423,7 @@ export default function DDServiceDetail() {
       </section>
 
       {/* Testimonials */}
-      {testimonials && testimonials.length > 0 && (
+      {testimonials.length > 0 && (
         <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>
           <div ref={ref2} className="fade-in-up container">
             <h2 style={{ fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 800, color: "#111111", marginBottom: "32px", textAlign: "center" }}>

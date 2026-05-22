@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { LogOut, Settings, FileText, Users, MessageSquare, Star, Wrench, BarChart3, Eye, Trash2, Plus, Mail, Phone } from "lucide-react";
-import { trpc } from "@/lib/trpc";
+import { LogOut, Settings, FileText, Users, MessageSquare, Star, Wrench, BarChart3, Eye, Mail, Phone } from "lucide-react";
+import { TESTIMONIALS } from "@/data/testimonials";
+import { BLOG_POSTS } from "@/data/blogPosts";
+import { SERVICES } from "@/data/services";
+import { TEAM_MEMBERS } from "@/data/team";
 import { toast } from "sonner";
 
 const LOGO_URL = "/manus-storage/discount-drain-logo-transparent_1c22873b.png";
+// Simple hardcoded admin password for demo purposes (static site)
+const ADMIN_PASSWORD = "discountdrain2024";
 
-type AdminTab = "dashboard" | "submissions" | "quotes" | "testimonials" | "blog" | "services" | "team";
+type AdminTab = "dashboard" | "testimonials" | "blog" | "services" | "team";
 
 export default function DDAdmin() {
   const [password, setPassword] = useState("");
@@ -15,25 +20,21 @@ export default function DDAdmin() {
   });
   const [authError, setAuthError] = useState("");
   const [activeTab, setActiveTab] = useState<AdminTab>("dashboard");
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
-  const verifyAdmin = trpc.admin.login.useMutation({
-    onSuccess: (data: { success: boolean }) => {
-      if (data.success) {
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoggingIn(true);
+    setTimeout(() => {
+      setIsLoggingIn(false);
+      if (password === ADMIN_PASSWORD) {
         sessionStorage.setItem("dd_admin_auth", "true");
         setAuthenticated(true);
         setAuthError("");
       } else {
         setAuthError("Incorrect password. Please try again.");
       }
-    },
-    onError: () => {
-      setAuthError("Incorrect password. Please try again.");
-    },
-  });
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    verifyAdmin.mutate({ password });
+    }, 400);
   };
 
   const handleLogout = () => {
@@ -73,10 +74,10 @@ export default function DDAdmin() {
               <button
                 type="submit"
                 className="btn-primary justify-center"
-                disabled={verifyAdmin.isPending}
+                disabled={isLoggingIn}
                 style={{ padding: "14px 24px" }}
               >
-                {verifyAdmin.isPending ? "Verifying..." : "Sign In"}
+                {isLoggingIn ? "Verifying..." : "Sign In"}
               </button>
             </form>
           </div>
@@ -123,8 +124,6 @@ export default function DDAdmin() {
             <div className="service-card-v2" style={{ padding: "8px" }}>
               {([
                 { id: "dashboard", label: "Dashboard", icon: BarChart3 },
-                { id: "submissions", label: "Contact Forms", icon: MessageSquare },
-                { id: "quotes", label: "Quote Requests", icon: Mail },
                 { id: "testimonials", label: "Testimonials", icon: Star },
                 { id: "blog", label: "Blog Posts", icon: FileText },
                 { id: "services", label: "Services", icon: Wrench },
@@ -149,8 +148,6 @@ export default function DDAdmin() {
           {/* Main Content */}
           <div className="lg:col-span-4">
             {activeTab === "dashboard" && <AdminDashboard />}
-            {activeTab === "submissions" && <AdminSubmissions />}
-            {activeTab === "quotes" && <AdminQuotes />}
             {activeTab === "testimonials" && <AdminTestimonials />}
             {activeTab === "blog" && <AdminBlog />}
             {activeTab === "services" && <AdminServices />}
@@ -163,16 +160,11 @@ export default function DDAdmin() {
 }
 
 function AdminDashboard() {
-  const { data: submissions } = trpc.admin.submissions.contacts.useQuery();
-  const { data: quotes } = trpc.admin.submissions.quotes.useQuery();
-  const { data: testimonials } = trpc.testimonials.list.useQuery();
-  const { data: posts } = trpc.blog.list.useQuery();
-
   const stats = [
-    { label: "Contact Forms", value: submissions?.length ?? 0, icon: MessageSquare, color: "#0080ff" },
-    { label: "Quote Requests", value: quotes?.length ?? 0, icon: Mail, color: "#0060d0" },
-    { label: "Testimonials", value: testimonials?.length ?? 0, icon: Star, color: "#f59e0b" },
-    { label: "Blog Posts", value: posts?.length ?? 0, icon: FileText, color: "#10b981" },
+    { label: "Testimonials", value: TESTIMONIALS.length, icon: Star, color: "#f59e0b" },
+    { label: "Blog Posts", value: BLOG_POSTS.length, icon: FileText, color: "#10b981" },
+    { label: "Services", value: SERVICES.length, icon: Wrench, color: "#0080ff" },
+    { label: "Team Members", value: TEAM_MEMBERS.length, icon: Users, color: "#8b5cf6" },
   ];
 
   return (
@@ -204,138 +196,22 @@ function AdminDashboard() {
   );
 }
 
-function AdminSubmissions() {
-  const { data: submissions, isLoading } = trpc.admin.submissions.contacts.useQuery();
-
-  return (
-    <div>
-      <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#111111", marginBottom: "24px" }}>Contact Form Submissions</h2>
-      {isLoading ? (
-        <div className="animate-pulse service-card-v2" style={{ height: "200px" }} />
-      ) : submissions && submissions.length > 0 ? (
-        <div className="flex flex-col gap-4">
-          {submissions.map((s) => (
-            <div key={s.id} className="service-card-v2">
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: "15px", color: "#111111" }}>{s.name}</div>
-                  <div style={{ color: "#8c9baa", fontSize: "13px" }}>{new Date(s.createdAt).toLocaleDateString("en-CA")}</div>
-                </div>
-                <div className="flex gap-2">
-                  <a href={`mailto:${s.email}`} className="btn-secondary text-xs" style={{ padding: "6px 12px" }}>
-                    <Mail size={11} />
-                    Reply
-                  </a>
-                  {s.phone && (
-                    <a href={`tel:${s.phone}`} className="btn-primary text-xs" style={{ padding: "6px 12px" }}>
-                      <Phone size={11} />
-                      Call
-                    </a>
-                  )}
-                </div>
-              </div>
-              <div className="flex gap-4 text-sm mb-3">
-                <span style={{ color: "#555555" }}>{s.email}</span>
-                {s.phone && <span style={{ color: "#555555" }}>{s.phone}</span>}
-              </div>
-              <p style={{ color: "#555555", fontSize: "14px", lineHeight: "22px", backgroundColor: "#f5f7fa", padding: "12px 16px", borderRadius: "12px" }}>
-                {s.message}
-              </p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="service-card-v2 text-center py-12">
-          <MessageSquare size={32} style={{ color: "#d0d8e0", margin: "0 auto 12px" }} />
-          <p style={{ color: "#8c9baa" }}>No contact form submissions yet.</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function AdminQuotes() {
-  const { data: quotes, isLoading } = trpc.admin.submissions.quotes.useQuery();
-
-  return (
-    <div>
-      <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#111111", marginBottom: "24px" }}>Quote Requests</h2>
-      {isLoading ? (
-        <div className="animate-pulse service-card-v2" style={{ height: "200px" }} />
-      ) : quotes && quotes.length > 0 ? (
-        <div className="flex flex-col gap-4">
-          {quotes.map((q) => (
-            <div key={q.id} className="service-card-v2">
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: "15px", color: "#111111" }}>{q.name}</div>
-                  <div style={{ color: "#8c9baa", fontSize: "13px" }}>{new Date(q.createdAt).toLocaleDateString("en-CA")}</div>
-                </div>
-                <div className="flex gap-2">
-                  <a href={`mailto:${q.email}`} className="btn-secondary text-xs" style={{ padding: "6px 12px" }}>
-                    <Mail size={11} />
-                    Reply
-                  </a>
-                  <a href={`tel:${q.phone}`} className="btn-primary text-xs" style={{ padding: "6px 12px" }}>
-                    <Phone size={11} />
-                    Call
-                  </a>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 text-sm mb-3">
-                <span style={{ backgroundColor: "#e8f3ff", color: "#0080ff", padding: "4px 10px", borderRadius: "20px", fontSize: "12px", fontWeight: 600 }}>
-                  {q.serviceType}
-                </span>
-                <span style={{ backgroundColor: q.preferredTime ? "#f5f7fa" : "#f5f7fa", color: "#555555", padding: "4px 10px", borderRadius: "20px", fontSize: "12px", fontWeight: 600 }}>
-                  {q.preferredTime ?? "Flexible"}
-                </span>
-              </div>
-              {q.address && <div style={{ color: "#8c9baa", fontSize: "13px", marginBottom: "8px" }}>{q.address}</div>}
-              {q.description && (
-                <p style={{ color: "#555555", fontSize: "14px", lineHeight: "22px", backgroundColor: "#f5f7fa", padding: "12px 16px", borderRadius: "12px" }}>
-                  {q.description}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="service-card-v2 text-center py-12">
-          <Mail size={32} style={{ color: "#d0d8e0", margin: "0 auto 12px" }} />
-          <p style={{ color: "#8c9baa" }}>No quote requests yet.</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
 function AdminTestimonials() {
-  const { data: testimonials, refetch } = trpc.testimonials.list.useQuery();
-  const deleteTestimonial = trpc.admin.testimonials.delete.useMutation({
-    onSuccess: () => { refetch(); toast.success("Testimonial deleted."); },
-  });
-
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
         <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#111111" }}>Testimonials</h2>
       </div>
-      {testimonials && testimonials.length > 0 ? (
+      {TESTIMONIALS.length > 0 ? (
         <div className="flex flex-col gap-4">
-          {testimonials.map((t) => (
+          {TESTIMONIALS.map((t) => (
             <div key={t.id} className="service-card-v2">
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start gap-4">
                 <div className="flex-1">
                   <div style={{ fontWeight: 700, fontSize: "15px", color: "#111111", marginBottom: "2px" }}>{t.name}</div>
                   <div style={{ color: "#8c9baa", fontSize: "13px", marginBottom: "8px" }}>{t.location} · {t.rating}/5 stars</div>
                   <p style={{ color: "#555555", fontSize: "14px", lineHeight: "22px", fontStyle: "italic" }}>"{t.body}"</p>
                 </div>
-                <button
-                  onClick={() => deleteTestimonial.mutate({ id: t.id })}
-                  style={{ color: "#e53e3e", flexShrink: 0 }}
-                >
-                  <Trash2 size={15} />
-                </button>
               </div>
             </div>
           ))}
@@ -343,7 +219,7 @@ function AdminTestimonials() {
       ) : (
         <div className="service-card-v2 text-center py-12">
           <Star size={32} style={{ color: "#d0d8e0", margin: "0 auto 12px" }} />
-          <p style={{ color: "#8c9baa" }}>No testimonials yet.</p>
+          <p style={{ color: "#8c9baa" }}>No testimonials found.</p>
         </div>
       )}
     </div>
@@ -351,11 +227,6 @@ function AdminTestimonials() {
 }
 
 function AdminBlog() {
-  const { data: posts, refetch } = trpc.blog.list.useQuery();
-  const deletePost = trpc.admin.blog.delete.useMutation({
-    onSuccess: () => { refetch(); toast.success("Blog post deleted."); },
-  });
-
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -365,9 +236,9 @@ function AdminBlog() {
           View Blog
         </Link>
       </div>
-      {posts && posts.length > 0 ? (
+      {BLOG_POSTS.length > 0 ? (
         <div className="flex flex-col gap-3">
-          {posts.map((p) => (
+          {BLOG_POSTS.map((p) => (
             <div key={p.id} className="service-card-v2 flex items-center justify-between gap-4">
               <div className="flex-1">
                 <div style={{ fontWeight: 700, fontSize: "14px", color: "#111111" }}>{p.title}</div>
@@ -375,21 +246,16 @@ function AdminBlog() {
                   {p.category} · {p.publishedAt ? new Date(p.publishedAt).toLocaleDateString("en-CA") : "Draft"}
                 </div>
               </div>
-              <div className="flex gap-2">
-                <Link href={`/blog/${p.slug}`} style={{ color: "#0080ff" }}>
-                  <Eye size={14} />
-                </Link>
-                <button onClick={() => deletePost.mutate({ id: p.id })} style={{ color: "#e53e3e" }}>
-                  <Trash2 size={14} />
-                </button>
-              </div>
+              <Link href={`/blog/${p.slug}`} style={{ color: "#0080ff" }}>
+                <Eye size={14} />
+              </Link>
             </div>
           ))}
         </div>
       ) : (
         <div className="service-card-v2 text-center py-12">
           <FileText size={32} style={{ color: "#d0d8e0", margin: "0 auto 12px" }} />
-          <p style={{ color: "#8c9baa" }}>No blog posts yet.</p>
+          <p style={{ color: "#8c9baa" }}>No blog posts found.</p>
         </div>
       )}
     </div>
@@ -397,8 +263,6 @@ function AdminBlog() {
 }
 
 function AdminServices() {
-  const { data: services } = trpc.services.list.useQuery();
-
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -408,9 +272,9 @@ function AdminServices() {
           View Services
         </Link>
       </div>
-      {services && services.length > 0 ? (
+      {SERVICES.length > 0 ? (
         <div className="flex flex-col gap-3">
-          {services.map((s) => (
+          {SERVICES.map((s) => (
             <div key={s.id} className="service-card-v2 flex items-center justify-between gap-4">
               <div className="flex-1">
                 <div style={{ fontWeight: 700, fontSize: "14px", color: "#111111" }}>{s.title}</div>
@@ -433,14 +297,12 @@ function AdminServices() {
 }
 
 function AdminTeam() {
-  const { data: team } = trpc.team.list.useQuery();
-
   return (
     <div>
       <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#111111", marginBottom: "24px" }}>Team Members</h2>
-      {team && team.length > 0 ? (
+      {TEAM_MEMBERS.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {team.map((m) => (
+          {TEAM_MEMBERS.map((m: { id: number; name: string; jobTitle: string; bio: string | null; imageUrl: string | null }) => (
             <div key={m.id} className="service-card-v2 flex items-center gap-4">
               {m.imageUrl ? (
                 <img src={m.imageUrl} alt={m.name} style={{ width: "56px", height: "56px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useSearch } from "wouter";
 import { Camera, Wrench, Droplets, Truck, Shield, ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { trpc } from "@/lib/trpc";
+import { getAllServices } from "@/data/services";
 
 const HERO_IMG = "/manus-storage/sewer-camera_39c33547.jpg";
 
@@ -34,7 +34,7 @@ function useScrollReveal() {
 }
 
 export default function DDServices() {
-  const { data: services, isLoading } = trpc.services.list.useQuery();
+  const services = getAllServices();
   const ref1 = useScrollReveal();
 
   // Read ?tab= query param passed from the mobile Services section CTA
@@ -45,10 +45,10 @@ export default function DDServices() {
     tabParam === "commercial" ? "commercial" : "residential"
   );
 
-  // Filter by category field from DB:
+  // Filter by category field:
   // residential tab: show services with category 'residential' or 'both'
   // commercial tab: show services with category 'commercial' or 'both'
-  const filteredServices = (services ?? []).filter((s) =>
+  const filteredServices = services.filter((s) =>
     activeTab === "commercial"
       ? s.category === "commercial" || s.category === "both"
       : s.category === "residential" || s.category === "both"
@@ -106,21 +106,8 @@ export default function DDServices() {
             </button>
           </div>
 
-          {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="service-card-v2 animate-pulse">
-                  <div className="w-12 h-12 rounded-2xl bg-gray-100 mb-5" />
-                  <div className="h-5 bg-gray-100 rounded mb-3 w-3/4" />
-                  <div className="h-4 bg-gray-100 rounded mb-2 w-full" />
-                  <div className="h-4 bg-gray-100 rounded mb-2 w-5/6" />
-                  <div className="h-4 bg-gray-100 rounded w-4/6" />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(filteredServices.length > 0 ? filteredServices : (services ?? [])).map((service) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {(filteredServices.length > 0 ? filteredServices : services).map((service) => {
                 const Icon = ICON_MAP[service.iconName ?? "Wrench"] ?? Wrench;
                 return (
                   <Link key={service.slug} href={`/services/${service.slug}`}>
@@ -145,7 +132,6 @@ export default function DDServices() {
                 );
               })}
             </div>
-          )}
         </div>
       </section>
 
