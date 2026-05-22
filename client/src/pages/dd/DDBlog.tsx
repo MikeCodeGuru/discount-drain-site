@@ -9,9 +9,17 @@ function useScrollReveal() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Mark body so CSS can apply the hidden state (progressive enhancement)
+    document.body.classList.add("js-scroll-ready");
+    // Immediately reveal if already in viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("visible");
+      return;
+    }
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
-      { threshold: 0.1 }
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } },
+      { threshold: 0, rootMargin: "0px 0px 100px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -25,14 +33,27 @@ function estimateReadTime(content: string): number {
   return Math.max(1, Math.round(words / 200));
 }
 
-// Human-readable category labels
+// Human-readable category labels — handles both kebab-case and title-case DB values
 const CATEGORY_LABELS: Record<string, string> = {
   "sewer-repair": "Sewer Repair",
+  "Sewer Repair": "Sewer Repair",
   "wet-basement": "Wet Basements",
+  "Wet Basement": "Wet Basements",
   "drain-cleaning": "Drain Cleaning",
+  "Drain Cleaning": "Drain Cleaning",
   "sewer-camera": "Camera Inspection",
+  "Camera Inspection": "Camera Inspection",
   "trenchless": "Trenchless",
+  "Trenchless": "Trenchless",
+  "Emergency": "Emergency",
+  "emergency": "Emergency",
+  "camera-inspection": "Camera Inspection",
 };
+
+// Normalize a DB category to a canonical key for deduplication
+function normalizeCategory(cat: string): string {
+  return cat.toLowerCase().replace(/\s+/g, "-");
+}
 
 export default function DDBlog() {
   const { data: posts, isLoading } = trpc.blog.list.useQuery();
@@ -40,15 +61,15 @@ export default function DDBlog() {
   const ref1 = useScrollReveal();
   const ref2 = useScrollReveal();
 
-  // Derive unique categories from posts
+  // Derive unique categories from posts — normalize to deduplicate title-case vs kebab-case
   const categories = posts
-    ? ["all", ...Array.from(new Set(posts.map((p) => p.category).filter(Boolean) as string[]))]
+    ? ["all", ...Array.from(new Set(posts.map((p) => p.category ? normalizeCategory(p.category) : "").filter(Boolean)))]
     : ["all"];
 
   const filteredPosts = posts
     ? activeCategory === "all"
       ? posts
-      : posts.filter((p) => p.category === activeCategory)
+      : posts.filter((p) => p.category && normalizeCategory(p.category) === activeCategory)
     : [];
 
   const featuredPost = filteredPosts[0];
@@ -131,18 +152,20 @@ export default function DDBlog() {
             </div>
           ) : (
             <>
-              {/* Featured Post */}
+              {/* Featured Post — stacked layout: image on top, content below */}
               {featuredPost && (
                 <div ref={ref1} className="fade-in-up mb-12">
                   <Link href={`/blog/${featuredPost.slug}`}>
                     <article
                       className="group cursor-pointer rounded-3xl overflow-hidden"
-                      style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "380px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
+                      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)", backgroundColor: "#ffffff" }}
                     >
-                      {/* Image side */}
+                      {/* Hero image */}
                       {featuredPost.imageUrl && (
                         <div
                           style={{
+                            width: "100%",
+                            height: "340px",
                             backgroundImage: `url(${featuredPost.imageUrl})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
@@ -151,14 +174,14 @@ export default function DDBlog() {
                           className="group-hover:scale-105"
                         />
                       )}
-                      {/* Content side */}
-                      <div className="flex flex-col justify-center" style={{ padding: "48px", backgroundColor: "#ffffff" }}>
-                        <div className="flex items-center gap-3 mb-4">
+                      {/* Content */}
+                      <div className="flex flex-col" style={{ padding: "36px 40px 40px" }}>
+                        <div className="flex items-center gap-3 mb-3">
                           {featuredPost.category && (
                             <div className="flex items-center gap-1">
                               <Tag size={11} style={{ color: "#0080ff" }} />
                               <span style={{ color: "#0080ff", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                                {CATEGORY_LABELS[featuredPost.category] ?? featuredPost.category}
+                                {CATEGORY_LABELS[normalizeCategory(featuredPost.category)] ?? featuredPost.category}
                               </span>
                             </div>
                           )}
@@ -166,18 +189,18 @@ export default function DDBlog() {
                             <Clock size={11} />
                             <span style={{ fontSize: "11px" }}>{estimateReadTime(featuredPost.content)} min read</span>
                           </div>
+                          {featuredPost.publishedAt && (
+                            <span style={{ color: "#aab4be", fontSize: "11px" }}>
+                              {new Date(featuredPost.publishedAt).toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" })}
+                            </span>
+                          )}
                         </div>
-                        <h2 style={{ fontSize: "clamp(20px, 2.5vw, 28px)", fontWeight: 800, color: "#111111", marginBottom: "14px", lineHeight: 1.25, letterSpacing: "-0.01em" }}>
+                        <h2 style={{ fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 800, color: "#111111", marginBottom: "12px", lineHeight: 1.2, letterSpacing: "-0.02em" }}>
                           {featuredPost.title}
                         </h2>
-                        <p style={{ color: "#8c9baa", fontSize: "15px", lineHeight: "25px", marginBottom: "24px" }}>
+                        <p style={{ color: "#8c9baa", fontSize: "16px", lineHeight: "26px", marginBottom: "20px", maxWidth: "680px" }}>
                           {featuredPost.excerpt}
                         </p>
-                        {featuredPost.publishedAt && (
-                          <p style={{ color: "#aab4be", fontSize: "12px", marginBottom: "16px" }}>
-                            {new Date(featuredPost.publishedAt).toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" })}
-                          </p>
-                        )}
                         <div className="flex items-center gap-1 font-semibold" style={{ color: "#0080ff" }}>
                           Read Article <ArrowRight size={14} />
                         </div>

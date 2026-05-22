@@ -1,0 +1,9 @@
+{
+  "query": "SELECT slug, imageUrl FROM services WHERE imageUrl LIKE '%cloudfront%' OR imageUrl LIKE '%d2xsxph8%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, imageUrl FROM services WHERE imageUrl LIKE '%cloudfront%' OR imageUrl LIKE '%d2xsxph8%';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 260
+}

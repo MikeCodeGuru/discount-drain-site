@@ -1,0 +1,55 @@
+{
+  "query": "SELECT slug, title, featured FROM services ORDER BY sortOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, featured FROM services ORDER BY sortOrder;",
+  "rows": [
+    {
+      "slug": "sewer-camera-inspection",
+      "title": "Free Sewer Video Camera Inspection",
+      "featured": "1"
+    },
+    {
+      "slug": "trenchless-pipe-repair",
+      "title": "No-Dig Trenchless Pipe Repair",
+      "featured": "1"
+    },
+    {
+      "slug": "wet-basement-repair",
+      "title": "Wet Basement Waterproofing",
+      "featured": "1"
+    },
+    {
+      "slug": "sewer-repair-installation",
+      "title": "Sewer Repair and Installation",
+      "featured": "1"
+    },
+    {
+      "slug": "drain-cleaning",
+      "title": "Drain Cleaning and Power Flushing",
+      "featured": "0"
+    },
+    {
+      "slug": "excavation-services",
+      "title": "Excavation and Machine Services",
+      "featured": "0"
+    },
+    {
+      "slug": "municipal-services",
+      "title": "Municipal Services",
+      "featured": "0"
+    },
+    {
+      "slug": "septic-repairs",
+      "title": "Septic Service and Repairs",
+      "featured": "1"
+    },
+    {
+      "slug": "catch-basin-cleaning",
+      "title": "Catch Basin Cleaning",
+      "featured": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tfeatured\nsewer-camera-inspection\tFree Sewer Video Camera Inspection\t1\ntrenchless-pipe-repair\tNo-Dig Trenchless Pipe Repair\t1\nwet-basement-repair\tWet Basement Waterproofing\t1\nsewer-repair-installation\tSewer Repair and Installation\t1\ndrain-cleaning\tDrain Cleaning and Power Flushing\t0\nexcavation-services\tExcavation and Machine Services\t0\nmunicipal-services\tMunicipal Services\t0\nseptic-repairs\tSeptic Service and Repairs\t1\ncatch-basin-cleaning\tCatch Basin Cleaning\t0\n",
+  "stderr": "",
+  "execution_time_ms": 294
+}

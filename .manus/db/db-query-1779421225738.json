@@ -1,0 +1,37 @@
+{
+  "query": "SHOW TABLES;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SHOW TABLES;",
+  "rows": [
+    {
+      "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT": "__drizzle_migrations"
+    },
+    {
+      "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT": "admin_sessions"
+    },
+    {
+      "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT": "blog_posts"
+    },
+    {
+      "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT": "contact_submissions"
+    },
+    {
+      "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT": "quote_submissions"
+    },
+    {
+      "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT": "services"
+    },
+    {
+      "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT": "team_members"
+    },
+    {
+      "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT": "testimonials"
+    },
+    {
+      "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT": "users"
+    }
+  ],
+  "messages": [],
+  "stdout": "Tables_in_Bh4z4tJQ2oLgzVrvga4zYT\n__drizzle_migrations\nadmin_sessions\nblog_posts\ncontact_submissions\nquote_submissions\nservices\nteam_members\ntestimonials\nusers\n",
+  "stderr": "",
+  "execution_time_ms": 382
+}

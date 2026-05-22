@@ -1,0 +1,76 @@
+{
+  "query": "SELECT slug, title, category, imageUrl FROM blog_posts ORDER BY publishedAt DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, category, imageUrl FROM blog_posts ORDER BY publishedAt DESC;",
+  "rows": [
+    {
+      "slug": "how-to-tell-if-your-sewer-line-is-broken",
+      "title": "How to Tell If Your Sewer Line Is Broken (Ontario Homeowner Guide)",
+      "category": "Sewer Repair",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-sewer-line-broken-FyDyBWevFpMHFjPb44m6vV.webp"
+    },
+    {
+      "slug": "trenchless-vs-traditional-sewer-repair-ontario",
+      "title": "Trenchless vs. Traditional Sewer Repair: What Ontario Homeowners Need to Know",
+      "category": "Trenchless",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-trenchless-repair-9KrqUevPRbg9qCBuwZD8bF.webp"
+    },
+    {
+      "slug": "wet-basement-causes-ontario",
+      "title": "Why Is My Basement Wet? The Most Common Causes in Ontario Homes",
+      "category": "Wet Basement",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-wet-basement-aanhM4pA2Nftx78EpJTMGN.webp"
+    },
+    {
+      "slug": "drain-cleaning-how-often-ontario",
+      "title": "How Often Should You Clean Your Drains? A Guide for Ontario Homeowners",
+      "category": "Drain Cleaning",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-drain-cleaning-J9gpk92qd8xokKyzifbP2y.webp"
+    },
+    {
+      "slug": "sewer-backup-what-to-do-ontario",
+      "title": "Sewer Backup: What to Do Right Now (Ontario Emergency Guide)",
+      "category": "Emergency",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-sewer-backup-WnGREtJqEmnJzKvBnvoDRp.webp"
+    },
+    {
+      "slug": "weeping-tile-replacement-ontario",
+      "title": "Weeping Tile Replacement in Ontario: What It Costs and What to Expect",
+      "category": "Wet Basement",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-weeping-tile-6NeD6obqaL4W2tqHz8CDUD.webp"
+    },
+    {
+      "slug": "pre-purchase-sewer-inspection-london-ontario",
+      "title": "Why You Need a Sewer Inspection Before Buying a Home in London Ontario",
+      "category": "sewer-camera",
+      "imageUrl": "/manus-storage/service-camera-inspection_dbb5bfc5.jpg"
+    },
+    {
+      "slug": "how-often-drain-cleaning-london-ontario",
+      "title": "How Often Should You Have Your Drains Cleaned in London Ontario?",
+      "category": "drain-cleaning",
+      "imageUrl": "/manus-storage/service-drain-cleaning_ce593909.jpg"
+    },
+    {
+      "slug": "trenchless-vs-excavation-sewer-repair",
+      "title": "Trenchless Sewer Repair vs. Excavation: Which One Is Right for You?",
+      "category": "sewer-repair",
+      "imageUrl": "/manus-storage/trenchless-liner-2_62207afb.jpg"
+    },
+    {
+      "slug": "wet-basement-fix-london-ontario",
+      "title": "How to Fix a Wet Basement in London Ontario: What Actually Works",
+      "category": "wet-basement",
+      "imageUrl": "/manus-storage/wet-basement-1_5eff930f.jpeg"
+    },
+    {
+      "slug": "sewer-repair-cost-london-ontario",
+      "title": "How Much Does Sewer Repair Cost in London Ontario?",
+      "category": "sewer-repair",
+      "imageUrl": "/manus-storage/sewer-repair-1_b9db9364.jpeg"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tcategory\timageUrl\nhow-to-tell-if-your-sewer-line-is-broken\tHow to Tell If Your Sewer Line Is Broken (Ontario Homeowner Guide)\tSewer Repair\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-sewer-line-broken-FyDyBWevFpMHFjPb44m6vV.webp\ntrenchless-vs-traditional-sewer-repair-ontario\tTrenchless vs. Traditional Sewer Repair: What Ontario Homeowners Need to Know\tTrenchless\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-trenchless-repair-9KrqUevPRbg9qCBuwZD8bF.webp\nwet-basement-causes-ontario\tWhy Is My Basement Wet? The Most Common Causes in Ontario Homes\tWet Basement\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-wet-basement-aanhM4pA2Nftx78EpJTMGN.webp\ndrain-cleaning-how-often-ontario\tHow Often Should You Clean Your Drains? A Guide for Ontario Homeowners\tDrain Cleaning\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-drain-cleaning-J9gpk92qd8xokKyzifbP2y.webp\nsewer-backup-what-to-do-ontario\tSewer Backup: What to Do Right Now (Ontario Emergency Guide)\tEmergency\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-sewer-backup-WnGREtJqEmnJzKvBnvoDRp.webp\nweeping-tile-replacement-ontario\tWeeping Tile Replacement in Ontario: What It Costs and What to Expect\tWet Basement\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/blog-weeping-tile-6NeD6obqaL4W2tqHz8CDUD.webp\npre-purchase-sewer-inspection-london-ontario\tWhy You Need a Sewer Inspection Before Buying a Home in London Ontario\tsewer-camera\t/manus-storage/service-camera-inspection_dbb5bfc5.jpg\nhow-often-drain-cleaning-london-ontario\tHow Often Should You Have Your Drains Cleaned in London Ontario?\tdrain-cleaning\t/manus-storage/service-drain-cleaning_ce593909.jpg\ntrenchless-vs-excavation-sewer-repair\tTrenchless Sewer Repair vs. Excavation: Which One Is Right for You?\tsewer-repair\t/manus-storage/trenchless-liner-2_62207afb.jpg\nwet-basement-fix-london-ontario\tHow to Fix a Wet Basement in London Ontario: What Actually Works\twet-basement\t/manus-storage/wet-basement-1_5eff930f.jpeg\nsewer-repair-cost-london-ontario\tHow Much Does Sewer Repair Cost in London Ontario?\tsewer-repair\t/manus-storage/sewer-repair-1_b9db9364.jpeg\n",
+  "stderr": "",
+  "execution_time_ms": 261
+}

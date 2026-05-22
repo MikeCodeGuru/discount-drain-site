@@ -88,6 +88,15 @@
 - [x] Final checkpoint saved
 - [x] Deliver to user
 
+## Bug Fix: Scroll Animation Content Visibility
+- [x] Diagnose fade-in-up opacity:0 bug causing service detail and blog post content to be invisible
+- [x] Fix CSS: fade-in-up defaults to opacity:1 (progressive enhancement), hidden only when body.js-scroll-ready is present
+- [x] Fix useScrollReveal in all 5 DD pages to add body.js-scroll-ready on mount
+- [x] Fix DDServiceDetail isLoading bug (React Query v5 isLoading=true when disabled)
+- [x] Verify service detail pages show full content (About, What You Get, FAQs, Reviews)
+- [x] Verify blog post detail pages show full article content
+- [x] Verify blog listing page shows all 11 posts with correct images
+
 ## V2 Improvements
 - [x] Audit all 6 service pages for copy uniqueness and rewrite to 85%+ unique content per page
 - [x] Add Google Reviews widget to homepage and all 6 service detail pages
@@ -281,3 +290,18 @@
 - [x] Verify all pages render correctly
 - [x] TypeScript check passes (0 errors)
 - [x] Save checkpoint
+
+## Phase 33: Full Audit and Bug Fix
+
+- [ ] Audit App.tsx routes — confirm all routes are registered and match page file names
+- [ ] Audit DDBlog.tsx — confirm tRPC call, data shape, and rendering logic
+- [ ] Audit DDBlogPost.tsx — confirm tRPC call, slug param, and rendering logic
+- [ ] Audit DDServiceDetail.tsx — confirm tRPC call, slug param, HERO_IMGS, RELATED_SERVICES
+- [ ] Audit ScrollServicesSection.tsx — confirm bento card links point to correct slugs
+- [ ] Audit server/routers.ts — confirm all blog and service procedures return correct data
+- [ ] Audit server/db.ts — confirm all query helpers return correct fields
+- [ ] Check DB for missing or malformed service/blog records
+- [ ] Fix all identified issues
+- [ ] TypeScript check passes (0 errors)
+- [ ] Browser verify all fixed pages
+- [ ] Save checkpoint

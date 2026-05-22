@@ -1,0 +1,9 @@
+{
+  "query": "\nUPDATE services SET imageUrl = '/manus-storage/sewer-camera_39c33547.jpg' WHERE slug = 'sewer-camera-inspection';\nUPDATE services SET imageUrl = '/manus-storage/trenchless-liner-2_62207afb.jpg' WHERE slug = 'trenchless-pipe-repair';\nUPDATE services SET imageUrl = '/manus-storage/wet-basement-1_5eff930f.jpeg' WHERE slug = 'wet-basement-repair';\nUPDATE services SET imageUrl = '/manus-storage/sewer-repair-1_b9db9364.jpeg' WHERE slug = 'sewer-repair-installation';\nUPDATE services SET imageUrl = '/manus-storage/drain-cleaning_3f68f01f.jpg' WHERE slug = 'drain-cleaning';\nUPDATE services SET imageUrl = '/manus-storage/dump-truck_5ab3c3b1.jpg' WHERE slug = 'excavation-services';\nUPDATE services SET imageUrl = '/manus-storage/septic-system-1_b4c2e004.jpeg' WHERE slug = 'septic-repairs';\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute \nUPDATE services SET imageUrl = '/manus-storage/sewer-camera_39c33547.jpg' WHERE slug = 'sewer-camera-inspection';\nUPDATE services SET imageUrl = '/manus-storage/trenchless-liner-2_62207afb.jpg' WHERE slug = 'trenchless-pipe-repair';\nUPDATE services SET imageUrl = '/manus-storage/wet-basement-1_5eff930f.jpeg' WHERE slug = 'wet-basement-repair';\nUPDATE services SET imageUrl = '/manus-storage/sewer-repair-1_b9db9364.jpeg' WHERE slug = 'sewer-repair-installation';\nUPDATE services SET imageUrl = '/manus-storage/drain-cleaning_3f68f01f.jpg' WHERE slug = 'drain-cleaning';\nUPDATE services SET imageUrl = '/manus-storage/dump-truck_5ab3c3b1.jpg' WHERE slug = 'excavation-services';\nUPDATE services SET imageUrl = '/manus-storage/septic-system-1_b4c2e004.jpeg' WHERE slug = 'septic-repairs';\n",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 319
+}

@@ -17,7 +17,7 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     title: "Free Sewer Video Camera Inspection",
     description:
       "Don't just clean your sewer line — see it. We show you your sewer line on the spot, in minutes. A $400 value, absolutely free with every service call.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-clean-2snTGdn5gWiZBi5urG5Haa.webp",
+    image: "/manus-storage/sewer-camera-clean_3a785dc3.jpg",
     href: "/services/sewer-camera-inspection",
     cta: "Book Your Free Inspection",
   },
@@ -53,7 +53,7 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     title: "Drain Cleaning and Power Flushing",
     description:
       "Proper maintenance prevents clogging. We use the latest hydro-jetting technology to keep your drains flowing cleanly and affordably, clearing years of buildup in a single visit.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/drain-cleaning-clean-Sf7sybqH6jYeqQB2Q3NQFk.webp",
+    image: "/manus-storage/drain-cleaning-clean_0115c737.jpg",
     href: "/services/drain-cleaning",
     cta: "Schedule a Cleaning",
   },
@@ -83,7 +83,7 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     title: "Sewer Video Camera Inspections",
     description:
       "Commercial-grade video inspection to diagnose sewer and drain problems quickly. We document everything on video so you have a clear record for insurance and compliance.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-clean-2snTGdn5gWiZBi5urG5Haa.webp",
+    image: "/manus-storage/sewer-camera-clean_3a785dc3.jpg",
     href: "/services/sewer-camera-inspection",
     cta: "Book a Commercial Inspection",
   },
@@ -92,7 +92,7 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     title: "Drain Cleaning and Power Flushing",
     description:
       "High-pressure hydro-jetting to clear commercial drains, grease traps, and industrial lines. We keep your facility running without costly backups or health code violations.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/drain-cleaning-clean-Sf7sybqH6jYeqQB2Q3NQFk.webp",
+    image: "/manus-storage/drain-cleaning-clean_0115c737.jpg",
     href: "/services/drain-cleaning",
     cta: "Schedule a Cleaning",
   },

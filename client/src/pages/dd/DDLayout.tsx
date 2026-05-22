@@ -14,8 +14,7 @@ import {
   Linkedin,
 } from "lucide-react";
 
-const LOGO_URL =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/discount-drain-logo-transparent-manus-storage-discount-drain-logo-transparent-png-1748042756.png";
+const LOGO_URL = "/manus-storage/discount-drain-logo-transparent_1c22873b.png";
 
 const NAV_LINKS = [
   { label: "Services", href: "/services", hasDropdown: true },

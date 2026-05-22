@@ -4,7 +4,7 @@ import { Phone, Camera, Wrench, Droplets, Building2, Shield, CheckCircle2, Arrow
 import DDLayout from "./DDLayout";
 import { trpc } from "@/lib/trpc";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-excavation-nJgwHt9PRg2kHnpUSugtnt.webp";
+const HERO_IMG = "/manus-storage/sewer-repair-1_b9db9364.jpeg";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,12 +22,12 @@ function useScrollReveal() {
 }
 
 const commercialServices = [
-  { icon: Camera, title: "Sewer Video Camera Inspections", desc: "Commercial-grade video inspection to diagnose sewer and drain problems quickly, accurately, and with minimal disruption to your operations." },
-  { icon: Building2, title: "Municipal Services", desc: "From sewer lining to manhole restoration and water main repair, we deliver effective solutions for all municipal drainage needs." },
-  { icon: Wrench, title: "Trenchless Systems", desc: "Replace underground pipe without disturbing any surface materials. Minimal disruption to your business, parking lot, or landscaping." },
-  { icon: Droplets, title: "Catch Basin Cleaning", desc: "We solve catch basin problems quickly and professionally using the latest technology. Affordable and effective for any commercial property." },
-  { icon: Wrench, title: "Sewer Repair and Installation", desc: "Highly trained technicians working to solve commercial sewer and drain problems using the latest products and methods." },
-  { icon: Shield, title: "Septic Service", desc: "Preventative maintenance and a full service line of repairs and replacements on septic beds and sewers for commercial and rural properties." },
+  { icon: Camera, title: "Sewer Video Camera Inspections", desc: "Commercial-grade video inspection to diagnose sewer and drain problems quickly, accurately, and with minimal disruption to your operations.", slug: "sewer-camera-inspection" },
+  { icon: Building2, title: "Municipal Services", desc: "From sewer lining to manhole restoration and water main repair, we deliver effective solutions for all municipal drainage needs.", slug: "municipal-services" },
+  { icon: Wrench, title: "Trenchless Systems", desc: "Replace underground pipe without disturbing any surface materials. Minimal disruption to your business, parking lot, or landscaping.", slug: "trenchless-pipe-repair" },
+  { icon: Droplets, title: "Catch Basin Cleaning", desc: "We solve catch basin problems quickly and professionally using the latest technology. Affordable and effective for any commercial property.", slug: "catch-basin-cleaning" },
+  { icon: Wrench, title: "Sewer Repair and Installation", desc: "Highly trained technicians working to solve commercial sewer and drain problems using the latest products and methods.", slug: "sewer-repair-installation" },
+  { icon: Shield, title: "Septic Service", desc: "Preventative maintenance and a full service line of repairs and replacements on septic beds and sewers for commercial and rural properties.", slug: "septic-repairs" },
 ];
 
 export default function DDCommercial() {
@@ -96,7 +96,7 @@ export default function DDCommercial() {
                     {service.desc}
                   </p>
                   <div className="flex items-center gap-1 mt-4 text-sm font-semibold" style={{ color: "#0080ff" }}>
-                    <a href="tel:5194518342" style={{ color: "#0080ff", textDecoration: "none" }}>Book This Service</a>
+                    <Link href={`/services/${service.slug}`} style={{ color: "#0080ff", textDecoration: "none" }}>Learn More</Link>
                     <ArrowRight size={14} />
                   </div>
                 </div>

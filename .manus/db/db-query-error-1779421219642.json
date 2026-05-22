@@ -1,0 +1,8 @@
+{
+  "query": "SELECT slug, JSON_EXTRACT(faqs, '$[0]') as faq1, JSON_EXTRACT(faqs, '$[1]') as faq2 FROM dd_services WHERE slug = 'sewer-camera-inspection';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, JSON_EXTRACT(faqs, '$[0]') as faq1, JSON_EXTRACT(faqs, '$[1]') as faq2 FROM dd_services WHERE slug = 'sewer-camera-inspection';",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1146 (42S02) at line 1: Table 'bh4z4tjq2olgzvrvga4zyt.dd_services' doesn't exist"
+  ]
+}

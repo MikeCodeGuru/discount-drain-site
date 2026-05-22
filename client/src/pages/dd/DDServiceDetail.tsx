@@ -162,9 +162,17 @@ function useScrollReveal() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Mark body so CSS can apply the hidden state (progressive enhancement)
+    document.body.classList.add("js-scroll-ready");
+    // Immediately reveal if already in viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("visible");
+      return;
+    }
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
-      { threshold: 0.1 }
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } },
+      { threshold: 0, rootMargin: "0px 0px 100px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -201,7 +209,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 
 export default function DDServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const { data: service, isLoading } = trpc.services.bySlug.useQuery(
+  const { data: service, isLoading, isFetching } = trpc.services.bySlug.useQuery(
     { slug: slug ?? "" },
     { enabled: !!slug && slug !== ":slug" }
   );
@@ -211,7 +219,9 @@ export default function DDServiceDetail() {
 
   const heroImg = HERO_IMGS[slug ?? ""] ?? "/manus-storage/dd-hero-drain_7551245e.jpg";
 
-  if (isLoading) {
+  // In React Query v5, isLoading is true even when the query is disabled (enabled:false).
+  // Only show the spinner when the query is actually fetching (isFetching) or slug is missing.
+  if (!slug || (isLoading && isFetching)) {
     return (
       <DDLayout>
         <div className="min-h-screen flex items-center justify-center">

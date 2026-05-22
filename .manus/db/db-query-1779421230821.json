@@ -1,0 +1,15 @@
+{
+  "query": "SELECT slug, JSON_EXTRACT(faqs, '$[0].q') as q1, JSON_EXTRACT(faqs, '$[0].a') as a1 FROM services WHERE slug = 'sewer-camera-inspection';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, JSON_EXTRACT(faqs, '$[0].q') as q1, JSON_EXTRACT(faqs, '$[0].a') as a1 FROM services WHERE slug = 'sewer-camera-inspection';",
+  "rows": [
+    {
+      "slug": "sewer-camera-inspection",
+      "q1": "\"How much does a sewer camera inspection cost in London Ontario?\"",
+      "a1": "\"Many companies in London charge $200 to $400 for a standalone sewer camera inspection. At Discount Drain, we include a free video camera inspection with every service call, so you pay nothing extra to see exactly what is happening in your pipe.\""
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\tq1\ta1\nsewer-camera-inspection\t\"How much does a sewer camera inspection cost in London Ontario?\"\t\"Many companies in London charge $200 to $400 for a standalone sewer camera inspection. At Discount Drain, we include a free video camera inspection with every service call, so you pay nothing extra to see exactly what is happening in your pipe.\"\n",
+  "stderr": "",
+  "execution_time_ms": 270
+}

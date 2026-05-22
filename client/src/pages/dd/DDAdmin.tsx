@@ -4,7 +4,7 @@ import { LogOut, Settings, FileText, Users, MessageSquare, Star, Wrench, BarChar
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/discount-drain-logo-transparent_1747866218.png";
+const LOGO_URL = "/manus-storage/discount-drain-logo-transparent_1c22873b.png";
 
 type AdminTab = "dashboard" | "submissions" | "quotes" | "testimonials" | "blog" | "services" | "team";
 

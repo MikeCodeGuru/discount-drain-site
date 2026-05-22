@@ -10,9 +10,17 @@ function useScrollReveal() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Mark body so CSS can apply the hidden state (progressive enhancement)
+    document.body.classList.add("js-scroll-ready");
+    // Immediately reveal if already in viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("visible");
+      return;
+    }
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
-      { threshold: 0.1 }
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } },
+      { threshold: 0, rootMargin: "0px 0px 100px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();

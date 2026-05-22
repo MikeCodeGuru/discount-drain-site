@@ -4,7 +4,7 @@ import { Camera, Wrench, Droplets, Truck, Shield, ArrowRight, CheckCircle2, Phon
 import DDLayout from "./DDLayout";
 import { trpc } from "@/lib/trpc";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-sewer-camera-fxX5uEXYMHW3AiBoSwi2aa.webp";
+const HERO_IMG = "/manus-storage/sewer-camera_39c33547.jpg";
 
 const ICON_MAP: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
   Camera, Wrench, Droplets, Truck, Shield,
@@ -15,9 +15,17 @@ function useScrollReveal() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Mark body so CSS can apply the hidden state (progressive enhancement)
+    document.body.classList.add("js-scroll-ready");
+    // Immediately reveal if already in viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("visible");
+      return;
+    }
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
-      { threshold: 0.1 }
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } },
+      { threshold: 0, rootMargin: "0px 0px 100px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();

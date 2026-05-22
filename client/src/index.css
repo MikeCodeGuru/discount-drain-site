@@ -276,11 +276,16 @@
     padding: 28px;
   }
 
-  /* Fade-in-up animation */
+  /* Fade-in-up animation — content is always visible by default (progressive enhancement).
+     The hidden state only applies when body.js-scroll-ready is set by the IntersectionObserver hook. */
   .fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s cubic-bezier(0.32, 0.72, 0, 1), transform 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  body.js-scroll-ready .fade-in-up:not(.visible) {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.32, 0.72, 0, 1), transform 0.7s cubic-bezier(0.32, 0.72, 0, 1);
   }
   .fade-in-up.visible {
     opacity: 1;

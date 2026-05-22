@@ -5,17 +5,25 @@ import DDLayout from "./DDLayout";
 import { trpc } from "@/lib/trpc";
 
 const HERO_IMG = "/manus-storage/dd-hero-drain_7551245e.jpg";
-const EXCAVATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-excavation-nJgwHt9PRg2kHnpUSugtnt.webp";
-const CAMERA_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-sewer-camera-fxX5uEXYMHW3AiBoSwi2aa.webp";
+const EXCAVATION_IMG = "/manus-storage/sewer-repair-1_b9db9364.jpeg";
+const CAMERA_IMG = "/manus-storage/sewer-camera_39c33547.jpg";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Mark body so CSS can apply the hidden state (progressive enhancement)
+    document.body.classList.add("js-scroll-ready");
+    // Immediately reveal if already in viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("visible");
+      return;
+    }
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add("visible"); },
-      { threshold: 0.1 }
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } },
+      { threshold: 0, rootMargin: "0px 0px 100px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
