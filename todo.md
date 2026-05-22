@@ -293,15 +293,15 @@
 
 ## Phase 33: Full Audit and Bug Fix
 
-- [ ] Audit App.tsx routes — confirm all routes are registered and match page file names
-- [ ] Audit DDBlog.tsx — confirm tRPC call, data shape, and rendering logic
-- [ ] Audit DDBlogPost.tsx — confirm tRPC call, slug param, and rendering logic
-- [ ] Audit DDServiceDetail.tsx — confirm tRPC call, slug param, HERO_IMGS, RELATED_SERVICES
-- [ ] Audit ScrollServicesSection.tsx — confirm bento card links point to correct slugs
-- [ ] Audit server/routers.ts — confirm all blog and service procedures return correct data
-- [ ] Audit server/db.ts — confirm all query helpers return correct fields
-- [ ] Check DB for missing or malformed service/blog records
-- [ ] Fix all identified issues
-- [ ] TypeScript check passes (0 errors)
-- [ ] Browser verify all fixed pages
-- [ ] Save checkpoint
+- [x] Audit App.tsx routes — confirm all routes are registered and match page file names
+- [x] Audit DDBlog.tsx — confirm tRPC call, data shape, and rendering logic
+- [x] Audit DDBlogPost.tsx — confirm tRPC call, slug param, and rendering logic
+- [x] Audit DDServiceDetail.tsx — confirm tRPC call, slug param, HERO_IMGS, RELATED_SERVICES
+- [x] Audit ScrollServicesSection.tsx — confirm bento card links point to correct slugs
+- [x] Audit server/routers.ts — confirm all blog and service procedures return correct data
+- [x] Audit server/db.ts — confirm all query helpers return correct fields
+- [x] Check DB for missing or malformed service/blog records
+- [x] Fix all identified issues (scroll animation opacity:0 bug, React Query v5 isLoading bug)
+- [x] TypeScript check passes (0 errors)
+- [x] Browser verify all fixed pages
+- [x] Save checkpoint

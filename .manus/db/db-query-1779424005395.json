@@ -1,0 +1,46 @@
+{
+  "query": "SELECT slug, title FROM services ORDER BY slug;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title FROM services ORDER BY slug;",
+  "rows": [
+    {
+      "slug": "catch-basin-cleaning",
+      "title": "Catch Basin Cleaning"
+    },
+    {
+      "slug": "drain-cleaning",
+      "title": "Drain Cleaning and Power Flushing"
+    },
+    {
+      "slug": "excavation-services",
+      "title": "Excavation and Machine Services"
+    },
+    {
+      "slug": "municipal-services",
+      "title": "Municipal Services"
+    },
+    {
+      "slug": "septic-repairs",
+      "title": "Septic Service and Repairs"
+    },
+    {
+      "slug": "sewer-camera-inspection",
+      "title": "Free Sewer Video Camera Inspection"
+    },
+    {
+      "slug": "sewer-repair-installation",
+      "title": "Sewer Repair and Installation"
+    },
+    {
+      "slug": "trenchless-pipe-repair",
+      "title": "No-Dig Trenchless Pipe Repair"
+    },
+    {
+      "slug": "wet-basement-repair",
+      "title": "Wet Basement Waterproofing"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\ncatch-basin-cleaning\tCatch Basin Cleaning\ndrain-cleaning\tDrain Cleaning and Power Flushing\nexcavation-services\tExcavation and Machine Services\nmunicipal-services\tMunicipal Services\nseptic-repairs\tSeptic Service and Repairs\nsewer-camera-inspection\tFree Sewer Video Camera Inspection\nsewer-repair-installation\tSewer Repair and Installation\ntrenchless-pipe-repair\tNo-Dig Trenchless Pipe Repair\nwet-basement-repair\tWet Basement Waterproofing\n",
+  "stderr": "",
+  "execution_time_ms": 276
+}

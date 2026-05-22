@@ -1,0 +1,76 @@
+{
+  "query": "SELECT slug, title, category, published FROM blog_posts ORDER BY id DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, category, published FROM blog_posts ORDER BY id DESC;",
+  "rows": [
+    {
+      "slug": "pre-purchase-sewer-inspection-london-ontario",
+      "title": "Why You Need a Sewer Inspection Before Buying a Home in London Ontario",
+      "category": "Camera Inspection",
+      "published": "1"
+    },
+    {
+      "slug": "how-often-drain-cleaning-london-ontario",
+      "title": "How Often Should You Have Your Drains Cleaned in London Ontario?",
+      "category": "Drain Cleaning",
+      "published": "1"
+    },
+    {
+      "slug": "trenchless-vs-excavation-sewer-repair",
+      "title": "Trenchless Sewer Repair vs. Excavation: Which One Is Right for You?",
+      "category": "Sewer Repair",
+      "published": "1"
+    },
+    {
+      "slug": "wet-basement-fix-london-ontario",
+      "title": "How to Fix a Wet Basement in London Ontario: What Actually Works",
+      "category": "Wet Basement",
+      "published": "1"
+    },
+    {
+      "slug": "sewer-repair-cost-london-ontario",
+      "title": "How Much Does Sewer Repair Cost in London Ontario?",
+      "category": "Sewer Repair",
+      "published": "1"
+    },
+    {
+      "slug": "weeping-tile-replacement-ontario",
+      "title": "Weeping Tile Replacement in Ontario: What It Costs and What to Expect",
+      "category": "Wet Basement",
+      "published": "1"
+    },
+    {
+      "slug": "sewer-backup-what-to-do-ontario",
+      "title": "Sewer Backup: What to Do Right Now (Ontario Emergency Guide)",
+      "category": "Emergency",
+      "published": "1"
+    },
+    {
+      "slug": "drain-cleaning-how-often-ontario",
+      "title": "How Often Should You Clean Your Drains? A Guide for Ontario Homeowners",
+      "category": "Drain Cleaning",
+      "published": "1"
+    },
+    {
+      "slug": "wet-basement-causes-ontario",
+      "title": "Why Is My Basement Wet? The Most Common Causes in Ontario Homes",
+      "category": "Wet Basement",
+      "published": "1"
+    },
+    {
+      "slug": "trenchless-vs-traditional-sewer-repair-ontario",
+      "title": "Trenchless vs. Traditional Sewer Repair: What Ontario Homeowners Need to Know",
+      "category": "Trenchless",
+      "published": "1"
+    },
+    {
+      "slug": "how-to-tell-if-your-sewer-line-is-broken",
+      "title": "How to Tell If Your Sewer Line Is Broken (Ontario Homeowner Guide)",
+      "category": "Sewer Repair",
+      "published": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tcategory\tpublished\npre-purchase-sewer-inspection-london-ontario\tWhy You Need a Sewer Inspection Before Buying a Home in London Ontario\tCamera Inspection\t1\nhow-often-drain-cleaning-london-ontario\tHow Often Should You Have Your Drains Cleaned in London Ontario?\tDrain Cleaning\t1\ntrenchless-vs-excavation-sewer-repair\tTrenchless Sewer Repair vs. Excavation: Which One Is Right for You?\tSewer Repair\t1\nwet-basement-fix-london-ontario\tHow to Fix a Wet Basement in London Ontario: What Actually Works\tWet Basement\t1\nsewer-repair-cost-london-ontario\tHow Much Does Sewer Repair Cost in London Ontario?\tSewer Repair\t1\nweeping-tile-replacement-ontario\tWeeping Tile Replacement in Ontario: What It Costs and What to Expect\tWet Basement\t1\nsewer-backup-what-to-do-ontario\tSewer Backup: What to Do Right Now (Ontario Emergency Guide)\tEmergency\t1\ndrain-cleaning-how-often-ontario\tHow Often Should You Clean Your Drains? A Guide for Ontario Homeowners\tDrain Cleaning\t1\nwet-basement-causes-ontario\tWhy Is My Basement Wet? The Most Common Causes in Ontario Homes\tWet Basement\t1\ntrenchless-vs-traditional-sewer-repair-ontario\tTrenchless vs. Traditional Sewer Repair: What Ontario Homeowners Need to Know\tTrenchless\t1\nhow-to-tell-if-your-sewer-line-is-broken\tHow to Tell If Your Sewer Line Is Broken (Ontario Homeowner Guide)\tSewer Repair\t1\n",
+  "stderr": "",
+  "execution_time_ms": 260
+}
