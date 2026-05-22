@@ -361,3 +361,14 @@
 - [x] Verify JS bundle splits into multiple chunks (< 500 KB each)
 - [x] Vite build succeeds
 EOF
+## Phase 41: Mega-Menu Expansion + Service Gallery Section
+
+- [x] Add Catch Basin Cleaning, Septic Service, Municipal Services to navbar mega-menu left column
+- [x] Download all Google Drive media assets (images + videos) from all 8 service subfolders
+- [x] Upload all assets to CDN via manus-upload-file --webdev
+- [x] Build reusable ServiceGallery component (lightbox grid: thumbnail grid + full-screen lightbox with prev/next nav)
+- [x] Add gallery data (CDN URLs) to serviceGallery.ts for each of the 9 service pages
+- [x] Wire ServiceGallery component into DDServiceDetail.tsx (renders between reviews and Related Services sections)
+- [x] Verify all 9 service pages render gallery correctly
+- [x] Build passes cleanly
+- [x] Save checkpoint

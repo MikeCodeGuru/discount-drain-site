@@ -34,6 +34,9 @@ const SERVICE_LINKS = [
   { label: "Sewer Repair and Installation", href: "/services/sewer-repair-installation" },
   { label: "Drain Cleaning and Power Flushing", href: "/services/drain-cleaning" },
   { label: "Excavation Services", href: "/services/excavation-services" },
+  { label: "Catch Basin Cleaning", href: "/services/catch-basin-cleaning" },
+  { label: "Septic Service and Repairs", href: "/services/septic-repairs" },
+  { label: "Municipal Services", href: "/services/municipal-services" },
 ];
 
 interface DDLayoutProps {

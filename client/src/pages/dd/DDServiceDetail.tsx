@@ -6,6 +6,8 @@ import { getServiceBySlug } from "@/data/services";
 import { TESTIMONIALS } from "@/data/testimonials";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 import Breadcrumb, { buildBreadcrumbJsonLd } from "@/components/dd/Breadcrumb";
+import ServiceGallery from "@/components/dd/ServiceGallery";
+import { SERVICE_GALLERY } from "@/data/serviceGallery";
 
 // Related services shown at the bottom of specific service pages
 const RELATED_SERVICES: Record<string, { slug: string; title: string; desc: string; img: string }[]> = {
@@ -470,6 +472,14 @@ export default function DDServiceDetail() {
             </div>
           </div>
         </section>
+      )}
+
+      {/* Service Gallery */}
+      {SERVICE_GALLERY[slug ?? ""] && SERVICE_GALLERY[slug ?? ""].length > 0 && (
+        <ServiceGallery
+          items={SERVICE_GALLERY[slug ?? ""]}
+          title={`${service.title} — Real Project Photos`}
+        />
       )}
 
       {/* Related Services */}
