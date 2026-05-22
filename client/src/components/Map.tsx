@@ -117,7 +117,11 @@ function loadMapScript(): Promise<void> {
     script.onerror = () => {
       // Reset so a future attempt can retry.
       mapScriptPromise = null;
-      console.error("Failed to load Google Maps script");
+      // Only log in production — in dev the proxy route doesn't run (static build),
+      // so this error is expected and not actionable.
+      if (import.meta.env.PROD) {
+        console.error("Failed to load Google Maps script");
+      }
       reject(new Error("Failed to load Google Maps script"));
     };
     document.head.appendChild(script);
@@ -172,21 +176,42 @@ export function MapView({
     init();
   }, [init]);
   if (mapError) {
+    // Fallback: static OpenStreetMap tile centred on London, ON
+    // Used in dev (proxy not running) and as a graceful degradation in prod.
+    const lat = initialCenter?.lat ?? 42.9849;
+    const lng = initialCenter?.lng ?? -81.2453;
+    const zoom = initialZoom ?? 12;
+    const staticMapUrl =
+      `https://staticmap.openstreetmap.de/staticmap.php?center=${lat},${lng}&zoom=${zoom}&size=800x420&markers=${lat},${lng},red`;
     return (
       <div
         className={cn(
-          "w-full h-[500px] flex flex-col items-center justify-center gap-3 rounded-lg",
-          "bg-[#F7F6F3] border border-[#E8E6DF] text-[#8A8A8A]",
+          "w-full relative overflow-hidden rounded-lg",
+          "bg-[#F7F6F3] border border-[#E8E6DF]",
           className
         )}
+        style={{ minHeight: "420px" }}
       >
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-          <circle cx="12" cy="9" r="2.5"/>
-        </svg>
-        <p className="text-sm font-medium" style={{ fontFamily: "'Inter Tight', sans-serif" }}>
-          Map preview available on the published site
-        </p>
+        <img
+          src={staticMapUrl}
+          alt="Map of London, Ontario service area"
+          className="w-full h-full object-cover"
+          style={{ minHeight: "420px" }}
+          onError={(e) => {
+            // If static tile also fails, show a simple grey placeholder
+            (e.currentTarget as HTMLImageElement).style.display = "none";
+          }}
+        />
+        <div
+          className="absolute bottom-3 left-3 right-3 flex items-center gap-2 px-3 py-2 rounded-md text-xs font-medium"
+          style={{ backgroundColor: "rgba(255,255,255,0.92)", color: "#555", backdropFilter: "blur(4px)", maxWidth: "fit-content" }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          Interactive map available on the published site
+        </div>
       </div>
     );
   }
