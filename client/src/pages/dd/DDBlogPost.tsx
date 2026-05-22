@@ -4,6 +4,7 @@ import { Link, useParams } from "wouter";
 import { Phone, ArrowRight, Clock, Tag, CheckCircle2 } from "lucide-react";
 import DDLayout from "./DDLayout";
 import { getBlogPostBySlug, getRelatedBlogPosts } from "@/data/blogPosts";
+import Breadcrumb, { buildBreadcrumbJsonLd } from "@/components/dd/Breadcrumb";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -67,34 +68,61 @@ export default function DDBlogPost() {
       <title>{post.metaTitle ?? post.title} | Discount Drain Blog</title>
       {post.metaDesc && <meta name="description" content={post.metaDesc} />}
 
-      {/* Structured Data: Article */}
+      {/* Structured Data: Article (enhanced) */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://discountdrain.ca/blog/${post.slug}`,
+        },
         "headline": post.title,
-        "description": post.excerpt,
-        "author": { "@type": "Organization", "name": "Discount Drain" },
+        "description": post.metaDesc ?? post.excerpt,
+        "author": {
+          "@type": "Organization",
+          "name": "Discount Drain",
+          "url": "https://discountdrain.ca",
+        },
         "publisher": {
           "@type": "Organization",
           "name": "Discount Drain",
           "url": "https://discountdrain.ca",
-          "logo": { "@type": "ImageObject", "url": "https://discountdrain.ca/logo.png" },
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg",
+            "width": 1200,
+            "height": 630,
+          },
         },
         "datePublished": post.publishedAt,
-        "image": post.imageUrl,
+        "dateModified": post.publishedAt,
+        ...(post.imageUrl ? {
+          "image": {
+            "@type": "ImageObject",
+            "url": post.imageUrl,
+            "width": 1200,
+            "height": 630,
+          },
+        } : {}),
         "url": `https://discountdrain.ca/blog/${post.slug}`,
+        "wordCount": (post.content ?? "").trim().split(/\s+/).length,
+        "articleSection": post.category,
+        "inLanguage": "en-CA",
+        "isPartOf": {
+          "@type": "Blog",
+          "name": "Discount Drain Blog",
+          "url": "https://discountdrain.ca/blog",
+        },
       })}} />
 
       {/* Structured Data: BreadcrumbList */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://discountdrain.ca/" },
-          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://discountdrain.ca/blog" },
-          { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://discountdrain.ca/blog/${post.slug}` },
-        ],
-      })}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(
+        buildBreadcrumbJsonLd([
+          { label: "Home", href: "/" },
+          { label: "Blog", href: "/blog" },
+          { label: post.title },
+        ])
+      )}} />
 
       {/* Hero */}
       <section
@@ -110,13 +138,15 @@ export default function DDBlogPost() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.2) 100%)" }} />
         <div className="relative container pb-8" style={{ zIndex: 2 }}>
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 mb-5 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-            <Link href="/" style={{ color: "#60b3ff", textDecoration: "none" }}>Home</Link>
-            <span>/</span>
-            <Link href="/blog" style={{ color: "#60b3ff", textDecoration: "none" }}>Blog</Link>
-            <span>/</span>
-            <span className="text-white truncate" style={{ maxWidth: "300px" }}>{post.title}</span>
-          </nav>
+          <Breadcrumb
+            variant="light"
+            className="mb-5"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Blog", href: "/blog" },
+              { label: post.title },
+            ]}
+          />
           {post.category && (
             <div className="flex items-center gap-1 mb-3">
               <Tag size={12} style={{ color: "#60b3ff" }} />

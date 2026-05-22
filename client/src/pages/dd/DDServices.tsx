@@ -3,6 +3,7 @@ import { Link, useSearch } from "wouter";
 import { Camera, Wrench, Droplets, Truck, Shield, ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import DDLayout from "./DDLayout";
 import { getAllServices } from "@/data/services";
+import Breadcrumb, { buildBreadcrumbJsonLd } from "@/components/dd/Breadcrumb";
 
 const HERO_IMG = "/manus-storage/sewer-camera_39c33547.jpg";
 
@@ -76,6 +77,14 @@ export default function DDServices() {
       <meta name="twitter:description" content="Complete drain and sewer services in London Ontario: free camera inspections, trenchless pipe repair, wet basement waterproofing, drain cleaning, sewer repair, and excavation. Call 519-451-8342." />
       <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
 
+      {/* Structured Data: BreadcrumbList */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(
+        buildBreadcrumbJsonLd([
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+        ])
+      )}} />
+
       {/* Page Hero */}
       <section
         className="relative py-24 flex items-center"
@@ -83,6 +92,14 @@ export default function DDServices() {
       >
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%)" }} />
         <div className="relative container" style={{ zIndex: 2 }}>
+          <Breadcrumb
+            variant="light"
+            className="mb-5"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Services" },
+            ]}
+          />
           <div className="eyebrow mb-4" style={{ color: "#60b3ff", backgroundColor: "rgba(0,128,255,0.2)", border: "1px solid rgba(0,128,255,0.3)" }}>
             What We Do
           </div>

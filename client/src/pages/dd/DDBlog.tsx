@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowRight, Clock, Tag } from "lucide-react";
 import DDLayout from "./DDLayout";
 import { BLOG_POSTS } from "@/data/blogPosts";
+import Breadcrumb, { buildBreadcrumbJsonLd } from "@/components/dd/Breadcrumb";
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -107,14 +108,25 @@ export default function DDBlog() {
         },
       })}} />
 
+      {/* Structured Data: BreadcrumbList */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(
+        buildBreadcrumbJsonLd([
+          { label: "Home", href: "/" },
+          { label: "Blog", href: "/blog" },
+        ])
+      )}} />
+
       {/* Header */}
       <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>
         <div className="container">
-          <nav className="flex items-center gap-2 text-sm mb-6" style={{ color: "#8c9baa" }}>
-            <Link href="/" style={{ color: "#0080ff", textDecoration: "none" }}>Home</Link>
-            <span>/</span>
-            <span style={{ color: "#111111" }}>Blog</span>
-          </nav>
+          <Breadcrumb
+            variant="dark"
+            className="mb-6"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Blog" },
+            ]}
+          />
           <div className="eyebrow mb-4">Expert Advice</div>
           <h1 style={{ fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 800, color: "#111111", marginBottom: "16px", lineHeight: 1.1, letterSpacing: "-0.02em" }}>
             Drain and Sewer Tips

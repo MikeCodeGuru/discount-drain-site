@@ -323,3 +323,14 @@
 - [x] Add Open Graph and Twitter Card meta tags to all core pages (Home, About, Residential, Commercial, Contact, Quote, Services, Service Area, Blog)
 - [x] Add JSON-LD LocalBusiness structured data to the homepage
 - [x] Add unique canonical and keyword meta tags to all service detail pages (DDServiceDetail.tsx)
+
+## Phase 36: Article JSON-LD + Breadcrumb Navigation
+
+- [x] Build reusable Breadcrumb component (client/src/components/dd/Breadcrumb.tsx)
+- [x] Add Article JSON-LD structured data to DDBlogPost.tsx
+- [x] Add breadcrumb nav + BreadcrumbList JSON-LD to DDBlogPost.tsx
+- [x] Verify DDServiceDetail.tsx already has BreadcrumbList JSON-LD (add if missing)
+- [x] Add visual breadcrumb nav to DDServices.tsx (Services hub page)
+- [x] Add visual breadcrumb nav to DDBlog.tsx (Blog listing page)
+- [x] TypeScript check passes (0 errors)
+- [x] Vite build succeeds

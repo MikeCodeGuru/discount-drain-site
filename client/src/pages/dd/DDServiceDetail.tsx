@@ -5,6 +5,7 @@ import DDLayout from "./DDLayout";
 import { getServiceBySlug } from "@/data/services";
 import { TESTIMONIALS } from "@/data/testimonials";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
+import Breadcrumb, { buildBreadcrumbJsonLd } from "@/components/dd/Breadcrumb";
 
 // Related services shown at the bottom of specific service pages
 const RELATED_SERVICES: Record<string, { slug: string; title: string; desc: string; img: string }[]> = {
@@ -285,15 +286,13 @@ export default function DDServiceDetail() {
       })}} />
 
       {/* Structured Data - BreadcrumbList */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://discountdrain.ca/" },
-          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://discountdrain.ca/services" },
-          { "@type": "ListItem", "position": 3, "name": service.title, "item": `https://discountdrain.ca/services/${slug}` }
-        ]
-      })}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(
+        buildBreadcrumbJsonLd([
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: service.title, href: `/services/${slug}` },
+        ])
+      )}} />
 
       {/* Structured Data - FAQPage */}
       {faqs.length > 0 && (
@@ -318,13 +317,15 @@ export default function DDServiceDetail() {
       >
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.45) 100%)" }} />
         <div className="relative container" style={{ zIndex: 2 }}>
-          <nav aria-label="breadcrumb" className="flex items-center gap-2 mb-4 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-            <Link href="/" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>Home</Link>
-            <span>/</span>
-            <Link href="/services" style={{ color: "#60b3ff", textDecoration: "none" }}>Services</Link>
-            <span>/</span>
-            <span className="text-white">{service.title}</span>
-          </nav>
+          <Breadcrumb
+            variant="light"
+            className="mb-4"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Services", href: "/services" },
+              { label: service.title },
+            ]}
+          />
           <h1 className="text-white mb-4" style={{ fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
             {service.title}
           </h1>
