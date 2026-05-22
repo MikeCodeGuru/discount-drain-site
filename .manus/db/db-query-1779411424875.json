@@ -1,0 +1,9 @@
+{
+  "query": "DELETE FROM services WHERE slug = 'septic-service-commercial';\nUPDATE services SET category = 'both', title = 'Septic Service and Repairs', shortDesc = 'A properly maintained septic system can last for decades. We provide preventative maintenance for your septic system, as well as a full service line of repairs and replacements on septic beds and sewers.' WHERE slug = 'septic-repairs';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute DELETE FROM services WHERE slug = 'septic-service-commercial';\nUPDATE services SET category = 'both', title = 'Septic Service and Repairs', shortDesc = 'A properly maintained septic system can last for decades. We provide preventative maintenance for your septic system, as well as a full service line of repairs and replacements on septic beds and sewers.' WHERE slug = 'septic-repairs';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 276
+}

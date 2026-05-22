@@ -59,11 +59,11 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
   },
   {
     category: "RESIDENTIAL",
-    title: "Septic Repairs",
+    title: "Septic Service and Repairs",
     description:
-      "Full service septic repairs and replacements for residential properties. We diagnose and fix septic bed problems, line failures, and drainage issues — backed by our quality guarantee.",
+      "A properly maintained septic system can last for decades. We provide preventative maintenance and a full service line of repairs and replacements on septic beds and sewers.",
     image: "/manus-storage/septic-service_005b9ea5.jpg",
-    href: "/services/septic-service",
+    href: "/services/septic-repairs",
     cta: "Schedule a Service Call",
   },
   {
@@ -143,11 +143,11 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
   },
   {
     category: "COMMERCIAL",
-    title: "Septic Service",
+    title: "Septic Service and Repairs",
     description:
-      "Preventative maintenance and a full service line of repairs and replacements on septic beds and sewers for commercial properties and rural businesses across Southwestern Ontario.",
+      "A properly maintained septic system can last for decades. We provide preventative maintenance and a full service line of repairs and replacements on septic beds and sewers for commercial properties.",
     image: "/manus-storage/septic-service_005b9ea5.jpg",
-    href: "/commercial",
+    href: "/services/septic-repairs",
     cta: "Request an Estimate",
   },
 ];
@@ -265,10 +265,11 @@ function useLerpScroll(
       const cardW = containerW * 0.74;
       const gap = containerW * 0.025;
       const stepPx = cardW + gap;
-      // Cap the translation so the last card stops roughly centred in the
-      // viewport (≈50% of one card-step from the left edge) before the section
-      // releases. 0.45 keeps it clearly visible without cutting off too early.
-      const maxTranslate = stepPx * (count - 1) * 0.45;
+      // Translate far enough so the last card is fully visible in the viewport.
+      // 0.85 ensures each card from 1 to (count-1) scrolls fully into view
+      // before the section releases. The card is 74% wide so 0.85 of a step
+      // brings the right edge of the last card close to the viewport centre.
+      const maxTranslate = stepPx * (count - 1) * 0.85;
 
       return -(progress * maxTranslate);
     };
@@ -504,9 +505,9 @@ export default function ScrollServicesSection() {
 
   const trackRef = useLerpScroll(wrapperRef, imageRefs, cardRefs, count, activeTab, setActiveIdx);
 
-  // 180px scroll travel per card — tighter travel eliminates the dead-scroll
-  // zone while still giving the lerp animation enough room to feel smooth.
-  const scrollTravel = (count - 1) * 180;
+  // 320px scroll travel per card — enough room for the lerp to ease each card
+  // fully into view before the section releases the sticky scroll trap.
+  const scrollTravel = (count - 1) * 320;
 
   // ── Shared section header ──────────────────────────────────────────────────
   const SectionHeader = () => (

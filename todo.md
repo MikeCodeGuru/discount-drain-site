@@ -200,3 +200,13 @@
 - [x] Update DDServices.tsx filter to use category field from DB
 - [x] Verify Residential tab shows 6 residential services (5 both + 1 residential-only) and Commercial tab shows 7 commercial services (5 both + 2 commercial-only)
 - [x] Save checkpoint
+
+## Phase 27: Fix Duplicates on DDServices Page & Fix Desktop Scroll Travel
+
+- [x] Read DDServices.tsx to understand current filter logic
+- [x] Check DB for all services and their category values
+- [x] Delete duplicate Septic Service commercial row; merge into single 'Septic Service and Repairs' (category=both)
+- [x] Fix desktop scroll travel from 180px to 320px per card
+- [x] Fix maxTranslate from 0.45 to 0.85 so all cards are reachable
+- [x] TypeScript check passes (0 errors)
+- [x] Save checkpoint

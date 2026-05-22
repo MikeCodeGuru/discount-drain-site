@@ -1,0 +1,70 @@
+{
+  "query": "SELECT id, slug, title, category FROM services ORDER BY category, title;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT id, slug, title, category FROM services ORDER BY category, title;",
+  "rows": [
+    {
+      "id": "30003",
+      "slug": "septic-repairs",
+      "title": "Septic Repairs",
+      "category": "residential"
+    },
+    {
+      "id": "3",
+      "slug": "wet-basement-repair",
+      "title": "Wet Basement Waterproofing",
+      "category": "residential"
+    },
+    {
+      "id": "30002",
+      "slug": "catch-basin-cleaning",
+      "title": "Catch Basin Cleaning",
+      "category": "commercial"
+    },
+    {
+      "id": "30001",
+      "slug": "municipal-services",
+      "title": "Municipal Services",
+      "category": "commercial"
+    },
+    {
+      "id": "30004",
+      "slug": "septic-service-commercial",
+      "title": "Septic Service",
+      "category": "commercial"
+    },
+    {
+      "id": "5",
+      "slug": "drain-cleaning",
+      "title": "Drain Cleaning and Power Flushing",
+      "category": "both"
+    },
+    {
+      "id": "6",
+      "slug": "excavation-services",
+      "title": "Excavation and Machine Services",
+      "category": "both"
+    },
+    {
+      "id": "1",
+      "slug": "sewer-camera-inspection",
+      "title": "Free Sewer Video Camera Inspection",
+      "category": "both"
+    },
+    {
+      "id": "2",
+      "slug": "trenchless-pipe-repair",
+      "title": "No-Dig Trenchless Pipe Repair",
+      "category": "both"
+    },
+    {
+      "id": "4",
+      "slug": "sewer-repair-installation",
+      "title": "Sewer Repair and Installation",
+      "category": "both"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tslug\ttitle\tcategory\n30003\tseptic-repairs\tSeptic Repairs\tresidential\n3\twet-basement-repair\tWet Basement Waterproofing\tresidential\n30002\tcatch-basin-cleaning\tCatch Basin Cleaning\tcommercial\n30001\tmunicipal-services\tMunicipal Services\tcommercial\n30004\tseptic-service-commercial\tSeptic Service\tcommercial\n5\tdrain-cleaning\tDrain Cleaning and Power Flushing\tboth\n6\texcavation-services\tExcavation and Machine Services\tboth\n1\tsewer-camera-inspection\tFree Sewer Video Camera Inspection\tboth\n2\ttrenchless-pipe-repair\tNo-Dig Trenchless Pipe Repair\tboth\n4\tsewer-repair-installation\tSewer Repair and Installation\tboth\n",
+  "stderr": "",
+  "execution_time_ms": 415
+}

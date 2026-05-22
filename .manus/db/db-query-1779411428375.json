@@ -1,0 +1,55 @@
+{
+  "query": "SELECT slug, title, category FROM services ORDER BY category, title;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, category FROM services ORDER BY category, title;",
+  "rows": [
+    {
+      "slug": "wet-basement-repair",
+      "title": "Wet Basement Waterproofing",
+      "category": "residential"
+    },
+    {
+      "slug": "catch-basin-cleaning",
+      "title": "Catch Basin Cleaning",
+      "category": "commercial"
+    },
+    {
+      "slug": "municipal-services",
+      "title": "Municipal Services",
+      "category": "commercial"
+    },
+    {
+      "slug": "drain-cleaning",
+      "title": "Drain Cleaning and Power Flushing",
+      "category": "both"
+    },
+    {
+      "slug": "excavation-services",
+      "title": "Excavation and Machine Services",
+      "category": "both"
+    },
+    {
+      "slug": "sewer-camera-inspection",
+      "title": "Free Sewer Video Camera Inspection",
+      "category": "both"
+    },
+    {
+      "slug": "trenchless-pipe-repair",
+      "title": "No-Dig Trenchless Pipe Repair",
+      "category": "both"
+    },
+    {
+      "slug": "septic-repairs",
+      "title": "Septic Service and Repairs",
+      "category": "both"
+    },
+    {
+      "slug": "sewer-repair-installation",
+      "title": "Sewer Repair and Installation",
+      "category": "both"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tcategory\nwet-basement-repair\tWet Basement Waterproofing\tresidential\ncatch-basin-cleaning\tCatch Basin Cleaning\tcommercial\nmunicipal-services\tMunicipal Services\tcommercial\ndrain-cleaning\tDrain Cleaning and Power Flushing\tboth\nexcavation-services\tExcavation and Machine Services\tboth\nsewer-camera-inspection\tFree Sewer Video Camera Inspection\tboth\ntrenchless-pipe-repair\tNo-Dig Trenchless Pipe Repair\tboth\nseptic-repairs\tSeptic Service and Repairs\tboth\nsewer-repair-installation\tSewer Repair and Installation\tboth\n",
+  "stderr": "",
+  "execution_time_ms": 269
+}
