@@ -676,6 +676,7 @@ export default function ScrollServicesSection() {
           ))}
 
           {/* Full-width View All Services CTA — immediately after last stacked card */}
+          {/* position:relative + high zIndex ensures this button always paints above the sticky cards (which use zIndex 1..N) */}
           <Link
             href={`/services?tab=${activeTab}`}
             style={{
@@ -694,6 +695,8 @@ export default function ScrollServicesSection() {
               textDecoration: "none",
               boxShadow: "0 4px 16px rgba(37,99,235,0.30)",
               marginTop: "4px",
+              position: "relative",
+              zIndex: 100,
             }}
           >
             View All Services
