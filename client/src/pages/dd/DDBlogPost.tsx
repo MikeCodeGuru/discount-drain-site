@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { marked } from "marked";
 import { Link, useParams } from "wouter";
 import { Phone, ArrowRight, Clock, Tag, CheckCircle2 } from "lucide-react";
@@ -20,13 +20,30 @@ function useScrollReveal() {
   return ref;
 }
 
+function estimateReadTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+const CATEGORY_LABELS: Record<string, string> = {
+  "sewer-repair": "Sewer Repair",
+  "wet-basement": "Wet Basements",
+  "drain-cleaning": "Drain Cleaning",
+  "sewer-camera": "Camera Inspection",
+  "trenchless": "Trenchless",
+};
+
 export default function DDBlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const { data: post, isLoading } = trpc.blog.bySlug.useQuery({ slug: slug ?? "" });
-  const { data: allPosts } = trpc.blog.list.useQuery();
-  const ref1 = useScrollReveal();
+  const [slugValue] = useMemo(() => [slug ?? ""], [slug]);
 
-  const relatedPosts = allPosts?.filter((p) => p.slug !== slug).slice(0, 3) ?? [];
+  const { data: post, isLoading } = trpc.blog.bySlug.useQuery({ slug: slugValue });
+  const { data: relatedPosts } = trpc.blog.related.useQuery(
+    { slug: slugValue, category: post?.category ?? undefined },
+    { enabled: !!post }
+  );
+
+  const ref1 = useScrollReveal();
 
   if (isLoading) {
     return (
@@ -50,21 +67,40 @@ export default function DDBlogPost() {
     );
   }
 
+  const readTime = estimateReadTime(post.content);
+
   return (
     <DDLayout>
       <title>{post.metaTitle ?? post.title} | Discount Drain Blog</title>
       {post.metaDesc && <meta name="description" content={post.metaDesc} />}
 
-      {/* Structured Data */}
+      {/* Structured Data: Article */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": post.title,
         "description": post.excerpt,
         "author": { "@type": "Organization", "name": "Discount Drain" },
-        "publisher": { "@type": "Organization", "name": "Discount Drain", "url": "https://discountdrain.ca" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Discount Drain",
+          "url": "https://discountdrain.ca",
+          "logo": { "@type": "ImageObject", "url": "https://discountdrain.ca/logo.png" },
+        },
         "datePublished": post.publishedAt,
         "image": post.imageUrl,
+        "url": `https://discountdrain.ca/blog/${post.slug}`,
+      })}} />
+
+      {/* Structured Data: BreadcrumbList */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://discountdrain.ca/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://discountdrain.ca/blog" },
+          { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://discountdrain.ca/blog/${post.slug}` },
+        ],
       })}} />
 
       {/* Hero */}
@@ -80,16 +116,19 @@ export default function DDBlogPost() {
       >
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.2) 100%)" }} />
         <div className="relative container pb-8" style={{ zIndex: 2 }}>
-          <div className="flex items-center gap-2 mb-4 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 mb-5 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+            <Link href="/" style={{ color: "#60b3ff", textDecoration: "none" }}>Home</Link>
+            <span>/</span>
             <Link href="/blog" style={{ color: "#60b3ff", textDecoration: "none" }}>Blog</Link>
             <span>/</span>
-            <span className="text-white">{post.title}</span>
-          </div>
+            <span className="text-white truncate" style={{ maxWidth: "300px" }}>{post.title}</span>
+          </nav>
           {post.category && (
             <div className="flex items-center gap-1 mb-3">
               <Tag size={12} style={{ color: "#60b3ff" }} />
               <span style={{ color: "#60b3ff", fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                {post.category}
+                {CATEGORY_LABELS[post.category] ?? post.category}
               </span>
             </div>
           )}
@@ -97,7 +136,10 @@ export default function DDBlogPost() {
             {post.title}
           </h1>
           <div className="flex items-center gap-4 text-white/60 text-sm">
-
+            <div className="flex items-center gap-1">
+              <Clock size={13} />
+              <span>{readTime} min read</span>
+            </div>
             {post.publishedAt && (
               <span>{new Date(post.publishedAt).toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" })}</span>
             )}
@@ -112,6 +154,33 @@ export default function DDBlogPost() {
             {/* Article Body */}
             <div className="lg:col-span-2">
               <div ref={ref1} className="fade-in-up">
+                {/* Author block */}
+                <div className="flex items-center gap-3 mb-8 pb-6" style={{ borderBottom: "1px solid #e8ecf0" }}>
+                  <div
+                    style={{
+                      width: "44px",
+                      height: "44px",
+                      borderRadius: "50%",
+                      backgroundColor: "#0080ff",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <span style={{ color: "#ffffff", fontSize: "16px", fontWeight: 700 }}>DD</span>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#111111" }}>Discount Drain</div>
+                    <div style={{ fontSize: "12px", color: "#8c9baa" }}>London's Drain & Sewer Specialists Since 1970</div>
+                  </div>
+                  {post.publishedAt && (
+                    <div style={{ marginLeft: "auto", fontSize: "12px", color: "#aab4be" }}>
+                      {new Date(post.publishedAt).toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" })}
+                    </div>
+                  )}
+                </div>
+
                 {post.excerpt && (
                   <p style={{ fontSize: "18px", color: "#555555", lineHeight: "30px", marginBottom: "32px", fontWeight: 500, borderLeft: "4px solid #0080ff", paddingLeft: "20px" }}>
                     {post.excerpt}
@@ -180,13 +249,21 @@ export default function DDBlogPost() {
                   </div>
                 ))}
               </div>
+
+              {/* Back to Blog */}
+              <Link href="/blog">
+                <div className="service-card-v2 cursor-pointer flex items-center gap-2" style={{ color: "#0080ff", fontWeight: 600, fontSize: "14px" }}>
+                  <ArrowRight size={14} style={{ transform: "rotate(180deg)" }} />
+                  Back to All Articles
+                </div>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* Related Posts */}
-      {relatedPosts.length > 0 && (
+      {relatedPosts && relatedPosts.length > 0 && (
         <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>
           <div className="container">
             <h2 style={{ fontSize: "clamp(22px, 2.5vw, 32px)", fontWeight: 800, color: "#111111", marginBottom: "28px" }}>
@@ -207,6 +284,17 @@ export default function DDBlogPost() {
                       />
                     )}
                     <div style={{ padding: "20px" }} className="flex flex-col flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        {p.category && (
+                          <span style={{ color: "#0080ff", fontSize: "10px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                            {CATEGORY_LABELS[p.category] ?? p.category}
+                          </span>
+                        )}
+                        <div className="flex items-center gap-1" style={{ color: "#aab4be" }}>
+                          <Clock size={10} />
+                          <span style={{ fontSize: "10px" }}>{estimateReadTime(p.content)} min</span>
+                        </div>
+                      </div>
                       <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#111111", marginBottom: "8px", lineHeight: "1.4" }}>
                         {p.title}
                       </h3>

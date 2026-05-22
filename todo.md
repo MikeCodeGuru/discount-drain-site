@@ -266,3 +266,18 @@
 - [x] Verify all pages render correctly with no missing content
 - [x] TypeScript check passes (0 errors)
 - [x] Save checkpoint
+
+## Phase 32: Blog Section Build
+
+- [x] Add blogPosts table to drizzle/schema.ts (slug, title, metaDesc, heroImg, category, readTime, publishedAt, body, tags)
+- [x] Run pnpm db:push to migrate schema
+- [x] Add blog tRPC procedures: blog.list, blog.getBySlug, blog.getRelated
+- [x] Write 5 SEO-targeted blog posts (sewer repair cost, wet basement fix, trenchless vs excavation, drain cleaning frequency, pre-purchase sewer inspection)
+- [x] Seed all 5 blog posts to database
+- [x] Build DDBlog.tsx listing page with card grid, category filter, and hero featured post
+- [x] Build DDPostDetail.tsx individual post page with breadcrumb, JSON-LD Article structured data, author block, and related posts
+- [x] Wire /blog and /blog/:slug routes in App.tsx
+- [x] Update Blog nav link to point to /blog
+- [x] Verify all pages render correctly
+- [x] TypeScript check passes (0 errors)
+- [x] Save checkpoint

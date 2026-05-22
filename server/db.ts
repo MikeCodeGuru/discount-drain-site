@@ -1,4 +1,4 @@
-import { and, desc, eq, asc } from "drizzle-orm";
+import { and, desc, eq, ne, asc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import {
   InsertUser, users,
@@ -205,6 +205,26 @@ export async function deleteBlogPost(id: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await db.delete(blogPosts).where(eq(blogPosts.id, id));
+}
+
+export async function getRelatedBlogPosts(currentSlug: string, category?: string) {
+  const db = await getDb();
+  if (!db) return [];
+  // Return up to 3 published posts in the same category, excluding the current post
+  const conditions = [eq(blogPosts.published, true), ne(blogPosts.slug, currentSlug)];
+  if (category) conditions.push(eq(blogPosts.category, category));
+  const results = await db.select().from(blogPosts)
+    .where(and(...conditions))
+    .orderBy(desc(blogPosts.publishedAt))
+    .limit(3);
+  // If not enough same-category posts, fall back to any recent posts
+  if (results.length < 2) {
+    return db.select().from(blogPosts)
+      .where(and(eq(blogPosts.published, true), ne(blogPosts.slug, currentSlug)))
+      .orderBy(desc(blogPosts.publishedAt))
+      .limit(3);
+  }
+  return results;
 }
 
 // ─── CONTACT SUBMISSIONS ──────────────────────────────────────────────────────

@@ -9,7 +9,7 @@ import {
   getAllServices, getFeaturedServices, getServiceBySlug, upsertService, deleteService,
   getPublishedTestimonials, getAllTestimonials, upsertTestimonial, deleteTestimonial,
   getPublishedTeamMembers, getAllTeamMembers, upsertTeamMember, deleteTeamMember,
-  getPublishedBlogPosts, getAllBlogPosts, getBlogPostBySlug, upsertBlogPost, deleteBlogPost,
+  getPublishedBlogPosts, getAllBlogPosts, getBlogPostBySlug, getRelatedBlogPosts, upsertBlogPost, deleteBlogPost,
   createContactSubmission, getAllContactSubmissions, markContactRead,
   createQuoteSubmission, getAllQuoteSubmissions, markQuoteRead,
   createAdminSession, getAdminSession, deleteAdminSession,
@@ -74,6 +74,9 @@ export const appRouter = router({
     bySlug: publicProcedure
       .input(z.object({ slug: z.string() }))
       .query(({ input }) => getBlogPostBySlug(input.slug)),
+    related: publicProcedure
+      .input(z.object({ slug: z.string(), category: z.string().optional() }))
+      .query(({ input }) => getRelatedBlogPosts(input.slug, input.category)),
   }),
 
   // ─── PUBLIC: CONTACT FORM ───────────────────────────────────────────────────
