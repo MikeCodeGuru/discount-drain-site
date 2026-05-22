@@ -22,6 +22,7 @@ import { TESTIMONIALS } from "@/data/testimonials";
 import { usePrefetchRoutes } from "@/hooks/usePrefetchRoutes";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 import { MapView } from "@/components/Map";
+import { EtherealShadow } from "@/components/ui/etheral-shadow";
 
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 const HERO_FALLBACK = "/manus-storage/dd-hero-drain_7551245e.jpg";
@@ -357,15 +358,20 @@ export default function DDHome() {
       <section
         className="relative overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #e8f3ff 0%, #f0f7ff 40%, #dbeeff 100%)",
+          background: "#e8f3ff",
           minHeight: "88vh",
           display: "flex",
           alignItems: "center",
         }}
       >
-        {/* Subtle decorative blobs */}
-        <div className="absolute blob-bg" style={{ width: "500px", height: "500px", top: "-120px", left: "-180px", backgroundColor: "rgba(0,128,255,0.07)", zIndex: 0 }} />
-        <div className="absolute blob-bg" style={{ width: "300px", height: "300px", bottom: "-80px", left: "30%", backgroundColor: "rgba(0,128,255,0.06)", zIndex: 0 }} />
+        {/* Ethereal animated background */}
+        <EtherealShadow
+          color="rgba(0, 128, 255, 0.45)"
+          animation={{ scale: 100, speed: 90 }}
+          noise={{ opacity: 0.8, scale: 1.2 }}
+          sizing="fill"
+          style={{ zIndex: 0 }}
+        />
 
         <div className="relative container py-10 md:py-14" style={{ zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
