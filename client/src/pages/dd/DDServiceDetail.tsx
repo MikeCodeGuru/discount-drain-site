@@ -21,6 +21,34 @@ const RELATED_SERVICES: Record<string, { slug: string; title: string; desc: stri
       img: "/manus-storage/service-trenchless_20587538.jpg",
     },
   ],
+  "municipal-services": [
+    {
+      slug: "catch-basin-cleaning",
+      title: "Catch Basin Cleaning",
+      desc: "Municipalities and property managers rely on us to keep catch basins clear and compliant. We clean, repair, and restore basins of all sizes using vacuum trucks and high-pressure flushing.",
+      img: "/manus-storage/catchbasin-hero_434c10ae.jpg",
+    },
+    {
+      slug: "sewer-repair-installation",
+      title: "Sewer Repair and Installation",
+      desc: "From emergency main breaks to planned infrastructure upgrades, our certified technicians handle sewer repair and installation for municipal and commercial clients across Southwestern Ontario.",
+      img: "/manus-storage/service-sewer-repair_eef7e9e9.jpg",
+    },
+  ],
+  "catch-basin-cleaning": [
+    {
+      slug: "municipal-services",
+      title: "Municipal Services",
+      desc: "Beyond catch basins, we handle the full range of municipal drainage work including sewer lining, manhole restoration, and water main repair. One contractor for the entire job.",
+      img: "/manus-storage/municipal-hero_59376e39.jpg",
+    },
+    {
+      slug: "drain-cleaning",
+      title: "Drain Cleaning and Power Flushing",
+      desc: "When a catch basin is clear but drainage is still slow, the problem is usually further down the line. Our power flushing service clears blockages in the outlet pipe and storm sewer connection.",
+      img: "/manus-storage/service-drain-cleaning_ce593909.jpg",
+    },
+  ],
 };
 
 const HERO_IMGS: Record<string, string> = {
@@ -326,7 +354,11 @@ export default function DDServiceDetail() {
               Related Services
             </h2>
             <p style={{ color: "#666666", fontSize: "15px", marginBottom: "32px", lineHeight: "24px" }}>
-              Customers who need septic work often find these services useful as well.
+              {slug === "municipal-services"
+                ? "Clients who need municipal drainage work often rely on these services as well."
+                : slug === "catch-basin-cleaning"
+                ? "Properties with catch basin issues often benefit from these related drainage services."
+                : "Customers who need septic work often find these services useful as well."}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {RELATED_SERVICES[slug ?? ""].map((rel) => (

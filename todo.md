@@ -239,3 +239,13 @@
 - [x] Add Related Services section to Septic page (Sewer Repair + Trenchless cards)
 - [x] TypeScript check passes (0 errors)
 - [x] Save checkpoint
+
+## Phase 30: Bento Card Links + Related Services for Municipal and Catch Basin Pages
+
+- [x] Update Catch Basin Cleaning bento card in ScrollServicesSection.tsx to link to /services/catch-basin-cleaning
+- [x] Update Municipal Services bento card in ScrollServicesSection.tsx to link to /services/municipal-services
+- [x] Add Related Services entries for municipal-services in RELATED_SERVICES map (Catch Basin Cleaning + Sewer Repair)
+- [x] Add Related Services entries for catch-basin-cleaning in RELATED_SERVICES map (Municipal Services + Drain Cleaning)
+- [x] Made Related Services subtitle dynamic per slug
+- [x] HMR confirmed clean build
+- [x] Save checkpoint

@@ -101,8 +101,8 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     title: "Municipal Services",
     description:
       "From sewer lining to manhole restoration and water main repair, we deliver effective solutions for all municipal drainage infrastructure needs.",
-    image: "/manus-storage/municipal-manhole_9c9d4041.jpg",
-    href: "/commercial",
+    image: "/manus-storage/municipal-hero_59376e39.jpg",
+    href: "/services/municipal-services",
     cta: "Discuss Your Project",
   },
   {
@@ -137,8 +137,8 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     title: "Catch Basin Cleaning",
     description:
       "We solve catch basin problems quickly using vacuum trucks and the latest technology. Regular cleaning prevents flooding, property damage, and regulatory compliance issues.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/catch-basin-clean-ggWwSG2AwStSzyju2aT8wZ.webp",
-    href: "/services/drain-cleaning",
+    image: "/manus-storage/catchbasin-hero_434c10ae.jpg",
+    href: "/services/catch-basin-cleaning",
     cta: "Schedule a Cleaning",
   },
   {
