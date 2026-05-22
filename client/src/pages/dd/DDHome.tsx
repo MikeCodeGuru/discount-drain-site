@@ -53,28 +53,68 @@ function useScrollReveal<T extends HTMLElement = HTMLDivElement>() {
 }
 
 function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
+  const [active, setActive] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        let start = 0;
-        const step = (ts: number) => {
-          if (!start) start = ts;
-          const p = Math.min((ts - start) / 1600, 1);
-          setCount(Math.floor(p * target));
-          if (p < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-        obs.disconnect();
-      }
-    }, { threshold: 0.5 });
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setActive(true); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
     obs.observe(el);
     return () => obs.disconnect();
-  }, [target]);
-  return <span ref={ref}>{count}{suffix}</span>;
+  }, []);
+
+  // Use CSS counter animation via a CSS custom property transition
+  // We render the number directly and use a CSS animation on the element
+  const displayValue = active ? target : 0;
+
+  return (
+    <span
+      ref={ref}
+      style={{
+        display: "inline-block",
+        // CSS tabular nums so digits don't shift width
+        fontVariantNumeric: "tabular-nums",
+      }}
+    >
+      <AnimatedNumber from={0} to={displayValue} duration={1600} />{suffix}
+    </span>
+  );
+}
+
+function AnimatedNumber({ from, to, duration }: { from: number; to: number; duration: number }) {
+  const [value, setValue] = useState(from);
+  const startTimeRef = useRef<number | null>(null);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (to === 0) return;
+    // Use a single rAF loop but with easeOutCubic so it feels fast and smooth
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+    startTimeRef.current = null;
+
+    const tick = (ts: number) => {
+      if (startTimeRef.current === null) startTimeRef.current = ts;
+      const elapsed = ts - startTimeRef.current;
+      const progress = Math.min(elapsed / duration, 1);
+      setValue(Math.round(easeOut(progress) * to));
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+      }
+    };
+
+    // Delay start by one frame so the hero animation has settled
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = requestAnimationFrame(tick);
+    });
+
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, [to, duration]);
+
+  return <>{value}</>;
 }
 
 // ─── Staggered stat tile for the Stats strip ────────────────────────────────
