@@ -19,6 +19,7 @@ import {
 import DDLayout from "./DDLayout";
 import { getAllServices, getFeaturedServices } from "@/data/services";
 import { TESTIMONIALS } from "@/data/testimonials";
+import { usePrefetchRoutes } from "@/hooks/usePrefetchRoutes";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 import { MapView } from "@/components/Map";
 
@@ -246,6 +247,9 @@ function ServiceAreaTeaser() {
 }
 
 export default function DDHome() {
+  // Prefetch the two most-visited next routes while the browser is idle
+  usePrefetchRoutes(["/services", "/contact"]);
+
   const services = getAllServices();
   const testimonials = TESTIMONIALS;
 

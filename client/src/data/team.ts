@@ -1,4 +1,4 @@
-// Auto-generated static data
+// Static team member data — photos are real staff headshots
 export interface TeamMember {
   id: number;
   name: string;
@@ -11,29 +11,29 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: 1,
     name: "Barry Marche",
-    jobTitle: "Owner and President",
+    jobTitle: "President",
     bio: "Barry took over Discount Drain from his father Herman in 1991 and has grown it into London's most trusted drain and sewer company. With over 30 years of hands-on experience, Barry leads every major project personally.",
-    imageUrl: "https://picsum.photos/seed/barry-marche/400/400",
+    imageUrl: "/manus-storage/barry-marche_557c7e98.jpg",
   },
   {
     id: 2,
-    name: "Kevin Marche",
-    jobTitle: "Operations Manager",
-    bio: "Kevin oversees day-to-day operations and scheduling, making sure every job is staffed with the right crew and equipment. He has been with the company for over 15 years.",
-    imageUrl: "https://picsum.photos/seed/kevin-marche/400/400",
+    name: "Mike Townsend",
+    jobTitle: "General Manager",
+    bio: "Mike oversees day-to-day operations and scheduling, making sure every job is staffed with the right crew and equipment. He has been with the company for over 15 years.",
+    imageUrl: "/manus-storage/mike-townsend_3a6ff3f4.jpg",
   },
   {
     id: 3,
-    name: "Tom Riedel",
-    jobTitle: "Senior Drain Technician",
-    bio: "Tom has been diagnosing and repairing drain and sewer systems for over 20 years. He specializes in trenchless pipe lining and sewer camera inspections.",
-    imageUrl: "https://picsum.photos/seed/tom-riedel/400/400",
+    name: "Craig Slater",
+    jobTitle: "Sales Manager",
+    bio: "Craig works directly with homeowners and commercial clients to assess their drain and sewer needs and provide honest, competitive estimates. He specializes in trenchless and wet basement solutions.",
+    imageUrl: "/manus-storage/craig-slater_641ece73.jpg",
   },
   {
     id: 4,
-    name: "Mike Vandenberg",
-    jobTitle: "Excavation Specialist",
-    bio: "Mike operates our excavation fleet and has completed hundreds of deep-dig sewer and water line projects across London and Southwestern Ontario.",
-    imageUrl: "https://picsum.photos/seed/mike-vandenberg/400/400",
+    name: "Ted Best",
+    jobTitle: "Service Manager",
+    bio: "Ted manages our field technician teams and ensures every service call is completed to the highest standard. With decades of hands-on drain and sewer experience, he is the backbone of our service operations.",
+    imageUrl: "/manus-storage/ted-best_84bac4b2.jpg",
   },
 ];
