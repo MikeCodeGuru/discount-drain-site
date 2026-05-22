@@ -17,7 +17,7 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     title: "Free Sewer Video Camera Inspection",
     description:
       "Don't just clean your sewer line — see it. We show you your sewer line on the spot, in minutes. A $400 value, absolutely free with every service call.",
-    image: "/manus-storage/sewer-camera_89fadfa4.jpg",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-clean-2snTGdn5gWiZBi5urG5Haa.webp",
     href: "/services/sewer-camera-inspection",
     cta: "Book Your Free Inspection",
   },
@@ -26,7 +26,7 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     title: "No-Dig Trenchless Pipe Repair",
     description:
       "Stop before you let anyone dig up your driveway or landscaping. Our CIPP trenchless technology replaces underground pipe from the inside out with no excavation required.",
-    image: "/manus-storage/trenchless-cipp_0e8cbbf0.jpg",
+    image: "/manus-storage/trenchless-cipp_af2a3f19.jpg",
     href: "/services/trenchless-pipe-repair",
     cta: "Get a Free Assessment",
   },
@@ -35,7 +35,7 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     title: "Wet Basement Waterproofing",
     description:
       "We fix wet and leaky basements permanently, backed by a 20-year warranty. Stop basement leaks and protect your home's foundation with our proven waterproofing solutions.",
-    image: "/manus-storage/wet-basement_f9b9e799.jpg",
+    image: "/manus-storage/wet-basement_34545357.jpg",
     href: "/services/wet-basement-repair",
     cta: "Stop Your Basement Leaks",
   },
@@ -44,7 +44,7 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     title: "Sewer Repair and Installation",
     description:
       "Our certified technicians solve your sewer and drain problems quickly and professionally. We handle everything from minor repairs to full replacements.",
-    image: "/manus-storage/sewer-excavation_2011c5b0.jpg",
+    image: "/manus-storage/sewer-excavation_fd6549ea.jpg",
     href: "/services/sewer-repair-installation",
     cta: "Get a Free Quote",
   },
@@ -53,16 +53,25 @@ const RESIDENTIAL_SERVICES: ServiceCard[] = [
     title: "Drain Cleaning and Power Flushing",
     description:
       "Proper maintenance prevents clogging. We use the latest hydro-jetting technology to keep your drains flowing cleanly and affordably, clearing years of buildup in a single visit.",
-    image: "/manus-storage/drain-cleaning_89acad85.jpg",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/drain-cleaning-clean-Sf7sybqH6jYeqQB2Q3NQFk.webp",
     href: "/services/drain-cleaning",
     cta: "Schedule a Cleaning",
+  },
+  {
+    category: "RESIDENTIAL",
+    title: "Septic Repairs",
+    description:
+      "Full service septic repairs and replacements for residential properties. We diagnose and fix septic bed problems, line failures, and drainage issues — backed by our quality guarantee.",
+    image: "/manus-storage/septic-service_005b9ea5.jpg",
+    href: "/services/septic-service",
+    cta: "Schedule a Service Call",
   },
   {
     category: "RESIDENTIAL",
     title: "Dump Trucks and Machine Excavating",
     description:
       "From deep excavations to parking lot preparation and pool installation, our fleet of dump trucks and excavators handles any earthmoving project with precision and speed.",
-    image: "/manus-storage/dump-truck_92b5ca4e.jpg",
+    image: "/manus-storage/dump-truck_dcdbedae.jpg",
     href: "/services/excavation-services",
     cta: "Request an Estimate",
   },
@@ -74,16 +83,25 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     title: "Sewer Video Camera Inspections",
     description:
       "Commercial-grade video inspection to diagnose sewer and drain problems quickly. We document everything on video so you have a clear record for insurance and compliance.",
-    image: "/manus-storage/sewer-camera_89fadfa4.jpg",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-clean-2snTGdn5gWiZBi5urG5Haa.webp",
     href: "/services/sewer-camera-inspection",
     cta: "Book a Commercial Inspection",
+  },
+  {
+    category: "COMMERCIAL",
+    title: "Drain Cleaning and Power Flushing",
+    description:
+      "High-pressure hydro-jetting to clear commercial drains, grease traps, and industrial lines. We keep your facility running without costly backups or health code violations.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/drain-cleaning-clean-Sf7sybqH6jYeqQB2Q3NQFk.webp",
+    href: "/services/drain-cleaning",
+    cta: "Schedule a Cleaning",
   },
   {
     category: "COMMERCIAL",
     title: "Municipal Services",
     description:
       "From sewer lining to manhole restoration and water main repair, we deliver effective solutions for all municipal drainage infrastructure needs.",
-    image: "/manus-storage/municipal-manhole_1ff6ab05.jpg",
+    image: "/manus-storage/municipal-manhole_9c9d4041.jpg",
     href: "/commercial",
     cta: "Discuss Your Project",
   },
@@ -92,34 +110,43 @@ const COMMERCIAL_SERVICES: ServiceCard[] = [
     title: "No-Dig Trenchless Systems",
     description:
       "Replace underground pipe without disturbing surface materials or parking lots. Minimal disruption to your business operations, completed in as little as one day.",
-    image: "/manus-storage/trenchless-cipp_0e8cbbf0.jpg",
+    image: "/manus-storage/trenchless-cipp_af2a3f19.jpg",
     href: "/services/trenchless-pipe-repair",
     cta: "Get a Free Assessment",
   },
   {
     category: "COMMERCIAL",
-    title: "Catch Basin Cleaning",
+    title: "Sewer Repair and Installation",
     description:
-      "We solve catch basin problems quickly using vacuum trucks and the latest technology. Regular cleaning prevents flooding, property damage, and regulatory issues.",
-    image: "/manus-storage/catch-basin_834522ce.jpg",
-    href: "/services/drain-cleaning",
-    cta: "Schedule a Cleaning",
+      "Highly trained technicians working to solve commercial sewer and drain problems using the latest products and methods. We minimize downtime and get your business back to normal fast.",
+    image: "/manus-storage/sewer-excavation_fd6549ea.jpg",
+    href: "/services/sewer-repair-installation",
+    cta: "Get a Free Quote",
   },
   {
     category: "COMMERCIAL",
-    title: "Commercial Sewer Repair",
+    title: "Dump Trucks and Machine Excavating",
     description:
-      "Highly trained technicians working to solve commercial sewer and drain problems using the latest products and methods. We minimize downtime and get your business back to normal fast.",
-    image: "/manus-storage/sewer-excavation_2011c5b0.jpg",
-    href: "/services/sewer-repair-installation",
-    cta: "Get a Free Quote",
+      "Large-scale earthmoving for commercial sites, parking lots, and infrastructure projects. Our fleet of excavators and dump trucks handles any volume with precision and efficiency.",
+    image: "/manus-storage/dump-truck_dcdbedae.jpg",
+    href: "/services/excavation-services",
+    cta: "Request an Estimate",
+  },
+  {
+    category: "COMMERCIAL",
+    title: "Catch Basin Cleaning",
+    description:
+      "We solve catch basin problems quickly using vacuum trucks and the latest technology. Regular cleaning prevents flooding, property damage, and regulatory compliance issues.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/catch-basin-clean-ggWwSG2AwStSzyju2aT8wZ.webp",
+    href: "/services/drain-cleaning",
+    cta: "Schedule a Cleaning",
   },
   {
     category: "COMMERCIAL",
     title: "Septic Service",
     description:
       "Preventative maintenance and a full service line of repairs and replacements on septic beds and sewers for commercial properties and rural businesses across Southwestern Ontario.",
-    image: "/manus-storage/septic-service_baff70a9.jpg",
+    image: "/manus-storage/septic-service_005b9ea5.jpg",
     href: "/commercial",
     cta: "Request an Estimate",
   },
