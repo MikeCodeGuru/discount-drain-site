@@ -516,12 +516,17 @@ export default function ScrollServicesSection() {
       style={{
         paddingTop: "52px",
         paddingBottom: "32px",
-        display: "grid",
-        gridTemplateColumns: "1fr auto",
-        alignItems: "flex-end",
-        gap: "24px",
       }}
     >
+      {/* Inner wrapper: side-by-side on desktop, stacked on mobile */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+        }}
+        className="services-header-inner"
+      >
       {/* Left: eyebrow + headline */}
       <div>
         {/* Eyebrow — horizontal rule + label, no pill background */}
@@ -559,7 +564,7 @@ export default function ScrollServicesSection() {
         <h2
           style={{
             fontFamily: "'Plus Jakarta Sans, sans-serif",
-            fontSize: "clamp(32px, 4vw, 52px)",
+            fontSize: "clamp(28px, 5vw, 52px)",
             lineHeight: 1.08,
             letterSpacing: "-0.02em",
             color: "#1A1B20",
@@ -595,7 +600,9 @@ export default function ScrollServicesSection() {
           gap: "2px",
           flexShrink: 0,
           border: "1px solid #E2E4E8",
+          alignSelf: "flex-start",
         }}
+        className="services-tab-toggle"
       >
         {(["residential", "commercial"] as const).map((tab) => (
           <button
@@ -605,7 +612,6 @@ export default function ScrollServicesSection() {
               padding: "9px 22px",
               borderRadius: "999px",
               fontSize: "13px",
-              fontWeight: 600,
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               letterSpacing: "0.01em",
               border: "none",
@@ -633,10 +639,11 @@ export default function ScrollServicesSection() {
           </button>
         ))}
       </div>
+      </div>{/* end services-header-inner */}
     </div>
   );
 
-  // ── MOBILE LAYOUT: SwiftForm-style sticky-stacking cards ──────────────────
+  // ── MOBILE LAYOUT: SwiftForm-style sticky-stacking cards ───────────────────
   // Each card wrapper is position:sticky; top:24px.
   // Cards are stacked vertically in a single column.
   // As the user scrolls, each card slides up and stacks over the previous one

@@ -518,3 +518,21 @@
     border-radius: 2px;
     margin-bottom: 20px;
   }
+
+/* Services section header: stacked on mobile, side-by-side on desktop */
+.services-header-inner {
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .services-header-inner {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .services-tab-toggle {
+    flex-shrink: 0;
+  }
+}
