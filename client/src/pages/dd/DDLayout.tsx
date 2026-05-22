@@ -235,21 +235,21 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                                 transition: "background 0.15s, color 0.15s",
                               }}
                               onMouseEnter={(e) => {
-                                (e.currentTarget as HTMLAnchorElement).style.background = "#F5F6F8";
-                                (e.currentTarget as HTMLAnchorElement).style.color = "#3F4049";
+                                (e.currentTarget as HTMLAnchorElement).style.background = "#EBF4FF";
+                                (e.currentTarget as HTMLAnchorElement).style.color = "#0060d0";
                               }}
                               onMouseLeave={(e) => {
                                 (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
                                 (e.currentTarget as HTMLAnchorElement).style.color = "#1A1B20";
                               }}
                             >
-                              {/* Gold dot accent */}
+                              {/* Blue dot accent */}
                               <span
                                 style={{
                                   width: "5px",
                                   height: "5px",
                                   borderRadius: "50%",
-                                  backgroundColor: "#FEDA86",
+                                  backgroundColor: "#0080ff",
                                   flexShrink: 0,
                                 }}
                               />
@@ -329,16 +329,16 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                               marginTop: "14px",
                               fontSize: "12px",
                               fontWeight: 700,
-                              color: "#3F4049",
+                              color: "#0060d0",
                               textDecoration: "none",
                               fontFamily: "'Plus Jakarta Sans', sans-serif",
                               letterSpacing: "0.01em",
                             }}
                             onMouseEnter={(e) => {
-                              (e.currentTarget as HTMLAnchorElement).style.color = "#1A1B20";
+                              (e.currentTarget as HTMLAnchorElement).style.color = "#0040a0";
                             }}
                             onMouseLeave={(e) => {
-                              (e.currentTarget as HTMLAnchorElement).style.color = "#3F4049";
+                              (e.currentTarget as HTMLAnchorElement).style.color = "#0060d0";
                             }}
                           >
                             Learn more
@@ -377,18 +377,18 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                             borderRadius: "999px",
                             fontSize: "12.5px",
                             fontWeight: 700,
-                            backgroundColor: "#3F4049",
-                            color: "#FEDA86",
+                            backgroundColor: "#0080ff",
+                            color: "#ffffff",
                             textDecoration: "none",
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
                             letterSpacing: "0.01em",
                             transition: "background 0.18s",
                           }}
                           onMouseEnter={(e) => {
-                            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#1A1B20";
+                            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0060d0";
                           }}
                           onMouseLeave={(e) => {
-                            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#3F4049";
+                            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0080ff";
                           }}
                         >
                           View All Services →

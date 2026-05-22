@@ -26,7 +26,7 @@ export default function Breadcrumb({ items, variant = "dark", className = "" }: 
 
   const linkColor = isLight ? "rgba(255,255,255,0.7)" : "#0080ff";
   const separatorColor = isLight ? "rgba(255,255,255,0.4)" : "#c0cdd8";
-  const currentColor = isLight ? "#ffffff" : "#3F4049";
+  const currentColor = isLight ? "#ffffff" : "#111111";
 
   return (
     <nav

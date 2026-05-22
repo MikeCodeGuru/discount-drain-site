@@ -203,7 +203,7 @@ export default function DDTownLanding() {
               <a
                 href="tel:5194518342"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-semibold"
-                style={{ backgroundColor: "#FEDA86", color: "#2A2A31", textDecoration: "none", fontSize: "15px" }}
+                style={{ backgroundColor: "#0080ff", color: "#ffffff", textDecoration: "none", fontSize: "15px" }}
               >
                 <Phone size={16} />
                 Call 519-451-8342
@@ -228,7 +228,7 @@ export default function DDTownLanding() {
       </section>
 
       {/* TRUST STRIP */}
-      <div style={{ backgroundColor: "#3F4049" }} className="py-4">
+      <div style={{ backgroundColor: "#0060d0" }} className="py-4">
         <div className="container">
           <div className="flex flex-wrap items-center justify-center gap-6">
             {[
@@ -239,7 +239,7 @@ export default function DDTownLanding() {
               "24/7 Emergency Service",
             ].map((badge) => (
               <div key={badge} className="flex items-center gap-2">
-                <CheckCircle2 size={14} style={{ color: "#FEDA86" }} />
+                <CheckCircle2 size={14} style={{ color: "#0080ff" }} />
                 <span style={{ fontSize: "13px", color: "#ffffff", fontWeight: 500 }}>{badge}</span>
               </div>
             ))}
@@ -502,7 +502,7 @@ export default function DDTownLanding() {
             <a
               href="tel:5194518342"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold"
-              style={{ backgroundColor: "#FEDA86", color: "#2A2A31", textDecoration: "none", fontSize: "16px" }}
+              style={{ backgroundColor: "#0080ff", color: "#ffffff", textDecoration: "none", fontSize: "16px" }}
             >
               <Phone size={17} />
               Call 519-451-8342

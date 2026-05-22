@@ -372,3 +372,18 @@ EOF
 - [x] Verify all 9 service pages render gallery correctly
 - [x] Build passes cleanly
 - [x] Save checkpoint
+
+## Phase 42: Videos, Captions, Gallery CTA, and Color Audit
+
+- [ ] Download UV liner videos from Google Drive (4 files: Lining Before, Lining After, IMG_1006.mov, IMG_1260.mov)
+- [ ] Convert all .mov files to .mp4 using ffmpeg
+- [ ] Upload converted .mp4 files to CDN
+- [ ] Update ServiceGallery component to support video tiles (poster frame + play button, inline video in lightbox)
+- [ ] Add UV liner videos to trenchless-pipe-repair gallery in serviceGallery.ts
+- [ ] Update all gallery captions with descriptive text and before/after labels across all 9 service pages
+- [ ] Add "Get a Free Quote" CTA button directly below gallery section on every service page
+- [ ] Audit entire codebase for gold (#FEDA86) and warm yellow color values
+- [ ] Replace all gold/yellow with V2 light blue palette (#0080ff / blue equivalents)
+- [ ] Verify no gold/yellow remains on service pages or homepage services section
+- [ ] Build passes cleanly
+- [ ] Save checkpoint

@@ -537,7 +537,7 @@ export default function ScrollServicesSection() {
             style={{
               width: "32px",
               height: "2px",
-              backgroundColor: "#FEDA86",
+              backgroundColor: "#0080ff",
               flexShrink: 0,
             }}
           />
@@ -547,7 +547,7 @@ export default function ScrollServicesSection() {
               fontWeight: 700,
               letterSpacing: "0.18em",
               textTransform: "uppercase" as const,
-              color: "#3F4049",
+              color: "#0060d0",
               fontFamily: "'Plus Jakarta Sans', sans-serif",
             }}
           >
@@ -558,7 +558,7 @@ export default function ScrollServicesSection() {
         {/* Headline — asymmetric: first line normal weight, second line bold + gold accent */}
         <h2
           style={{
-            fontFamily: "'Taviraj', Georgia, serif",
+            fontFamily: "'Plus Jakarta Sans, sans-serif",
             fontSize: "clamp(32px, 4vw, 52px)",
             lineHeight: 1.08,
             letterSpacing: "-0.02em",
@@ -572,7 +572,7 @@ export default function ScrollServicesSection() {
             style={{
               fontWeight: 700,
               // Gold underline accent via inline gradient border trick
-              backgroundImage: "linear-gradient(to right, #FEDA86 0%, #FEDA86 100%)",
+              backgroundImage: "linear-gradient(to right, #0080ff 0%, #0060d0 100%)",
               backgroundRepeat: "no-repeat",
               backgroundSize: "100% 3px",
               backgroundPosition: "0 100%",
@@ -611,13 +611,13 @@ export default function ScrollServicesSection() {
               border: "none",
               cursor: "pointer",
               transition: "background-color 0.22s cubic-bezier(0.4,0,0.2,1), color 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s",
-              backgroundColor: activeTab === tab ? "#3F4049" : "transparent",
-              color: activeTab === tab ? "#FEDA86" : "#6B7280",
+              backgroundColor: activeTab === tab ? "#0060d0" : "transparent",
+              color: activeTab === tab ? "#0080ff" : "#6B7280",
               boxShadow: activeTab === tab ? "0 2px 8px rgba(63,64,73,0.22)" : "none",
             }}
             onMouseEnter={(e) => {
               if (activeTab !== tab) {
-                (e.currentTarget as HTMLButtonElement).style.color = "#3F4049";
+                (e.currentTarget as HTMLButtonElement).style.color = "#0060d0";
                 (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(63,64,73,0.06)";
               }
             }}

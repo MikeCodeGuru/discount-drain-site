@@ -2,9 +2,9 @@
  * PageLoader — shown while a lazy-loaded route chunk is being fetched.
  *
  * Design tokens:
- *   Charcoal  #3F4049  (background)
- *   Gold      #FEDA86  (spinner accent)
- *   Off-white #F9F7F0  (skeleton shimmer base)
+ *   Charcoal  #0060d0  (background)
+ *   Gold      #0080ff  (spinner accent)
+ *   Off-white #F4F8FF  (skeleton shimmer base)
  *
  * Two variants:
  *   "page"   — full-viewport overlay used as the Suspense fallback for top-level routes
@@ -23,7 +23,7 @@ export default function PageLoader({ variant = "page" }: PageLoaderProps) {
       className={`flex flex-col items-center justify-center ${
         isPage ? "fixed inset-0 z-50" : "w-full py-24"
       }`}
-      style={{ backgroundColor: isPage ? "#F9F7F0" : "transparent" }}
+      style={{ backgroundColor: isPage ? "#F4F8FF" : "transparent" }}
       aria-label="Loading page…"
       role="status"
     >
@@ -31,10 +31,10 @@ export default function PageLoader({ variant = "page" }: PageLoaderProps) {
       <div className="mb-8 flex flex-col items-center leading-none select-none">
         <span
           style={{
-            fontFamily: "'Taviraj', Georgia, serif",
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
             fontSize: "28px",
             fontWeight: 600,
-            color: "#3F4049",
+            color: "#0060d0",
             letterSpacing: "-0.01em",
           }}
         >
@@ -42,10 +42,10 @@ export default function PageLoader({ variant = "page" }: PageLoaderProps) {
         </span>
         <span
           style={{
-            fontFamily: "'Taviraj', Georgia, serif",
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
             fontSize: "28px",
             fontWeight: 600,
-            color: "#FEDA86",
+            color: "#0080ff",
             letterSpacing: "-0.01em",
             lineHeight: "1",
           }}
@@ -66,8 +66,8 @@ export default function PageLoader({ variant = "page" }: PageLoaderProps) {
           className="absolute inset-0 rounded-full"
           style={{
             border: "4px solid transparent",
-            borderTopColor: "#FEDA86",
-            borderRightColor: "#FEDA86",
+            borderTopColor: "#0080ff",
+            borderRightColor: "#0080ff",
             animation: "dd-spin 0.8s linear infinite",
           }}
         />

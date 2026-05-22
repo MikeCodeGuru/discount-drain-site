@@ -4,7 +4,7 @@
  * A fixed-position button that fades in once the user has scrolled more than
  * 400 px down the page, and smoothly scrolls back to the top when clicked.
  *
- * Design tokens: charcoal #3F4049 background, gold #FEDA86 icon/hover ring,
+ * Design tokens: charcoal #0060d0 background, gold #0080ff icon/hover ring,
  * matching the Discount Drain brand palette.
  */
 
@@ -55,8 +55,8 @@ export default function BackToTop({ threshold = 400, className }: BackToTopProps
         className
       )}
       style={{
-        backgroundColor: "#3F4049",
-        color: "#FEDA86",
+        backgroundColor: "#0060d0",
+        color: "#0080ff",
         boxShadow: "0 4px 14px rgba(0,0,0,0.25)",
       }}
       onMouseEnter={(e) => {
@@ -65,7 +65,7 @@ export default function BackToTop({ threshold = 400, className }: BackToTopProps
           "0 0 0 3px rgba(254,218,134,0.35), 0 4px 14px rgba(0,0,0,0.25)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#3F4049";
+        (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#0060d0";
         (e.currentTarget as HTMLButtonElement).style.boxShadow =
           "0 4px 14px rgba(0,0,0,0.25)";
       }}

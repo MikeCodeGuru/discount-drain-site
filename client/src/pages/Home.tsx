@@ -1,7 +1,7 @@
 /*
  * DESIGN: Contek "Trusted Since 1970" - Warm Authority
- * Charcoal #3F4049 | Gold #FEDA86 | Off-White #F9F7F0
- * Taviraj serif headings | Inter Tight body/UI
+ * Charcoal #0060d0 | Gold #0080ff | Off-White #F4F8FF
+ * Plus Jakarta Sans headings | Plus Jakarta Sans body/UI
  * 0px border-radius buttons | 4px card radius
  */
 
@@ -195,11 +195,11 @@ export default function Home() {
     <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter Tight', sans-serif" }}>
 
       {/* ─── TOP BAR ─── */}
-      <div style={{ backgroundColor: "#2A2A31" }} className="py-2 px-4">
+      <div style={{ backgroundColor: "#0040a0" }} className="py-2 px-4">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-0 text-center sm:text-left">
             <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
               <a href="tel:5194518342" className="flex items-center gap-2 text-sm transition-colors"
-                style={{ color: "#FEDA86", fontFamily: "'Inter Tight', sans-serif" }}>
+                style={{ color: "#0080ff", fontFamily: "'Inter Tight', sans-serif" }}>
                 <Phone size={14} />
                 <span className="font-medium">519-451-8342</span>
               </a>
@@ -209,7 +209,7 @@ export default function Home() {
                 <span>office@discountdrain.ca</span>
               </a>
             </div>
-          <div className="flex items-center gap-2" style={{ color: "#FEDA86" }}>
+          <div className="flex items-center gap-2" style={{ color: "#0080ff" }}>
             <Clock size={14} />
             <span className="text-sm font-medium" style={{ fontFamily: "'Inter Tight', sans-serif" }}>
               24/7 Emergency Service Available
@@ -219,10 +219,10 @@ export default function Home() {
       </div>
 
       {/* ─── ANNOUNCEMENT BAR ─── */}
-      <div style={{ backgroundColor: "#FEDA86" }} className="py-3 px-4 text-center">
-        <p className="text-sm font-medium" style={{ color: "#2A2A31", fontFamily: "'Inter Tight', sans-serif" }}>
+      <div style={{ backgroundColor: "#0080ff" }} className="py-3 px-4 text-center">
+        <p className="text-sm font-medium" style={{ color: "#0040a0", fontFamily: "'Inter Tight', sans-serif" }}>
           <strong>Free Sewer Video Camera Inspection</strong> - A $400 value, included with every service call.{" "}
-          <a href="tel:5194518342" className="underline font-semibold" style={{ color: "#2A2A31" }}>
+          <a href="tel:5194518342" className="underline font-semibold" style={{ color: "#0040a0" }}>
             Call Now →
           </a>
         </p>
@@ -235,19 +235,19 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <div className="flex flex-col leading-none">
               <span style={{
-                fontFamily: "'Taviraj', Georgia, serif",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
                 fontSize: "22px",
                 fontWeight: 600,
-                color: "#3F4049",
+                color: "#0060d0",
                 letterSpacing: "-0.01em"
               }}>
                 DISCOUNT
               </span>
               <span style={{
-                fontFamily: "'Taviraj', Georgia, serif",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
                 fontSize: "22px",
                 fontWeight: 600,
-                color: "#FEDA86",
+                color: "#0080ff",
                 letterSpacing: "-0.01em",
                 lineHeight: "1"
               }}>
@@ -268,13 +268,13 @@ export default function Home() {
                 href={`#${item.toLowerCase().replace(" ", "-")}`}
                 className="text-sm transition-colors"
                 style={{
-                  color: "#3F4049",
+                  color: "#0060d0",
                   fontFamily: "'Inter Tight', sans-serif",
                   fontWeight: 400,
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#1697C2")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#3F4049")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#0060d0")}
               >
                 {item}
               </a>
@@ -283,13 +283,13 @@ export default function Home() {
 
           {/* CTA + Mobile Menu */}
           <div className="flex items-center gap-3">
-            <a href="tel:5194518342" className="btn-gold hidden sm:inline-flex text-sm" style={{ padding: "12px 20px" }}>
+            <a href="tel:5194518342" className="btn-blue hidden sm:inline-flex text-sm" style={{ padding: "12px 20px" }}>
               <Phone size={14} />
               Call Now
             </a>
             <button
               className="md:hidden p-2"
-              style={{ color: "#3F4049" }}
+              style={{ color: "#0060d0" }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -307,13 +307,13 @@ export default function Home() {
                   key={item}
                   href={`#${item.toLowerCase().replace(" ", "-")}`}
                   className="py-3 px-2 text-sm"
-                  style={{ color: "#3F4049", fontFamily: "'Inter Tight', sans-serif", borderBottom: "1px solid #F7F6F3" }}
+                  style={{ color: "#0060d0", fontFamily: "'Inter Tight', sans-serif", borderBottom: "1px solid #F7F6F3" }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item}
                 </a>
               ))}
-              <a href="tel:5194518342" className="btn-gold mt-3 justify-center" style={{ padding: "14px 20px" }}>
+              <a href="tel:5194518342" className="btn-blue mt-3 justify-center" style={{ padding: "14px 20px" }}>
                 <Phone size={14} />
                 Call 519-451-8342
               </a>
@@ -349,7 +349,7 @@ export default function Home() {
             <div className="section-label mb-5">London & Southwestern Ontario</div>
             <h1
               style={{
-                fontFamily: "'Taviraj', Georgia, serif",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
                 fontSize: "clamp(40px, 6vw, 74px)",
                 fontWeight: 400,
                 lineHeight: 1.1,
@@ -372,7 +372,7 @@ export default function Home() {
               Family-owned and operated since 1970. We solve any drain and sewer problem - residential or commercial - with the latest technology and a 20-year warranty.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="tel:5194518342" className="btn-gold" style={{ fontSize: "16px", padding: "18px 32px" }}>
+              <a href="tel:5194518342" className="btn-blue" style={{ fontSize: "16px", padding: "18px 32px" }}>
                 <Phone size={16} />
                 Call 519-451-8342
               </a>
@@ -406,7 +406,7 @@ export default function Home() {
                     borderRadius: "4px",
                   }}
                 >
-                  <CheckCircle2 size={14} style={{ color: "#FEDA86" }} />
+                  <CheckCircle2 size={14} style={{ color: "#0080ff" }} />
                   <span style={{ color: "#FFFFFF", fontSize: "13px", fontFamily: "'Inter Tight', sans-serif" }}>
                     {badge}
                   </span>
@@ -418,7 +418,7 @@ export default function Home() {
       </section>
 
       {/* ─── STATS STRIP ─── */}
-      <section style={{ backgroundColor: "#3F4049" }} className="py-12">
+      <section style={{ backgroundColor: "#0060d0" }} className="py-12">
         <div ref={statsRef} className="fade-in-up container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -430,10 +430,10 @@ export default function Home() {
               <div key={stat.label}>
                 <div
                   style={{
-                    fontFamily: "'Taviraj', Georgia, serif",
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
                     fontSize: "clamp(36px, 5vw, 56px)",
                     fontWeight: 400,
-                    color: "#FEDA86",
+                    color: "#0080ff",
                     lineHeight: 1,
                     marginBottom: "8px",
                   }}
@@ -458,16 +458,16 @@ export default function Home() {
       </section>
 
       {/* ─── SERVICES TABS ─── */}
-      <section id="residential" className="py-20" style={{ backgroundColor: "#F9F7F0" }}>
+      <section id="residential" className="py-20" style={{ backgroundColor: "#F4F8FF" }}>
         <div ref={servicesRef} className="fade-in-up container">
           <div className="text-center mb-12">
-            <div className="gold-rule mx-auto" />
+            <div className="blue-rule mx-auto" />
             <h2
               style={{
-                fontFamily: "'Taviraj', Georgia, serif",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
                 fontSize: "clamp(28px, 4vw, 50px)",
                 fontWeight: 400,
-                color: "#3F4049",
+                color: "#0060d0",
                 marginBottom: "16px",
               }}
             >
@@ -482,15 +482,15 @@ export default function Home() {
           <div className="flex justify-center mb-10">
             <div
               className="flex"
-              style={{ border: "1px solid #3F4049", borderRadius: "0px" }}
+              style={{ border: "1px solid #0060d0", borderRadius: "0px" }}
             >
               <button
                 onClick={() => setActiveTab("residential")}
                 className="px-8 py-3 text-sm font-medium transition-all"
                 style={{
                   fontFamily: "'Inter Tight', sans-serif",
-                  backgroundColor: activeTab === "residential" ? "#3F4049" : "transparent",
-                  color: activeTab === "residential" ? "#FFFFFF" : "#3F4049",
+                  backgroundColor: activeTab === "residential" ? "#0060d0" : "transparent",
+                  color: activeTab === "residential" ? "#FFFFFF" : "#0060d0",
                   borderRadius: "0px",
                   border: "none",
                 }}
@@ -502,11 +502,11 @@ export default function Home() {
                 className="px-8 py-3 text-sm font-medium transition-all"
                 style={{
                   fontFamily: "'Inter Tight', sans-serif",
-                  backgroundColor: activeTab === "commercial" ? "#3F4049" : "transparent",
-                  color: activeTab === "commercial" ? "#FFFFFF" : "#3F4049",
+                  backgroundColor: activeTab === "commercial" ? "#0060d0" : "transparent",
+                  color: activeTab === "commercial" ? "#FFFFFF" : "#0060d0",
                   borderRadius: "0px",
                   border: "none",
-                  borderLeft: "1px solid #3F4049",
+                  borderLeft: "1px solid #0060d0",
                 }}
               >
                 Commercial
@@ -526,7 +526,7 @@ export default function Home() {
                   border: "1px solid #F7F6F3",
                   borderRadius: "4px",
                   padding: "28px 30px",
-                  borderTop: "3px solid #FEDA86",
+                  borderTop: "3px solid #0080ff",
                 }}
               >
                 <div
@@ -534,19 +534,19 @@ export default function Home() {
                   style={{
                     width: "44px",
                     height: "44px",
-                    backgroundColor: "#F9F7F0",
+                    backgroundColor: "#F4F8FF",
                     borderRadius: "4px",
                   }}
                 >
-                  <service.icon size={20} style={{ color: "#3F4049" }} />
+                  <service.icon size={20} style={{ color: "#0060d0" }} />
                 </div>
 
                 <h3
                   style={{
-                    fontFamily: "'Taviraj', Georgia, serif",
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
                     fontSize: "20px",
                     fontWeight: 400,
-                    color: "#3F4049",
+                    color: "#0060d0",
                     marginBottom: "12px",
                     lineHeight: "1.3",
                   }}
@@ -568,7 +568,7 @@ export default function Home() {
                   href="tel:5194518342"
                   className="flex items-center gap-1 mt-4 text-sm font-medium transition-colors"
                   style={{ color: "#1697C2", fontFamily: "'Inter Tight', sans-serif", textDecoration: "none" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#3F4049")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#0060d0")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#1697C2")}
                 >
                   Book This Service <ArrowRight size={14} />
@@ -600,7 +600,7 @@ export default function Home() {
                 className="absolute bottom-6 left-6 card-dark"
                 style={{ maxWidth: "220px" }}
               >
-                <div style={{ color: "#FEDA86", fontSize: "13px", fontWeight: 500, marginBottom: "4px", fontFamily: "'Inter Tight', sans-serif" }}>
+                <div style={{ color: "#0080ff", fontSize: "13px", fontWeight: 500, marginBottom: "4px", fontFamily: "'Inter Tight', sans-serif" }}>
                   No Excavation Required
                 </div>
                 <div style={{ color: "rgba(255,255,255,0.8)", fontSize: "13px", fontFamily: "'Inter Tight', sans-serif" }}>
@@ -611,14 +611,14 @@ export default function Home() {
 
             {/* Content */}
             <div>
-              <div className="gold-rule" />
+              <div className="blue-rule" />
               <div className="section-label mb-3">Signature Technology</div>
               <h2
                 style={{
-                  fontFamily: "'Taviraj', Georgia, serif",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontSize: "clamp(28px, 3.5vw, 44px)",
                   fontWeight: 400,
-                  color: "#3F4049",
+                  color: "#0060d0",
                   marginBottom: "20px",
                   lineHeight: "1.15",
                 }}
@@ -639,12 +639,12 @@ export default function Home() {
                   "Long-lasting, seamless pipe lining",
                 ].map((point) => (
                   <div key={point} className="flex items-start gap-3">
-                    <CheckCircle2 size={16} style={{ color: "#FEDA86", marginTop: "3px", flexShrink: 0 }} />
-                    <span style={{ color: "#3F4049", fontSize: "15px", fontFamily: "'Inter Tight', sans-serif" }}>{point}</span>
+                    <CheckCircle2 size={16} style={{ color: "#0080ff", marginTop: "3px", flexShrink: 0 }} />
+                    <span style={{ color: "#0060d0", fontSize: "15px", fontFamily: "'Inter Tight', sans-serif" }}>{point}</span>
                   </div>
                 ))}
               </div>
-              <a href="tel:5194518342" className="btn-gold">
+              <a href="tel:5194518342" className="btn-blue">
                 <Phone size={16} />
                 Get a Free Assessment
               </a>
@@ -654,19 +654,19 @@ export default function Home() {
       </section>
 
       {/* ─── ABOUT ─── */}
-      <section id="about-us" className="py-20" style={{ backgroundColor: "#F9F7F0" }}>
+      <section id="about-us" className="py-20" style={{ backgroundColor: "#F4F8FF" }}>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div ref={aboutRef} className="fade-in-up">
-              <div className="gold-rule" />
+              <div className="blue-rule" />
               <div className="section-label mb-3">Family-Owned Since 1970</div>
               <h2
                 style={{
-                  fontFamily: "'Taviraj', Georgia, serif",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontSize: "clamp(28px, 3.5vw, 44px)",
                   fontWeight: 400,
-                  color: "#3F4049",
+                  color: "#0060d0",
                   marginBottom: "20px",
                   lineHeight: "1.15",
                 }}
@@ -691,7 +691,7 @@ export default function Home() {
                       style={{
                         width: "36px",
                         height: "36px",
-                        backgroundColor: "#FEDA86",
+                        backgroundColor: "#0080ff",
                         borderRadius: "4px",
                         display: "flex",
                         alignItems: "center",
@@ -699,9 +699,9 @@ export default function Home() {
                         flexShrink: 0,
                       }}
                     >
-                      <Icon size={16} style={{ color: "#2A2A31" }} />
+                      <Icon size={16} style={{ color: "#0040a0" }} />
                     </div>
-                    <span style={{ fontSize: "14px", color: "#3F4049", fontFamily: "'Inter Tight', sans-serif", fontWeight: 500 }}>
+                    <span style={{ fontSize: "14px", color: "#0060d0", fontFamily: "'Inter Tight', sans-serif", fontWeight: 500 }}>
                       {label}
                     </span>
                   </div>
@@ -748,13 +748,13 @@ export default function Home() {
       </section>
 
       {/* ─── TESTIMONIALS ─── */}
-      <section className="py-20" style={{ backgroundColor: "#3F4049" }}>
+      <section className="py-20" style={{ backgroundColor: "#0060d0" }}>
         <div ref={testimonialsRef} className="fade-in-up container">
           <div className="text-center mb-12">
-            <div className="gold-rule mx-auto" />
+            <div className="blue-rule mx-auto" />
             <h2
               style={{
-                fontFamily: "'Taviraj', Georgia, serif",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
                 fontSize: "clamp(28px, 4vw, 44px)",
                 fontWeight: 400,
                 color: "#FFFFFF",
@@ -783,7 +783,7 @@ export default function Home() {
                 {/* Stars */}
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: t.stars }).map((_, i) => (
-                    <Star key={i} size={14} fill="#FEDA86" style={{ color: "#FEDA86" }} />
+                    <Star key={i} size={14} fill="#0080ff" style={{ color: "#0080ff" }} />
                   ))}
                 </div>
                 <p
@@ -816,7 +816,7 @@ export default function Home() {
       <section
         id="contact"
         className="relative py-24 overflow-hidden"
-        style={{ backgroundColor: "#2A2A31" }}
+        style={{ backgroundColor: "#0040a0" }}
       >
         <div
           className="absolute inset-0 opacity-20"
@@ -829,10 +829,10 @@ export default function Home() {
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(42,42,49,0.85)" }} />
 
         <div ref={ctaRef} className="fade-in-up relative container text-center">
-          <div className="gold-rule mx-auto" />
+          <div className="blue-rule mx-auto" />
           <h2
             style={{
-              fontFamily: "'Taviraj', Georgia, serif",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: "clamp(28px, 4vw, 50px)",
               fontWeight: 400,
               color: "#FFFFFF",
@@ -854,7 +854,7 @@ export default function Home() {
             Call today and get your free sewer video camera inspection - a $400 value, on us. Available 24/7 for emergencies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:5194518342" className="btn-gold" style={{ fontSize: "16px", padding: "18px 36px" }}>
+            <a href="tel:5194518342" className="btn-blue" style={{ fontSize: "16px", padding: "18px 36px" }}>
               <Phone size={16} />
               Call 519-451-8342
             </a>
@@ -876,10 +876,10 @@ export default function Home() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="flex flex-col leading-none mb-4">
-                <span style={{ fontFamily: "'Taviraj', Georgia, serif", fontSize: "24px", fontWeight: 600, color: "#FFFFFF" }}>
+                <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "24px", fontWeight: 600, color: "#FFFFFF" }}>
                   DISCOUNT
                 </span>
-                <span style={{ fontFamily: "'Taviraj', Georgia, serif", fontSize: "24px", fontWeight: 600, color: "#FEDA86", lineHeight: "1" }}>
+                <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "24px", fontWeight: 600, color: "#0080ff", lineHeight: "1" }}>
                   DRAIN
                 </span>
               </div>
@@ -899,7 +899,7 @@ export default function Home() {
                       borderRadius: "4px",
                       color: "rgba(255,255,255,0.6)",
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#FEDA86"; (e.currentTarget.querySelector("svg") as SVGElement).style.color = "#2A2A31"; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#0080ff"; (e.currentTarget.querySelector("svg") as SVGElement).style.color = "#0040a0"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.08)"; (e.currentTarget.querySelector("svg") as SVGElement).style.color = "rgba(255,255,255,0.6)"; }}
                   >
                     <Icon size={15} />
@@ -910,7 +910,7 @@ export default function Home() {
 
             {/* Services */}
             <div>
-              <h4 style={{ fontFamily: "'Taviraj', Georgia, serif", fontSize: "16px", color: "#FFFFFF", marginBottom: "16px", fontWeight: 500 }}>
+              <h4 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "16px", color: "#FFFFFF", marginBottom: "16px", fontWeight: 500 }}>
                 Services
               </h4>
               {["Free Camera Inspection", "Trenchless Systems", "Sewer Repair", "Wet Basements", "Drain Cleaning", "Excavating"].map((s) => (
@@ -919,7 +919,7 @@ export default function Home() {
                   href="#services"
                   className="block mb-2 text-sm transition-colors"
                   style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Inter Tight', sans-serif", textDecoration: "none" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#FEDA86")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#0080ff")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
                 >
                   {s}
@@ -929,24 +929,24 @@ export default function Home() {
 
             {/* Contact */}
             <div>
-              <h4 style={{ fontFamily: "'Taviraj', Georgia, serif", fontSize: "16px", color: "#FFFFFF", marginBottom: "16px", fontWeight: 500 }}>
+              <h4 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: "16px", color: "#FFFFFF", marginBottom: "16px", fontWeight: 500 }}>
                 Contact
               </h4>
               <div className="flex flex-col gap-3">
                 <a href="tel:5194518342" className="flex items-start gap-3 text-sm" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Inter Tight', sans-serif", textDecoration: "none" }}>
-                  <Phone size={14} style={{ marginTop: "2px", flexShrink: 0, color: "#FEDA86" }} />
+                  <Phone size={14} style={{ marginTop: "2px", flexShrink: 0, color: "#0080ff" }} />
                   519-451-8342
                 </a>
                 <a href="mailto:office@discountdrain.ca" className="flex items-start gap-3 text-sm" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Inter Tight', sans-serif", textDecoration: "none" }}>
-                  <Mail size={14} style={{ marginTop: "2px", flexShrink: 0, color: "#FEDA86" }} />
+                  <Mail size={14} style={{ marginTop: "2px", flexShrink: 0, color: "#0080ff" }} />
                   office@discountdrain.ca
                 </a>
                 <div className="flex items-start gap-3 text-sm" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Inter Tight', sans-serif" }}>
-                  <MapPin size={14} style={{ marginTop: "2px", flexShrink: 0, color: "#FEDA86" }} />
+                  <MapPin size={14} style={{ marginTop: "2px", flexShrink: 0, color: "#0080ff" }} />
                   London & Southwestern Ontario
                 </div>
                 <div className="flex items-start gap-3 text-sm" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Inter Tight', sans-serif" }}>
-                  <Clock size={14} style={{ marginTop: "2px", flexShrink: 0, color: "#FEDA86" }} />
+                  <Clock size={14} style={{ marginTop: "2px", flexShrink: 0, color: "#0080ff" }} />
                   24/7 Emergency Service
                 </div>
               </div>

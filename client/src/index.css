@@ -483,3 +483,38 @@
     transform: translateY(0);
   }
 }
+
+  /* V2 blue button — replaces btn-gold from V1 */
+  .btn-blue {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0080ff;
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    box-shadow: 0 4px 14px rgba(0, 128, 255, 0.25);
+  }
+  .btn-blue:hover {
+    background: #0060d0;
+    transform: translateY(-1px);
+  }
+  .btn-blue:active {
+    transform: translateY(0);
+  }
+
+  /* V2 blue rule — replaces gold-rule from V1 */
+  .blue-rule {
+    width: 48px;
+    height: 3px;
+    background: #0080ff;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }

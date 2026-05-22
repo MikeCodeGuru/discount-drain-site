@@ -1,31 +1,43 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn, Play } from "lucide-react";
+import { Link } from "wouter";
 
 export interface GalleryItem {
   src: string;
   alt: string;
   type?: "image" | "video";
   caption?: string;
+  label?: "before" | "after" | string; // optional badge label
+  poster?: string; // poster image for video tiles
 }
 
 interface ServiceGalleryProps {
   items: GalleryItem[];
   title?: string;
+  serviceSlug?: string;
 }
 
-export default function ServiceGallery({ items, title = "Project Gallery" }: ServiceGalleryProps) {
+export default function ServiceGallery({ items, title = "Project Gallery", serviceSlug }: ServiceGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
-  const closeLightbox = () => setLightboxIndex(null);
+  const closeLightbox = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    setLightboxIndex(null);
+  };
 
   const prev = useCallback(() => {
     if (lightboxIndex === null) return;
+    if (videoRef.current) videoRef.current.pause();
     setLightboxIndex((lightboxIndex - 1 + items.length) % items.length);
   }, [lightboxIndex, items.length]);
 
   const next = useCallback(() => {
     if (lightboxIndex === null) return;
+    if (videoRef.current) videoRef.current.pause();
     setLightboxIndex((lightboxIndex + 1) % items.length);
   }, [lightboxIndex, items.length]);
 
@@ -54,17 +66,25 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
   if (!items || items.length === 0) return null;
 
   const currentItem = lightboxIndex !== null ? items[lightboxIndex] : null;
+  const gridItems = items.slice(0, 9);
 
-  // Build a masonry-style grid layout
-  // First item is large (spans 2 cols on desktop), rest are standard
-  const gridItems = items.slice(0, 9); // cap at 9 for clean grid
+  // Label badge colors
+  const getLabelStyle = (label: string) => {
+    if (label.toLowerCase() === "before") {
+      return { background: "rgba(239,68,68,0.9)", color: "#fff" };
+    }
+    if (label.toLowerCase() === "after") {
+      return { background: "rgba(22,151,194,0.95)", color: "#fff" };
+    }
+    return { background: "rgba(0,128,255,0.85)", color: "#fff" };
+  };
 
   return (
     <section
       style={{
-        padding: "80px 0",
-        background: "#F9F7F0",
-        borderTop: "1px solid #E8E9EC",
+        padding: "80px 0 0",
+        background: "#F4F8FF",
+        borderTop: "1px solid #dce8f7",
       }}
     >
       <div className="container">
@@ -78,14 +98,14 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
               marginBottom: "12px",
             }}
           >
-            <div style={{ width: "32px", height: "2px", background: "#FEDA86" }} />
+            <div style={{ width: "32px", height: "2px", background: "#0080ff" }} />
             <span
               style={{
                 fontSize: "11px",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "#9CA3AF",
+                color: "#0080ff",
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
               }}
             >
@@ -94,10 +114,10 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
           </div>
           <h2
             style={{
-              fontFamily: "'Taviraj', Georgia, serif",
-              fontSize: "clamp(26px, 3.5vw, 36px)",
-              fontWeight: 600,
-              color: "#1A1B20",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontSize: "clamp(24px, 3.5vw, 34px)",
+              fontWeight: 800,
+              color: "#111111",
               lineHeight: 1.2,
               margin: 0,
             }}
@@ -108,12 +128,12 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
             style={{
               marginTop: "10px",
               fontSize: "15px",
-              color: "#6B7280",
+              color: "#555555",
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               maxWidth: "520px",
             }}
           >
-            Browse real photos from our job sites. Click any image to view it full screen.
+            Browse real photos and videos from our job sites. Click any image or video to view full screen.
           </p>
         </div>
 
@@ -128,8 +148,8 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
           className="gallery-grid"
         >
           {gridItems.map((item, i) => {
-            // First item spans 2 cols + 2 rows for visual anchor
             const isHero = i === 0;
+            const isVideo = item.type === "video";
             return (
               <div
                 key={i}
@@ -140,82 +160,152 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
                   position: "relative",
                   overflow: "hidden",
                   borderRadius: "12px",
-                  cursor: "zoom-in",
-                  background: "#E8E9EC",
+                  cursor: isVideo ? "pointer" : "zoom-in",
+                  background: "#dce8f7",
                 }}
                 className="gallery-thumb"
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    transition: "transform 0.4s ease",
-                    display: "block",
-                  }}
-                  loading="lazy"
-                />
-                {/* Hover overlay */}
-                <div
-                  className="gallery-overlay"
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "rgba(26,27,32,0)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "background 0.3s ease",
-                  }}
-                >
+                {isVideo ? (
+                  /* Video tile — shows poster or dark background with play icon */
                   <div
-                    className="gallery-icon"
                     style={{
-                      width: "48px",
-                      height: "48px",
-                      borderRadius: "50%",
-                      background: "rgba(255,255,255,0.95)",
+                      width: "100%",
+                      height: "100%",
+                      background: item.poster
+                        ? `url(${item.poster}) center/cover no-repeat`
+                        : "linear-gradient(135deg, #0060d0 0%, #003a8c 100%)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      opacity: 0,
-                      transform: "scale(0.8)",
-                      transition: "opacity 0.3s ease, transform 0.3s ease",
                     }}
                   >
-                    {item.type === "video" ? (
-                      <Play size={20} style={{ color: "#3F4049" }} />
-                    ) : (
-                      <ZoomIn size={20} style={{ color: "#3F4049" }} />
-                    )}
+                    {/* Dark overlay for readability */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "rgba(0,0,0,0.35)",
+                      }}
+                    />
+                    {/* Play button */}
+                    <div
+                      style={{
+                        position: "relative",
+                        zIndex: 2,
+                        width: "64px",
+                        height: "64px",
+                        borderRadius: "50%",
+                        background: "rgba(255,255,255,0.95)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+                        transition: "transform 0.2s ease",
+                      }}
+                      className="gallery-play-btn"
+                    >
+                      <Play size={26} style={{ color: "#0060d0", marginLeft: "3px" }} fill="#0060d0" />
+                    </div>
                   </div>
-                </div>
-                {/* Video badge */}
-                {item.type === "video" && (
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      transition: "transform 0.4s ease",
+                      display: "block",
+                    }}
+                    loading="lazy"
+                  />
+                )}
+
+                {/* Hover overlay for images */}
+                {!isVideo && (
+                  <div
+                    className="gallery-overlay"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "rgba(0,60,160,0)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transition: "background 0.3s ease",
+                    }}
+                  >
+                    <div
+                      className="gallery-icon"
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "50%",
+                        background: "rgba(255,255,255,0.95)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        opacity: 0,
+                        transform: "scale(0.8)",
+                        transition: "opacity 0.3s ease, transform 0.3s ease",
+                      }}
+                    >
+                      <ZoomIn size={20} style={{ color: "#0060d0" }} />
+                    </div>
+                  </div>
+                )}
+
+                {/* Before/After or custom label badge */}
+                {item.label && (
                   <div
                     style={{
                       position: "absolute",
                       top: "12px",
                       left: "12px",
-                      background: "rgba(26,27,32,0.75)",
-                      color: "#FEDA86",
+                      ...getLabelStyle(item.label),
                       fontSize: "11px",
+                      fontWeight: 700,
+                      padding: "4px 10px",
+                      borderRadius: "999px",
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                      zIndex: 3,
+                    }}
+                  >
+                    {item.label}
+                  </div>
+                )}
+
+                {/* Video badge */}
+                {isVideo && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "12px",
+                      right: "12px",
+                      background: "rgba(0,96,208,0.85)",
+                      color: "#fff",
+                      fontSize: "10px",
                       fontWeight: 700,
                       padding: "4px 10px",
                       borderRadius: "999px",
                       display: "flex",
                       alignItems: "center",
-                      gap: "5px",
+                      gap: "4px",
                       fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      zIndex: 3,
                     }}
                   >
-                    <Play size={10} />
+                    <Play size={9} fill="#fff" />
                     VIDEO
                   </div>
                 )}
-                {/* Caption on hero */}
+
+                {/* Caption on hero tile */}
                 {isHero && item.caption && (
                   <div
                     style={{
@@ -224,7 +314,8 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
                       left: 0,
                       right: 0,
                       padding: "20px 20px 16px",
-                      background: "linear-gradient(to top, rgba(26,27,32,0.75) 0%, transparent 100%)",
+                      background: "linear-gradient(to top, rgba(0,30,80,0.8) 0%, transparent 100%)",
+                      zIndex: 2,
                     }}
                   >
                     <p
@@ -245,20 +336,114 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
           })}
         </div>
 
-        {/* "View more" note if more than 9 items */}
         {items.length > 9 && (
           <p
             style={{
               marginTop: "16px",
               fontSize: "13px",
-              color: "#9CA3AF",
+              color: "#888",
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               textAlign: "center",
             }}
           >
-            Showing 9 of {items.length} photos. Call us to see more of our work.
+            Showing 9 of {items.length} items. Call us to see more of our work.
           </p>
         )}
+
+        {/* CTA below gallery */}
+        <div
+          style={{
+            marginTop: "48px",
+            paddingBottom: "80px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "12px",
+            textAlign: "center",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "17px",
+              fontWeight: 700,
+              color: "#111111",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              margin: 0,
+            }}
+          >
+            Ready to get started? We offer free estimates and same-day service.
+          </p>
+          <p
+            style={{
+              fontSize: "14px",
+              color: "#555555",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              margin: 0,
+              maxWidth: "420px",
+            }}
+          >
+            Every service call includes a free sewer camera inspection — a $400 value at no charge.
+          </p>
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center", marginTop: "8px" }}>
+            <Link href="/quote">
+              <a
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  background: "#0080ff",
+                  color: "#fff",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "15px",
+                  padding: "14px 28px",
+                  borderRadius: "8px",
+                  textDecoration: "none",
+                  transition: "background 0.2s ease, transform 0.15s ease",
+                  boxShadow: "0 4px 16px rgba(0,128,255,0.3)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "#0060d0";
+                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "#0080ff";
+                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
+                }}
+              >
+                Get a Free Quote
+              </a>
+            </Link>
+            <a
+              href="tel:5194518342"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "transparent",
+                color: "#0080ff",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontWeight: 700,
+                fontSize: "15px",
+                padding: "14px 28px",
+                borderRadius: "8px",
+                textDecoration: "none",
+                border: "2px solid #0080ff",
+                transition: "background 0.2s ease, color 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "#0080ff";
+                (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                (e.currentTarget as HTMLAnchorElement).style.color = "#0080ff";
+              }}
+            >
+              Call 519-451-8342
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Lightbox */}
@@ -269,14 +454,14 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
             position: "fixed",
             inset: 0,
             zIndex: 9999,
-            background: "rgba(10,10,14,0.95)",
+            background: "rgba(5,10,25,0.96)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             padding: "20px",
           }}
         >
-          {/* Close button */}
+          {/* Close */}
           <button
             onClick={closeLightbox}
             style={{
@@ -293,12 +478,9 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              transition: "background 0.2s",
               zIndex: 10000,
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.2)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.1)"; }}
-            aria-label="Close lightbox"
+            aria-label="Close"
           >
             <X size={20} />
           </button>
@@ -314,13 +496,12 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
               fontSize: "13px",
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontWeight: 600,
-              letterSpacing: "0.05em",
             }}
           >
             {lightboxIndex + 1} / {items.length}
           </div>
 
-          {/* Prev button */}
+          {/* Prev */}
           {items.length > 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); prev(); }}
@@ -339,18 +520,15 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
                 alignItems: "center",
                 justifyContent: "center",
                 cursor: "pointer",
-                transition: "background 0.2s",
                 zIndex: 10000,
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(254,218,134,0.25)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.1)"; }}
-              aria-label="Previous image"
+              aria-label="Previous"
             >
               <ChevronLeft size={24} />
             </button>
           )}
 
-          {/* Image */}
+          {/* Content */}
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
@@ -362,18 +540,35 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
               gap: "12px",
             }}
           >
-            <img
-              key={lightboxIndex}
-              src={currentItem.src}
-              alt={currentItem.alt}
-              style={{
-                maxWidth: "100%",
-                maxHeight: "80vh",
-                objectFit: "contain",
-                borderRadius: "8px",
-                boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
-              }}
-            />
+            {currentItem.type === "video" ? (
+              <video
+                key={lightboxIndex}
+                ref={videoRef}
+                src={currentItem.src}
+                controls
+                autoPlay
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "80vh",
+                  borderRadius: "8px",
+                  boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
+                  background: "#000",
+                }}
+              />
+            ) : (
+              <img
+                key={lightboxIndex}
+                src={currentItem.src}
+                alt={currentItem.alt}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "80vh",
+                  objectFit: "contain",
+                  borderRadius: "8px",
+                  boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
+                }}
+              />
+            )}
             {currentItem.caption && (
               <p
                 style={{
@@ -389,7 +584,7 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
             )}
           </div>
 
-          {/* Next button */}
+          {/* Next */}
           {items.length > 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); next(); }}
@@ -408,12 +603,9 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
                 alignItems: "center",
                 justifyContent: "center",
                 cursor: "pointer",
-                transition: "background 0.2s",
                 zIndex: 10000,
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(254,218,134,0.25)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.1)"; }}
-              aria-label="Next image"
+              aria-label="Next"
             >
               <ChevronRight size={24} />
             </button>
@@ -421,10 +613,10 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
         </div>
       )}
 
-      {/* Hover styles via global CSS injection */}
+      {/* Hover styles */}
       <style>{`
         .gallery-thumb:hover .gallery-overlay {
-          background: rgba(26,27,32,0.45) !important;
+          background: rgba(0,60,160,0.4) !important;
         }
         .gallery-thumb:hover .gallery-icon {
           opacity: 1 !important;
@@ -432,6 +624,9 @@ export default function ServiceGallery({ items, title = "Project Gallery" }: Ser
         }
         .gallery-thumb:hover img {
           transform: scale(1.05);
+        }
+        .gallery-thumb:hover .gallery-play-btn {
+          transform: scale(1.1);
         }
         @media (max-width: 640px) {
           .gallery-grid {
