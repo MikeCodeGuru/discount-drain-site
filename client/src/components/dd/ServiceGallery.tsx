@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn, Play } from "lucide-react";
-import { Link } from "wouter";
 
 export interface GalleryItem {
   src: string;
@@ -385,35 +384,34 @@ export default function ServiceGallery({ items, title = "Project Gallery", servi
             Every service call includes a free sewer camera inspection — a $400 value at no charge.
           </p>
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center", marginTop: "8px" }}>
-            <Link href="/quote">
-              <a
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  background: "#0080ff",
-                  color: "#fff",
-                  fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "15px",
-                  padding: "14px 28px",
-                  borderRadius: "8px",
-                  textDecoration: "none",
-                  transition: "background 0.2s ease, transform 0.15s ease",
-                  boxShadow: "0 4px 16px rgba(0,128,255,0.3)",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background = "#0060d0";
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background = "#0080ff";
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-                }}
-              >
-                Get a Free Quote
-              </a>
-            </Link>
+            <a
+              href="/quote"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "#0080ff",
+                color: "#fff",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontWeight: 700,
+                fontSize: "15px",
+                padding: "14px 28px",
+                borderRadius: "8px",
+                textDecoration: "none",
+                transition: "background 0.2s ease, transform 0.15s ease",
+                boxShadow: "0 4px 16px rgba(0,128,255,0.3)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "#0060d0";
+                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "#0080ff";
+                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
+              }}
+            >
+              Get a Free Quote
+            </a>
             <a
               href="tel:5194518342"
               style={{
