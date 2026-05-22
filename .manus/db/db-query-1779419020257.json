@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE services SET benefits = JSON_ARRAY_APPEND(benefits, '$', JSON_OBJECT('title', 'Free Sewer Camera Inspection', 'desc', 'Every wet basement job starts with a free camera inspection of your weeping tile and sewer connection. We identify the source of water entry before recommending any solution.'), '$', JSON_OBJECT('title', 'Family-Owned Since 1970', 'desc', 'Over 55 years of wet basement repairs in London and Southwestern Ontario. We have seen every type of foundation and drainage problem this region produces.')) WHERE slug = 'wet-basement-repair';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute UPDATE services SET benefits = JSON_ARRAY_APPEND(benefits, '$', JSON_OBJECT('title', 'Free Sewer Camera Inspection', 'desc', 'Every wet basement job starts with a free camera inspection of your weeping tile and sewer connection. We identify the source of water entry before recommending any solution.'), '$', JSON_OBJECT('title', 'Family-Owned Since 1970', 'desc', 'Over 55 years of wet basement repairs in London and Southwestern Ontario. We have seen every type of foundation and drainage problem this region produces.')) WHERE slug = 'wet-basement-repair';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 275
+}

@@ -249,3 +249,20 @@
 - [x] Made Related Services subtitle dynamic per slug
 - [x] HMR confirmed clean build
 - [x] Save checkpoint
+
+## Phase 31: Full Service Pages Build (All 9 Services)
+
+- [x] Catalog Google Drive assets and map to services
+- [x] Add breadcrumb nav + BreadcrumbList JSON-LD to DDServiceDetail.tsx
+- [x] Write unique copy for Camera Inspection page (5+ paragraphs, 6 benefits, 10 FAQs)
+- [x] Write unique copy for Trenchless Pipe Repair page (5+ paragraphs, 6 benefits, 10 FAQs)
+- [x] Write unique copy for Wet Basements page (5+ paragraphs, 6 benefits, 10 FAQs)
+- [x] Write unique copy for Sewer Repair and Installation page (5+ paragraphs, 6 benefits, 10 FAQs)
+- [x] Write unique copy for Drain Cleaning and Power Flushing page (5+ paragraphs, 6 benefits, 10 FAQs)
+- [x] Write unique copy for Dump Trucks and Machine Excavating page (5+ paragraphs, 6 benefits, 10 FAQs)
+- [x] Upload client Drive assets to CDN and map to correct service pages
+- [x] Update all 9 service DB rows with full content, correct imageUrl, and inline images in longDesc
+- [x] Add Related Services cross-links for all 9 service pages in RELATED_SERVICES map
+- [x] Verify all pages render correctly with no missing content
+- [x] TypeScript check passes (0 errors)
+- [x] Save checkpoint

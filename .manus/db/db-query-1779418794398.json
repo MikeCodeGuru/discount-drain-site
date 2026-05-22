@@ -1,0 +1,34 @@
+{
+  "query": "SELECT slug, JSON_LENGTH(faqs) as faq_count FROM services WHERE slug IN ('wet-basement-repair','trenchless-pipe-repair','sewer-repair-installation','sewer-camera-inspection','drain-cleaning','excavation-services') ORDER BY slug;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, JSON_LENGTH(faqs) as faq_count FROM services WHERE slug IN ('wet-basement-repair','trenchless-pipe-repair','sewer-repair-installation','sewer-camera-inspection','drain-cleaning','excavation-services') ORDER BY slug;",
+  "rows": [
+    {
+      "slug": "drain-cleaning",
+      "faq_count": "13"
+    },
+    {
+      "slug": "excavation-services",
+      "faq_count": "13"
+    },
+    {
+      "slug": "sewer-camera-inspection",
+      "faq_count": "13"
+    },
+    {
+      "slug": "sewer-repair-installation",
+      "faq_count": "13"
+    },
+    {
+      "slug": "trenchless-pipe-repair",
+      "faq_count": "13"
+    },
+    {
+      "slug": "wet-basement-repair",
+      "faq_count": "13"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\tfaq_count\ndrain-cleaning\t13\nexcavation-services\t13\nsewer-camera-inspection\t13\nsewer-repair-installation\t13\ntrenchless-pipe-repair\t13\nwet-basement-repair\t13\n",
+  "stderr": "",
+  "execution_time_ms": 324
+}

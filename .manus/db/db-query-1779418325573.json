@@ -1,0 +1,73 @@
+{
+  "query": "SELECT slug, title, CHAR_LENGTH(longDesc) as longDescLen, CASE WHEN benefits IS NOT NULL THEN 'YES' ELSE 'NO' END as hasBenefits, CASE WHEN faqs IS NOT NULL THEN 'YES' ELSE 'NO' END as hasFaqs FROM services ORDER BY sortOrder;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, CHAR_LENGTH(longDesc) as longDescLen, CASE WHEN benefits IS NOT NULL THEN 'YES' ELSE 'NO' END as hasBenefits, CASE WHEN faqs IS NOT NULL THEN 'YES' ELSE 'NO' END as hasFaqs FROM services ORDER BY sortOrder;",
+  "rows": [
+    {
+      "slug": "sewer-camera-inspection",
+      "title": "Free Sewer Video Camera Inspection",
+      "longDescLen": "975",
+      "hasBenefits": "YES",
+      "hasFaqs": "YES"
+    },
+    {
+      "slug": "trenchless-pipe-repair",
+      "title": "No-Dig Trenchless Pipe Repair",
+      "longDescLen": "984",
+      "hasBenefits": "YES",
+      "hasFaqs": "YES"
+    },
+    {
+      "slug": "wet-basement-repair",
+      "title": "Wet Basement Waterproofing",
+      "longDescLen": "1039",
+      "hasBenefits": "YES",
+      "hasFaqs": "YES"
+    },
+    {
+      "slug": "sewer-repair-installation",
+      "title": "Sewer Repair and Installation",
+      "longDescLen": "1046",
+      "hasBenefits": "YES",
+      "hasFaqs": "YES"
+    },
+    {
+      "slug": "drain-cleaning",
+      "title": "Drain Cleaning and Power Flushing",
+      "longDescLen": "1040",
+      "hasBenefits": "YES",
+      "hasFaqs": "YES"
+    },
+    {
+      "slug": "excavation-services",
+      "title": "Excavation and Machine Services",
+      "longDescLen": "1047",
+      "hasBenefits": "YES",
+      "hasFaqs": "YES"
+    },
+    {
+      "slug": "municipal-services",
+      "title": "Municipal Services",
+      "longDescLen": "2660",
+      "hasBenefits": "YES",
+      "hasFaqs": "YES"
+    },
+    {
+      "slug": "septic-repairs",
+      "title": "Septic Service and Repairs",
+      "longDescLen": "1572",
+      "hasBenefits": "YES",
+      "hasFaqs": "YES"
+    },
+    {
+      "slug": "catch-basin-cleaning",
+      "title": "Catch Basin Cleaning",
+      "longDescLen": "2393",
+      "hasBenefits": "YES",
+      "hasFaqs": "YES"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tlongDescLen\thasBenefits\thasFaqs\nsewer-camera-inspection\tFree Sewer Video Camera Inspection\t975\tYES\tYES\ntrenchless-pipe-repair\tNo-Dig Trenchless Pipe Repair\t984\tYES\tYES\nwet-basement-repair\tWet Basement Waterproofing\t1039\tYES\tYES\nsewer-repair-installation\tSewer Repair and Installation\t1046\tYES\tYES\ndrain-cleaning\tDrain Cleaning and Power Flushing\t1040\tYES\tYES\nexcavation-services\tExcavation and Machine Services\t1047\tYES\tYES\nmunicipal-services\tMunicipal Services\t2660\tYES\tYES\nseptic-repairs\tSeptic Service and Repairs\t1572\tYES\tYES\ncatch-basin-cleaning\tCatch Basin Cleaning\t2393\tYES\tYES\n",
+  "stderr": "",
+  "execution_time_ms": 409
+}

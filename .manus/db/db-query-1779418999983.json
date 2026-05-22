@@ -1,0 +1,40 @@
+{
+  "query": "SELECT slug, JSON_LENGTH(benefits) as benefit_count, JSON_LENGTH(faqs) as faq_count FROM services WHERE slug IN ('wet-basement-repair','trenchless-pipe-repair','sewer-repair-installation','sewer-camera-inspection','drain-cleaning','excavation-services') ORDER BY slug;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, JSON_LENGTH(benefits) as benefit_count, JSON_LENGTH(faqs) as faq_count FROM services WHERE slug IN ('wet-basement-repair','trenchless-pipe-repair','sewer-repair-installation','sewer-camera-inspection','drain-cleaning','excavation-services') ORDER BY slug;",
+  "rows": [
+    {
+      "slug": "drain-cleaning",
+      "benefit_count": "4",
+      "faq_count": "13"
+    },
+    {
+      "slug": "excavation-services",
+      "benefit_count": "4",
+      "faq_count": "13"
+    },
+    {
+      "slug": "sewer-camera-inspection",
+      "benefit_count": "4",
+      "faq_count": "13"
+    },
+    {
+      "slug": "sewer-repair-installation",
+      "benefit_count": "4",
+      "faq_count": "13"
+    },
+    {
+      "slug": "trenchless-pipe-repair",
+      "benefit_count": "4",
+      "faq_count": "13"
+    },
+    {
+      "slug": "wet-basement-repair",
+      "benefit_count": "4",
+      "faq_count": "13"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\tbenefit_count\tfaq_count\ndrain-cleaning\t4\t13\nexcavation-services\t4\t13\nsewer-camera-inspection\t4\t13\nsewer-repair-installation\t4\t13\ntrenchless-pipe-repair\t4\t13\nwet-basement-repair\t4\t13\n",
+  "stderr": "",
+  "execution_time_ms": 350
+}

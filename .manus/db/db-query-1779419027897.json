@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE services SET benefits = JSON_ARRAY_APPEND(benefits, '$', JSON_OBJECT('title', '20-Year Warranty', 'desc', 'All trenchless repair work is backed by our standard written warranty. If the repaired section fails within the warranty period, we come back and fix it at no charge.'), '$', JSON_OBJECT('title', 'Camera Inspection Included', 'desc', 'Every trenchless job starts with a free video camera inspection. You watch the footage on site and understand exactly what is wrong before we recommend any repair method.')) WHERE slug = 'trenchless-pipe-repair';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute UPDATE services SET benefits = JSON_ARRAY_APPEND(benefits, '$', JSON_OBJECT('title', '20-Year Warranty', 'desc', 'All trenchless repair work is backed by our standard written warranty. If the repaired section fails within the warranty period, we come back and fix it at no charge.'), '$', JSON_OBJECT('title', 'Camera Inspection Included', 'desc', 'Every trenchless job starts with a free video camera inspection. You watch the footage on site and understand exactly what is wrong before we recommend any repair method.')) WHERE slug = 'trenchless-pipe-repair';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 266
+}

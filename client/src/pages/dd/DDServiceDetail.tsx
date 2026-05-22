@@ -7,18 +7,102 @@ import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 
 // Related services shown at the bottom of specific service pages
 const RELATED_SERVICES: Record<string, { slug: string; title: string; desc: string; img: string }[]> = {
+  "sewer-camera-inspection": [
+    {
+      slug: "sewer-repair-installation",
+      title: "Sewer Repair and Installation",
+      desc: "Once the camera shows us what is wrong, we fix it. We use every repair method available: UV CIPP lining, pipe bursting, spot patch, ElastoFlake coating, and open-cut excavation.",
+      img: "/manus-storage/sewer-repair-1_b9db9364.jpeg",
+    },
+    {
+      slug: "trenchless-pipe-repair",
+      title: "Trenchless Pipe Repair",
+      desc: "If the camera shows root intrusion, cracks, or corrosion, trenchless lining can fix the pipe from the inside without digging up your driveway or yard.",
+      img: "/manus-storage/trenchless-liner-1_c697c087.jpeg",
+    },
+  ],
+  "trenchless-pipe-repair": [
+    {
+      slug: "sewer-camera-inspection",
+      title: "Free Sewer Camera Inspection",
+      desc: "Every trenchless repair starts with a camera inspection. We show you the footage on site so you understand exactly what needs to be fixed and why.",
+      img: "/manus-storage/service-camera-inspection_dbb5bfc5.jpg",
+    },
+    {
+      slug: "sewer-repair-installation",
+      title: "Sewer Repair and Installation",
+      desc: "When trenchless is not the right answer, we excavate and replace. We handle the full repair from permits to surface restoration.",
+      img: "/manus-storage/sewer-repair-2_d3da9160.jpeg",
+    },
+  ],
+  "wet-basement-repair": [
+    {
+      slug: "sewer-camera-inspection",
+      title: "Free Sewer Camera Inspection",
+      desc: "A wet basement is sometimes caused by a blocked or broken weeping tile connection to the sewer. A camera inspection can rule that out before waterproofing work begins.",
+      img: "/manus-storage/service-camera-inspection_dbb5bfc5.jpg",
+    },
+    {
+      slug: "excavation-services",
+      title: "Excavation Services",
+      desc: "Exterior waterproofing and weeping tile replacement require excavation around the foundation. Our crew handles the dig and the restoration as part of the same job.",
+      img: "/manus-storage/service-excavation_b7ce058d.jpg",
+    },
+  ],
+  "sewer-repair-installation": [
+    {
+      slug: "trenchless-pipe-repair",
+      title: "Trenchless Pipe Repair",
+      desc: "For many sewer line failures, trenchless lining is faster and less disruptive than excavation. We will tell you honestly which method is right after the camera inspection.",
+      img: "/manus-storage/trenchless-liner-2_62207afb.jpg",
+    },
+    {
+      slug: "sewer-camera-inspection",
+      title: "Free Sewer Camera Inspection",
+      desc: "Every sewer repair starts with a camera inspection. We show you the footage on site so you see exactly what is wrong before any work begins.",
+      img: "/manus-storage/service-camera-inspection_dbb5bfc5.jpg",
+    },
+  ],
+  "drain-cleaning": [
+    {
+      slug: "sewer-camera-inspection",
+      title: "Free Sewer Camera Inspection",
+      desc: "After clearing a blocked drain, we run the camera through to confirm the line is fully clear and check for root intrusion or structural damage that could cause the blockage to return.",
+      img: "/manus-storage/service-camera-inspection_dbb5bfc5.jpg",
+    },
+    {
+      slug: "trenchless-pipe-repair",
+      title: "Trenchless Pipe Repair",
+      desc: "If the camera shows root intrusion or cracks that will keep causing blockages, trenchless lining is the permanent fix. No digging, completed in a single day in most cases.",
+      img: "/manus-storage/trenchless-liner-1_c697c087.jpeg",
+    },
+  ],
+  "excavation-services": [
+    {
+      slug: "sewer-repair-installation",
+      title: "Sewer Repair and Installation",
+      desc: "Most of our excavation work is for sewer line repair and replacement. We handle the full job from camera inspection through excavation, pipe replacement, and surface restoration.",
+      img: "/manus-storage/sewer-repair-1_b9db9364.jpeg",
+    },
+    {
+      slug: "wet-basement-repair",
+      title: "Wet Basement Waterproofing",
+      desc: "Exterior waterproofing requires excavating around the foundation. We handle both the excavation and the waterproofing as part of the same job, with a 20-year warranty on the result.",
+      img: "/manus-storage/wet-basement-1_5eff930f.jpeg",
+    },
+  ],
   "septic-repairs": [
     {
       slug: "sewer-repair-installation",
       title: "Sewer Repair and Installation",
       desc: "When a sewer line fails, the damage spreads fast. Our crew handles everything from spot repairs to full replacements, with same-day response and a free camera inspection included.",
-      img: "/manus-storage/service-sewer-repair_eef7e9e9.jpg",
+      img: "/manus-storage/sewer-repair-1_b9db9364.jpeg",
     },
     {
       slug: "trenchless-pipe-repair",
       title: "Trenchless Pipe Repair",
-      desc: "Replace a damaged pipe without digging up your driveway or yard. Our cured-in-place lining system restores the pipe from the inside, with no excavation required in most cases.",
-      img: "/manus-storage/service-trenchless_20587538.jpg",
+      desc: "Replace a damaged pipe without digging up your driveway or yard. Our UV-cured CIPP lining system restores the pipe from the inside, with no excavation required in most cases.",
+      img: "/manus-storage/trenchless-liner-1_c697c087.jpeg",
     },
   ],
   "municipal-services": [
@@ -32,7 +116,7 @@ const RELATED_SERVICES: Record<string, { slug: string; title: string; desc: stri
       slug: "sewer-repair-installation",
       title: "Sewer Repair and Installation",
       desc: "From emergency main breaks to planned infrastructure upgrades, our certified technicians handle sewer repair and installation for municipal and commercial clients across Southwestern Ontario.",
-      img: "/manus-storage/service-sewer-repair_eef7e9e9.jpg",
+      img: "/manus-storage/sewer-repair-2_d3da9160.jpeg",
     },
   ],
   "catch-basin-cleaning": [
@@ -54,19 +138,19 @@ const RELATED_SERVICES: Record<string, { slug: string; title: string; desc: stri
 const HERO_IMGS: Record<string, string> = {
   // Sewer camera inspection: technician using camera unit inside a drain
   "sewer-camera-inspection": "/manus-storage/service-camera-inspection_dbb5bfc5.jpg",
-  // Trenchless pipe repair: underground pipe lining / no-dig technology
-  "trenchless-pipe-repair": "/manus-storage/service-trenchless_20587538.jpg",
-  // Wet basement waterproofing: basement wall being waterproofed
-  "wet-basement-repair": "/manus-storage/service-wet-basement_3fc273eb.jpg",
-  "wet-basement-waterproofing": "/manus-storage/service-wet-basement_3fc273eb.jpg",
-  // Sewer repair & installation: crew working on sewer pipe in trench
-  "sewer-repair-installation": "/manus-storage/service-sewer-repair_eef7e9e9.jpg",
+  // Trenchless pipe repair: real client UV liner installation photo
+  "trenchless-pipe-repair": "/manus-storage/trenchless-liner-2_62207afb.jpg",
+  // Wet basement waterproofing: real client basement waterproofing photo
+  "wet-basement-repair": "/manus-storage/wet-basement-1_5eff930f.jpeg",
+  "wet-basement-waterproofing": "/manus-storage/wet-basement-1_5eff930f.jpeg",
+  // Sewer repair & installation: real client sewer excavation photo
+  "sewer-repair-installation": "/manus-storage/sewer-repair-1_b9db9364.jpeg",
   // Drain cleaning: high-pressure water jetting inside a drain
   "drain-cleaning": "/manus-storage/service-drain-cleaning_ce593909.jpg",
-  // Excavation: CAT excavator at a residential job site
-  "excavation-services": "/manus-storage/service-excavation_b7ce058d.jpg",
-  // Septic service and repairs: technician inspecting open septic tank in backyard
-  "septic-repairs": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/septic-hero-9ZJceidgSjBkjBjyUjg2tZ.webp",
+  // Excavation: real client sewer excavation photo
+  "excavation-services": "/manus-storage/sewer-repair-2_d3da9160.jpeg",
+  // Septic service and repairs: real client septic system photo
+  "septic-repairs": "/manus-storage/septic-system-1_b4c2e004.jpeg",
   // Municipal services: infrastructure crew working on sewer manhole in a street
   "municipal-services": "/manus-storage/municipal-hero_59376e39.jpg",
   // Catch basin cleaning: technician cleaning a catch basin grate in a parking lot
@@ -172,6 +256,17 @@ export default function DDServiceDetail() {
         "areaServed": "London, Ontario"
       })}} />
 
+      {/* Structured Data - BreadcrumbList */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://discountdrain.ca/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://discountdrain.ca/services" },
+          { "@type": "ListItem", "position": 3, "name": service.title, "item": `https://discountdrain.ca/services/${slug}` }
+        ]
+      })}} />
+
       {/* Structured Data - FAQPage */}
       {faqs.length > 0 && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -195,11 +290,13 @@ export default function DDServiceDetail() {
       >
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.45) 100%)" }} />
         <div className="relative container" style={{ zIndex: 2 }}>
-          <div className="flex items-center gap-2 mb-4 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <nav aria-label="breadcrumb" className="flex items-center gap-2 mb-4 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+            <Link href="/" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>Home</Link>
+            <span>/</span>
             <Link href="/services" style={{ color: "#60b3ff", textDecoration: "none" }}>Services</Link>
             <span>/</span>
             <span className="text-white">{service.title}</span>
-          </div>
+          </nav>
           <h1 className="text-white mb-4" style={{ fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
             {service.title}
           </h1>
@@ -354,11 +451,7 @@ export default function DDServiceDetail() {
               Related Services
             </h2>
             <p style={{ color: "#666666", fontSize: "15px", marginBottom: "32px", lineHeight: "24px" }}>
-              {slug === "municipal-services"
-                ? "Clients who need municipal drainage work often rely on these services as well."
-                : slug === "catch-basin-cleaning"
-                ? "Properties with catch basin issues often benefit from these related drainage services."
-                : "Customers who need septic work often find these services useful as well."}
+              Other services our customers in London Ontario commonly need alongside this one.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {RELATED_SERVICES[slug ?? ""].map((rel) => (
