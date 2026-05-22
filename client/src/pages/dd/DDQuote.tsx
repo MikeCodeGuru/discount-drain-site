@@ -49,6 +49,8 @@ export default function DDQuote() {
     <DDLayout>
       <title>Get a Free Quote | Discount Drain | London Ontario</title>
       <meta name="description" content="Get a free drain and sewer repair quote from Discount Drain in London Ontario. Free camera inspection included. Call 519-451-8342 or fill out the form." />
+      <meta name="keywords" content="free drain repair quote London Ontario, sewer repair estimate London ON, free sewer camera inspection quote, drain cleaning price London, get a quote Discount Drain" />
+      <link rel="canonical" href="https://discountdrain.ca/quote" />
 
       {/* Header */}
       <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>

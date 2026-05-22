@@ -41,6 +41,8 @@ export default function DDResidential() {
     <DDLayout>
       <title>Residential Drain and Sewer Services | London Ontario | Discount Drain</title>
       <meta name="description" content="Residential drain cleaning, sewer repair, wet basement waterproofing, and trenchless pipe repair in London Ontario. Free camera inspection included. Call 519-451-8342." />
+      <meta name="keywords" content="residential drain cleaning London Ontario, home sewer repair London ON, wet basement waterproofing residential, trenchless pipe repair home, free sewer camera inspection, drain backup London Ontario" />
+      <link rel="canonical" href="https://discountdrain.ca/residential" />
 
       {/* Hero */}
       <section

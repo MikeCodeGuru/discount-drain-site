@@ -58,7 +58,8 @@ export default function DDServices() {
     <DDLayout>
       <title>Drain and Sewer Services | London Ontario | Discount Drain</title>
       <meta name="description" content="Complete drain and sewer services in London Ontario: free camera inspections, trenchless pipe repair, wet basement waterproofing, drain cleaning, sewer repair, and excavation. Call 519-451-8342." />
-      <link rel="canonical" href="https://discountdrain.ca/site/services" />
+      <meta name="keywords" content="drain and sewer services London Ontario, sewer camera inspection, trenchless pipe repair, wet basement waterproofing, drain cleaning London ON, sewer repair installation, excavation services, catch basin cleaning, septic repair" />
+      <link rel="canonical" href="https://discountdrain.ca/services" />
 
       {/* Page Hero */}
       <section

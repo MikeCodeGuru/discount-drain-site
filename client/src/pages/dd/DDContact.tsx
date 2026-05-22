@@ -46,6 +46,8 @@ export default function DDContact() {
     <DDLayout>
       <title>Contact Discount Drain | London Ontario | 519-451-8342</title>
       <meta name="description" content="Contact Discount Drain in London Ontario. Call 519-451-8342 or email office@discountdrain.ca. Available 24/7 for drain and sewer emergencies." />
+      <meta name="keywords" content="contact Discount Drain, drain repair London Ontario phone number, 519-451-8342, emergency drain service London ON, sewer repair contact, drain company London Ontario" />
+      <link rel="canonical" href="https://discountdrain.ca/contact" />
 
       {/* Page Header */}
       <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>

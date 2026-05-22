@@ -75,6 +75,8 @@ export default function DDBlog() {
     <DDLayout>
       <title>Drain and Sewer Tips | Blog | Discount Drain London Ontario</title>
       <meta name="description" content="Expert drain and sewer advice for Ontario homeowners. Learn about drain cleaning, sewer repair, wet basements, trenchless technology, and more from Discount Drain." />
+      <meta name="keywords" content="drain cleaning tips Ontario, sewer repair advice, wet basement causes fixes, trenchless pipe repair blog, drain maintenance London Ontario, sewer backup prevention, weeping tile replacement" />
+      <link rel="canonical" href="https://discountdrain.ca/blog" />
 
       {/* JSON-LD Blog structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

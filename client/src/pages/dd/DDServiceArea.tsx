@@ -110,7 +110,8 @@ export default function DDServiceArea() {
     <DDLayout>
       <title>Service Area | Discount Drain London Ontario</title>
       <meta name="description" content="Discount Drain serves London and all of Southwestern Ontario including Strathroy, St. Thomas, Woodstock, Ingersoll, Tillsonburg, Aylmer, Exeter, and more. Call 519-451-8342." />
-      <link rel="canonical" href="https://discountdrain.ca/site/service-area" />
+      <meta name="keywords" content="drain service area London Ontario, sewer repair Strathroy, drain cleaning St. Thomas ON, sewer repair Woodstock Ontario, drain service Ingersoll, Tillsonburg drain repair, Aylmer sewer service, Southwestern Ontario drain company" />
+      <link rel="canonical" href="https://discountdrain.ca/service-area" />
 
       {/* Hero */}
       <section

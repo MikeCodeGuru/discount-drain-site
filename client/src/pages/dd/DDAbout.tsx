@@ -41,7 +41,8 @@ export default function DDAbout() {
     <DDLayout>
       <title>About Discount Drain | Family-Owned Since 1970 | London Ontario</title>
       <meta name="description" content="Discount Drain has served London and Southwestern Ontario since 1970. Family-owned and operated, WSIB compliant, fully insured, and BBB accredited. Over 20 skilled technicians on staff." />
-      <link rel="canonical" href="https://discountdrain.ca/site/about" />
+      <meta name="keywords" content="about Discount Drain, London Ontario drain company, family-owned drain specialist, BBB accredited plumber London ON, WSIB compliant drain contractor, sewer repair company history" />
+      <link rel="canonical" href="https://discountdrain.ca/about" />
 
       {/* Page Hero */}
       <section

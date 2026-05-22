@@ -39,6 +39,8 @@ export default function DDCommercial() {
     <DDLayout>
       <title>Commercial Drain and Sewer Services | London Ontario | Discount Drain</title>
       <meta name="description" content="Commercial drain cleaning, sewer repair, catch basin cleaning, and municipal services in London Ontario. Minimal disruption to your business. Call 519-451-8342." />
+      <meta name="keywords" content="commercial drain cleaning London Ontario, commercial sewer repair London ON, catch basin cleaning, municipal sewer services Ontario, industrial drain contractor, trenchless commercial pipe repair" />
+      <link rel="canonical" href="https://discountdrain.ca/commercial" />
 
       {/* Hero */}
       <section

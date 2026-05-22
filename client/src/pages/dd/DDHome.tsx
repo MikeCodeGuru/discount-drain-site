@@ -270,7 +270,8 @@ export default function DDHome() {
       {/* SEO */}
       <title>Discount Drain | London Ontario Drain and Sewer Specialists Since 1970</title>
       <meta name="description" content="Family-owned drain and sewer specialists serving London and Southwestern Ontario since 1970. Free sewer video camera inspection with every service call. Available 24/7. Call 519-451-8342." />
-      <link rel="canonical" href="https://discountdrain.ca/site" />
+      <meta name="keywords" content="drain cleaning London Ontario, sewer repair London ON, wet basement waterproofing, trenchless pipe repair, sewer camera inspection, Discount Drain, 24/7 emergency drain service, Southwestern Ontario drain specialist" />
+      <link rel="canonical" href="https://discountdrain.ca/" />
 
       {/* ─── HERO ─── */}
       <section

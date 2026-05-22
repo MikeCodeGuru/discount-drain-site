@@ -36,51 +36,61 @@
   <!-- Services -->
   <url>
     <loc>https://discountdrain.ca/services</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/services/sewer-camera-inspection</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/services/trenchless-pipe-repair</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/services/wet-basement-repair</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/services/sewer-repair-installation</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/services/drain-cleaning</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/services/excavation-services</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/services/municipal-services</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/services/septic-repairs</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/services/catch-basin-cleaning</loc>
+    <lastmod>2025-01-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -88,6 +98,7 @@
   <!-- Blog listing -->
   <url>
     <loc>https://discountdrain.ca/blog</loc>
+    <lastmod>2024-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -95,56 +106,67 @@
   <!-- Blog posts -->
   <url>
     <loc>https://discountdrain.ca/blog/how-to-tell-if-your-sewer-line-is-broken</loc>
+    <lastmod>2024-11-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/trenchless-vs-traditional-sewer-repair-ontario</loc>
+    <lastmod>2024-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/wet-basement-causes-ontario</loc>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/drain-cleaning-how-often-ontario</loc>
+    <lastmod>2024-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/sewer-backup-what-to-do-ontario</loc>
+    <lastmod>2024-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/weeping-tile-replacement-ontario</loc>
+    <lastmod>2024-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/pre-purchase-sewer-inspection-london-ontario</loc>
+    <lastmod>2024-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/how-often-drain-cleaning-london-ontario</loc>
+    <lastmod>2024-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/trenchless-vs-excavation-sewer-repair</loc>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/wet-basement-fix-london-ontario</loc>
+    <lastmod>2024-04-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://discountdrain.ca/blog/sewer-repair-cost-london-ontario</loc>
+    <lastmod>2024-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
