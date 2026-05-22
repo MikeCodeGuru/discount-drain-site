@@ -5,6 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import PageLoader from "@/components/dd/PageLoader";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // NotFound stays eagerly loaded — it's tiny and needed for the fallback route
 import NotFound from "@/pages/NotFound";
@@ -43,7 +44,9 @@ function Router() {
   return (
     // Suspense wraps the entire Switch so any lazy chunk shows the PageLoader
     // while its JS is being fetched and parsed.
-    <Suspense fallback={<PageLoader variant="page" />}>
+    <>
+      <ScrollToTop />
+      <Suspense fallback={<PageLoader variant="page" />}>
       <Switch>
         {/* V2 Production site — root paths */}
         <Route path={"/"} component={DiscountDrainHome} />
@@ -67,6 +70,7 @@ function Router() {
         <Route component={NotFound} />
       </Switch>
     </Suspense>
+    </>  
   );
 }
 
