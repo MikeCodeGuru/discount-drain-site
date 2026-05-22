@@ -343,3 +343,12 @@
 - [x] Update all 11 blog post publishedAt dates to 2026
 - [x] TypeScript check passes (0 errors)
 - [x] Vite build succeeds
+
+## Phase 38: DNS Prefetch/Preconnect + FAQ Structured Data Audit
+
+- [x] Audit all third-party runtime domains (CloudFront, Picsum, Google Maps, Google Fonts)
+- [x] Add dns-prefetch + preconnect tags for CloudFront CDN (hero/service images)
+- [x] Add dns-prefetch + preconnect tags for Picsum Photos (team avatars)
+- [x] Add dns-prefetch + preconnect tags for Google Maps (Contact page map pin)
+- [x] Confirmed all 9 service pages already have FAQPage JSON-LD with rich FAQ content
+- [x] Vite build succeeds
