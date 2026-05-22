@@ -156,35 +156,217 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                     <ChevronDown size={14} className={`transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
                   </Link>
 
-                  {/* Dropdown */}
+                  {/* Mega-menu */}
                   {servicesOpen && (
                     <div
-                      className="absolute top-full left-0 bg-white rounded-2xl py-2 z-50"
+                      className="absolute z-50"
                       style={{
-                        minWidth: "280px",
-                        border: "1px solid #dee0e4",
-                        boxShadow: "0 16px 48px rgba(0,0,0,0.12)",
-                        marginTop: "4px",
+                        top: "calc(100% + 8px)",
+                        left: "-24px",
+                        width: "640px",
+                        background: "#FFFFFF",
+                        border: "1px solid #E8E9EC",
+                        borderRadius: "20px",
+                        boxShadow: "0 24px 64px rgba(26,27,32,0.14), 0 4px 16px rgba(26,27,32,0.06)",
+                        overflow: "hidden",
                       }}
                     >
-                      {SERVICE_LINKS.map((s) => (
-                        <Link
-                          key={s.href}
-                          href={s.href}
-                          className="block px-5 py-3 text-sm font-medium transition-colors hover:bg-blue-50"
-                          style={{ color: "#222222" }}
+                      {/* Top section: 2-col grid */}
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+
+                        {/* Left col: service links */}
+                        <div style={{ padding: "24px 8px 24px 24px", borderRight: "1px solid #F0F1F3" }}>
+                          <p
+                            style={{
+                              fontSize: "10px",
+                              fontWeight: 700,
+                              letterSpacing: "0.16em",
+                              textTransform: "uppercase" as const,
+                              color: "#9CA3AF",
+                              marginBottom: "12px",
+                              paddingLeft: "8px",
+                              fontFamily: "'Plus Jakarta Sans', sans-serif",
+                            }}
+                          >
+                            Services
+                          </p>
+                          {SERVICE_LINKS.map((s) => (
+                            <Link
+                              key={s.href}
+                              href={s.href}
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                padding: "9px 10px",
+                                borderRadius: "10px",
+                                fontSize: "13.5px",
+                                fontWeight: 500,
+                                color: "#1A1B20",
+                                textDecoration: "none",
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                transition: "background 0.15s, color 0.15s",
+                              }}
+                              onMouseEnter={(e) => {
+                                (e.currentTarget as HTMLAnchorElement).style.background = "#F5F6F8";
+                                (e.currentTarget as HTMLAnchorElement).style.color = "#3F4049";
+                              }}
+                              onMouseLeave={(e) => {
+                                (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                                (e.currentTarget as HTMLAnchorElement).style.color = "#1A1B20";
+                              }}
+                            >
+                              {/* Gold dot accent */}
+                              <span
+                                style={{
+                                  width: "5px",
+                                  height: "5px",
+                                  borderRadius: "50%",
+                                  backgroundColor: "#FEDA86",
+                                  flexShrink: 0,
+                                }}
+                              />
+                              {s.label}
+                            </Link>
+                          ))}
+                        </div>
+
+                        {/* Right col: featured card */}
+                        <div
+                          style={{
+                            padding: "24px",
+                            background: "#F8F9FA",
+                            display: "flex",
+                            flexDirection: "column" as const,
+                            justifyContent: "space-between",
+                          }}
                         >
-                          {s.label}
-                        </Link>
-                      ))}
-                      <div style={{ borderTop: "1px solid #dee0e4", margin: "8px 0" }} />
-                      <Link
-                        href="/services"
-                        className="block px-5 py-3 text-sm font-semibold transition-colors"
-                        style={{ color: "#0080ff" }}
+                          <div>
+                            <p
+                              style={{
+                                fontSize: "10px",
+                                fontWeight: 700,
+                                letterSpacing: "0.16em",
+                                textTransform: "uppercase" as const,
+                                color: "#9CA3AF",
+                                marginBottom: "12px",
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                              }}
+                            >
+                              Featured
+                            </p>
+                            {/* Featured service image */}
+                            <div
+                              style={{
+                                borderRadius: "12px",
+                                overflow: "hidden",
+                                marginBottom: "14px",
+                                aspectRatio: "16/9",
+                                background: "#E8E9EC",
+                              }}
+                            >
+                              <img
+                                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp"
+                                alt="Free sewer camera inspection"
+                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                              />
+                            </div>
+                            <p
+                              style={{
+                                fontSize: "13px",
+                                fontWeight: 700,
+                                color: "#1A1B20",
+                                marginBottom: "6px",
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                              }}
+                            >
+                              Free Camera Inspection
+                            </p>
+                            <p
+                              style={{
+                                fontSize: "12px",
+                                color: "#6B7280",
+                                lineHeight: 1.5,
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                              }}
+                            >
+                              A $400 value — included with every service call.
+                            </p>
+                          </div>
+                          <Link
+                            href="/services/sewer-camera-inspection"
+                            style={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "6px",
+                              marginTop: "14px",
+                              fontSize: "12px",
+                              fontWeight: 700,
+                              color: "#3F4049",
+                              textDecoration: "none",
+                              fontFamily: "'Plus Jakarta Sans', sans-serif",
+                              letterSpacing: "0.01em",
+                            }}
+                            onMouseEnter={(e) => {
+                              (e.currentTarget as HTMLAnchorElement).style.color = "#1A1B20";
+                            }}
+                            onMouseLeave={(e) => {
+                              (e.currentTarget as HTMLAnchorElement).style.color = "#3F4049";
+                            }}
+                          >
+                            Learn more
+                            <span style={{ fontSize: "14px" }}>→</span>
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Bottom CTA strip */}
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          padding: "14px 24px",
+                          borderTop: "1px solid #F0F1F3",
+                          background: "#FAFAFA",
+                        }}
                       >
-                        View All Services
-                      </Link>
+                        <span
+                          style={{
+                            fontSize: "12px",
+                            color: "#9CA3AF",
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                          }}
+                        >
+                          Serving London, ON &amp; surrounding areas
+                        </span>
+                        <Link
+                          href="/services"
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "6px",
+                            padding: "8px 18px",
+                            borderRadius: "999px",
+                            fontSize: "12.5px",
+                            fontWeight: 700,
+                            backgroundColor: "#3F4049",
+                            color: "#FEDA86",
+                            textDecoration: "none",
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                            letterSpacing: "0.01em",
+                            transition: "background 0.18s",
+                          }}
+                          onMouseEnter={(e) => {
+                            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#1A1B20";
+                          }}
+                          onMouseLeave={(e) => {
+                            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#3F4049";
+                          }}
+                        >
+                          View All Services →
+                        </Link>
+                      </div>
                     </div>
                   )}
                 </div>

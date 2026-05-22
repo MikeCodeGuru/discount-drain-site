@@ -511,46 +511,126 @@ export default function ScrollServicesSection() {
 
   // ── Shared section header ──────────────────────────────────────────────────
   const SectionHeader = () => (
-    <div className="container pt-12 pb-8 flex items-start justify-between flex-wrap gap-4">
+    <div
+      className="container"
+      style={{
+        paddingTop: "52px",
+        paddingBottom: "32px",
+        display: "grid",
+        gridTemplateColumns: "1fr auto",
+        alignItems: "flex-end",
+        gap: "24px",
+      }}
+    >
+      {/* Left: eyebrow + headline */}
       <div>
-        <span
-          className="inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1 rounded-full"
-          style={{ backgroundColor: "#EEF4FF", color: "#2563EB" }}
+        {/* Eyebrow — horizontal rule + label, no pill background */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            marginBottom: "16px",
+          }}
         >
-          Our Services
-        </span>
+          <div
+            style={{
+              width: "32px",
+              height: "2px",
+              backgroundColor: "#FEDA86",
+              flexShrink: 0,
+            }}
+          />
+          <span
+            style={{
+              fontSize: "11px",
+              fontWeight: 700,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase" as const,
+              color: "#3F4049",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+            }}
+          >
+            Our Services
+          </span>
+        </div>
+
+        {/* Headline — asymmetric: first line normal weight, second line bold + gold accent */}
         <h2
-          className="text-4xl md:text-5xl font-bold leading-tight"
-          style={{ color: "#0F172A", fontFamily: "'Inter Tight', sans-serif" }}
+          style={{
+            fontFamily: "'Taviraj', Georgia, serif",
+            fontSize: "clamp(32px, 4vw, 52px)",
+            lineHeight: 1.08,
+            letterSpacing: "-0.02em",
+            color: "#1A1B20",
+            margin: 0,
+          }}
         >
-          Everything You Need,
+          <span style={{ fontWeight: 400 }}>Everything You Need,</span>
           <br />
-          Under One Roof
+          <span
+            style={{
+              fontWeight: 700,
+              // Gold underline accent via inline gradient border trick
+              backgroundImage: "linear-gradient(to right, #FEDA86 0%, #FEDA86 100%)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100% 3px",
+              backgroundPosition: "0 100%",
+              paddingBottom: "4px",
+            }}
+          >
+            Under One Roof
+          </span>
         </h2>
       </div>
 
-      {/* Tab toggle */}
-      <div className="flex items-center gap-2 mt-2">
-        <button
-          onClick={() => setActiveTab("residential")}
-          className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all"
-          style={{
-            backgroundColor: activeTab === "residential" ? "#2563EB" : "#F1F5F9",
-            color: activeTab === "residential" ? "#FFFFFF" : "#475569",
-          }}
-        >
-          Residential
-        </button>
-        <button
-          onClick={() => setActiveTab("commercial")}
-          className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all"
-          style={{
-            backgroundColor: activeTab === "commercial" ? "#2563EB" : "#F1F5F9",
-            color: activeTab === "commercial" ? "#FFFFFF" : "#475569",
-          }}
-        >
-          Commercial
-        </button>
+      {/* Right: segmented tab toggle — pill track with sliding indicator */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          backgroundColor: "#F0F1F3",
+          borderRadius: "999px",
+          padding: "4px",
+          gap: "2px",
+          flexShrink: 0,
+          border: "1px solid #E2E4E8",
+        }}
+      >
+        {(["residential", "commercial"] as const).map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            style={{
+              padding: "9px 22px",
+              borderRadius: "999px",
+              fontSize: "13px",
+              fontWeight: 600,
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              letterSpacing: "0.01em",
+              border: "none",
+              cursor: "pointer",
+              transition: "background-color 0.22s cubic-bezier(0.4,0,0.2,1), color 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.22s",
+              backgroundColor: activeTab === tab ? "#3F4049" : "transparent",
+              color: activeTab === tab ? "#FEDA86" : "#6B7280",
+              boxShadow: activeTab === tab ? "0 2px 8px rgba(63,64,73,0.22)" : "none",
+            }}
+            onMouseEnter={(e) => {
+              if (activeTab !== tab) {
+                (e.currentTarget as HTMLButtonElement).style.color = "#3F4049";
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(63,64,73,0.06)";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (activeTab !== tab) {
+                (e.currentTarget as HTMLButtonElement).style.color = "#6B7280";
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
+              }
+            }}
+          >
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+          </button>
+        ))}
       </div>
     </div>
   );
