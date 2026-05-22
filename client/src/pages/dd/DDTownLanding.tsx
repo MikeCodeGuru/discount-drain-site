@@ -12,6 +12,7 @@ import { useState } from "react";
 import DDLayout from "./DDLayout";
 import { getTownBySlug, TOWNS } from "@/data/townContent";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
+import Breadcrumb, { buildBreadcrumbJsonLd } from "@/components/dd/Breadcrumb";
 
 const HERO_IMG =
   "/manus-storage/dd-hero-drain_7551245e.jpg";
@@ -122,6 +123,17 @@ export default function DDTownLanding() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBizSchema) }}
       />
+      {/* Structured Data: BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(
+          buildBreadcrumbJsonLd([
+            { label: "Home", href: "/" },
+            { label: "Service Area", href: "/service-area" },
+            { label: town.name, href: `/service-area/${town.slug}` },
+          ])
+        )}}
+      />
 
       {/* HERO */}
       <section
@@ -136,13 +148,15 @@ export default function DDTownLanding() {
 
         <div className="relative container py-20" style={{ zIndex: 2 }}>
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 mb-6" style={{ fontSize: "13px", color: "rgba(255,255,255,0.6)" }}>
-            <Link href="/" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>Home</Link>
-            <span>/</span>
-            <Link href="/service-area" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>Service Area</Link>
-            <span>/</span>
-            <span style={{ color: "#ffffff" }}>{town.name}</span>
-          </nav>
+          <Breadcrumb
+            variant="light"
+            className="mb-6"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Service Area", href: "/service-area" },
+              { label: town.name },
+            ]}
+          />
 
           <div className="max-w-2xl">
             <div

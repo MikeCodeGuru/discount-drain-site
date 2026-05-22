@@ -23,7 +23,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "Learn the warning signs of a broken sewer line in your London Ontario home. Slow drains, gurgling sounds, sewage smells, and more. Free camera inspection available.",
     imageUrl: "/manus-storage/sewer-camera_39c33547.jpg",
     category: "Sewer Repair",
-    publishedAt: "2024-11-15T05:00:00.000Z",
+    publishedAt: "2026-04-28T05:00:00.000Z",
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "Comparing trenchless pipe lining vs excavation for sewer repair in London Ontario. Costs, timelines, and which method is right for your situation.",
     imageUrl: "/manus-storage/trenchless-liner-2_62207afb.jpg",
     category: "Trenchless",
-    publishedAt: "2024-10-22T04:00:00.000Z",
+    publishedAt: "2026-04-07T04:00:00.000Z",
   },
   {
     id: 3,
@@ -47,7 +47,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "Water in your Ontario basement can come from failed weeping tile, foundation cracks, poor grading, or sewer backup. Learn the causes and what to do about them.",
     imageUrl: "/manus-storage/wet-basement_80d6704a.jpg",
     category: "Wet Basement",
-    publishedAt: "2024-09-10T04:00:00.000Z",
+    publishedAt: "2026-03-18T04:00:00.000Z",
   },
   {
     id: 4,
@@ -59,7 +59,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "Drain cleaning schedule for Ontario homeowners: kitchen, bathroom, floor drains, and main sewer line. Professional hydro-jetting and camera inspection.",
     imageUrl: "/manus-storage/drain-cleaning_3f68f01f.jpg",
     category: "Drain Cleaning",
-    publishedAt: "2024-08-05T04:00:00.000Z",
+    publishedAt: "2026-03-03T04:00:00.000Z",
   },
   {
     id: 5,
@@ -71,7 +71,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "What to do during a sewer backup in Ontario: stop using water, stay out of sewage, call for emergency service. 24/7 dispatch. Call 519-451-8342.",
     imageUrl: "/manus-storage/sewer-repair-1_b9db9364.jpeg",
     category: "Emergency",
-    publishedAt: "2024-07-18T04:00:00.000Z",
+    publishedAt: "2026-02-17T04:00:00.000Z",
   },
   {
     id: 6,
@@ -83,7 +83,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "Weeping tile replacement cost and process in Ontario. Exterior vs interior options, 20-year warranty. Free assessment for London and Southwestern Ontario homes.",
     imageUrl: "/manus-storage/wet-basement-2_b43903a6.jpeg",
     category: "Wet Basement",
-    publishedAt: "2024-06-12T04:00:00.000Z",
+    publishedAt: "2026-02-03T04:00:00.000Z",
   },
   {
     id: 30005,
@@ -95,7 +95,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "A standard home inspection does not include a sewer camera inspection. For older London homes, this is a significant gap that can cost buyers thousands after closing.",
     imageUrl: "/manus-storage/sewer-camera_39c33547.jpg",
     category: "Camera Inspection",
-    publishedAt: "2024-05-22T13:00:00.000Z",
+    publishedAt: "2026-01-20T13:00:00.000Z",
   },
   {
     id: 30004,
@@ -107,7 +107,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "Drain cleaning frequency depends on your home, your trees, and your habits. Here is a practical guide for London Ontario homeowners.",
     imageUrl: "/manus-storage/drain-cleaning_3f68f01f.jpg",
     category: "Drain Cleaning",
-    publishedAt: "2024-05-08T13:00:00.000Z",
+    publishedAt: "2026-01-06T13:00:00.000Z",
   },
   {
     id: 30003,
@@ -119,7 +119,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "Comparing trenchless sewer repair and traditional excavation for London Ontario homeowners. Learn which method is right for your situation.",
     imageUrl: "/manus-storage/trenchless-cipp_959cf3b0.jpg",
     category: "Sewer Repair",
-    publishedAt: "2024-04-20T13:00:00.000Z",
+    publishedAt: "2025-12-15T13:00:00.000Z",
   },
   {
     id: 30002,
@@ -131,7 +131,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "Wet basements in London Ontario are common. Learn the real causes, which fixes work long term, and what a 20-year warranty actually covers.",
     imageUrl: "/manus-storage/wet-basement-1_5eff930f.jpeg",
     category: "Wet Basement",
-    publishedAt: "2024-04-02T13:00:00.000Z",
+    publishedAt: "2025-11-24T13:00:00.000Z",
   },
   {
     id: 30001,
@@ -143,7 +143,7 @@ export const BLOG_POSTS: BlogPost[] = [
     metaDesc: "Honest breakdown of sewer repair costs in London Ontario. Learn what affects the price, what to expect from a quote, and how to avoid overpaying.",
     imageUrl: "/manus-storage/sewer-repair-1_b9db9364.jpeg",
     category: "Sewer Repair",
-    publishedAt: "2024-03-15T13:00:00.000Z",
+    publishedAt: "2025-11-03T13:00:00.000Z",
   },
 ];
 

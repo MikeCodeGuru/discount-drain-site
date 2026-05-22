@@ -334,3 +334,12 @@
 - [x] Add visual breadcrumb nav to DDBlog.tsx (Blog listing page)
 - [x] TypeScript check passes (0 errors)
 - [x] Vite build succeeds
+
+## Phase 37: Town Breadcrumbs, Google Fonts Perf, Blog Date Updates
+
+- [x] Add breadcrumb nav + BreadcrumbList JSON-LD to DDTownLanding.tsx (Home > Service Area > [Town])
+- [x] Add Google Fonts preconnect tags to client/index.html
+- [x] Add font-display=swap to Google Fonts URL in client/index.html
+- [x] Update all 11 blog post publishedAt dates to 2026
+- [x] TypeScript check passes (0 errors)
+- [x] Vite build succeeds
