@@ -367,7 +367,7 @@ export default function DDHome() {
         {/* Ethereal animated background */}
         <EtherealShadow
           color="rgba(0, 128, 255, 0.45)"
-          animation={{ scale: 100, speed: 90 }}
+          animation={{ scale: 100, speed: 99, durationOverride: 0.8 }}
           noise={{ opacity: 0.8, scale: 1.2 }}
           sizing="fill"
           style={{ zIndex: 0 }}
@@ -396,7 +396,7 @@ export default function DDHome() {
               >
                 London's Most Trusted Drain and Sewer Specialists
               </h1>
-              <p style={{ fontSize: "17px", lineHeight: "28px", color: "#4a5568", maxWidth: "480px", marginBottom: "32px" }}>
+              <p style={{ fontSize: "17px", lineHeight: "28px", color: "#1a2a3a", maxWidth: "480px", marginBottom: "32px", fontWeight: 500, textShadow: "0 1px 2px rgba(255,255,255,0.6)" }}>
                 Family-owned and operated since 1970. We solve any drain and sewer problem for homes and businesses across Southwestern Ontario, backed by a 20-year warranty.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-10">

@@ -7,6 +7,7 @@ interface AnimationConfig {
   preview?: boolean;
   scale: number;
   speed: number;
+  durationOverride?: number; // direct seconds override — bypasses the speed formula
 }
 
 interface NoiseConfig {
@@ -56,7 +57,11 @@ export function EtherealShadow({
   const hueRotateAnimation = useRef<AnimationPlaybackControls | null>(null);
 
   const displacementScale = animation ? mapRange(animation.scale, 1, 100, 20, 100) : 0;
-  const animationDuration = animation ? mapRange(animation.speed, 1, 100, 1000, 50) : 1;
+  const animationDuration = animation
+    ? animation.durationOverride !== undefined
+      ? animation.durationOverride * 25  // convert seconds back to raw units
+      : mapRange(animation.speed, 1, 100, 1000, 50)
+    : 1;
 
   useEffect(() => {
     if (feColorMatrixRef.current && animationEnabled) {
