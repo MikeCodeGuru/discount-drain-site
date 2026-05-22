@@ -242,10 +242,32 @@ export default function DDServiceDetail() {
   const benefits = service.benefits ? JSON.parse(service.benefits as string) : [];
   const faqs = service.faqs ? JSON.parse(service.faqs as string) : [];
 
+  const ogImage = "https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg";
+  const pageTitle = `${service.metaTitle ?? service.title} | Discount Drain | London Ontario`;
+  const pageDesc = service.metaDesc ?? service.shortDesc;
+  const canonicalUrl = `https://discountdrain.ca/services/${slug}`;
+
   return (
     <DDLayout>
-      <title>{service.metaTitle ?? service.title} | Discount Drain | London Ontario</title>
-      {service.metaDesc && <meta name="description" content={service.metaDesc} />}
+      <title>{pageTitle}</title>
+      {pageDesc && <meta name="description" content={pageDesc} />}
+      {service.metaKeywords && <meta name="keywords" content={service.metaKeywords} />}
+      <link rel="canonical" href={canonicalUrl} />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:title" content={pageTitle} />
+      {pageDesc && <meta property="og:description" content={pageDesc} />}
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={pageTitle} />
+      {pageDesc && <meta name="twitter:description" content={pageDesc} />}
+      <meta name="twitter:image" content={ogImage} />
 
       {/* Structured Data - Service */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

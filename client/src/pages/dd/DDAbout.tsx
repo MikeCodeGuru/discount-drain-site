@@ -43,6 +43,21 @@ export default function DDAbout() {
       <meta name="description" content="Discount Drain has served London and Southwestern Ontario since 1970. Family-owned and operated, WSIB compliant, fully insured, and BBB accredited. Over 20 skilled technicians on staff." />
       <meta name="keywords" content="about Discount Drain, London Ontario drain company, family-owned drain specialist, BBB accredited plumber London ON, WSIB compliant drain contractor, sewer repair company history" />
       <link rel="canonical" href="https://discountdrain.ca/about" />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://discountdrain.ca/about" />
+      <meta property="og:title" content="About Discount Drain | Family-Owned Since 1970 | London Ontario" />
+      <meta property="og:description" content="Discount Drain has served London and Southwestern Ontario since 1970. Family-owned and operated, WSIB compliant, fully insured, and BBB accredited. Over 20 skilled technicians on staff." />
+      <meta property="og:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="About Discount Drain | Family-Owned Since 1970 | London Ontario" />
+      <meta name="twitter:description" content="Discount Drain has served London and Southwestern Ontario since 1970. Family-owned and operated, WSIB compliant, fully insured, and BBB accredited. Over 20 skilled technicians on staff." />
+      <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
 
       {/* Page Hero */}
       <section

@@ -51,6 +51,21 @@ export default function DDQuote() {
       <meta name="description" content="Get a free drain and sewer repair quote from Discount Drain in London Ontario. Free camera inspection included. Call 519-451-8342 or fill out the form." />
       <meta name="keywords" content="free drain repair quote London Ontario, sewer repair estimate London ON, free sewer camera inspection quote, drain cleaning price London, get a quote Discount Drain" />
       <link rel="canonical" href="https://discountdrain.ca/quote" />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://discountdrain.ca/quote" />
+      <meta property="og:title" content="Get a Free Quote | Discount Drain | London Ontario" />
+      <meta property="og:description" content="Get a free drain and sewer repair quote from Discount Drain in London Ontario. Free camera inspection included. Call 519-451-8342 or fill out the form." />
+      <meta property="og:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Get a Free Quote | Discount Drain | London Ontario" />
+      <meta name="twitter:description" content="Get a free drain and sewer repair quote from Discount Drain in London Ontario. Free camera inspection included. Call 519-451-8342 or fill out the form." />
+      <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
 
       {/* Header */}
       <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>

@@ -272,6 +272,82 @@ export default function DDHome() {
       <meta name="description" content="Family-owned drain and sewer specialists serving London and Southwestern Ontario since 1970. Free sewer video camera inspection with every service call. Available 24/7. Call 519-451-8342." />
       <meta name="keywords" content="drain cleaning London Ontario, sewer repair London ON, wet basement waterproofing, trenchless pipe repair, sewer camera inspection, Discount Drain, 24/7 emergency drain service, Southwestern Ontario drain specialist" />
       <link rel="canonical" href="https://discountdrain.ca/" />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://discountdrain.ca/" />
+      <meta property="og:title" content="Discount Drain | London Ontario Drain and Sewer Specialists Since 1970" />
+      <meta property="og:description" content="Family-owned drain and sewer specialists serving London and Southwestern Ontario since 1970. Free sewer video camera inspection with every service call. Available 24/7. Call 519-451-8342." />
+      <meta property="og:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Discount Drain | London Ontario Drain and Sewer Specialists Since 1970" />
+      <meta name="twitter:description" content="Family-owned drain and sewer specialists serving London and Southwestern Ontario since 1970. Free sewer video camera inspection with every service call. Available 24/7. Call 519-451-8342." />
+      <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      {/* JSON-LD LocalBusiness */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Plumber",
+        "name": "Discount Drain",
+        "url": "https://discountdrain.ca",
+        "logo": "https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg",
+        "image": "https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg",
+        "description": "Family-owned drain and sewer specialists serving London and Southwestern Ontario since 1970. Free sewer video camera inspection with every service call. Available 24/7.",
+        "telephone": "+1-519-451-8342",
+        "email": "office@discountdrain.ca",
+        "foundingDate": "1970",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "London",
+          "addressRegion": "ON",
+          "addressCountry": "CA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.9849,
+          "longitude": -81.2453
+        },
+        "areaServed": [
+          { "@type": "City", "name": "London", "addressRegion": "ON" },
+          { "@type": "City", "name": "Strathroy", "addressRegion": "ON" },
+          { "@type": "City", "name": "St. Thomas", "addressRegion": "ON" },
+          { "@type": "City", "name": "Woodstock", "addressRegion": "ON" },
+          { "@type": "City", "name": "Ingersoll", "addressRegion": "ON" },
+          { "@type": "City", "name": "Tillsonburg", "addressRegion": "ON" },
+          { "@type": "City", "name": "Aylmer", "addressRegion": "ON" },
+          { "@type": "City", "name": "Exeter", "addressRegion": "ON" }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Drain and Sewer Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free Sewer Video Camera Inspection" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Trenchless Pipe Repair" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wet Basement Waterproofing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Drain Cleaning and Power Flushing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sewer Repair and Installation" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Catch Basin Cleaning" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Septic Service and Repairs" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Machine Excavating" } }
+          ]
+        },
+        "sameAs": [
+          "https://www.facebook.com/discountdrain",
+          "https://www.google.com/maps/search/Discount+Drain+London+Ontario"
+        ]
+      }) }} />
 
       {/* ─── HERO ─── */}
       <section

@@ -317,3 +317,9 @@
 - [x] Add vercel.json for SPA routing
 - [x] TypeScript check passes (0 errors)
 - [x] Vite build succeeds (1645 modules, no errors)
+
+## Phase 35: SEO - Open Graph, Twitter Cards, JSON-LD, Service Detail Meta
+
+- [x] Add Open Graph and Twitter Card meta tags to all core pages (Home, About, Residential, Commercial, Contact, Quote, Services, Service Area, Blog)
+- [x] Add JSON-LD LocalBusiness structured data to the homepage
+- [x] Add unique canonical and keyword meta tags to all service detail pages (DDServiceDetail.tsx)

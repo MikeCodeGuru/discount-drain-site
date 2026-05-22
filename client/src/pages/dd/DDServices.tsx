@@ -60,6 +60,21 @@ export default function DDServices() {
       <meta name="description" content="Complete drain and sewer services in London Ontario: free camera inspections, trenchless pipe repair, wet basement waterproofing, drain cleaning, sewer repair, and excavation. Call 519-451-8342." />
       <meta name="keywords" content="drain and sewer services London Ontario, sewer camera inspection, trenchless pipe repair, wet basement waterproofing, drain cleaning London ON, sewer repair installation, excavation services, catch basin cleaning, septic repair" />
       <link rel="canonical" href="https://discountdrain.ca/services" />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://discountdrain.ca/services" />
+      <meta property="og:title" content="Drain and Sewer Services | London Ontario | Discount Drain" />
+      <meta property="og:description" content="Complete drain and sewer services in London Ontario: free camera inspections, trenchless pipe repair, wet basement waterproofing, drain cleaning, sewer repair, and excavation. Call 519-451-8342." />
+      <meta property="og:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Drain and Sewer Services | London Ontario | Discount Drain" />
+      <meta name="twitter:description" content="Complete drain and sewer services in London Ontario: free camera inspections, trenchless pipe repair, wet basement waterproofing, drain cleaning, sewer repair, and excavation. Call 519-451-8342." />
+      <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
 
       {/* Page Hero */}
       <section

@@ -48,6 +48,21 @@ export default function DDContact() {
       <meta name="description" content="Contact Discount Drain in London Ontario. Call 519-451-8342 or email office@discountdrain.ca. Available 24/7 for drain and sewer emergencies." />
       <meta name="keywords" content="contact Discount Drain, drain repair London Ontario phone number, 519-451-8342, emergency drain service London ON, sewer repair contact, drain company London Ontario" />
       <link rel="canonical" href="https://discountdrain.ca/contact" />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://discountdrain.ca/contact" />
+      <meta property="og:title" content="Contact Discount Drain | London Ontario | 519-451-8342" />
+      <meta property="og:description" content="Contact Discount Drain in London Ontario. Call 519-451-8342 or email office@discountdrain.ca. Available 24/7 for drain and sewer emergencies." />
+      <meta property="og:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Contact Discount Drain | London Ontario | 519-451-8342" />
+      <meta name="twitter:description" content="Contact Discount Drain in London Ontario. Call 519-451-8342 or email office@discountdrain.ca. Available 24/7 for drain and sewer emergencies." />
+      <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
 
       {/* Page Header */}
       <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>

@@ -112,6 +112,21 @@ export default function DDServiceArea() {
       <meta name="description" content="Discount Drain serves London and all of Southwestern Ontario including Strathroy, St. Thomas, Woodstock, Ingersoll, Tillsonburg, Aylmer, Exeter, and more. Call 519-451-8342." />
       <meta name="keywords" content="drain service area London Ontario, sewer repair Strathroy, drain cleaning St. Thomas ON, sewer repair Woodstock Ontario, drain service Ingersoll, Tillsonburg drain repair, Aylmer sewer service, Southwestern Ontario drain company" />
       <link rel="canonical" href="https://discountdrain.ca/service-area" />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://discountdrain.ca/service-area" />
+      <meta property="og:title" content="Service Area | Discount Drain London Ontario" />
+      <meta property="og:description" content="Discount Drain serves London and all of Southwestern Ontario including Strathroy, St. Thomas, Woodstock, Ingersoll, Tillsonburg, Aylmer, Exeter, and more. Call 519-451-8342." />
+      <meta property="og:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Service Area | Discount Drain London Ontario" />
+      <meta name="twitter:description" content="Discount Drain serves London and all of Southwestern Ontario including Strathroy, St. Thomas, Woodstock, Ingersoll, Tillsonburg, Aylmer, Exeter, and more. Call 519-451-8342." />
+      <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
 
       {/* Hero */}
       <section

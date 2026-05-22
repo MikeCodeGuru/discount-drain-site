@@ -77,6 +77,21 @@ export default function DDBlog() {
       <meta name="description" content="Expert drain and sewer advice for Ontario homeowners. Learn about drain cleaning, sewer repair, wet basements, trenchless technology, and more from Discount Drain." />
       <meta name="keywords" content="drain cleaning tips Ontario, sewer repair advice, wet basement causes fixes, trenchless pipe repair blog, drain maintenance London Ontario, sewer backup prevention, weeping tile replacement" />
       <link rel="canonical" href="https://discountdrain.ca/blog" />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://discountdrain.ca/blog" />
+      <meta property="og:title" content="Drain and Sewer Tips | Blog | Discount Drain London Ontario" />
+      <meta property="og:description" content="Expert drain and sewer advice for Ontario homeowners. Learn about drain cleaning, sewer repair, wet basements, trenchless technology, and more from Discount Drain." />
+      <meta property="og:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Drain and Sewer Tips | Blog | Discount Drain London Ontario" />
+      <meta name="twitter:description" content="Expert drain and sewer advice for Ontario homeowners. Learn about drain cleaning, sewer repair, wet basements, trenchless technology, and more from Discount Drain." />
+      <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
 
       {/* JSON-LD Blog structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

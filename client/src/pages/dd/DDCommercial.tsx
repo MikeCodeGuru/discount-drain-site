@@ -41,6 +41,21 @@ export default function DDCommercial() {
       <meta name="description" content="Commercial drain cleaning, sewer repair, catch basin cleaning, and municipal services in London Ontario. Minimal disruption to your business. Call 519-451-8342." />
       <meta name="keywords" content="commercial drain cleaning London Ontario, commercial sewer repair London ON, catch basin cleaning, municipal sewer services Ontario, industrial drain contractor, trenchless commercial pipe repair" />
       <link rel="canonical" href="https://discountdrain.ca/commercial" />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://discountdrain.ca/commercial" />
+      <meta property="og:title" content="Commercial Drain and Sewer Services | London Ontario | Discount Drain" />
+      <meta property="og:description" content="Commercial drain cleaning, sewer repair, catch basin cleaning, and municipal services in London Ontario. Minimal disruption to your business. Call 519-451-8342." />
+      <meta property="og:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Commercial Drain and Sewer Services | London Ontario | Discount Drain" />
+      <meta name="twitter:description" content="Commercial drain cleaning, sewer repair, catch basin cleaning, and municipal services in London Ontario. Minimal disruption to your business. Call 519-451-8342." />
+      <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
 
       {/* Hero */}
       <section

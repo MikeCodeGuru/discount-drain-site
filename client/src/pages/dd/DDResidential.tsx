@@ -43,6 +43,21 @@ export default function DDResidential() {
       <meta name="description" content="Residential drain cleaning, sewer repair, wet basement waterproofing, and trenchless pipe repair in London Ontario. Free camera inspection included. Call 519-451-8342." />
       <meta name="keywords" content="residential drain cleaning London Ontario, home sewer repair London ON, wet basement waterproofing residential, trenchless pipe repair home, free sewer camera inspection, drain backup London Ontario" />
       <link rel="canonical" href="https://discountdrain.ca/residential" />
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://discountdrain.ca/residential" />
+      <meta property="og:title" content="Residential Drain and Sewer Services | London Ontario | Discount Drain" />
+      <meta property="og:description" content="Residential drain cleaning, sewer repair, wet basement waterproofing, and trenchless pipe repair in London Ontario. Free camera inspection included. Call 519-451-8342." />
+      <meta property="og:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="Discount Drain" />
+      <meta property="og:locale" content="en_CA" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Residential Drain and Sewer Services | London Ontario | Discount Drain" />
+      <meta name="twitter:description" content="Residential drain cleaning, sewer repair, wet basement waterproofing, and trenchless pipe repair in London Ontario. Free camera inspection included. Call 519-451-8342." />
+      <meta name="twitter:image" content="https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg" />
 
       {/* Hero */}
       <section
