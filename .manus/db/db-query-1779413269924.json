@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE services SET imageUrl = '/manus-storage/municipal-hero_59376e39.jpg' WHERE slug = 'municipal-services';\nUPDATE services SET imageUrl = '/manus-storage/catchbasin-hero_434c10ae.jpg' WHERE slug = 'catch-basin-cleaning';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute UPDATE services SET imageUrl = '/manus-storage/municipal-hero_59376e39.jpg' WHERE slug = 'municipal-services';\nUPDATE services SET imageUrl = '/manus-storage/catchbasin-hero_434c10ae.jpg' WHERE slug = 'catch-basin-cleaning';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 271
+}

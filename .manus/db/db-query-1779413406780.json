@@ -1,0 +1,43 @@
+{
+  "query": "SELECT slug, title, shortDesc, metaTitle, metaDesc, imageUrl,\n  JSON_LENGTH(benefits) as benefit_count,\n  JSON_LENGTH(faqs) as faq_count,\n  LENGTH(longDesc) as longdesc_length\nFROM services\nWHERE slug IN ('municipal-services', 'catch-basin-cleaning', 'septic-repairs');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, shortDesc, metaTitle, metaDesc, imageUrl,\n  JSON_LENGTH(benefits) as benefit_count,\n  JSON_LENGTH(faqs) as faq_count,\n  LENGTH(longDesc) as longdesc_length\nFROM services\nWHERE slug IN ('municipal-services', 'catch-basin-cleaning', 'septic-repairs');",
+  "rows": [
+    {
+      "slug": "catch-basin-cleaning",
+      "title": "Catch Basin Cleaning",
+      "shortDesc": "A blocked catch basin looks like a minor problem until your parking lot is underwater. Discount Drain cleans and restores catch basins for residential properties, commercial lots, and municipal road systems across London and Southwestern Ontario.",
+      "metaTitle": "Catch Basin Cleaning London Ontario | Residential and Commercial | Discount Drain",
+      "metaDesc": "Discount Drain cleans and repairs catch basins for residential, commercial, and municipal clients across London and Southwestern Ontario. Vac truck service, same-visit repairs, annual contracts. Call 519-451-8342.",
+      "imageUrl": "/manus-storage/catchbasin-hero_434c10ae.jpg",
+      "benefit_count": "6",
+      "faq_count": "10",
+      "longdesc_length": "2393"
+    },
+    {
+      "slug": "municipal-services",
+      "title": "Municipal Services",
+      "shortDesc": "When a municipality's underground infrastructure starts to fail, every resident on the street feels it. Discount Drain has been the contractor that London and Southwestern Ontario municipalities call when the job has to be done right, on schedule, and with minimal disruption to the public.",
+      "metaTitle": "Municipal Sewer and Drainage Services London Ontario | Discount Drain",
+      "metaDesc": "Discount Drain provides municipal sewer lining, manhole restoration, water main repair, and drainage infrastructure services across London and Southwestern Ontario. Family-owned since 1970. Call 519-451-8342.",
+      "imageUrl": "/manus-storage/municipal-hero_59376e39.jpg",
+      "benefit_count": "6",
+      "faq_count": "10",
+      "longdesc_length": "2660"
+    },
+    {
+      "slug": "septic-repairs",
+      "title": "Septic Service and Repairs",
+      "shortDesc": "A properly maintained septic system can last for decades. We provide preventative maintenance, inspections, and a full line of repairs and replacements for septic beds and sewers across London and Southwestern Ontario.",
+      "metaTitle": "Septic Service and Repairs London Ontario | Discount Drain",
+      "metaDesc": "Professional septic service, repairs, and replacements in London and Southwestern Ontario. Free camera inspection included. 24/7 emergency dispatch. Call 519-451-8342.",
+      "imageUrl": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-excavation-nJgwHt9PRg2kHnpUSugtnt.webp",
+      "benefit_count": "6",
+      "faq_count": "10",
+      "longdesc_length": "1572"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tshortDesc\tmetaTitle\tmetaDesc\timageUrl\tbenefit_count\tfaq_count\tlongdesc_length\ncatch-basin-cleaning\tCatch Basin Cleaning\tA blocked catch basin looks like a minor problem until your parking lot is underwater. Discount Drain cleans and restores catch basins for residential properties, commercial lots, and municipal road systems across London and Southwestern Ontario.\tCatch Basin Cleaning London Ontario | Residential and Commercial | Discount Drain\tDiscount Drain cleans and repairs catch basins for residential, commercial, and municipal clients across London and Southwestern Ontario. Vac truck service, same-visit repairs, annual contracts. Call 519-451-8342.\t/manus-storage/catchbasin-hero_434c10ae.jpg\t6\t10\t2393\nmunicipal-services\tMunicipal Services\tWhen a municipality's underground infrastructure starts to fail, every resident on the street feels it. Discount Drain has been the contractor that London and Southwestern Ontario municipalities call when the job has to be done right, on schedule, and with minimal disruption to the public.\tMunicipal Sewer and Drainage Services London Ontario | Discount Drain\tDiscount Drain provides municipal sewer lining, manhole restoration, water main repair, and drainage infrastructure services across London and Southwestern Ontario. Family-owned since 1970. Call 519-451-8342.\t/manus-storage/municipal-hero_59376e39.jpg\t6\t10\t2660\nseptic-repairs\tSeptic Service and Repairs\tA properly maintained septic system can last for decades. We provide preventative maintenance, inspections, and a full line of repairs and replacements for septic beds and sewers across London and Southwestern Ontario.\tSeptic Service and Repairs London Ontario | Discount Drain\tProfessional septic service, repairs, and replacements in London and Southwestern Ontario. Free camera inspection included. 24/7 emergency dispatch. Call 519-451-8342.\thttps://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/dd-excavation-nJgwHt9PRg2kHnpUSugtnt.webp\t6\t10\t1572\n",
+  "stderr": "",
+  "execution_time_ms": 260
+}

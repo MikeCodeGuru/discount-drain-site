@@ -219,3 +219,23 @@
 - [x] Route /services/:slug already registered in App.tsx — no new file needed
 - [x] TypeScript check passes (0 errors)
 - [x] Save checkpoint
+
+## Phase 29: Municipal Services + Catch Basin Cleaning Pages + Septic Related Services
+
+- [x] Read humanizer skill
+- [x] Review existing service page copy (septic, sewer repair, trenchless) to establish uniqueness baseline
+- [x] Write unique long-form copy for Municipal Services (5+ paragraphs, distinct angle, no overlap with other pages)
+- [x] Write 6 unique benefits for Municipal Services
+- [x] Write 10 unique FAQs for Municipal Services
+- [x] Write unique long-form copy for Catch Basin Cleaning (5+ paragraphs, distinct angle)
+- [x] Write 6 unique benefits for Catch Basin Cleaning
+- [x] Write 10 unique FAQs for Catch Basin Cleaning
+- [x] Generate hero image for Municipal Services (no third-party branding)
+- [x] Generate hero image for Catch Basin Cleaning (no third-party branding)
+- [x] Upload both hero images to CDN and update DB imageUrl
+- [x] Fix FAQs to use q/a keys matching DDServiceDetail component
+- [x] Add municipal-services and catch-basin-cleaning to HERO_IMGS map
+- [x] Add RELATED_SERVICES map to DDServiceDetail.tsx
+- [x] Add Related Services section to Septic page (Sewer Repair + Trenchless cards)
+- [x] TypeScript check passes (0 errors)
+- [x] Save checkpoint

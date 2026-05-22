@@ -1,0 +1,26 @@
+{
+  "query": "SELECT slug, title, shortDesc, longDesc, benefits, faqs FROM services WHERE slug IN ('municipal-services', 'catch-basin-cleaning');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, shortDesc, longDesc, benefits, faqs FROM services WHERE slug IN ('municipal-services', 'catch-basin-cleaning');",
+  "rows": [
+    {
+      "slug": "municipal-services",
+      "title": "Municipal Services",
+      "shortDesc": "From sewer lining to manhole restoration and water main repair, we offer effective solutions for all of your sewer and drainage needs.",
+      "longDesc": "From sewer lining to manhole restoration and water main repair, we offer effective solutions for all of your sewer and drainage needs. Our team handles large-scale municipal drainage infrastructure with the same care and professionalism we bring to every job.",
+      "benefits": "NULL",
+      "faqs": "NULL"
+    },
+    {
+      "slug": "catch-basin-cleaning",
+      "title": "Catch Basin Cleaning",
+      "shortDesc": "We work to solve your catch basin problems quickly and professionally. We use the latest technology and products that make cleaning your catch basin easy, affordable and effective.",
+      "longDesc": "We work to solve your catch basin problems quickly and professionally. We use the latest technology and products that make cleaning your catch basin easy, affordable and effective. Blocked catch basins can lead to flooding and property damage — we prevent that.",
+      "benefits": "NULL",
+      "faqs": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tshortDesc\tlongDesc\tbenefits\tfaqs\nmunicipal-services\tMunicipal Services\tFrom sewer lining to manhole restoration and water main repair, we offer effective solutions for all of your sewer and drainage needs.\tFrom sewer lining to manhole restoration and water main repair, we offer effective solutions for all of your sewer and drainage needs. Our team handles large-scale municipal drainage infrastructure with the same care and professionalism we bring to every job.\tNULL\tNULL\ncatch-basin-cleaning\tCatch Basin Cleaning\tWe work to solve your catch basin problems quickly and professionally. We use the latest technology and products that make cleaning your catch basin easy, affordable and effective.\tWe work to solve your catch basin problems quickly and professionally. We use the latest technology and products that make cleaning your catch basin easy, affordable and effective. Blocked catch basins can lead to flooding and property damage — we prevent that.\tNULL\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 385
+}
