@@ -19,6 +19,8 @@ const HERO_IMGS: Record<string, string> = {
   "drain-cleaning": "/manus-storage/service-drain-cleaning_ce593909.jpg",
   // Excavation: CAT excavator at a residential job site
   "excavation-services": "/manus-storage/service-excavation_b7ce058d.jpg",
+  // Septic service and repairs: technician inspecting open septic tank in backyard
+  "septic-repairs": "https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/septic-hero-9ZJceidgSjBkjBjyUjg2tZ.webp",
 };
 
 function useScrollReveal() {

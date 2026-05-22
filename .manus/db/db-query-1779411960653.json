@@ -1,0 +1,20 @@
+{
+  "query": "SELECT slug, title, featured, sortOrder, LENGTH(longDesc) as longDescLen, LENGTH(benefits) as benefitsLen, LENGTH(faqs) as faqsLen, metaTitle FROM services WHERE slug = 'septic-repairs';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, featured, sortOrder, LENGTH(longDesc) as longDescLen, LENGTH(benefits) as benefitsLen, LENGTH(faqs) as faqsLen, metaTitle FROM services WHERE slug = 'septic-repairs';",
+  "rows": [
+    {
+      "slug": "septic-repairs",
+      "title": "Septic Service and Repairs",
+      "featured": "1",
+      "sortOrder": "7",
+      "longDescLen": "1572",
+      "benefitsLen": "924",
+      "faqsLen": "3911",
+      "metaTitle": "Septic Service and Repairs London Ontario | Discount Drain"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tfeatured\tsortOrder\tlongDescLen\tbenefitsLen\tfaqsLen\tmetaTitle\nseptic-repairs\tSeptic Service and Repairs\t1\t7\t1572\t924\t3911\tSeptic Service and Repairs London Ontario | Discount Drain\n",
+  "stderr": "",
+  "execution_time_ms": 269
+}

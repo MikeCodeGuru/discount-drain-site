@@ -210,3 +210,12 @@
 - [x] Fix maxTranslate from 0.45 to 0.85 so all cards are reachable
 - [x] TypeScript check passes (0 errors)
 - [x] Save checkpoint
+
+## Phase 28: Dedicated Septic Service and Repairs Page
+
+- [x] Review existing service page DDServiceDetail.tsx for structure reference (dynamic slug-based page)
+- [x] Populate septic-repairs DB row with full longDesc (1572 chars), 6 benefits, 10 FAQs, metaTitle, metaDesc
+- [x] Add septic-hero.webp to HERO_IMGS map in DDServiceDetail.tsx
+- [x] Route /services/:slug already registered in App.tsx — no new file needed
+- [x] TypeScript check passes (0 errors)
+- [x] Save checkpoint

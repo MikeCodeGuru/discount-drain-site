@@ -1,0 +1,23 @@
+{
+  "query": "SELECT slug, title, shortDesc, longDesc, benefits, faqs, metaTitle, metaDesc, iconName, featured, sortOrder FROM services WHERE slug = 'septic-repairs';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user MZNcjPT9uEoLjhV.8cc91dbc6501 --database Bh4z4tJQ2oLgzVrvga4zYT --execute SELECT slug, title, shortDesc, longDesc, benefits, faqs, metaTitle, metaDesc, iconName, featured, sortOrder FROM services WHERE slug = 'septic-repairs';",
+  "rows": [
+    {
+      "slug": "septic-repairs",
+      "title": "Septic Service and Repairs",
+      "shortDesc": "A properly maintained septic system can last for decades. We provide preventative maintenance for your septic system, as well as a full service line of repairs and replacements on septic beds and sewers.",
+      "longDesc": "A properly maintained septic system can last for decades. We provide preventative maintenance for your septic system, as well as a full service line of repairs and replacements on septic beds and sewers. Our certified technicians diagnose and fix septic issues before they become costly emergencies.",
+      "benefits": "NULL",
+      "faqs": "NULL",
+      "metaTitle": "NULL",
+      "metaDesc": "NULL",
+      "iconName": "Shield",
+      "featured": "0",
+      "sortOrder": "9"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\tshortDesc\tlongDesc\tbenefits\tfaqs\tmetaTitle\tmetaDesc\ticonName\tfeatured\tsortOrder\nseptic-repairs\tSeptic Service and Repairs\tA properly maintained septic system can last for decades. We provide preventative maintenance for your septic system, as well as a full service line of repairs and replacements on septic beds and sewers.\tA properly maintained septic system can last for decades. We provide preventative maintenance for your septic system, as well as a full service line of repairs and replacements on septic beds and sewers. Our certified technicians diagnose and fix septic issues before they become costly emergencies.\tNULL\tNULL\tNULL\tNULL\tShield\t0\t9\n",
+  "stderr": "",
+  "execution_time_ms": 364
+}
