@@ -621,7 +621,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
             style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
           >
             <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "13px" }}>
-              2025 Discount Drain. All rights reserved. Family-owned since 1970.
+              2026 Discount Drain. All rights reserved. Family-owned since 1970.
             </p>
             <div className="flex items-center gap-4">
               <a href="#" style={{ color: "rgba(255,255,255,0.35)", fontSize: "13px", textDecoration: "none" }} className="hover:text-white transition-colors">
