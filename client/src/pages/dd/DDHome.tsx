@@ -590,7 +590,7 @@ function HowItWorksSection() {
         </div>
 
         {/* Roofex-style process cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-10" style={{ gap: "0", columnGap: "56px" }}>
           {HOW_STEPS.map((step, idx) => {
             const isFirst = idx === 0;
             const isLast = idx === HOW_STEPS.length - 1;
@@ -611,6 +611,16 @@ function HowItWorksSection() {
                     borderRadius: isFirst ? "40px 10px 10px 40px" : "10px",
                     padding: "40px 24px 40px 20px",
                     height: "100%",
+                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                    cursor: "default",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLDivElement).style.transform = "translateY(-6px)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 32px rgba(0,0,0,0.10)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
                   }}
                 >
                   <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "flex-start" }}>
@@ -644,13 +654,13 @@ function HowItWorksSection() {
                   </div>
                 </div>
 
-                {/* Arrow connector (between cards, desktop only) */}
+                {/* Arrow connector — sits centred in the 56px column gap */}
                 {!isLast && (
                   <div
                     className="hidden md:flex items-center justify-center"
                     style={{
                       position: "absolute",
-                      right: "-28px",
+                      right: "-56px",
                       top: "50%",
                       transform: "translateY(-50%)",
                       width: "56px",
@@ -659,6 +669,7 @@ function HowItWorksSection() {
                       background: "#17171A",
                       zIndex: 10,
                       boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+                      pointerEvents: "none",
                     }}
                   >
                     <ArrowRight size={22} style={{ color: "#ffffff" }} />

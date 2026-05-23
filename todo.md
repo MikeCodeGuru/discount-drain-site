@@ -413,3 +413,8 @@ EOF
 - [x] prefers-reduced-motion support
 - [x] Replace GoogleReviewsWidget homepage variant with ReviewMarquee in DDHome.tsx
 - [x] Build passes cleanly
+
+## Phase 45: Process Card Polish
+- [x] Fix arrow connector overlap — reduce right offset so arrows sit in the gap between cards, not over text
+- [x] Add hover lift (translateY -5px) to each process card in DDHome HowItWorksSection
+- [x] Apply Roofex card style (beige, step numbers, dashed line, arrow connectors, hover lift) to service detail page process sections

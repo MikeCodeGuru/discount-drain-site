@@ -447,6 +447,93 @@ export default function DDServiceDetail() {
         </div>
       </section>
 
+      {/* ─── Our Process ─── */}
+      <section className="py-20" style={{ background: "#ffffff" }}>
+        <div className="container">
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <div className="eyebrow mx-auto mb-4" style={{ color: "#0080ff" }}>Our Process</div>
+            <h2 style={{ fontSize: "clamp(26px, 3vw, 40px)", fontWeight: 800, color: "#111111", lineHeight: "1.2" }}>
+              How It Works
+            </h2>
+            <p style={{ color: "#555555", fontSize: "16px", maxWidth: "520px", margin: "16px auto 0", lineHeight: "26px" }}>
+              Getting your drain or sewer fixed is straightforward. Here is what to expect from your first call to the final fix.
+            </p>
+          </div>
+
+          {/* Roofex-style cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 mt-2" style={{ columnGap: "56px", rowGap: "24px" }}>
+            {[
+              { num: "01", title: "Call or Request Online", desc: "Reach us any time — 24 hours a day, 7 days a week. Tell us what is happening and we will schedule a same-day or next-day visit." },
+              { num: "02", title: "Free Camera Inspection", desc: "Our technician runs a high-resolution camera through your drain line and shows you exactly what is wrong on a monitor at the job site. No guessing, no upselling." },
+              { num: "03", title: "Problem Solved", desc: "We fix the issue on the spot whenever possible — cleaning, lining, repair, or replacement — and back the work with our 20-year warranty." },
+            ].map((step, idx, arr) => {
+              const isFirst = idx === 0;
+              const isLast = idx === arr.length - 1;
+              return (
+                <div key={idx} style={{ position: "relative" }}>
+                  {/* Card */}
+                  <div
+                    style={{
+                      background: "#F4F4EB",
+                      borderRadius: isFirst ? "40px 10px 10px 40px" : "10px",
+                      padding: "40px 28px 40px 24px",
+                      height: "100%",
+                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                      cursor: "default",
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLDivElement).style.transform = "translateY(-6px)";
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 32px rgba(0,0,0,0.10)";
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                    }}
+                  >
+                    <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "flex-start" }}>
+                      {/* Left: step number + dashed line */}
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
+                        <span style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "36px", fontWeight: 800, color: "#0080ff", lineHeight: "1" }}>
+                          {step.num}
+                        </span>
+                        <div style={{ width: "1px", flex: 1, minHeight: "80px", borderLeft: "1.5px dashed rgba(17,19,35,0.2)", marginTop: "10px" }} />
+                      </div>
+                      {/* Right: title + desc */}
+                      <div style={{ flex: 1 }}>
+                        <h3 style={{ fontSize: "17px", fontWeight: 800, color: "#111111", marginBottom: "10px", lineHeight: "1.35" }}>{step.title}</h3>
+                        <p style={{ color: "#555555", fontSize: "14px", lineHeight: "24px" }}>{step.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Arrow connector — sits centred in the 56px column gap */}
+                  {!isLast && (
+                    <div
+                      className="hidden md:flex items-center justify-center"
+                      style={{
+                        position: "absolute",
+                        right: "-56px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        width: "56px",
+                        height: "56px",
+                        borderRadius: "50%",
+                        background: "#17171A",
+                        zIndex: 10,
+                        boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      <ArrowRight size={22} style={{ color: "#ffffff" }} />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       {testimonials.length > 0 && (
         <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>
