@@ -595,16 +595,16 @@ function HowItWorksSection() {
           {HOW_STEPS.map((step, idx) => {
             const isFirst = idx === 0;
             const isLast = idx === HOW_STEPS.length - 1;
+            // Stagger delay: 0ms, 150ms, 300ms — each card slides up from below
+            const delay = idx * 150;
             return (
               <div
                 key={idx}
                 className="relative"
                 style={{
                   opacity: stepsVisible[idx] ? 1 : 0,
-                  transform: stepsVisible[idx] ? "translateY(0)" : "translateY(28px)",
-                  transition: `opacity 0.55s ease ${idx * 200}ms, transform 0.55s cubic-bezier(0.22,1,0.36,1) ${idx * 200}ms`,
-                  // On mobile add bottom margin except last card
-                  marginBottom: isLast ? 0 : undefined,
+                  transform: stepsVisible[idx] ? "translateY(0) scale(1)" : "translateY(44px) scale(0.97)",
+                  transition: `opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
                 }}
               >
                 {/* Card */}
@@ -680,26 +680,26 @@ function HowItWorksSection() {
                   </div>
                 )}
 
-                {/* Mobile: down-arrow connector between stacked cards */}
+                {/* Mobile: down-arrow connector between stacked cards — generous height for breathing room */}
                 {!isLast && (
                   <div
                     className="flex md:hidden items-center justify-center"
                     style={{
-                      height: "40px",
+                      height: "56px",
                       pointerEvents: "none",
                     }}
                   >
                     <div style={{
-                      width: "36px",
-                      height: "36px",
+                      width: "40px",
+                      height: "40px",
                       borderRadius: "50%",
                       background: "#17171A",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+                      boxShadow: "0 4px 14px rgba(0,0,0,0.18)",
                     }}>
-                      <ArrowDown size={16} style={{ color: "#ffffff" }} />
+                      <ArrowDown size={18} style={{ color: "#ffffff" }} />
                     </div>
                   </div>
                 )}
