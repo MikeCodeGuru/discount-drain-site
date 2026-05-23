@@ -367,6 +367,13 @@ export default function DDHome() {
         <div className="absolute blob-bg" style={{ width: "500px", height: "500px", top: "-120px", left: "-180px", backgroundColor: "rgba(0,128,255,0.07)", zIndex: 0 }} />
         <div className="absolute blob-bg" style={{ width: "300px", height: "300px", bottom: "-80px", left: "30%", backgroundColor: "rgba(0,128,255,0.06)", zIndex: 0 }} />
 
+        {/* CSS-only particle layer — runs on GPU compositor, no JS rAF */}
+        <div className="hero-particles" aria-hidden="true">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <span key={i} className="p" />
+          ))}
+        </div>
+
         <div className="relative container py-10 md:py-14" style={{ zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
