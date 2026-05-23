@@ -15,6 +15,7 @@ import {
   Clock,
   Award,
   Users,
+  Send,
 } from "lucide-react";
 import DDLayout from "./DDLayout";
 import { getAllServices, getFeaturedServices } from "@/data/services";
@@ -240,6 +241,423 @@ function ServiceAreaTeaser() {
               className="h-[420px]"
             />
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Trust items data ─────────────────────────────────────────────────────────
+const TRUST_ITEMS = [
+  {
+    icon: Camera,
+    title: "Free $400 Camera Inspection",
+    desc: "We show you exactly what is wrong before any work begins. No guesswork, no surprises.",
+  },
+  {
+    icon: Shield,
+    title: "20-Year Basement Warranty",
+    desc: "Our wet basement waterproofing is backed by one of the longest warranties in the industry.",
+  },
+  {
+    icon: Clock,
+    title: "Same-Day Emergency Dispatch",
+    desc: "We answer the phone 24 hours a day, 7 days a week and dispatch the same day.",
+  },
+  {
+    icon: Award,
+    title: "55 Years Family-Owned",
+    desc: "Serving London and Southwestern Ontario since 1970. Three generations of trusted service.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "WSIB and Fully Insured",
+    desc: "All technicians are certified, WSIB-covered, and fully insured for your peace of mind.",
+  },
+];
+
+const MINI_FORM_SERVICES = [
+  "Drain Cleaning",
+  "Sewer Camera Inspection",
+  "Trenchless Pipe Repair",
+  "Wet Basement / Waterproofing",
+  "Sewer Repair or Installation",
+  "Excavation Services",
+  "Catch Basin Cleaning",
+  "Septic Service",
+  "Emergency Service",
+  "Not Sure / Other",
+];
+
+function TrustFormSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [trustVisible, setTrustVisible] = useState(false);
+  const [formVisible, setFormVisible] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [form, setForm] = useState({ name: "", phone: "", service: "" });
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setTrustVisible(true), 80);
+          setTimeout(() => setFormVisible(true), 260);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.12 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name || !form.phone || !form.service) return;
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }, 800);
+  };
+
+  return (
+    <section
+      ref={sectionRef}
+      className="py-20 overflow-hidden"
+      style={{ background: "#f7f9fc" }}
+    >
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+          {/* LEFT — Trust grid */}
+          <div>
+            <div className="eyebrow mb-4" style={{ color: "#0080ff" }}>Why Choose Us</div>
+            <h2
+              className="mb-3"
+              style={{ fontSize: "clamp(26px, 3vw, 40px)", fontWeight: 800, color: "#111111", letterSpacing: "-0.02em", lineHeight: 1.15 }}
+            >
+              London's Most Trusted Drain Specialists
+            </h2>
+            <p style={{ color: "#6b7280", fontSize: "16px", lineHeight: "26px", marginBottom: "36px" }}>
+              Family-owned since 1970. We back every job with industry-leading warranties and show up when you need us most.
+            </p>
+
+            <div className="flex flex-col gap-5">
+              {TRUST_ITEMS.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="trust-item-cascade"
+                    style={{
+                      opacity: trustVisible ? 1 : 0,
+                      transform: trustVisible ? "translateX(0)" : "translateX(-32px)",
+                      transition: `opacity 0.5s ease ${idx * 90}ms, transform 0.5s cubic-bezier(0.22,1,0.36,1) ${idx * 90}ms`,
+                    }}
+                  >
+                    <div
+                      className="flex-shrink-0 flex items-center justify-center"
+                      style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(0,128,255,0.1)" }}
+                    >
+                      <Icon size={20} style={{ color: "#0080ff" }} />
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 700, fontSize: "15px", color: "#111111", marginBottom: "3px" }}>{item.title}</div>
+                      <div style={{ fontSize: "14px", color: "#6b7280", lineHeight: "22px" }}>{item.desc}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* RIGHT — Mini lead-capture form */}
+          <div
+            style={{
+              opacity: formVisible ? 1 : 0,
+              transform: formVisible ? "translateX(0) scale(1)" : "translateX(40px) scale(0.97)",
+              transition: "opacity 0.6s ease 0.1s, transform 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s",
+            }}
+          >
+            <div
+              className="service-card-v2"
+              style={{ padding: "36px", borderRadius: "20px", background: "#ffffff", boxShadow: "0 4px 32px rgba(0,0,0,0.08)" }}
+            >
+              {submitted ? (
+                <div className="text-center py-8">
+                  <div
+                    className="flex items-center justify-center mx-auto mb-5"
+                    style={{ width: "64px", height: "64px", borderRadius: "50%", background: "rgba(0,128,255,0.1)" }}
+                  >
+                    <CheckCircle2 size={32} style={{ color: "#0080ff" }} />
+                  </div>
+                  <h3 style={{ fontWeight: 800, fontSize: "22px", color: "#111111", marginBottom: "10px" }}>Request Received!</h3>
+                  <p style={{ color: "#6b7280", fontSize: "15px", lineHeight: "24px" }}>
+                    We will call you back within the hour. For urgent issues, call us directly at{" "}
+                    <a href="tel:5194518342" style={{ color: "#0080ff", fontWeight: 600 }}>519-451-8342</a>.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <h3 style={{ fontWeight: 800, fontSize: "22px", color: "#111111", marginBottom: "6px" }}>Get a Free Quote</h3>
+                  <p style={{ color: "#6b7280", fontSize: "14px", marginBottom: "24px" }}>No obligation. We call you back within the hour.</p>
+
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <div>
+                      <label style={{ fontSize: "13px", fontWeight: 600, color: "#374151", display: "block", marginBottom: "6px" }}>Your Name *</label>
+                      <input
+                        type="text"
+                        placeholder="John Smith"
+                        value={form.name}
+                        onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                        required
+                        style={{
+                          width: "100%", padding: "12px 14px", borderRadius: "10px",
+                          border: "1.5px solid #e5e7eb", fontSize: "15px", outline: "none",
+                          transition: "border-color 0.2s",
+                        }}
+                        onFocus={e => (e.target.style.borderColor = "#0080ff")}
+                        onBlur={e => (e.target.style.borderColor = "#e5e7eb")}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: "13px", fontWeight: 600, color: "#374151", display: "block", marginBottom: "6px" }}>Phone Number *</label>
+                      <input
+                        type="tel"
+                        placeholder="519-555-0100"
+                        value={form.phone}
+                        onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+                        required
+                        style={{
+                          width: "100%", padding: "12px 14px", borderRadius: "10px",
+                          border: "1.5px solid #e5e7eb", fontSize: "15px", outline: "none",
+                          transition: "border-color 0.2s",
+                        }}
+                        onFocus={e => (e.target.style.borderColor = "#0080ff")}
+                        onBlur={e => (e.target.style.borderColor = "#e5e7eb")}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: "13px", fontWeight: 600, color: "#374151", display: "block", marginBottom: "6px" }}>Service Needed *</label>
+                      <select
+                        value={form.service}
+                        onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
+                        required
+                        style={{
+                          width: "100%", padding: "12px 14px", borderRadius: "10px",
+                          border: "1.5px solid #e5e7eb", fontSize: "15px", outline: "none",
+                          background: "#fff", color: form.service ? "#111111" : "#9ca3af",
+                          transition: "border-color 0.2s", appearance: "none",
+                        }}
+                        onFocus={e => (e.target.style.borderColor = "#0080ff")}
+                        onBlur={e => (e.target.style.borderColor = "#e5e7eb")}
+                      >
+                        <option value="" disabled>Select a service...</option>
+                        {MINI_FORM_SERVICES.map(s => (
+                          <option key={s} value={s}>{s}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      style={{
+                        marginTop: "4px",
+                        width: "100%", padding: "14px", borderRadius: "10px",
+                        background: isSubmitting ? "#6b9fd4" : "#0080ff",
+                        color: "#ffffff", fontWeight: 700, fontSize: "15px",
+                        border: "none", cursor: isSubmitting ? "not-allowed" : "pointer",
+                        display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                        transition: "background 0.2s, transform 0.15s",
+                      }}
+                      onMouseEnter={e => { if (!isSubmitting) (e.currentTarget as HTMLButtonElement).style.background = "#0060d0"; }}
+                      onMouseLeave={e => { if (!isSubmitting) (e.currentTarget as HTMLButtonElement).style.background = "#0080ff"; }}
+                    >
+                      {isSubmitting ? (
+                        <span>Sending...</span>
+                      ) : (
+                        <>
+                          <Send size={15} />
+                          Request a Free Quote
+                        </>
+                      )}
+                    </button>
+
+                    <p style={{ fontSize: "12px", color: "#9ca3af", textAlign: "center", marginTop: "4px" }}>
+                      We call back within the hour. No spam, ever.
+                    </p>
+                  </form>
+                </>
+              )}
+            </div>
+
+            {/* Social proof micro-copy below form */}
+            <div className="flex items-center gap-3 mt-4 justify-center">
+              <div className="flex">
+                {[1,2,3,4,5].map(i => (
+                  <Star key={i} size={14} style={{ color: "#0080ff", fill: "#0080ff" }} />
+                ))}
+              </div>
+              <span style={{ fontSize: "13px", color: "#6b7280" }}>Rated 5.0 by 200+ London homeowners</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── How It Works section ──────────────────────────────────────────────────────
+const HOW_STEPS = [
+  {
+    number: "01",
+    title: "Call or Request a Quote",
+    desc: "Reach us by phone or fill out the form above. We pick up 24/7 and respond to online requests within the hour.",
+    icon: Phone,
+  },
+  {
+    number: "02",
+    title: "Free Camera Inspection",
+    desc: "A certified technician arrives and performs a live sewer video inspection at no charge. You see the problem on screen before we do anything.",
+    icon: Camera,
+  },
+  {
+    number: "03",
+    title: "Problem Solved, Guaranteed",
+    desc: "We fix the issue using the right method for your situation. Every job is backed by our workmanship guarantee and up to a 20-year warranty.",
+    icon: CheckCircle2,
+  },
+];
+
+function HowItWorksSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [stepsVisible, setStepsVisible] = useState<boolean[]>([false, false, false]);
+  const [lineWidth, setLineWidth] = useState(0);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Stagger each step in
+          [0, 1, 2].forEach(i => {
+            setTimeout(() => {
+              setStepsVisible(prev => {
+                const next = [...prev];
+                next[i] = true;
+                return next;
+              });
+            }, i * 200);
+          });
+          // Draw the connector line
+          setTimeout(() => setLineWidth(100), 100);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="py-20 bg-white overflow-hidden"
+    >
+      <div className="container">
+        <div className="text-center mb-14">
+          <div className="eyebrow mx-auto mb-4" style={{ color: "#0080ff" }}>Simple Process</div>
+          <h2
+            style={{ fontSize: "clamp(26px, 3vw, 40px)", fontWeight: 800, color: "#111111", letterSpacing: "-0.02em", marginBottom: "12px" }}
+          >
+            How It Works
+          </h2>
+          <p style={{ color: "#6b7280", maxWidth: "460px", margin: "0 auto", fontSize: "16px", lineHeight: "26px" }}>
+            Getting your drain or sewer fixed is straightforward. Here is what to expect from your first call to the final fix.
+          </p>
+        </div>
+
+        {/* Connector line (desktop only) */}
+        <div className="relative hidden md:block mb-0" style={{ height: "2px", margin: "0 10% 0 10%" }}>
+          <div style={{ position: "absolute", inset: 0, background: "#e5e7eb", borderRadius: "2px" }} />
+          <div
+            ref={lineRef}
+            style={{
+              position: "absolute", top: 0, left: 0, height: "100%",
+              background: "linear-gradient(90deg, #0080ff, #3298fe)",
+              borderRadius: "2px",
+              width: `${lineWidth}%`,
+              transition: "width 1.2s cubic-bezier(0.22,1,0.36,1) 0.2s",
+            }}
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+          {HOW_STEPS.map((step, idx) => {
+            const Icon = step.icon;
+            return (
+              <div
+                key={idx}
+                style={{
+                  opacity: stepsVisible[idx] ? 1 : 0,
+                  transform: stepsVisible[idx] ? "translateY(0)" : "translateY(28px)",
+                  transition: `opacity 0.55s ease ${idx * 120}ms, transform 0.55s cubic-bezier(0.22,1,0.36,1) ${idx * 120}ms`,
+                }}
+              >
+                <div
+                  className="flex items-center justify-center mx-auto mb-5"
+                  style={{
+                    width: "64px", height: "64px", borderRadius: "18px",
+                    background: "linear-gradient(135deg, #0080ff 0%, #3298fe 100%)",
+                    boxShadow: "0 8px 24px rgba(0,128,255,0.25)",
+                  }}
+                >
+                  <Icon size={26} style={{ color: "#ffffff" }} />
+                </div>
+                <div
+                  className="text-center"
+                  style={{
+                    display: "inline-block", padding: "3px 10px", borderRadius: "20px",
+                    background: "rgba(0,128,255,0.08)", color: "#0080ff",
+                    fontSize: "12px", fontWeight: 700, letterSpacing: "0.06em",
+                    marginBottom: "10px",
+                  }}
+                >
+                  STEP {step.number}
+                </div>
+                <h3 style={{ fontWeight: 700, fontSize: "18px", color: "#111111", marginBottom: "10px", textAlign: "center" }}>
+                  {step.title}
+                </h3>
+                <p style={{ color: "#6b7280", fontSize: "14px", lineHeight: "23px", textAlign: "center" }}>
+                  {step.desc}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* CTA below steps */}
+        <div className="text-center mt-12">
+          <a
+            href="tel:5194518342"
+            className="btn-blue"
+            style={{ fontSize: "16px", padding: "16px 36px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+          >
+            <Phone size={16} />
+            Call 519-451-8342 Now
+          </a>
+          <p style={{ color: "#9ca3af", fontSize: "13px", marginTop: "12px" }}>Available 24/7 including weekends and holidays</p>
         </div>
       </div>
     </section>
@@ -644,26 +1062,11 @@ export default function DDHome() {
         </div>
       </section>
 
-      {/* ─── TESTIMONIALS ─── */}
-      <section ref={testimonialsSectionRef} className="py-20 bg-white section-entrance">
-        <div className="container">
-          <div ref={testimonialsRef} className="fade-in-up text-center mb-14">
-            <div className="eyebrow mx-auto mb-4">Customer Reviews</div>
-            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", color: "#111111", marginBottom: "12px" }}>
-              What Our Customers Say
-            </h2>
-            <p style={{ color: "#8c9baa", maxWidth: "480px", margin: "0 auto" }}>
-              Trusted by homeowners and businesses across London and Southwestern Ontario.
-            </p>
-          </div>
+      {/* ─── TRUST + LEAD CAPTURE ─── */}
+      <TrustFormSection />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(testimonials ?? []).slice(0, 3).map((t, idx) => (
-              <TestimonialCard key={t.id} testimonial={t} delay={idx * 75} />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ─── HOW IT WORKS ─── */}
+      <HowItWorksSection />
 
       {/* ─── GOOGLE REVIEWS ─── */}
       <GoogleReviewsWidget variant="homepage" maxReviews={6} />

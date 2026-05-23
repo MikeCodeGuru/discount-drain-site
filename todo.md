@@ -387,3 +387,20 @@ EOF
 - [x] Verify no gold/yellow remains on service pages or homepage services section
 - [x] Build passes cleanly
 - [x] Save checkpoint
+
+## Phase 43: CRO Homepage Sections (Replace Testimonials)
+
+- [ ] Replace testimonials section with Trust+Form split section (trust grid left, mini-form right)
+- [ ] Add How It Works 3-step section immediately below Trust+Form
+- [ ] Add staggered cascade-reveal animation for trust items (left-to-right)
+- [ ] Add slide-in-right animation for form card
+- [ ] Add step-sequence animation with self-drawing connector line for How It Works
+- [ ] Build passes cleanly
+- [ ] Save checkpoint
+
+## Phase 43: CRO Sections — Trust+Form Split + How It Works
+- [x] Add TrustFormSection component to DDHome.tsx (5 trust items with cascade animation, 3-field mini lead capture form with slide-in animation)
+- [x] Add HowItWorksSection component to DDHome.tsx (3-step process with self-drawing connector line and staggered step reveal)
+- [x] Add Send icon to lucide-react imports
+- [x] Verify build compiles cleanly (4.39s, no errors)
+- [x] Save checkpoint
