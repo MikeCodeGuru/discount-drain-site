@@ -297,6 +297,16 @@ export default function ReviewMarquee() {
           animation-play-state: paused;
         }
 
+        .review-marquee-card {
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .review-ticker-wrapper:hover .review-marquee-card:hover {
+          transform: translateY(-6px) scale(1.02);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.13);
+          cursor: default;
+        }
+
         @media (prefers-reduced-motion: reduce) {
           .review-ticker-track {
             animation: none;
