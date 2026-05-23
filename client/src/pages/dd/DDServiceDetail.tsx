@@ -456,7 +456,17 @@ export default function DDServiceDetail() {
               How It Works
             </h2>
             <p style={{ color: "#555555", fontSize: "16px", maxWidth: "520px", margin: "16px auto 0", lineHeight: "26px" }}>
-              Getting your drain or sewer fixed is straightforward. Here is what to expect from your first call to the final fix.
+              {({
+                "sewer-camera-inspection": "Here is exactly what happens from the moment you call to the moment we hand you a full video diagnosis — no surprises, no pressure.",
+                "trenchless-pipe-repair": "Here is what a no-dig trenchless repair looks like from start to finish — your driveway and landscaping stay intact the entire time.",
+                "wet-basement-repair": "Here is how we permanently fix a wet or leaky basement — from the first site visit to the day we hand you a 20-year written warranty.",
+                "sewer-repair-installation": "Here is how we diagnose and fix your sewer line — using the right method for the job, confirmed by camera before we leave.",
+                "drain-cleaning": "Here is what a professional drain cleaning looks like — camera first, targeted clearing second, camera confirmation last.",
+                "excavation-services": "Here is how we handle an excavation project from initial assessment through to a clean, restored site.",
+                "municipal-services": "Here is how we approach municipal drainage work — scoped, executed to specification, and signed off with full documentation.",
+                "septic-repairs": "Here is how we diagnose and restore a failing septic system — from inspection through repair or replacement to a fully functioning system.",
+                "catch-basin-cleaning": "Here is what a professional catch basin service looks like — inspect first, vacuum and flush second, condition report last.",
+              } as Record<string, string>)[slug ?? ""] ?? "Getting your drain or sewer fixed is straightforward. Here is what to expect from your first call to the final fix."}
             </p>
           </div>
 
