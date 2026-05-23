@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "wouter";
-import { Phone, Shield, CheckCircle2, Star, Clock, Award, Users, Truck, ArrowRight, Facebook, Youtube, Instagram, Twitter } from "lucide-react";
+import { Phone, Shield, CheckCircle2, Star, Clock, Award, Users, Truck, ArrowRight } from "lucide-react";
+import { FaFacebook, FaYoutube, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import DDLayout from "./DDLayout";
 import { TEAM_MEMBERS } from "@/data/team";
 
@@ -198,10 +199,10 @@ export default function DDAbout() {
           </p>
           <div className="flex flex-wrap justify-center gap-5">
             {[
-              { Icon: Facebook, href: "https://www.facebook.com/DiscountDrain/", label: "Facebook", color: "#1877F2", bg: "#EBF3FF" },
-              { Icon: Youtube, href: "https://www.youtube.com/channel/UC0g_G8fwtZRCJLC0pvK5FDw?view_as=subscriber", label: "YouTube", color: "#FF0000", bg: "#FFF0F0" },
-              { Icon: Instagram, href: "https://www.instagram.com/discountdrainservice/?hl=en", label: "Instagram", color: "#E1306C", bg: "#FFF0F5" },
-              { Icon: Twitter, href: "https://x.com/Discount_Drain", label: "X (Twitter)", color: "#000000", bg: "#F0F0F0" },
+              { Icon: FaFacebook, href: "https://www.facebook.com/DiscountDrain/", label: "Facebook", color: "#1877F2", bg: "#EBF3FF" },
+              { Icon: FaYoutube, href: "https://www.youtube.com/channel/UC0g_G8fwtZRCJLC0pvK5FDw?view_as=subscriber", label: "YouTube", color: "#FF0000", bg: "#FFF0F0" },
+              { Icon: FaInstagram, href: "https://www.instagram.com/discountdrainservice/?hl=en", label: "Instagram", color: "#E1306C", bg: "#FFF0F5" },
+              { Icon: FaXTwitter, href: "https://x.com/Discount_Drain", label: "X (Twitter)", color: "#000000", bg: "#F0F0F0" },
             ].map(({ Icon, href, label, color, bg }) => (
               <a
                 key={label}

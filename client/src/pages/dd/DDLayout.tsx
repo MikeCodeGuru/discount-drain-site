@@ -9,11 +9,8 @@ import {
   Menu,
   X,
   ChevronDown,
-  Facebook,
-  Youtube,
-  Instagram,
-  Twitter,
 } from "lucide-react";
+import { FaFacebook, FaYoutube, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 const LOGO_URL = "/manus-storage/discount-drain-logo-transparent_1c22873b.png";
 
@@ -143,10 +140,10 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
             </div>
             <div className="flex items-center gap-2" style={{ borderLeft: "1px solid rgba(255,255,255,0.15)", paddingLeft: "16px" }}>
               {[
-                { Icon: Facebook, href: "https://www.facebook.com/DiscountDrain/", label: "Facebook" },
-                { Icon: Youtube, href: "https://www.youtube.com/channel/UC0g_G8fwtZRCJLC0pvK5FDw?view_as=subscriber", label: "YouTube" },
-                { Icon: Instagram, href: "https://www.instagram.com/discountdrainservice/?hl=en", label: "Instagram" },
-                { Icon: Twitter, href: "https://x.com/Discount_Drain", label: "X" },
+                { Icon: FaFacebook, href: "https://www.facebook.com/DiscountDrain/", label: "Facebook" },
+                { Icon: FaYoutube, href: "https://www.youtube.com/channel/UC0g_G8fwtZRCJLC0pvK5FDw?view_as=subscriber", label: "YouTube" },
+                { Icon: FaInstagram, href: "https://www.instagram.com/discountdrainservice/?hl=en", label: "Instagram" },
+                { Icon: FaXTwitter, href: "https://x.com/Discount_Drain", label: "X" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
@@ -534,10 +531,10 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
               </p>
               <div className="flex gap-3 mt-5">
                 {[
-                  { Icon: Facebook, href: "https://www.facebook.com/DiscountDrain/" },
-                  { Icon: Youtube, href: "https://www.youtube.com/channel/UC0g_G8fwtZRCJLC0pvK5FDw?view_as=subscriber" },
-                  { Icon: Instagram, href: "https://www.instagram.com/discountdrainservice/?hl=en" },
-                  { Icon: Twitter, href: "https://x.com/Discount_Drain" },
+                  { Icon: FaFacebook, href: "https://www.facebook.com/DiscountDrain/" },
+                  { Icon: FaYoutube, href: "https://www.youtube.com/channel/UC0g_G8fwtZRCJLC0pvK5FDw?view_as=subscriber" },
+                  { Icon: FaInstagram, href: "https://www.instagram.com/discountdrainservice/?hl=en" },
+                  { Icon: FaXTwitter, href: "https://x.com/Discount_Drain" },
                 ].map(({ Icon, href }, i) => (
                   <a
                     key={i}
