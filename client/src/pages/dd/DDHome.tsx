@@ -589,60 +589,81 @@ function HowItWorksSection() {
           </p>
         </div>
 
-        {/* Connector line (desktop only) */}
-        <div className="relative hidden md:block mb-0" style={{ height: "2px", margin: "0 10% 0 10%" }}>
-          <div style={{ position: "absolute", inset: 0, background: "#e5e7eb", borderRadius: "2px" }} />
-          <div
-            ref={lineRef}
-            style={{
-              position: "absolute", top: 0, left: 0, height: "100%",
-              background: "linear-gradient(90deg, #0080ff, #3298fe)",
-              borderRadius: "2px",
-              width: `${lineWidth}%`,
-              transition: "width 1.2s cubic-bezier(0.22,1,0.36,1) 0.2s",
-            }}
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+        {/* Roofex-style process cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
           {HOW_STEPS.map((step, idx) => {
-            const Icon = step.icon;
+            const isFirst = idx === 0;
+            const isLast = idx === HOW_STEPS.length - 1;
             return (
               <div
                 key={idx}
+                className="relative"
                 style={{
                   opacity: stepsVisible[idx] ? 1 : 0,
                   transform: stepsVisible[idx] ? "translateY(0)" : "translateY(28px)",
-                  transition: `opacity 0.55s ease ${idx * 120}ms, transform 0.55s cubic-bezier(0.22,1,0.36,1) ${idx * 120}ms`,
+                  transition: `opacity 0.55s ease ${idx * 200}ms, transform 0.55s cubic-bezier(0.22,1,0.36,1) ${idx * 200}ms`,
                 }}
               >
+                {/* Card */}
                 <div
-                  className="flex items-center justify-center mx-auto mb-5"
                   style={{
-                    width: "64px", height: "64px", borderRadius: "18px",
-                    background: "linear-gradient(135deg, #0080ff 0%, #3298fe 100%)",
-                    boxShadow: "0 8px 24px rgba(0,128,255,0.25)",
+                    background: "#F4F4EB",
+                    borderRadius: isFirst ? "40px 10px 10px 40px" : "10px",
+                    padding: "40px 24px 40px 20px",
+                    height: "100%",
                   }}
                 >
-                  <Icon size={26} style={{ color: "#ffffff" }} />
+                  <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "flex-start" }}>
+                    {/* Left: step number + dashed line */}
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
+                      <span style={{
+                        fontSize: "36px", fontWeight: 800,
+                        color: "#0080ff",
+                        lineHeight: 1,
+                        fontFamily: "inherit",
+                      }}>
+                        {step.number}
+                      </span>
+                      <div style={{
+                        width: "2px",
+                        flex: 1,
+                        minHeight: "80px",
+                        borderLeft: "1.5px dashed rgba(17,19,35,0.18)",
+                        marginTop: "12px",
+                      }} />
+                    </div>
+                    {/* Right: title + desc */}
+                    <div>
+                      <h3 style={{ fontWeight: 700, fontSize: "18px", color: "#111111", marginBottom: "10px", lineHeight: "1.3" }}>
+                        {step.title}
+                      </h3>
+                      <p style={{ color: "#6b7280", fontSize: "14px", lineHeight: "23px" }}>
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div
-                  className="text-center"
-                  style={{
-                    display: "inline-block", padding: "3px 10px", borderRadius: "20px",
-                    background: "rgba(0,128,255,0.08)", color: "#0080ff",
-                    fontSize: "12px", fontWeight: 700, letterSpacing: "0.06em",
-                    marginBottom: "10px",
-                  }}
-                >
-                  STEP {step.number}
-                </div>
-                <h3 style={{ fontWeight: 700, fontSize: "18px", color: "#111111", marginBottom: "10px", textAlign: "center" }}>
-                  {step.title}
-                </h3>
-                <p style={{ color: "#6b7280", fontSize: "14px", lineHeight: "23px", textAlign: "center" }}>
-                  {step.desc}
-                </p>
+
+                {/* Arrow connector (between cards, desktop only) */}
+                {!isLast && (
+                  <div
+                    className="hidden md:flex items-center justify-center"
+                    style={{
+                      position: "absolute",
+                      right: "-28px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      width: "56px",
+                      height: "56px",
+                      borderRadius: "50%",
+                      background: "#17171A",
+                      zIndex: 10,
+                      boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+                    }}
+                  >
+                    <ArrowRight size={22} style={{ color: "#ffffff" }} />
+                  </div>
+                )}
               </div>
             );
           })}
