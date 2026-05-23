@@ -460,13 +460,63 @@ export default function DDServiceDetail() {
             </p>
           </div>
 
-          {/* Roofex-style cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 mt-2" style={{ columnGap: "56px", rowGap: "24px" }}>
-            {[
+          {/* Roofex-style cards — service-specific steps */}
+          {(() => {
+            const SERVICE_STEPS: Record<string, { num: string; title: string; desc: string }[]> = {
+              "sewer-camera-inspection": [
+                { num: "01", title: "Book Your Free Inspection", desc: "Call us or request online any time — 24/7. We schedule a same-day or next-day visit at no charge to you." },
+                { num: "02", title: "Watch the Camera Live", desc: "Our technician feeds a high-resolution camera through your drain line and shows you the footage on a monitor at the job site in real time." },
+                { num: "03", title: "Get a Clear Diagnosis", desc: "We walk you through exactly what the camera found — in plain language — and explain your options before recommending any repair." },
+              ],
+              "trenchless-pipe-repair": [
+                { num: "01", title: "Free Camera Inspection", desc: "We run a high-resolution camera through your pipe to pinpoint the damage and determine whether UV CIPP lining, spot patch, or ElastoFlake coating is the right fix." },
+                { num: "02", title: "No-Dig Repair", desc: "We insert and cure the liner or coating from inside the existing pipe — no trench, no driveway damage, no disruption to your landscaping." },
+                { num: "03", title: "20-Year Warranty", desc: "A post-repair camera confirms the result. Your new pipe-within-a-pipe is seamless, root-proof, and backed by our written 20-year warranty." },
+              ],
+              "wet-basement-repair": [
+                { num: "01", title: "On-Site Assessment", desc: "We inspect your foundation, drainage, and basement walls to identify exactly where water is entering and what is causing it." },
+                { num: "02", title: "Targeted Waterproofing", desc: "We install the right solution — interior drainage channel, crack injection, sump pump, or exterior excavation — based on what the assessment reveals." },
+                { num: "03", title: "Dry Basement, 20-Year Warranty", desc: "Work is complete, your basement is dry, and the repair is backed by a written 20-year transferable warranty." },
+              ],
+              "sewer-repair-installation": [
+                { num: "01", title: "Camera Inspection First", desc: "We run a video camera through your sewer line to locate the break, offset, or root intrusion and determine the best repair method." },
+                { num: "02", title: "Right Method for the Job", desc: "We choose from UV CIPP lining, pipe bursting, spot patch, ElastoFlake coating, or open-cut excavation — whichever is most effective for your situation." },
+                { num: "03", title: "Confirmed and Warranted", desc: "A post-repair camera confirms the fix. All sewer repair and installation work is backed by our standard written warranty." },
+              ],
+              "drain-cleaning": [
+                { num: "01", title: "Diagnose the Blockage", desc: "We run a camera through the drain to see exactly what is causing the clog — grease, roots, debris, or a structural issue — before we touch anything." },
+                { num: "02", title: "High-Pressure Power Flush", desc: "We clear the blockage using the right tool for the job: drain snake, hydro-jetting, or power flushing, depending on what the camera showed." },
+                { num: "03", title: "Camera Confirms Clear", desc: "A final camera pass confirms the drain is fully open. If we find an underlying issue, we explain your options before any additional work begins." },
+              ],
+              "excavation-services": [
+                { num: "01", title: "Site Assessment and Plan", desc: "We assess the excavation site, confirm underground utility locations, and give you a clear scope of work and timeline before any digging starts." },
+                { num: "02", title: "Precision Excavation", desc: "Our equipment operators dig to the required depth and dimensions — whether for sewer access, pool installation, parking lot prep, or foundation work." },
+                { num: "03", title: "Haul Away and Restore", desc: "Spoil is loaded and removed by our dump trucks. We backfill, compact, and restore the surface to the agreed-upon finish." },
+              ],
+              "municipal-services": [
+                { num: "01", title: "Scope and Mobilise", desc: "We review the project specifications, confirm access requirements, and mobilise the right equipment and crew for the municipal scope of work." },
+                { num: "02", title: "Execute the Work", desc: "Our certified crew performs sewer lining, manhole restoration, catch basin repair, water main work, or other municipal drainage tasks to specification." },
+                { num: "03", title: "Inspection and Sign-Off", desc: "Work is inspected, documented, and handed off with all required records. We coordinate with municipal contacts throughout to keep the project on schedule." },
+              ],
+              "septic-repairs": [
+                { num: "01", title: "Inspect the System", desc: "We assess the septic tank, distribution box, and tile bed to identify the failure point — whether it is a blocked outlet, a failing bed, or a cracked tank." },
+                { num: "02", title: "Repair or Replace", desc: "We pump, repair, or replace the components that are failing. For tile bed failures, we design and install a new bed to current Ontario Building Code standards." },
+                { num: "03", title: "System Restored", desc: "Your septic system is back in service. We provide maintenance guidance so you know how to keep it running efficiently for years to come." },
+              ],
+              "catch-basin-cleaning": [
+                { num: "01", title: "Inspect the Basin", desc: "We inspect the catch basin and outlet pipe to assess sediment depth, structural condition, and whether the outlet is clear before cleaning begins." },
+                { num: "02", title: "Vacuum and Flush", desc: "We remove accumulated sediment, debris, and standing water using a vacuum truck, then flush the outlet pipe to confirm it is flowing freely." },
+                { num: "03", title: "Report and Recommend", desc: "You receive a condition report. If we find cracks, damaged grates, or a blocked outlet pipe, we explain the repair options before any additional work is done." },
+              ],
+            };
+            const steps = SERVICE_STEPS[slug ?? ""] ?? [
               { num: "01", title: "Call or Request Online", desc: "Reach us any time — 24 hours a day, 7 days a week. Tell us what is happening and we will schedule a same-day or next-day visit." },
-              { num: "02", title: "Free Camera Inspection", desc: "Our technician runs a high-resolution camera through your drain line and shows you exactly what is wrong on a monitor at the job site. No guessing, no upselling." },
-              { num: "03", title: "Problem Solved", desc: "We fix the issue on the spot whenever possible — cleaning, lining, repair, or replacement — and back the work with our 20-year warranty." },
-            ].map((step, idx, arr) => {
+              { num: "02", title: "Free Camera Inspection", desc: "Our technician runs a high-resolution camera through your drain line and shows you exactly what is wrong on a monitor at the job site." },
+              { num: "03", title: "Problem Solved", desc: "We fix the issue on the spot whenever possible and back the work with our 20-year warranty." },
+            ];
+            return (
+          <div className="grid grid-cols-1 md:grid-cols-3 mt-2" style={{ columnGap: "56px", rowGap: "24px" }}>
+            {steps.map((step, idx, arr) => {
               const isFirst = idx === 0;
               const isLast = idx === arr.length - 1;
               return (
@@ -531,6 +581,8 @@ export default function DDServiceDetail() {
               );
             })}
           </div>
+            );
+          })()}
         </div>
       </section>
 
