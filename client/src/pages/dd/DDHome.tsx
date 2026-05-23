@@ -11,6 +11,7 @@ import {
   Star,
   CheckCircle2,
   ArrowRight,
+  ArrowDown,
   ChevronRight,
   Clock,
   Award,
@@ -590,7 +591,7 @@ function HowItWorksSection() {
         </div>
 
         {/* Roofex-style process cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 mt-10" style={{ gap: "0", columnGap: "56px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-10" style={{ gap: "0", columnGap: "56px", rowGap: "0" }}>
           {HOW_STEPS.map((step, idx) => {
             const isFirst = idx === 0;
             const isLast = idx === HOW_STEPS.length - 1;
@@ -602,14 +603,17 @@ function HowItWorksSection() {
                   opacity: stepsVisible[idx] ? 1 : 0,
                   transform: stepsVisible[idx] ? "translateY(0)" : "translateY(28px)",
                   transition: `opacity 0.55s ease ${idx * 200}ms, transform 0.55s cubic-bezier(0.22,1,0.36,1) ${idx * 200}ms`,
+                  // On mobile add bottom margin except last card
+                  marginBottom: isLast ? 0 : undefined,
                 }}
               >
                 {/* Card */}
                 <div
+                  className="process-step-card"
                   style={{
                     background: "#F4F4EB",
-                    borderRadius: isFirst ? "40px 10px 10px 40px" : "10px",
-                    padding: "40px 24px 40px 20px",
+                    borderRadius: isFirst ? "24px 10px 10px 24px" : "10px",
+                    padding: "28px 20px 28px 16px",
                     height: "100%",
                     transition: "transform 0.25s ease, box-shadow 0.25s ease",
                     cursor: "default",
@@ -623,11 +627,11 @@ function HowItWorksSection() {
                     (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
                   }}
                 >
-                  <div style={{ display: "flex", flexDirection: "row", gap: "20px", alignItems: "flex-start" }}>
+                  <div style={{ display: "flex", flexDirection: "row", gap: "16px", alignItems: "flex-start" }}>
                     {/* Left: step number + dashed line */}
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, width: "40px" }}>
                       <span style={{
-                        fontSize: "36px", fontWeight: 800,
+                        fontSize: "clamp(22px, 4vw, 32px)", fontWeight: 800,
                         color: "#0080ff",
                         lineHeight: 1,
                         fontFamily: "inherit",
@@ -637,24 +641,24 @@ function HowItWorksSection() {
                       <div style={{
                         width: "2px",
                         flex: 1,
-                        minHeight: "80px",
+                        minHeight: "48px",
                         borderLeft: "1.5px dashed rgba(17,19,35,0.18)",
-                        marginTop: "12px",
+                        marginTop: "10px",
                       }} />
                     </div>
                     {/* Right: title + desc */}
-                    <div>
-                      <h3 style={{ fontWeight: 700, fontSize: "18px", color: "#111111", marginBottom: "10px", lineHeight: "1.3" }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <h3 style={{ fontWeight: 700, fontSize: "clamp(15px, 3.5vw, 18px)", color: "#111111", marginBottom: "8px", lineHeight: "1.3" }}>
                         {step.title}
                       </h3>
-                      <p style={{ color: "#6b7280", fontSize: "14px", lineHeight: "23px" }}>
+                      <p style={{ color: "#6b7280", fontSize: "clamp(13px, 3vw, 14px)", lineHeight: "22px" }}>
                         {step.desc}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Arrow connector — sits centred in the 56px column gap */}
+                {/* Desktop: right-arrow connector in the column gap */}
                 {!isLast && (
                   <div
                     className="hidden md:flex items-center justify-center"
@@ -673,6 +677,30 @@ function HowItWorksSection() {
                     }}
                   >
                     <ArrowRight size={22} style={{ color: "#ffffff" }} />
+                  </div>
+                )}
+
+                {/* Mobile: down-arrow connector between stacked cards */}
+                {!isLast && (
+                  <div
+                    className="flex md:hidden items-center justify-center"
+                    style={{
+                      height: "40px",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    <div style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "50%",
+                      background: "#17171A",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+                    }}>
+                      <ArrowDown size={16} style={{ color: "#ffffff" }} />
+                    </div>
                   </div>
                 )}
               </div>
