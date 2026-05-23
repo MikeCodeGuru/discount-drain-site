@@ -12,7 +12,7 @@ import {
   Facebook,
   Youtube,
   Instagram,
-  Linkedin,
+  Twitter,
 } from "lucide-react";
 
 const LOGO_URL = "/manus-storage/discount-drain-logo-transparent_1c22873b.png";
@@ -513,14 +513,16 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
               </p>
               <div className="flex gap-3 mt-5">
                 {[
-                  { Icon: Facebook, href: "#" },
-                  { Icon: Youtube, href: "#" },
-                  { Icon: Instagram, href: "#" },
-                  { Icon: Linkedin, href: "#" },
+                  { Icon: Facebook, href: "https://www.facebook.com/DiscountDrain/" },
+                  { Icon: Youtube, href: "https://www.youtube.com/channel/UC0g_G8fwtZRCJLC0pvK5FDw?view_as=subscriber" },
+                  { Icon: Instagram, href: "https://www.instagram.com/discountdrainservice/?hl=en" },
+                  { Icon: Twitter, href: "https://x.com/Discount_Drain" },
                 ].map(({ Icon, href }, i) => (
                   <a
                     key={i}
                     href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-center transition-colors"
                     style={{
                       width: "36px",
