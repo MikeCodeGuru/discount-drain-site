@@ -192,7 +192,6 @@ export function MapView({
         )}
         style={{ minHeight: "420px" }}
       >
-        {/* make the map show for SEO ranking */}
         <img
           src={staticMapUrl}
           alt="Map of London, Ontario service area"

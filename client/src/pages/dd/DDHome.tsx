@@ -22,7 +22,6 @@ import { TESTIMONIALS } from "@/data/testimonials";
 import { usePrefetchRoutes } from "@/hooks/usePrefetchRoutes";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 import { MapView } from "@/components/Map";
-import { EtherealShadow } from "@/components/ui/etheral-shadow";
 
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 const HERO_FALLBACK = "/manus-storage/dd-hero-drain_7551245e.jpg";
@@ -53,68 +52,28 @@ function useScrollReveal<T extends HTMLElement = HTMLDivElement>() {
 }
 
 function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [active, setActive] = useState(false);
+  const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setActive(true); obs.disconnect(); } },
-      { threshold: 0.1 }
-    );
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        let start = 0;
+        const step = (ts: number) => {
+          if (!start) start = ts;
+          const p = Math.min((ts - start) / 1600, 1);
+          setCount(Math.floor(p * target));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        obs.disconnect();
+      }
+    }, { threshold: 0.5 });
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
-
-  // Use CSS counter animation via a CSS custom property transition
-  // We render the number directly and use a CSS animation on the element
-  const displayValue = active ? target : 0;
-
-  return (
-    <span
-      ref={ref}
-      style={{
-        display: "inline-block",
-        // CSS tabular nums so digits don't shift width
-        fontVariantNumeric: "tabular-nums",
-      }}
-    >
-      <AnimatedNumber from={0} to={displayValue} duration={1600} />{suffix}
-    </span>
-  );
-}
-
-function AnimatedNumber({ from, to, duration }: { from: number; to: number; duration: number }) {
-  const [value, setValue] = useState(from);
-  const startTimeRef = useRef<number | null>(null);
-  const rafRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (to === 0) return;
-    // Use a single rAF loop but with easeOutCubic so it feels fast and smooth
-    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-    startTimeRef.current = null;
-
-    const tick = (ts: number) => {
-      if (startTimeRef.current === null) startTimeRef.current = ts;
-      const elapsed = ts - startTimeRef.current;
-      const progress = Math.min(elapsed / duration, 1);
-      setValue(Math.round(easeOut(progress) * to));
-      if (progress < 1) {
-        rafRef.current = requestAnimationFrame(tick);
-      }
-    };
-
-    // Delay start by one frame so the hero animation has settled
-    rafRef.current = requestAnimationFrame(() => {
-      rafRef.current = requestAnimationFrame(tick);
-    });
-
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, [to, duration]);
-
-  return <>{value}</>;
+  }, [target]);
+  return <span ref={ref}>{count}{suffix}</span>;
 }
 
 // ─── Staggered stat tile for the Stats strip ────────────────────────────────
@@ -398,20 +357,15 @@ export default function DDHome() {
       <section
         className="relative overflow-hidden"
         style={{
-          background: "#e8f3ff",
+          background: "linear-gradient(135deg, #e8f3ff 0%, #f0f7ff 40%, #dbeeff 100%)",
           minHeight: "88vh",
           display: "flex",
           alignItems: "center",
         }}
       >
-        {/* Ethereal animated background */}
-        <EtherealShadow
-          color="rgba(0, 128, 255, 0.45)"
-          animation={{ scale: 100, speed: 99, durationOverride: 0.8 }}
-          noise={{ opacity: 0.8, scale: 1.2 }}
-          sizing="fill"
-          style={{ zIndex: 0 }}
-        />
+        {/* Subtle decorative blobs */}
+        <div className="absolute blob-bg" style={{ width: "500px", height: "500px", top: "-120px", left: "-180px", backgroundColor: "rgba(0,128,255,0.07)", zIndex: 0 }} />
+        <div className="absolute blob-bg" style={{ width: "300px", height: "300px", bottom: "-80px", left: "30%", backgroundColor: "rgba(0,128,255,0.06)", zIndex: 0 }} />
 
         <div className="relative container py-10 md:py-14" style={{ zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -436,7 +390,7 @@ export default function DDHome() {
               >
                 London's Most Trusted Drain and Sewer Specialists
               </h1>
-              <p style={{ fontSize: "17px", lineHeight: "28px", color: "#1a2a3a", maxWidth: "480px", marginBottom: "32px", fontWeight: 500, textShadow: "0 1px 2px rgba(255,255,255,0.6)" }}>
+              <p style={{ fontSize: "17px", lineHeight: "28px", color: "#4a5568", maxWidth: "480px", marginBottom: "32px" }}>
                 Family-owned and operated since 1970. We solve any drain and sewer problem for homes and businesses across Southwestern Ontario, backed by a 20-year warranty.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
