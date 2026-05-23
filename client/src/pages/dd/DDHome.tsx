@@ -22,6 +22,7 @@ import { getAllServices, getFeaturedServices } from "@/data/services";
 import { TESTIMONIALS } from "@/data/testimonials";
 import { usePrefetchRoutes } from "@/hooks/usePrefetchRoutes";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
+import ReviewMarquee from "@/components/dd/ReviewMarquee";
 import { MapView } from "@/components/Map";
 
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
@@ -1068,8 +1069,8 @@ export default function DDHome() {
       {/* ─── HOW IT WORKS ─── */}
       <HowItWorksSection />
 
-      {/* ─── GOOGLE REVIEWS ─── */}
-      <GoogleReviewsWidget variant="homepage" maxReviews={6} />
+      {/* ─── REVIEW MARQUEE ─── */}
+      <ReviewMarquee />
 
       {/* ─── SERVICE AREA MAP TEASER ─── */}
       <ServiceAreaTeaser />

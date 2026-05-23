@@ -404,3 +404,12 @@ EOF
 - [x] Add Send icon to lucide-react imports
 - [x] Verify build compiles cleanly (4.39s, no errors)
 - [x] Save checkpoint
+
+## Phase 44: Infinite Review Marquee (Roofex-style ticker)
+- [x] Create ReviewMarquee component with CSS @keyframes infinite horizontal ticker
+- [x] Duplicate card set for seamless loop
+- [x] Left/right fade edge gradients
+- [x] Hover-to-pause animation
+- [x] prefers-reduced-motion support
+- [x] Replace GoogleReviewsWidget homepage variant with ReviewMarquee in DDHome.tsx
+- [x] Build passes cleanly
