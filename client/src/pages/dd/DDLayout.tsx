@@ -136,9 +136,30 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
               <span>London and Southwestern Ontario</span>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-xs text-white/70">
-            <Clock size={12} />
-            <span className="font-semibold text-white">24/7 Emergency Service Available</span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-xs text-white/70">
+              <Clock size={12} />
+              <span className="font-semibold text-white">24/7 Emergency Service Available</span>
+            </div>
+            <div className="flex items-center gap-2" style={{ borderLeft: "1px solid rgba(255,255,255,0.15)", paddingLeft: "16px" }}>
+              {[
+                { Icon: Facebook, href: "https://www.facebook.com/DiscountDrain/", label: "Facebook" },
+                { Icon: Youtube, href: "https://www.youtube.com/channel/UC0g_G8fwtZRCJLC0pvK5FDw?view_as=subscriber", label: "YouTube" },
+                { Icon: Instagram, href: "https://www.instagram.com/discountdrainservice/?hl=en", label: "Instagram" },
+                { Icon: Twitter, href: "https://x.com/Discount_Drain", label: "X" },
+              ].map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="text-white/50 hover:text-white transition-colors"
+                >
+                  <Icon size={13} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

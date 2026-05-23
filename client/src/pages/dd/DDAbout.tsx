@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "wouter";
-import { Phone, Shield, CheckCircle2, Star, Clock, Award, Users, Truck, ArrowRight } from "lucide-react";
+import { Phone, Shield, CheckCircle2, Star, Clock, Award, Users, Truck, ArrowRight, Facebook, Youtube, Instagram, Twitter } from "lucide-react";
 import DDLayout from "./DDLayout";
 import { TEAM_MEMBERS } from "@/data/team";
 
@@ -185,6 +185,52 @@ export default function DDAbout() {
           </div>
         </section>
       )}
+
+      {/* Follow Us */}
+      <section className="py-20 bg-white">
+        <div className="container text-center">
+          <div className="eyebrow mx-auto mb-4" style={{ color: "#0080ff" }}>Stay Connected</div>
+          <h2 style={{ fontSize: "clamp(26px, 3vw, 40px)", fontWeight: 800, color: "#111111", marginBottom: "12px" }}>
+            Follow Us Online
+          </h2>
+          <p style={{ color: "#555555", fontSize: "17px", maxWidth: "500px", margin: "0 auto 48px", lineHeight: "28px" }}>
+            See our latest jobs, tips, and behind-the-scenes work. Follow Discount Drain on your favourite platform.
+          </p>
+          <div className="flex flex-wrap justify-center gap-5">
+            {[
+              { Icon: Facebook, href: "https://www.facebook.com/DiscountDrain/", label: "Facebook", color: "#1877F2", bg: "#EBF3FF" },
+              { Icon: Youtube, href: "https://www.youtube.com/channel/UC0g_G8fwtZRCJLC0pvK5FDw?view_as=subscriber", label: "YouTube", color: "#FF0000", bg: "#FFF0F0" },
+              { Icon: Instagram, href: "https://www.instagram.com/discountdrainservice/?hl=en", label: "Instagram", color: "#E1306C", bg: "#FFF0F5" },
+              { Icon: Twitter, href: "https://x.com/Discount_Drain", label: "X (Twitter)", color: "#000000", bg: "#F0F0F0" },
+            ].map(({ Icon, href, label, color, bg }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-3 transition-transform hover:-translate-y-1"
+                style={{ textDecoration: "none" }}
+              >
+                <div
+                  className="flex items-center justify-center"
+                  style={{
+                    width: "72px",
+                    height: "72px",
+                    borderRadius: "20px",
+                    backgroundColor: bg,
+                    color: color,
+                    boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
+                    transition: "box-shadow 0.2s ease",
+                  }}
+                >
+                  <Icon size={30} />
+                </div>
+                <span style={{ fontSize: "14px", fontWeight: 600, color: "#333333" }}>{label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="py-20" style={{ background: "linear-gradient(135deg, #0060d0 0%, #0080ff 100%)" }}>
