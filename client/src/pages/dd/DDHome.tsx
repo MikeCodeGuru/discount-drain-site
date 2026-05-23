@@ -17,7 +17,6 @@ import {
   Users,
 } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { GradientBackground } from "@/components/ui/gradient-background";
 import { getAllServices, getFeaturedServices } from "@/data/services";
 import { TESTIMONIALS } from "@/data/testimonials";
 import { usePrefetchRoutes } from "@/hooks/usePrefetchRoutes";
@@ -355,14 +354,19 @@ export default function DDHome() {
       }) }} />
 
       {/* ─── HERO ─── */}
-      <GradientBackground
+      <section
         className="relative overflow-hidden"
-        style={{ minHeight: "88vh", display: "flex", alignItems: "center" }}
-        animationDuration={6}
-        animationDelay={0.3}
-        overlay={true}
-        overlayOpacity={0.08}
+        style={{
+          background: "linear-gradient(135deg, #e8f3ff 0%, #f0f7ff 40%, #dbeeff 100%)",
+          minHeight: "88vh",
+          display: "flex",
+          alignItems: "center",
+        }}
       >
+        {/* Subtle decorative blobs */}
+        <div className="absolute blob-bg" style={{ width: "500px", height: "500px", top: "-120px", left: "-180px", backgroundColor: "rgba(0,128,255,0.07)", zIndex: 0 }} />
+        <div className="absolute blob-bg" style={{ width: "300px", height: "300px", bottom: "-80px", left: "30%", backgroundColor: "rgba(0,128,255,0.06)", zIndex: 0 }} />
+
         <div className="relative container py-10 md:py-14" style={{ zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
@@ -481,7 +485,7 @@ export default function DDHome() {
 
           </div>
         </div>
-      </GradientBackground>
+      </section>
 
       {/* ─── STATS STRIP ─── */}
       <section style={{ backgroundColor: "#0080ff" }} className="py-12">
