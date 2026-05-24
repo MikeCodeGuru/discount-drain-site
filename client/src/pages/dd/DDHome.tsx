@@ -591,7 +591,7 @@ function HowItWorksSection() {
         </div>
 
         {/* Roofex-style process cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 mt-10" style={{ gap: "0", columnGap: "56px", rowGap: "0" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-10" style={{ columnGap: "56px", rowGap: "0" }} id="how-steps-grid">
           {HOW_STEPS.map((step, idx) => {
             const isFirst = idx === 0;
             const isLast = idx === HOW_STEPS.length - 1;
@@ -605,6 +605,8 @@ function HowItWorksSection() {
                   opacity: stepsVisible[idx] ? 1 : 0,
                   transform: stepsVisible[idx] ? "translateY(0) scale(1)" : "translateY(44px) scale(0.97)",
                   transition: `opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+                  // Mobile: add bottom margin so cards have visible white space between them
+                  paddingBottom: isLast ? 0 : undefined,
                 }}
               >
                 {/* Card */}
@@ -680,18 +682,18 @@ function HowItWorksSection() {
                   </div>
                 )}
 
-                {/* Mobile: down-arrow connector between stacked cards — generous height for breathing room */}
+                {/* Mobile: down-arrow connector between stacked cards — 80px height gives visible white gap */}
                 {!isLast && (
                   <div
                     className="flex md:hidden items-center justify-center"
                     style={{
-                      height: "56px",
+                      height: "80px",
                       pointerEvents: "none",
                     }}
                   >
                     <div style={{
-                      width: "40px",
-                      height: "40px",
+                      width: "44px",
+                      height: "44px",
                       borderRadius: "50%",
                       background: "#17171A",
                       display: "flex",
@@ -699,7 +701,7 @@ function HowItWorksSection() {
                       justifyContent: "center",
                       boxShadow: "0 4px 14px rgba(0,0,0,0.18)",
                     }}>
-                      <ArrowDown size={18} style={{ color: "#ffffff" }} />
+                      <ArrowDown size={20} style={{ color: "#ffffff" }} />
                     </div>
                   </div>
                 )}
