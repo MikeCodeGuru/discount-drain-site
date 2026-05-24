@@ -89,27 +89,8 @@ export default function ServiceGallery({ items, title = "Project Gallery", servi
       <div className="container">
         {/* Section header */}
         <div style={{ marginBottom: "40px" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              marginBottom: "12px",
-            }}
-          >
-            <div style={{ width: "32px", height: "2px", background: "#0080ff" }} />
-            <span
-              style={{
-                fontSize: "11px",
-                fontWeight: 700,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "#0080ff",
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-              }}
-            >
-              Our Work
-            </span>
+          <div className="eyebrow mb-3">
+            Our Work
           </div>
           <h2
             style={{

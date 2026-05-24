@@ -529,35 +529,9 @@ export default function ScrollServicesSection() {
       >
       {/* Left: eyebrow + headline */}
       <div>
-        {/* Eyebrow — horizontal rule + label, no pill background */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            marginBottom: "16px",
-          }}
-        >
-          <div
-            style={{
-              width: "32px",
-              height: "2px",
-              backgroundColor: "#0080ff",
-              flexShrink: 0,
-            }}
-          />
-          <span
-            style={{
-              fontSize: "11px",
-              fontWeight: 700,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase" as const,
-              color: "#0060d0",
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
-            }}
-          >
-            Our Services
-          </span>
+        {/* Eyebrow — pill badge style matching site-wide .eyebrow class */}
+        <div className="eyebrow mb-4">
+          Our Services
         </div>
 
         {/* Headline — asymmetric: first line normal weight, second line bold + gold accent */}
