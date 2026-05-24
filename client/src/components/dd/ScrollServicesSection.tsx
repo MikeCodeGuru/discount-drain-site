@@ -629,11 +629,11 @@ export default function ScrollServicesSection() {
     return (
       <div id="services-section" style={{ backgroundColor: "#FFFFFF" }}>
         <SectionHeader />
-        {/* Stacking container: cards stack via position:sticky, no extra bottom padding needed */}
+        {/* Stacking container: cards stack via position:sticky */}
         <div
           className="container"
           style={{
-            paddingBottom: "48px",
+            paddingBottom: "0",
             display: "flex",
             flexDirection: "column",
             gap: "16px",
@@ -648,8 +648,17 @@ export default function ScrollServicesSection() {
               stackIndex={i}
             />
           ))}
+        </div>
 
-          {/* Full-width View All Services CTA — immediately after last stacked card */}
+        {/* View All Services CTA — outside the sticky container so it always renders below the last card */}
+        <div
+          className="container"
+          style={{
+            paddingTop: "24px",
+            paddingBottom: "48px",
+            backgroundColor: "#FFFFFF",
+          }}
+        >
           <Link
             href={`/services?tab=${activeTab}`}
             style={{
@@ -667,7 +676,6 @@ export default function ScrollServicesSection() {
               fontFamily: "'Inter Tight', sans-serif",
               textDecoration: "none",
               boxShadow: "0 4px 16px rgba(37,99,235,0.30)",
-              marginTop: "4px",
             }}
           >
             View All Services
