@@ -71,113 +71,10 @@ export default function ScrollDepthBanner() {
           backgroundColor: "#FFFFFF",
           borderTop: "3px solid #FEDA86",
           boxShadow: "0 -4px 24px rgba(0,0,0,0.10)",
-          padding: "18px 24px",
-          display: "flex",
-          alignItems: "center",
-          gap: "18px",
-          flexWrap: "wrap",
+          padding: "18px 24px 20px",
           position: "relative",
         }}
       >
-        {/* Camera icon accent */}
-        <div
-          style={{
-            flexShrink: 0,
-            width: "46px",
-            height: "46px",
-            borderRadius: "50%",
-            backgroundColor: "#EFF6FF",
-            border: "1.5px solid #BFDBFE",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Camera size={20} color="#2563EB" strokeWidth={2} />
-        </div>
-
-        {/* Copy */}
-        <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-          <p
-            style={{
-              fontFamily: "'Taviraj', Georgia, serif",
-              fontSize: "17px",
-              fontWeight: 600,
-              color: "#3F4049",
-              margin: 0,
-              lineHeight: 1.3,
-            }}
-          >
-            Claim Your{" "}
-            <span style={{ color: "#2563EB" }}>FREE $400 Camera Inspection</span>
-          </p>
-          <p
-            style={{
-              fontFamily: "'Inter Tight', sans-serif",
-              fontSize: "13px",
-              color: "#6B7280",
-              margin: "4px 0 0",
-              lineHeight: 1.45,
-            }}
-          >
-            See exactly what is happening inside your pipes. Included with every service call at no extra charge.
-          </p>
-        </div>
-
-        {/* CTAs */}
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-            flexShrink: 0,
-            flexWrap: "wrap",
-          }}
-        >
-          <a
-            href="tel:5194518342"
-            className="dd-banner-call-btn"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "7px",
-              backgroundColor: "#2563EB",
-              color: "#FFFFFF",
-              fontFamily: "'Inter Tight', sans-serif",
-              fontWeight: 700,
-              fontSize: "14px",
-              padding: "11px 20px",
-              borderRadius: "0px",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-              letterSpacing: "0.01em",
-            }}
-          >
-            <Phone size={14} strokeWidth={2.5} />
-            Call Now
-          </a>
-          <a
-            href="/contact"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "7px",
-              backgroundColor: "transparent",
-              color: "#3F4049",
-              fontFamily: "'Inter Tight', sans-serif",
-              fontWeight: 600,
-              fontSize: "14px",
-              padding: "11px 20px",
-              borderRadius: "0px",
-              border: "1.5px solid #D1D5DB",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-              letterSpacing: "0.01em",
-            }}
-          >
-            Request Online
-          </a>
-        </div>
-
         {/* Dismiss button */}
         <button
           onClick={dismiss}
@@ -199,6 +96,120 @@ export default function ScrollDepthBanner() {
         >
           <X size={17} strokeWidth={2} />
         </button>
+
+        {/* Top row: icon + copy */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "14px",
+            marginBottom: "16px",
+            paddingRight: "28px", // space for the X button
+          }}
+        >
+          {/* Camera icon accent */}
+          <div
+            style={{
+              flexShrink: 0,
+              width: "46px",
+              height: "46px",
+              borderRadius: "50%",
+              backgroundColor: "#EFF6FF",
+              border: "1.5px solid #BFDBFE",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Camera size={20} color="#2563EB" strokeWidth={2} />
+          </div>
+
+          {/* Copy */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <p
+              style={{
+                fontFamily: "'Taviraj', Georgia, serif",
+                fontSize: "17px",
+                fontWeight: 600,
+                color: "#3F4049",
+                margin: 0,
+                lineHeight: 1.3,
+              }}
+            >
+              Claim Your{" "}
+              <span style={{ color: "#2563EB" }}>FREE $400 Camera Inspection</span>
+            </p>
+            <p
+              style={{
+                fontFamily: "'Inter Tight', sans-serif",
+                fontSize: "13px",
+                color: "#6B7280",
+                margin: "4px 0 0",
+                lineHeight: 1.45,
+              }}
+            >
+              See exactly what is happening inside your pipes. Included with every service call at no extra charge.
+            </p>
+          </div>
+        </div>
+
+        {/* CTA row: full-width equal buttons on mobile, auto-width side by side on desktop */}
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+          }}
+        >
+          <a
+            href="tel:5194518342"
+            className="dd-banner-call-btn"
+            style={{
+              flex: "1 1 0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "7px",
+              backgroundColor: "#2563EB",
+              color: "#FFFFFF",
+              fontFamily: "'Inter Tight', sans-serif",
+              fontWeight: 700,
+              fontSize: "14px",
+              padding: "12px 16px",
+              borderRadius: "0px",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              letterSpacing: "0.01em",
+              textAlign: "center",
+            }}
+          >
+            <Phone size={14} strokeWidth={2.5} />
+            Call Now
+          </a>
+          <a
+            href="/contact"
+            style={{
+              flex: "1 1 0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "7px",
+              backgroundColor: "transparent",
+              color: "#3F4049",
+              fontFamily: "'Inter Tight', sans-serif",
+              fontWeight: 600,
+              fontSize: "14px",
+              padding: "12px 16px",
+              borderRadius: "0px",
+              border: "1.5px solid #D1D5DB",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              letterSpacing: "0.01em",
+              textAlign: "center",
+            }}
+          >
+            Request Online
+          </a>
+        </div>
       </div>
     </div>
   );

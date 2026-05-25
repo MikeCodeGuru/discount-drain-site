@@ -425,3 +425,7 @@ EOF
 - [x] Mega-menu grouped Services dropdown in nav (Residential / Commercial columns with icons)
 - [x] Breadcrumb navigation on service detail pages (visual trail + BreadcrumbList JSON-LD)
 - [x] Alternating section background rhythm on homepage (white / light grey / white cadence)
+- [x] Mobile process cards: add vertical spacing between cards on mobile
+- [x] Scroll-depth banner: centre and equalise CTA buttons on mobile
+- [x] Mega-menu: add short descriptions beneath each service item (no em dashes)
+- [x] Homepage quote form: real-time validation and success modal

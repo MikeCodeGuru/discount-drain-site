@@ -296,9 +296,30 @@ function TrustFormSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [trustVisible, setTrustVisible] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", service: "" });
+  const [touched, setTouched] = useState({ name: false, phone: false, service: false });
+
+  // Validation helpers
+  const validateName = (v: string) => v.trim().length >= 2;
+  const validatePhone = (v: string) => v.replace(/\D/g, "").length >= 7;
+  const validateService = (v: string) => v !== "";
+
+  const errors = {
+    name: touched.name && !validateName(form.name) ? "Please enter your full name." : "",
+    phone: touched.phone && !validatePhone(form.phone) ? "Please enter a valid phone number." : "",
+    service: touched.service && !validateService(form.service) ? "Please select a service." : "",
+  };
+
+  const fieldBorder = (field: "name" | "phone" | "service") => {
+    if (!touched[field]) return "1.5px solid #e5e7eb";
+    if (errors[field]) return "1.5px solid #EF4444";
+    return "1.5px solid #22C55E";
+  };
+
+  const touch = (field: "name" | "phone" | "service") =>
+    setTouched(t => ({ ...t, [field]: true }));
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -319,11 +340,13 @@ function TrustFormSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.phone || !form.service) return;
+    // Mark all fields as touched to reveal any errors
+    setTouched({ name: true, phone: true, service: true });
+    if (!validateName(form.name) || !validatePhone(form.phone) || !validateService(form.service)) return;
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitted(true);
+      setShowSuccessModal(true);
     }, 800);
   };
 
@@ -386,46 +409,158 @@ function TrustFormSection() {
               transition: "opacity 0.6s ease 0.1s, transform 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s",
             }}
           >
+            {/* Success Modal Overlay */}
+            {showSuccessModal && (
+              <div
+                style={{
+                  position: "fixed",
+                  inset: 0,
+                  zIndex: 10000,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "rgba(0,0,0,0.55)",
+                  backdropFilter: "blur(4px)",
+                  padding: "24px",
+                  animation: "fadeIn 0.25s ease",
+                }}
+                onClick={() => setShowSuccessModal(false)}
+              >
+                <div
+                  style={{
+                    backgroundColor: "#ffffff",
+                    borderRadius: "24px",
+                    padding: "48px 40px",
+                    maxWidth: "440px",
+                    width: "100%",
+                    textAlign: "center",
+                    boxShadow: "0 32px 80px rgba(0,0,0,0.18)",
+                    animation: "slideUp 0.35s cubic-bezier(0.22,1,0.36,1)",
+                    position: "relative",
+                  }}
+                  onClick={e => e.stopPropagation()}
+                >
+                  {/* Close button */}
+                  <button
+                    onClick={() => setShowSuccessModal(false)}
+                    aria-label="Close"
+                    style={{
+                      position: "absolute",
+                      top: "16px",
+                      right: "16px",
+                      background: "#F3F4F6",
+                      border: "none",
+                      borderRadius: "50%",
+                      width: "32px",
+                      height: "32px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      color: "#6B7280",
+                      fontSize: "18px",
+                      lineHeight: 1,
+                    }}
+                  >
+                    ×
+                  </button>
+
+                  {/* Animated checkmark circle */}
+                  <div
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      borderRadius: "50%",
+                      background: "linear-gradient(135deg, #22C55E 0%, #16A34A 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: "0 auto 24px",
+                      boxShadow: "0 8px 24px rgba(34,197,94,0.35)",
+                      animation: "popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.15s both",
+                    }}
+                  >
+                    <CheckCircle2 size={38} color="#ffffff" strokeWidth={2.5} />
+                  </div>
+
+                  <h3 style={{ fontWeight: 800, fontSize: "24px", color: "#111111", marginBottom: "12px", lineHeight: 1.2 }}>
+                    Request Received!
+                  </h3>
+                  <p style={{ color: "#6B7280", fontSize: "15px", lineHeight: "24px", marginBottom: "8px" }}>
+                    Thank you, <strong style={{ color: "#111111" }}>{form.name.split(" ")[0]}</strong>. We will call you back within the hour.
+                  </p>
+                  <p style={{ color: "#6B7280", fontSize: "14px", lineHeight: "22px", marginBottom: "28px" }}>
+                    For urgent issues, call us directly at{" "}
+                    <a href="tel:5194518342" style={{ color: "#0080ff", fontWeight: 600 }}>519-451-8342</a>.
+                  </p>
+
+                  {/* Divider */}
+                  <div style={{ height: "1px", background: "#F3F4F6", marginBottom: "20px" }} />
+
+                  <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap" }}>
+                    <a
+                      href="tel:5194518342"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        padding: "10px 20px",
+                        borderRadius: "8px",
+                        backgroundColor: "#0080ff",
+                        color: "#ffffff",
+                        fontWeight: 700,
+                        fontSize: "14px",
+                        textDecoration: "none",
+                      }}
+                    >
+                      <Phone size={14} />
+                      Call Now
+                    </a>
+                    <button
+                      onClick={() => setShowSuccessModal(false)}
+                      style={{
+                        padding: "10px 20px",
+                        borderRadius: "8px",
+                        border: "1.5px solid #E5E7EB",
+                        background: "transparent",
+                        color: "#374151",
+                        fontWeight: 600,
+                        fontSize: "14px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div
               className="service-card-v2"
               style={{ padding: "36px", borderRadius: "20px", background: "#ffffff", boxShadow: "0 4px 32px rgba(0,0,0,0.08)" }}
             >
-              {submitted ? (
-                <div className="text-center py-8">
-                  <div
-                    className="flex items-center justify-center mx-auto mb-5"
-                    style={{ width: "64px", height: "64px", borderRadius: "50%", background: "rgba(0,128,255,0.1)" }}
-                  >
-                    <CheckCircle2 size={32} style={{ color: "#0080ff" }} />
-                  </div>
-                  <h3 style={{ fontWeight: 800, fontSize: "22px", color: "#111111", marginBottom: "10px" }}>Request Received!</h3>
-                  <p style={{ color: "#6b7280", fontSize: "15px", lineHeight: "24px" }}>
-                    We will call you back within the hour. For urgent issues, call us directly at{" "}
-                    <a href="tel:5194518342" style={{ color: "#0080ff", fontWeight: 600 }}>519-451-8342</a>.
-                  </p>
-                </div>
-              ) : (
+              {true && (
                 <>
                   <h3 style={{ fontWeight: 800, fontSize: "22px", color: "#111111", marginBottom: "6px" }}>Get a Free Quote</h3>
                   <p style={{ color: "#6b7280", fontSize: "14px", marginBottom: "24px" }}>No obligation. We call you back within the hour.</p>
 
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
                     <div>
                       <label style={{ fontSize: "13px", fontWeight: 600, color: "#374151", display: "block", marginBottom: "6px" }}>Your Name *</label>
                       <input
                         type="text"
                         placeholder="John Smith"
                         value={form.name}
-                        onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                        required
+                        onChange={e => { setForm(f => ({ ...f, name: e.target.value })); touch("name"); }}
+                        onBlur={() => touch("name")}
                         style={{
                           width: "100%", padding: "12px 14px", borderRadius: "10px",
-                          border: "1.5px solid #e5e7eb", fontSize: "15px", outline: "none",
+                          border: fieldBorder("name"), fontSize: "15px", outline: "none",
                           transition: "border-color 0.2s",
                         }}
-                        onFocus={e => (e.target.style.borderColor = "#0080ff")}
-                        onBlur={e => (e.target.style.borderColor = "#e5e7eb")}
                       />
+                      {errors.name && <p style={{ color: "#EF4444", fontSize: "12px", marginTop: "4px" }}>{errors.name}</p>}
                     </div>
 
                     <div>
@@ -434,38 +569,36 @@ function TrustFormSection() {
                         type="tel"
                         placeholder="519-555-0100"
                         value={form.phone}
-                        onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                        required
+                        onChange={e => { setForm(f => ({ ...f, phone: e.target.value })); touch("phone"); }}
+                        onBlur={() => touch("phone")}
                         style={{
                           width: "100%", padding: "12px 14px", borderRadius: "10px",
-                          border: "1.5px solid #e5e7eb", fontSize: "15px", outline: "none",
+                          border: fieldBorder("phone"), fontSize: "15px", outline: "none",
                           transition: "border-color 0.2s",
                         }}
-                        onFocus={e => (e.target.style.borderColor = "#0080ff")}
-                        onBlur={e => (e.target.style.borderColor = "#e5e7eb")}
                       />
+                      {errors.phone && <p style={{ color: "#EF4444", fontSize: "12px", marginTop: "4px" }}>{errors.phone}</p>}
                     </div>
 
                     <div>
                       <label style={{ fontSize: "13px", fontWeight: 600, color: "#374151", display: "block", marginBottom: "6px" }}>Service Needed *</label>
                       <select
                         value={form.service}
-                        onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
-                        required
+                        onChange={e => { setForm(f => ({ ...f, service: e.target.value })); touch("service"); }}
+                        onBlur={() => touch("service")}
                         style={{
                           width: "100%", padding: "12px 14px", borderRadius: "10px",
-                          border: "1.5px solid #e5e7eb", fontSize: "15px", outline: "none",
+                          border: fieldBorder("service"), fontSize: "15px", outline: "none",
                           background: "#fff", color: form.service ? "#111111" : "#9ca3af",
                           transition: "border-color 0.2s", appearance: "none",
                         }}
-                        onFocus={e => (e.target.style.borderColor = "#0080ff")}
-                        onBlur={e => (e.target.style.borderColor = "#e5e7eb")}
                       >
                         <option value="" disabled>Select a service...</option>
                         {MINI_FORM_SERVICES.map(s => (
                           <option key={s} value={s}>{s}</option>
                         ))}
                       </select>
+                      {errors.service && <p style={{ color: "#EF4444", fontSize: "12px", marginTop: "4px" }}>{errors.service}</p>}
                     </div>
 
                     <button
@@ -592,7 +725,7 @@ function HowItWorksSection() {
         </div>
 
         {/* Roofex-style process cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 mt-10" style={{ columnGap: "56px", rowGap: "0" }} id="how-steps-grid">
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-10" style={{ columnGap: "56px", rowGap: "0" }} id="how-steps-grid" data-mobile-gap="true">
           {HOW_STEPS.map((step, idx) => {
             const isFirst = idx === 0;
             const isLast = idx === HOW_STEPS.length - 1;
@@ -683,12 +816,12 @@ function HowItWorksSection() {
                   </div>
                 )}
 
-                {/* Mobile: down-arrow connector between stacked cards — 80px height gives visible white gap */}
+                {/* Mobile: down-arrow connector between stacked cards — 96px height gives clear gap */}
                 {!isLast && (
                   <div
                     className="flex md:hidden items-center justify-center"
                     style={{
-                      height: "80px",
+                      height: "96px",
                       pointerEvents: "none",
                     }}
                   >

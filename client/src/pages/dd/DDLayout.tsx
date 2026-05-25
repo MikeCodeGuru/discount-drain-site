@@ -254,8 +254,8 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                               href={s.href}
                               style={{
                                 display: "flex",
-                                alignItems: "flex-start",
-                                gap: "10px",
+                                flexDirection: "column",
+                                gap: "2px",
                                 padding: "8px 10px",
                                 borderRadius: "10px",
                                 textDecoration: "none",
@@ -266,6 +266,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                               onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
                             >
                               <span style={{ fontSize: "13px", fontWeight: 600, color: "#1A1B20", lineHeight: 1.3 }}>{s.label}</span>
+                              <span style={{ fontSize: "11.5px", color: "#6B7280", lineHeight: 1.4 }}>{s.desc}</span>
                             </Link>
                           ))}
                         </div>
@@ -284,8 +285,8 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                               href={s.href}
                               style={{
                                 display: "flex",
-                                alignItems: "flex-start",
-                                gap: "10px",
+                                flexDirection: "column",
+                                gap: "2px",
                                 padding: "8px 10px",
                                 borderRadius: "10px",
                                 textDecoration: "none",
@@ -296,6 +297,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                               onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
                             >
                               <span style={{ fontSize: "13px", fontWeight: 600, color: "#1A1B20", lineHeight: 1.3 }}>{s.label}</span>
+                              <span style={{ fontSize: "11.5px", color: "#6B7280", lineHeight: 1.4 }}>{s.desc}</span>
                             </Link>
                           ))}
                         </div>
