@@ -19,7 +19,7 @@ export default function ScrollDepthBanner() {
       const depth = scrolled / total;
       if (depth >= TRIGGER_DEPTH) {
         setRendered(true);
-        // Small delay so the element is in the DOM before we trigger the slide-in
+        // Small delay so the element is in the DOM before triggering the slide-in
         requestAnimationFrame(() => {
           requestAnimationFrame(() => setVisible(true));
         });
@@ -52,15 +52,14 @@ export default function ScrollDepthBanner() {
         zIndex: 9999,
         transform: visible ? "translateY(0)" : "translateY(110%)",
         transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
-        // Prevent the banner from covering the sticky mobile CTA bar if present
         willChange: "transform",
       }}
     >
-      {/* Backdrop shadow line */}
+      {/* Subtle top shadow */}
       <div
         style={{
-          background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 100%)",
-          height: "24px",
+          background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 100%)",
+          height: "16px",
           marginBottom: "-1px",
           pointerEvents: "none",
         }}
@@ -69,12 +68,13 @@ export default function ScrollDepthBanner() {
       {/* Banner body */}
       <div
         style={{
-          backgroundColor: "#3F4049",
+          backgroundColor: "#FFFFFF",
           borderTop: "3px solid #FEDA86",
-          padding: "20px 24px",
+          boxShadow: "0 -4px 24px rgba(0,0,0,0.10)",
+          padding: "18px 24px",
           display: "flex",
           alignItems: "center",
-          gap: "20px",
+          gap: "18px",
           flexWrap: "wrap",
           position: "relative",
         }}
@@ -83,16 +83,17 @@ export default function ScrollDepthBanner() {
         <div
           style={{
             flexShrink: 0,
-            width: "48px",
-            height: "48px",
+            width: "46px",
+            height: "46px",
             borderRadius: "50%",
-            backgroundColor: "#FEDA86",
+            backgroundColor: "#EFF6FF",
+            border: "1.5px solid #BFDBFE",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Camera size={22} color="#3F4049" strokeWidth={2} />
+          <Camera size={20} color="#2563EB" strokeWidth={2} />
         </div>
 
         {/* Copy */}
@@ -100,26 +101,26 @@ export default function ScrollDepthBanner() {
           <p
             style={{
               fontFamily: "'Taviraj', Georgia, serif",
-              fontSize: "18px",
+              fontSize: "17px",
               fontWeight: 600,
-              color: "#FFFFFF",
+              color: "#3F4049",
               margin: 0,
-              lineHeight: 1.25,
+              lineHeight: 1.3,
             }}
           >
-            Get Your{" "}
-            <span style={{ color: "#FEDA86" }}>FREE $400 Camera Inspection</span>
+            Claim Your{" "}
+            <span style={{ color: "#2563EB" }}>FREE $400 Camera Inspection</span>
           </p>
           <p
             style={{
               fontFamily: "'Inter Tight', sans-serif",
               fontSize: "13px",
-              color: "rgba(255,255,255,0.72)",
+              color: "#6B7280",
               margin: "4px 0 0",
-              lineHeight: 1.4,
+              lineHeight: 1.45,
             }}
           >
-            See exactly what's happening inside your pipes — included with every service call.
+            See exactly what is happening inside your pipes. Included with every service call at no extra charge.
           </p>
         </div>
 
@@ -134,12 +135,13 @@ export default function ScrollDepthBanner() {
         >
           <a
             href="tel:5194518342"
+            className="dd-banner-call-btn"
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: "7px",
-              backgroundColor: "#FEDA86",
-              color: "#3F4049",
+              backgroundColor: "#2563EB",
+              color: "#FFFFFF",
               fontFamily: "'Inter Tight', sans-serif",
               fontWeight: 700,
               fontSize: "14px",
@@ -160,13 +162,13 @@ export default function ScrollDepthBanner() {
               alignItems: "center",
               gap: "7px",
               backgroundColor: "transparent",
-              color: "#FFFFFF",
+              color: "#3F4049",
               fontFamily: "'Inter Tight', sans-serif",
               fontWeight: 600,
               fontSize: "14px",
               padding: "11px 20px",
               borderRadius: "0px",
-              border: "1.5px solid rgba(255,255,255,0.35)",
+              border: "1.5px solid #D1D5DB",
               textDecoration: "none",
               whiteSpace: "nowrap",
               letterSpacing: "0.01em",
@@ -187,7 +189,7 @@ export default function ScrollDepthBanner() {
             background: "none",
             border: "none",
             cursor: "pointer",
-            color: "rgba(255,255,255,0.55)",
+            color: "#9CA3AF",
             padding: "4px",
             display: "flex",
             alignItems: "center",
@@ -195,7 +197,7 @@ export default function ScrollDepthBanner() {
             lineHeight: 1,
           }}
         >
-          <X size={18} strokeWidth={2} />
+          <X size={17} strokeWidth={2} />
         </button>
       </div>
     </div>

@@ -596,3 +596,27 @@
     flex-shrink: 0;
   }
 }
+
+/* ── ScrollDepthBanner: Call Now pulse animation ── */
+@keyframes dd-btn-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.55); }
+  60%  { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.dd-banner-call-btn {
+  animation: dd-btn-pulse 2.2s ease-out infinite;
+  animation-delay: 1.2s;
+}
+
+.dd-banner-call-btn:hover,
+.dd-banner-call-btn:focus {
+  animation: none;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-banner-call-btn {
+    animation: none;
+  }
+}

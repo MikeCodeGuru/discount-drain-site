@@ -419,3 +419,6 @@ EOF
 - [x] Add hover lift (translateY -5px) to each process card in DDHome HowItWorksSection
 - [x] Apply Roofex card style (beige, step numbers, dashed line, arrow connectors, hover lift) to service detail page process sections
 - [x] ScrollDepthBanner component: slides in from bottom after 70% scroll depth, offers free camera inspection, dismissable, session memory
+- [x] Restyle ScrollDepthBanner to match site colour palette (white bg, blue accent, no em dashes)
+- [x] Add trust badge strip below hero CTA buttons (BBB, WSIB, Google 5-star, Licensed)
+- [x] Add pulse animation to Call Now button in ScrollDepthBanner
