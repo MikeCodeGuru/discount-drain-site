@@ -23,6 +23,7 @@ import { getAllServices, getFeaturedServices } from "@/data/services";
 import { TESTIMONIALS } from "@/data/testimonials";
 import { usePrefetchRoutes } from "@/hooks/usePrefetchRoutes";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
+import ScrollDepthBanner from "@/components/dd/ScrollDepthBanner";
 import ReviewMarquee from "@/components/dd/ReviewMarquee";
 import { MapView } from "@/components/Map";
 
@@ -751,6 +752,7 @@ export default function DDHome() {
   const displayServices = featuredServices.length > 0 ? featuredServices : services.slice(0, 6);
 
   return (
+    <>
     <DDLayout>
       {/* SEO */}
       <title>Discount Drain | London Ontario Drain and Sewer Specialists Since 1970</title>
@@ -1170,5 +1172,7 @@ export default function DDHome() {
         </div>
       </section>
     </DDLayout>
+    <ScrollDepthBanner />
+    </>
   );
 }

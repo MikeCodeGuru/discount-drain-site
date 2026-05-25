@@ -418,3 +418,4 @@ EOF
 - [x] Fix arrow connector overlap — reduce right offset so arrows sit in the gap between cards, not over text
 - [x] Add hover lift (translateY -5px) to each process card in DDHome HowItWorksSection
 - [x] Apply Roofex card style (beige, step numbers, dashed line, arrow connectors, hover lift) to service detail page process sections
+- [x] ScrollDepthBanner component: slides in from bottom after 70% scroll depth, offers free camera inspection, dismissable, session memory
