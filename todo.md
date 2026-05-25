@@ -432,3 +432,5 @@ EOF
 - [x] Banner: centre headline text on desktop layout
 - [x] Banner: auto-dismiss after 6s, cancel on hover/interaction
 - [x] Mega-menu: polished hover effect with left border accent and description highlight
+- [x] Suggestion 13: Open Graph / Twitter Card meta tags on all pages
+- [x] Suggestion 14: Lazy loading on below-the-fold images + suppress hero video on mobile

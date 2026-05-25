@@ -245,7 +245,11 @@ export default function DDServiceDetail() {
   const benefits = service.benefits ? JSON.parse(service.benefits as string) : [];
   const faqs = service.faqs ? JSON.parse(service.faqs as string) : [];
 
-  const ogImage = "https://discountdemo-bh4z4tjq.manus.space/manus-storage/dd-hero-drain_e639a1fd.jpg";
+  const SITE_ORIGIN = "https://discountdemo-bh4z4tjq.manus.space";
+  const serviceHeroImg = HERO_IMGS[slug ?? ""] ?? service.imageUrl;
+  const ogImage = serviceHeroImg
+    ? `${SITE_ORIGIN}${serviceHeroImg}`
+    : `${SITE_ORIGIN}/manus-storage/dd-hero-drain_e639a1fd.jpg`;
   const pageTitle = `${service.metaTitle ?? service.title} | Discount Drain | London Ontario`;
   const pageDesc = service.metaDesc ?? service.shortDesc;
   const canonicalUrl = `https://discountdrain.ca/services/${slug}`;
