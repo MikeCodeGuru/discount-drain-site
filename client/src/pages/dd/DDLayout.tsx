@@ -252,21 +252,10 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                             <Link
                               key={s.href + "-res"}
                               href={s.href}
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "2px",
-                                padding: "8px 10px",
-                                borderRadius: "10px",
-                                textDecoration: "none",
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                transition: "background 0.15s",
-                              }}
-                              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#EBF4FF"; }}
-                              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
+                              className="mega-item-res"
                             >
-                              <span style={{ fontSize: "13px", fontWeight: 600, color: "#1A1B20", lineHeight: 1.3 }}>{s.label}</span>
-                              <span style={{ fontSize: "11.5px", color: "#6B7280", lineHeight: 1.4 }}>{s.desc}</span>
+                              <span className="mega-item-title">{s.label}</span>
+                              <span className="mega-item-desc">{s.desc}</span>
                             </Link>
                           ))}
                         </div>
@@ -283,21 +272,10 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                             <Link
                               key={s.href + "-com"}
                               href={s.href}
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "2px",
-                                padding: "8px 10px",
-                                borderRadius: "10px",
-                                textDecoration: "none",
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                transition: "background 0.15s",
-                              }}
-                              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#E8F0FB"; }}
-                              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
+                              className="mega-item-com"
                             >
-                              <span style={{ fontSize: "13px", fontWeight: 600, color: "#1A1B20", lineHeight: 1.3 }}>{s.label}</span>
-                              <span style={{ fontSize: "11.5px", color: "#6B7280", lineHeight: 1.4 }}>{s.desc}</span>
+                              <span className="mega-item-title">{s.label}</span>
+                              <span className="mega-item-desc">{s.desc}</span>
                             </Link>
                           ))}
                         </div>

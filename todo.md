@@ -429,3 +429,6 @@ EOF
 - [x] Scroll-depth banner: centre and equalise CTA buttons on mobile
 - [x] Mega-menu: add short descriptions beneath each service item (no em dashes)
 - [x] Homepage quote form: real-time validation and success modal
+- [x] Banner: centre headline text on desktop layout
+- [x] Banner: auto-dismiss after 6s, cancel on hover/interaction
+- [x] Mega-menu: polished hover effect with left border accent and description highlight
