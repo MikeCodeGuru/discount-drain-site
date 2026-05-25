@@ -24,13 +24,33 @@ const NAV_LINKS = [
   { label: "Service Area", href: "/service-area" },
 ];
 
+const RESIDENTIAL_SERVICES = [
+  { label: "Free Sewer Camera Inspection", desc: "See inside your pipes in real time. $400 value, free with every call.", href: "/services/sewer-camera-inspection", icon: "camera" },
+  { label: "No-Dig Trenchless Repair", desc: "Fix your sewer line without digging up your yard or driveway.", href: "/services/trenchless-pipe-repair", icon: "wrench" },
+  { label: "Wet Basement Waterproofing", desc: "Permanent wet basement fix backed by a 20-year warranty.", href: "/services/wet-basement-repair", icon: "droplets" },
+  { label: "Sewer Repair and Installation", desc: "Expert sewer line repair and new installation for any situation.", href: "/services/sewer-repair-installation", icon: "wrench" },
+  { label: "Drain Cleaning and Power Flushing", desc: "Clear blockages and restore full flow with high-pressure flushing.", href: "/services/drain-cleaning", icon: "droplets" },
+  { label: "Excavation and Machine Services", desc: "Dump trucks and machine excavating for any size project.", href: "/services/excavation-services", icon: "truck" },
+  { label: "Septic Service and Repairs", desc: "Preventative maintenance and full repairs for septic systems.", href: "/services/septic-repairs", icon: "shield" },
+];
+
+const COMMERCIAL_SERVICES = [
+  { label: "Free Sewer Camera Inspection", desc: "Commercial-grade CCTV inspection to diagnose problems fast.", href: "/services/sewer-camera-inspection", icon: "camera" },
+  { label: "No-Dig Trenchless Repair", desc: "Minimal disruption to operations. No surface restoration needed.", href: "/services/trenchless-pipe-repair", icon: "wrench" },
+  { label: "Municipal Services", desc: "Sewer lining, manhole restoration, and water main repair.", href: "/services/municipal-services", icon: "building" },
+  { label: "Catch Basin Cleaning", desc: "Keep storm drains and catch basins clear and compliant.", href: "/services/catch-basin-cleaning", icon: "droplets" },
+  { label: "Sewer Repair and Installation", desc: "Commercial sewer repair and installation by certified technicians.", href: "/services/sewer-repair-installation", icon: "wrench" },
+  { label: "Septic Service and Repairs", desc: "Commercial septic maintenance, repairs, and replacements.", href: "/services/septic-repairs", icon: "shield" },
+];
+
+// Flat list kept for footer use
 const SERVICE_LINKS = [
   { label: "Free Sewer Camera Inspection", href: "/services/sewer-camera-inspection" },
   { label: "No-Dig Trenchless Repair", href: "/services/trenchless-pipe-repair" },
   { label: "Wet Basement Waterproofing", href: "/services/wet-basement-repair" },
   { label: "Sewer Repair and Installation", href: "/services/sewer-repair-installation" },
   { label: "Drain Cleaning and Power Flushing", href: "/services/drain-cleaning" },
-  { label: "Excavation Services", href: "/services/excavation-services" },
+  { label: "Excavation and Machine Services", href: "/services/excavation-services" },
   { label: "Catch Basin Cleaning", href: "/services/catch-basin-cleaning" },
   { label: "Septic Service and Repairs", href: "/services/septic-repairs" },
   { label: "Municipal Services", href: "/services/municipal-services" },
@@ -45,6 +65,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [location, navigate] = useLocation();
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -199,7 +220,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                     <ChevronDown size={14} className={`transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
                   </Link>
 
-                  {/* Mega-menu */}
+                  {/* Mega-menu: grouped Residential / Commercial */}
                   {servicesOpen && (
                     <div
                       className="absolute z-50"
@@ -208,7 +229,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                       style={{
                         top: "calc(100% + 4px)",
                         left: "-24px",
-                        width: "640px",
+                        width: "760px",
                         background: "#FFFFFF",
                         border: "1px solid #E8E9EC",
                         borderRadius: "20px",
@@ -216,152 +237,67 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                         overflow: "hidden",
                       }}
                     >
-                      {/* Top section: 2-col grid */}
+                      {/* Two-column grouped grid */}
                       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
 
-                        {/* Left col: service links */}
-                        <div style={{ padding: "24px 8px 24px 24px", borderRight: "1px solid #F0F1F3" }}>
-                          <p
-                            style={{
-                              fontSize: "10px",
-                              fontWeight: 700,
-                              letterSpacing: "0.16em",
-                              textTransform: "uppercase" as const,
-                              color: "#9CA3AF",
-                              marginBottom: "12px",
-                              paddingLeft: "8px",
-                              fontFamily: "'Plus Jakarta Sans', sans-serif",
-                            }}
-                          >
-                            Services
-                          </p>
-                          {SERVICE_LINKS.map((s) => (
+                        {/* Left col: Residential */}
+                        <div style={{ padding: "20px 12px 20px 20px", borderRight: "1px solid #F0F1F3" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", paddingLeft: "8px" }}>
+                            <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#0080ff", flexShrink: 0 }} />
+                            <p style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" as const, color: "#0080ff", margin: 0, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                              Residential
+                            </p>
+                          </div>
+                          {RESIDENTIAL_SERVICES.map((s) => (
                             <Link
-                              key={s.href}
+                              key={s.href + "-res"}
                               href={s.href}
                               style={{
                                 display: "flex",
-                                alignItems: "center",
+                                alignItems: "flex-start",
                                 gap: "10px",
-                                padding: "9px 10px",
+                                padding: "8px 10px",
                                 borderRadius: "10px",
-                                fontSize: "13.5px",
-                                fontWeight: 500,
-                                color: "#1A1B20",
                                 textDecoration: "none",
                                 fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                transition: "background 0.15s, color 0.15s",
+                                transition: "background 0.15s",
                               }}
-                              onMouseEnter={(e) => {
-                                (e.currentTarget as HTMLAnchorElement).style.background = "#EBF4FF";
-                                (e.currentTarget as HTMLAnchorElement).style.color = "#0060d0";
-                              }}
-                              onMouseLeave={(e) => {
-                                (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-                                (e.currentTarget as HTMLAnchorElement).style.color = "#1A1B20";
-                              }}
+                              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#EBF4FF"; }}
+                              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
                             >
-                              {/* Blue dot accent */}
-                              <span
-                                style={{
-                                  width: "5px",
-                                  height: "5px",
-                                  borderRadius: "50%",
-                                  backgroundColor: "#0080ff",
-                                  flexShrink: 0,
-                                }}
-                              />
-                              {s.label}
+                              <span style={{ fontSize: "13px", fontWeight: 600, color: "#1A1B20", lineHeight: 1.3 }}>{s.label}</span>
                             </Link>
                           ))}
                         </div>
 
-                        {/* Right col: featured card */}
-                        <div
-                          style={{
-                            padding: "24px",
-                            background: "#F8F9FA",
-                            display: "flex",
-                            flexDirection: "column" as const,
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <div>
-                            <p
-                              style={{
-                                fontSize: "10px",
-                                fontWeight: 700,
-                                letterSpacing: "0.16em",
-                                textTransform: "uppercase" as const,
-                                color: "#9CA3AF",
-                                marginBottom: "12px",
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                              }}
-                            >
-                              Featured
-                            </p>
-                            {/* Featured service image */}
-                            <div
-                              style={{
-                                borderRadius: "12px",
-                                overflow: "hidden",
-                                marginBottom: "14px",
-                                aspectRatio: "16/9",
-                                background: "#E8E9EC",
-                              }}
-                            >
-                              <img
-                                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663530669561/Bh4z4tJQ2oLgzVrvga4zYT/sewer-camera-5kNXRacuUCNEdJZmaMCJfN.webp"
-                                alt="Free sewer camera inspection"
-                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                              />
-                            </div>
-                            <p
-                              style={{
-                                fontSize: "13px",
-                                fontWeight: 700,
-                                color: "#1A1B20",
-                                marginBottom: "6px",
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                              }}
-                            >
-                              Free Camera Inspection
-                            </p>
-                            <p
-                              style={{
-                                fontSize: "12px",
-                                color: "#6B7280",
-                                lineHeight: 1.5,
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                              }}
-                            >
-                              A $400 value — included with every service call.
+                        {/* Right col: Commercial */}
+                        <div style={{ padding: "20px 20px 20px 12px", background: "#F8FAFF" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", paddingLeft: "8px" }}>
+                            <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#1E3A5F", flexShrink: 0 }} />
+                            <p style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" as const, color: "#1E3A5F", margin: 0, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                              Commercial
                             </p>
                           </div>
-                          <Link
-                            href="/services/sewer-camera-inspection"
-                            style={{
-                              display: "inline-flex",
-                              alignItems: "center",
-                              gap: "6px",
-                              marginTop: "14px",
-                              fontSize: "12px",
-                              fontWeight: 700,
-                              color: "#0060d0",
-                              textDecoration: "none",
-                              fontFamily: "'Plus Jakarta Sans', sans-serif",
-                              letterSpacing: "0.01em",
-                            }}
-                            onMouseEnter={(e) => {
-                              (e.currentTarget as HTMLAnchorElement).style.color = "#0040a0";
-                            }}
-                            onMouseLeave={(e) => {
-                              (e.currentTarget as HTMLAnchorElement).style.color = "#0060d0";
-                            }}
-                          >
-                            Learn more
-                            <span style={{ fontSize: "14px" }}>→</span>
-                          </Link>
+                          {COMMERCIAL_SERVICES.map((s) => (
+                            <Link
+                              key={s.href + "-com"}
+                              href={s.href}
+                              style={{
+                                display: "flex",
+                                alignItems: "flex-start",
+                                gap: "10px",
+                                padding: "8px 10px",
+                                borderRadius: "10px",
+                                textDecoration: "none",
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                transition: "background 0.15s",
+                              }}
+                              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#E8F0FB"; }}
+                              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
+                            >
+                              <span style={{ fontSize: "13px", fontWeight: 600, color: "#1A1B20", lineHeight: 1.3 }}>{s.label}</span>
+                            </Link>
+                          ))}
                         </div>
                       </div>
 
@@ -371,19 +307,13 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "space-between",
-                          padding: "14px 24px",
+                          padding: "12px 20px",
                           borderTop: "1px solid #F0F1F3",
                           background: "#FAFAFA",
                         }}
                       >
-                        <span
-                          style={{
-                            fontSize: "12px",
-                            color: "#9CA3AF",
-                            fontFamily: "'Plus Jakarta Sans', sans-serif",
-                          }}
-                        >
-                          Serving London, ON &amp; surrounding areas
+                        <span style={{ fontSize: "12px", color: "#9CA3AF", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                          Serving London, ON and surrounding areas
                         </span>
                         <Link
                           href="/services"
@@ -402,14 +332,10 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
                             letterSpacing: "0.01em",
                             transition: "background 0.18s",
                           }}
-                          onMouseEnter={(e) => {
-                            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0060d0";
-                          }}
-                          onMouseLeave={(e) => {
-                            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0080ff";
-                          }}
+                          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0060d0"; }}
+                          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0080ff"; }}
                         >
-                          View All Services →
+                          View All Services
                         </Link>
                       </div>
                     </div>
@@ -467,7 +393,59 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
           >
             <div className="container py-4 flex flex-col gap-1">
               {NAV_LINKS.map((link) =>
-                link.servicesTab ? (
+                link.hasDropdown ? (
+                  <div key={link.label}>
+                    {/* Services accordion trigger */}
+                    <button
+                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                      className="w-full flex items-center justify-between py-3 px-3 text-sm font-semibold rounded-xl transition-colors hover:bg-blue-50"
+                      style={{ color: location.startsWith("/services") ? "#0080ff" : "#222222", borderBottom: mobileServicesOpen ? "none" : "1px solid #f5f7fa", background: "transparent", cursor: "pointer" }}
+                    >
+                      <span>{link.label}</span>
+                      <ChevronDown size={14} style={{ transition: "transform 0.2s", transform: mobileServicesOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
+                    </button>
+                    {/* Accordion body */}
+                    {mobileServicesOpen && (
+                      <div style={{ borderBottom: "1px solid #f5f7fa", paddingBottom: "8px", marginBottom: "4px" }}>
+                        {/* Residential group */}
+                        <div style={{ padding: "10px 12px 4px 12px" }}>
+                          <p style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#0080ff", marginBottom: "6px", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Residential</p>
+                          {RESIDENTIAL_SERVICES.map((s) => (
+                            <Link
+                              key={s.href + "-mob-res"}
+                              href={s.href}
+                              style={{ display: "block", padding: "7px 8px", fontSize: "13px", fontWeight: 500, color: "#1A1B20", textDecoration: "none", borderRadius: "8px" }}
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {s.label}
+                            </Link>
+                          ))}
+                        </div>
+                        {/* Commercial group */}
+                        <div style={{ padding: "10px 12px 4px 12px", marginTop: "4px", background: "#F8FAFF", borderRadius: "10px", margin: "4px 8px" }}>
+                          <p style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#1E3A5F", marginBottom: "6px", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Commercial</p>
+                          {COMMERCIAL_SERVICES.map((s) => (
+                            <Link
+                              key={s.href + "-mob-com"}
+                              href={s.href}
+                              style={{ display: "block", padding: "7px 8px", fontSize: "13px", fontWeight: 500, color: "#1A1B20", textDecoration: "none", borderRadius: "8px" }}
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {s.label}
+                            </Link>
+                          ))}
+                        </div>
+                        <Link
+                          href="/services"
+                          style={{ display: "block", margin: "8px 12px 0", padding: "9px 12px", fontSize: "13px", fontWeight: 700, color: "#ffffff", background: "#0080ff", borderRadius: "10px", textDecoration: "none", textAlign: "center" }}
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          View All Services
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                ) : link.servicesTab ? (
                   <a
                     key={link.label}
                     href={link.href}

@@ -213,7 +213,7 @@ function ServiceAreaTeaser() {
   }
 
   return (
-    <section className="py-16" style={{ backgroundColor: "#f5f7fa" }}>
+    <section className="py-16" style={{ backgroundColor: "#ffffff" }}>
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -331,7 +331,7 @@ function TrustFormSection() {
     <section
       ref={sectionRef}
       className="py-20 overflow-hidden"
-      style={{ background: "#f7f9fc" }}
+      style={{ background: "#ffffff" }}
     >
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -576,7 +576,7 @@ function HowItWorksSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 bg-white overflow-hidden"
+      className="py-20 overflow-hidden" style={{ backgroundColor: "#f5f7fa" }}
     >
       <div className="container">
         <div className="text-center mb-14">
@@ -1150,7 +1150,7 @@ export default function DDHome() {
       <ScrollServicesSection />
 
       {/* ─── TRENCHLESS FEATURE ─── */}
-      <section ref={trenchlessSectionRef} className="py-20 overflow-hidden bg-white section-entrance">
+      <section ref={trenchlessSectionRef} className="py-20 overflow-hidden section-entrance" style={{ backgroundColor: "#f5f7fa" }}>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             {/* Image — appears first (0ms delay) */}

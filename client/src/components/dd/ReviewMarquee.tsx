@@ -189,7 +189,7 @@ export default function ReviewMarquee() {
   return (
     <section
       style={{
-        backgroundColor: "#f8f9fa",
+        backgroundColor: "#f5f7fa",
         paddingTop: "72px",
         paddingBottom: "72px",
         overflow: "hidden",
@@ -245,7 +245,7 @@ export default function ReviewMarquee() {
             left: 0,
             width: "120px",
             height: "100%",
-            background: "linear-gradient(to right, #f8f9fa, transparent)",
+            background: "linear-gradient(to right, #f5f7fa, transparent)",
             zIndex: 2,
             pointerEvents: "none",
           }}
@@ -257,7 +257,7 @@ export default function ReviewMarquee() {
             right: 0,
             width: "120px",
             height: "100%",
-            background: "linear-gradient(to left, #f8f9fa, transparent)",
+            background: "linear-gradient(to left, #f5f7fa, transparent)",
             zIndex: 2,
             pointerEvents: "none",
           }}

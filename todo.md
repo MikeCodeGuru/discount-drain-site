@@ -422,3 +422,6 @@ EOF
 - [x] Restyle ScrollDepthBanner to match site colour palette (white bg, blue accent, no em dashes)
 - [x] Add trust badge strip below hero CTA buttons (BBB, WSIB, Google 5-star, Licensed)
 - [x] Add pulse animation to Call Now button in ScrollDepthBanner
+- [x] Mega-menu grouped Services dropdown in nav (Residential / Commercial columns with icons)
+- [x] Breadcrumb navigation on service detail pages (visual trail + BreadcrumbList JSON-LD)
+- [x] Alternating section background rhythm on homepage (white / light grey / white cadence)
