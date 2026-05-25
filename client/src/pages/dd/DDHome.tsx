@@ -865,15 +865,6 @@ export default function DDHome() {
   // Prefetch the two most-visited next routes while the browser is idle
   usePrefetchRoutes(["/services", "/contact"]);
 
-  // Suppress hero video on mobile: video autoplay is often blocked and the file is large
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
   const services = getAllServices();
   const testimonials = TESTIMONIALS;
 
@@ -1147,26 +1138,16 @@ export default function DDHome() {
                   background: "#0d1b2a",
                 }}
               >
-                {isMobile ? (
-                  // On mobile: show static poster image (video autoplay is often blocked and wastes bandwidth)
-                  <img
-                    src={HERO_FALLBACK}
-                    alt="Discount Drain sewer inspection"
-                    className="w-full h-full object-cover"
-                    loading="eager"
-                  />
-                ) : (
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover"
-                    poster={HERO_FALLBACK}
-                  >
-                    <source src={HERO_VIDEO} type="video/mp4" />
-                  </video>
-                )}
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                  poster={HERO_FALLBACK}
+                >
+                  <source src={HERO_VIDEO} type="video/mp4" />
+                </video>
 
                 {/* Free Camera Inspection badge — top right */}
                 <div
