@@ -844,12 +844,12 @@ function HowItWorksSection() {
                   </div>
                 )}
 
-                {/* Mobile: down-arrow connector between stacked cards — 96px height gives clear gap */}
+                {/* Mobile: down-arrow connector between stacked cards — gives clear visible gap */}
                 {!isLast && (
                   <div
                     className="flex md:hidden items-center justify-center"
                     style={{
-                      height: "96px",
+                      height: "80px",
                       pointerEvents: "none",
                     }}
                   >
