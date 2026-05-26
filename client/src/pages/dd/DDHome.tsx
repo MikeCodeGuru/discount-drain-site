@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   ArrowRight,
   ChevronRight,
+  ChevronDown,
   Clock,
   Award,
   Users,
@@ -181,6 +182,91 @@ const SERVICE_TOWNS_MINI = [
   { name: "Parkhill", lat: 43.1500, lng: -81.6833, primary: false },
 ];
 
+// ─── Reusable collapsible map overlay card ───────────────────────────────────
+function MapOverlayCard() {
+  const [expanded, setExpanded] = useState(true);
+  return (
+    <div style={{
+      position: "absolute",
+      bottom: "16px",
+      left: "16px",
+      background: "#ffffff",
+      borderRadius: "12px",
+      padding: "12px 14px",
+      boxShadow: "0 4px 20px rgba(0,0,0,0.14)",
+      minWidth: "200px",
+      maxWidth: "250px",
+      fontFamily: "'Inter Tight', sans-serif",
+      zIndex: 10,
+      transition: "all 0.25s ease",
+    }}>
+      {/* Header row: name + collapse toggle (toggle only visible on mobile) */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px" }}>
+        <div style={{ fontWeight: 800, fontSize: "14px", color: "#111111", letterSpacing: "-0.01em" }}>
+          Discount Drain
+        </div>
+        <button
+          onClick={() => setExpanded(p => !p)}
+          aria-label={expanded ? "Collapse info" : "Expand info"}
+          className="sm:hidden"
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: "2px",
+            color: "#0080ff",
+            display: "flex",
+            alignItems: "center",
+            flexShrink: 0,
+          }}
+        >
+          <ChevronDown size={16} style={{ transition: "transform 0.2s", transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }} />
+        </button>
+      </div>
+
+      {/* Collapsible body */}
+      <div style={{
+        overflow: "hidden",
+        maxHeight: expanded ? "200px" : "0px",
+        opacity: expanded ? 1 : 0,
+        transition: "max-height 0.3s ease, opacity 0.2s ease",
+        marginTop: expanded ? "10px" : "0px",
+      }}>
+        {/* Address */}
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "8px", marginBottom: "7px" }}>
+          <MapPin size={13} style={{ color: "#0080ff", marginTop: "2px", flexShrink: 0 }} />
+          <span style={{ fontSize: "12px", color: "#4b5563", lineHeight: "18px" }}>London, Ontario, Canada</span>
+        </div>
+        {/* Phone — clearly styled as tap-to-call */}
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "7px" }}>
+          <Phone size={13} style={{ color: "#0080ff", flexShrink: 0 }} />
+          <a
+            href="tel:5194518342"
+            style={{
+              fontSize: "13px",
+              fontWeight: 700,
+              color: "#0080ff",
+              textDecoration: "none",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            519-451-8342
+          </a>
+        </div>
+        {/* Hours */}
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
+          <Clock size={13} style={{ color: "#0080ff", marginTop: "2px", flexShrink: 0 }} />
+          <div style={{ fontSize: "12px", color: "#4b5563", lineHeight: "18px" }}>
+            <div>Mon–Fri: 7:00 AM – 6:00 PM</div>
+            <div>Sat: 8:00 AM – 4:00 PM</div>
+            <div style={{ color: "#0080ff", fontWeight: 600 }}>24/7 Emergency Dispatch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ServiceAreaTeaser() {
   return (
     <section className="py-16" style={{ backgroundColor: "#ffffff" }}>
@@ -217,47 +303,8 @@ function ServiceAreaTeaser() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            {/* Business info overlay card */}
-            <div style={{
-              position: "absolute",
-              bottom: "16px",
-              left: "16px",
-              background: "#ffffff",
-              borderRadius: "12px",
-              padding: "14px 16px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.14)",
-              minWidth: "220px",
-              maxWidth: "260px",
-              fontFamily: "'Inter Tight', sans-serif",
-            }}>
-              {/* Business name */}
-              <div style={{ fontWeight: 800, fontSize: "14px", color: "#111111", marginBottom: "10px", letterSpacing: "-0.01em" }}>
-                Discount Drain
-              </div>
-              {/* Address */}
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "8px", marginBottom: "7px" }}>
-                <MapPin size={13} style={{ color: "#0080ff", marginTop: "2px", flexShrink: 0 }} />
-                <span style={{ fontSize: "12px", color: "#4b5563", lineHeight: "18px" }}>London, Ontario, Canada</span>
-              </div>
-              {/* Phone */}
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "7px" }}>
-                <Phone size={13} style={{ color: "#0080ff", flexShrink: 0 }} />
-                <a href="tel:5194518342" style={{ fontSize: "12px", color: "#4b5563", textDecoration: "none" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#0080ff")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "#4b5563")}>
-                  519-451-8342
-                </a>
-              </div>
-              {/* Hours */}
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
-                <Clock size={13} style={{ color: "#0080ff", marginTop: "2px", flexShrink: 0 }} />
-                <div style={{ fontSize: "12px", color: "#4b5563", lineHeight: "18px" }}>
-                  <div>Mon-Fri: 7:00 AM - 6:00 PM</div>
-                  <div>Sat: 8:00 AM - 4:00 PM</div>
-                  <div style={{ color: "#0080ff", fontWeight: 600 }}>24/7 Emergency Dispatch</div>
-                </div>
-              </div>
-            </div>
+            {/* Business info overlay card – collapsible on mobile */}
+            <MapOverlayCard />
           </div>
         </div>
       </div>
