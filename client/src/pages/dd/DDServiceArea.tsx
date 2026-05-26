@@ -5,11 +5,9 @@
  * Uses Google Maps with custom markers and a coverage radius circle.
  */
 
-import { useRef } from "react";
 import { Link } from "wouter";
-import { MapPin, Phone, CheckCircle2, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Clock, CheckCircle2, ArrowRight } from "lucide-react";
 import DDLayout from "./DDLayout";
-import { MapView } from "@/components/Map";
 
 // London, ON coordinates
 const LONDON_CENTER = { lat: 42.9849, lng: -81.2453 };
@@ -37,74 +35,6 @@ const COVERAGE_AREAS = [
 ];
 
 export default function DDServiceArea() {
-  const mapRef = useRef<google.maps.Map | null>(null);
-
-  function handleMapReady(map: google.maps.Map) {
-    mapRef.current = map;
-
-    // Draw a coverage radius circle (~80km)
-    new google.maps.Circle({
-      map,
-      center: LONDON_CENTER,
-      radius: 80000, // 80km radius
-      strokeColor: "#0080ff",
-      strokeOpacity: 0.3,
-      strokeWeight: 2,
-      fillColor: "#0080ff",
-      fillOpacity: 0.06,
-    });
-
-    // Add markers for each town
-    SERVICE_TOWNS.forEach((town) => {
-      const pinEl = document.createElement("div");
-      pinEl.style.cssText = `
-        width: ${town.primary ? "44px" : "32px"};
-        height: ${town.primary ? "44px" : "32px"};
-        background: ${town.primary ? "#0080ff" : "#ffffff"};
-        border: ${town.primary ? "3px solid #ffffff" : "2px solid #0080ff"};
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-        cursor: pointer;
-        transition: transform 0.15s ease;
-      `;
-      pinEl.innerHTML = `<svg width="${town.primary ? 20 : 14}" height="${town.primary ? 20 : 14}" viewBox="0 0 24 24" fill="${town.primary ? "#ffffff" : "#0080ff"}"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>`;
-
-      const marker = new google.maps.marker.AdvancedMarkerElement({
-        map,
-        position: { lat: town.lat, lng: town.lng },
-        title: town.name,
-        content: pinEl,
-      });
-
-      // Info window on click
-      const infoWindow = new google.maps.InfoWindow({
-        content: `
-          <div style="font-family: 'Inter', sans-serif; padding: 4px 2px; min-width: 160px;">
-            <div style="font-weight: 700; font-size: 14px; color: #111111; margin-bottom: 4px;">${town.name}, ON</div>
-            <div style="font-size: 12px; color: #777777; margin-bottom: 8px;">${town.desc}</div>
-            <a href="tel:5194518342" style="display: inline-flex; align-items: center; gap: 4px; background: #0080ff; color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; text-decoration: none;">
-              Call 519-451-8342
-            </a>
-          </div>
-        `,
-      });
-
-      marker.addListener("click", () => {
-        infoWindow.open({ anchor: marker, map });
-      });
-
-      // Hover effect
-      pinEl.addEventListener("mouseenter", () => {
-        pinEl.style.transform = "scale(1.15)";
-      });
-      pinEl.addEventListener("mouseleave", () => {
-        pinEl.style.transform = "scale(1)";
-      });
-    });
-  }
 
   return (
     <DDLayout>
@@ -153,17 +83,56 @@ export default function DDServiceArea() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Map */}
             <div className="lg:col-span-2">
-              <div className="rounded-3xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)", border: "1px solid #e8eaed" }}>
-                <MapView
-                  initialCenter={LONDON_CENTER}
-                  initialZoom={9}
-                  onMapReady={handleMapReady}
-                  className="h-[520px]"
+              <div className="relative rounded-3xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)", border: "1px solid #e8eaed" }}>
+                <iframe
+                  title="Discount Drain Service Area - Southwestern Ontario"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d185000!2d-81.2453!3d42.9849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
+                  width="100%"
+                  height="520"
+                  style={{ border: 0, display: "block" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
                 />
+                {/* Business info overlay card */}
+                <div style={{
+                  position: "absolute",
+                  bottom: "16px",
+                  left: "16px",
+                  background: "#ffffff",
+                  borderRadius: "12px",
+                  padding: "14px 16px",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.14)",
+                  minWidth: "220px",
+                  maxWidth: "260px",
+                  fontFamily: "'Inter Tight', sans-serif",
+                  zIndex: 10,
+                }}>
+                  <div style={{ fontWeight: 800, fontSize: "14px", color: "#111111", marginBottom: "10px", letterSpacing: "-0.01em" }}>
+                    Discount Drain
+                  </div>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "8px", marginBottom: "7px" }}>
+                    <MapPin size={13} style={{ color: "#0080ff", marginTop: "2px", flexShrink: 0 }} />
+                    <span style={{ fontSize: "12px", color: "#4b5563", lineHeight: "18px" }}>London, Ontario, Canada</span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "7px" }}>
+                    <Phone size={13} style={{ color: "#0080ff", flexShrink: 0 }} />
+                    <a href="tel:5194518342" style={{ fontSize: "12px", color: "#4b5563", textDecoration: "none" }}
+                      onMouseEnter={e => (e.currentTarget.style.color = "#0080ff")}
+                      onMouseLeave={e => (e.currentTarget.style.color = "#4b5563")}>
+                      519-451-8342
+                    </a>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                    <Clock size={13} style={{ color: "#0080ff", marginTop: "2px", flexShrink: 0 }} />
+                    <div style={{ fontSize: "12px", color: "#4b5563", lineHeight: "18px" }}>
+                      <div>Mon-Fri: 7:00 AM - 6:00 PM</div>
+                      <div>Sat: 8:00 AM - 4:00 PM</div>
+                      <div style={{ color: "#0080ff", fontWeight: 600 }}>24/7 Emergency Dispatch</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="mt-3 text-center" style={{ fontSize: "13px", color: "#8c9baa" }}>
-                Click any marker to see location details and call us directly.
-              </p>
             </div>
 
             {/* Coverage list */}
