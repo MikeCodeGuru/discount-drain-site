@@ -778,16 +778,17 @@ function HowItWorksSection() {
                     borderRadius: isFirst ? "24px 10px 10px 24px" : "10px",
                     padding: "28px 20px 28px 16px",
                     height: "100%",
-                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                    transition: "transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s cubic-bezier(0.22,1,0.36,1)",
                     cursor: "default",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLDivElement).style.transform = "translateY(-6px)";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 32px rgba(0,0,0,0.10)";
+                    (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)";
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 8px rgba(0,0,0,0.05)";
                   }}
                 >
                   <div style={{ display: "flex", flexDirection: "row", gap: "16px", alignItems: "flex-start" }}>
