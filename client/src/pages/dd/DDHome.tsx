@@ -678,32 +678,59 @@ function HowItWorksSection() {
   const lineRef = useRef<HTMLDivElement>(null);
   const [stepsVisible, setStepsVisible] = useState<boolean[]>([false, false, false]);
   const [lineWidth, setLineWidth] = useState(0);
+  // Per-card refs for mobile individual scroll-triggered animation
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([null, null, null]);
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          // Stagger each step in
-          [0, 1, 2].forEach(i => {
-            setTimeout(() => {
+    const isMobile = window.innerWidth < 768;
+
+    if (!isMobile) {
+      // Desktop: animate all three cards together when section enters viewport
+      const el = sectionRef.current;
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            [0, 1, 2].forEach(i => {
+              setTimeout(() => {
+                setStepsVisible(prev => {
+                  const next = [...prev];
+                  next[i] = true;
+                  return next;
+                });
+              }, i * 200);
+            });
+            setTimeout(() => setLineWidth(100), 100);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(el);
+      return () => observer.disconnect();
+    } else {
+      // Mobile: each card gets its own observer so they animate individually as user scrolls
+      const observers: IntersectionObserver[] = [];
+      cardRefs.current.forEach((cardEl, i) => {
+        if (!cardEl) return;
+        const obs = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
               setStepsVisible(prev => {
                 const next = [...prev];
                 next[i] = true;
                 return next;
               });
-            }, i * 200);
-          });
-          // Draw the connector line
-          setTimeout(() => setLineWidth(100), 100);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+              obs.disconnect();
+            }
+          },
+          { threshold: 0.25 }
+        );
+        obs.observe(cardEl);
+        observers.push(obs);
+      });
+      return () => observers.forEach(o => o.disconnect());
+    }
   }, []);
 
   return (
@@ -734,6 +761,7 @@ function HowItWorksSection() {
             return (
               <div
                 key={idx}
+                ref={el => { cardRefs.current[idx] = el; }}
                 className="relative"
                 style={{
                   opacity: stepsVisible[idx] ? 1 : 0,
