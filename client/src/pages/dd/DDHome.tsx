@@ -24,7 +24,6 @@ import { usePrefetchRoutes } from "@/hooks/usePrefetchRoutes";
 import GoogleReviewsWidget from "@/components/dd/GoogleReviewsWidget";
 import ScrollDepthBanner from "@/components/dd/ScrollDepthBanner";
 import ReviewMarquee from "@/components/dd/ReviewMarquee";
-import { MapView } from "@/components/Map";
 
 const HERO_VIDEO = "/manus-storage/hero-bg-v4_6eb1cf8f.mp4";
 const HERO_FALLBACK = "/manus-storage/dd-hero-drain_7551245e.jpg";
@@ -182,35 +181,6 @@ const SERVICE_TOWNS_MINI = [
 ];
 
 function ServiceAreaTeaser() {
-  const mapRef = useRef<google.maps.Map | null>(null);
-
-  function handleMapReady(map: google.maps.Map) {
-    mapRef.current = map;
-    // Coverage circle
-    new google.maps.Circle({
-      map,
-      center: LONDON_CENTER,
-      radius: 80000,
-      strokeColor: "#0080ff",
-      strokeOpacity: 0.25,
-      strokeWeight: 2,
-      fillColor: "#0080ff",
-      fillOpacity: 0.07,
-    });
-    // Town markers
-    SERVICE_TOWNS_MINI.forEach((town) => {
-      const pin = document.createElement("div");
-      pin.style.cssText = `width:${town.primary ? 40 : 28}px;height:${town.primary ? 40 : 28}px;background:${town.primary ? "#0080ff" : "#fff"};border:${town.primary ? "3px solid #fff" : "2px solid #0080ff"};border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.2);`;
-      pin.innerHTML = `<svg width="${town.primary ? 18 : 12}" height="${town.primary ? 18 : 12}" viewBox="0 0 24 24" fill="${town.primary ? "#fff" : "#0080ff"}"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>`;
-      new google.maps.marker.AdvancedMarkerElement({
-        map,
-        position: { lat: town.lat, lng: town.lng },
-        title: town.name,
-        content: pin,
-      });
-    });
-  }
-
   return (
     <section className="py-16" style={{ backgroundColor: "#ffffff" }}>
       <div className="container">
@@ -236,11 +206,15 @@ function ServiceAreaTeaser() {
             </Link>
           </div>
           <div className="rounded-3xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)", border: "1px solid #e8eaed" }}>
-            <MapView
-              initialCenter={LONDON_CENTER}
-              initialZoom={9}
-              onMapReady={handleMapReady}
-              className="h-[420px]"
+            <iframe
+              title="Discount Drain Service Area - London, Ontario"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d185000!2d-81.2453!3d42.9849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
+              width="100%"
+              height="420"
+              style={{ border: 0, display: "block" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
         </div>
