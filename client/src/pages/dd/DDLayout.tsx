@@ -369,7 +369,7 @@ export default function DDLayout({ children, hideAnnouncement = false }: DDLayou
         {mobileOpen && (
           <div
             className="lg:hidden bg-white"
-            style={{ borderTop: "1px solid #dee0e4" }}
+            style={{ borderTop: "1px solid #dee0e4", maxHeight: "calc(100vh - 76px)", overflowY: "auto", WebkitOverflowScrolling: "touch" }}
           >
             <div className="container py-4 flex flex-col gap-1">
               {NAV_LINKS.map((link) =>
