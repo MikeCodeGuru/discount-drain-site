@@ -11,7 +11,6 @@ import {
   Star,
   CheckCircle2,
   ArrowRight,
-  ArrowDown,
   ChevronRight,
   Clock,
   Award,
@@ -844,28 +843,12 @@ function HowItWorksSection() {
                   </div>
                 )}
 
-                {/* Mobile: down-arrow connector between stacked cards — gives clear visible gap */}
+                {/* Mobile: plain white gap between stacked cards */}
                 {!isLast && (
                   <div
-                    className="flex md:hidden items-center justify-center"
-                    style={{
-                      height: "80px",
-                      pointerEvents: "none",
-                    }}
-                  >
-                    <div style={{
-                      width: "44px",
-                      height: "44px",
-                      borderRadius: "50%",
-                      background: "#17171A",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      boxShadow: "0 4px 14px rgba(0,0,0,0.18)",
-                    }}>
-                      <ArrowDown size={20} style={{ color: "#ffffff" }} />
-                    </div>
-                  </div>
+                    className="block md:hidden"
+                    style={{ height: "24px", pointerEvents: "none" }}
+                  />
                 )}
               </div>
             );
