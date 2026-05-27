@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Route, Switch } from "wouter";
+import { Route, Switch, Router as WouterRouter } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import PageLoader from "@/components/dd/PageLoader";
@@ -37,34 +37,42 @@ const DDTownLanding     = lazy(() => import("@/pages/dd/DDTownLanding"));
 
 // ─── Router ──────────────────────────────────────────────────────────────────
 
+// Detect base path for GitHub Pages subdirectory deployments.
+// Vite sets import.meta.env.BASE_URL to /discount-drain-site/ when
+// GITHUB_PAGES=true is set in the build environment (see vite.config.ts).
+// Wouter's base prop strips this prefix from all route matching so that
+// <Route path="/"> matches /discount-drain-site/ on GitHub Pages.
+const BASE = import.meta.env.BASE_URL?.replace(/\/$/, "") || "";
+
 function Router() {
   return (
+    // WouterRouter base strips the /discount-drain-site prefix on GitHub Pages.
     // Suspense wraps the entire Switch so any lazy chunk shows the PageLoader
     // while its JS is being fetched and parsed.
-    <>
+    <WouterRouter base={BASE}>
       <ScrollToTop />
       <Suspense fallback={<PageLoader variant="page" />}>
-      <Switch>
-        {/* V2 Production site — root paths */}
-        <Route path={"/"} component={DiscountDrainHome} />
-        <Route path={"/about"} component={DDAbout} />
-        <Route path={"/services"} component={DDServices} />
-        <Route path={"/services/:slug"} component={DDServiceDetail} />
-        <Route path={"/residential"} component={DDResidential} />
-        <Route path={"/commercial"} component={DDCommercial} />
-        <Route path={"/contact"} component={DDContact} />
-        <Route path={"/blog"} component={DDBlog} />
-        <Route path={"/blog/:slug"} component={DDBlogPost} />
-        <Route path={"/quote"} component={DDQuote} />
-        <Route path={"/service-area"} component={DDServiceArea} />
-        <Route path={"/service-area/:townSlug"} component={DDTownLanding} />
+        <Switch>
+          {/* V2 Production site — root paths */}
+          <Route path={"/"} component={DiscountDrainHome} />
+          <Route path={"/about"} component={DDAbout} />
+          <Route path={"/services"} component={DDServices} />
+          <Route path={"/services/:slug"} component={DDServiceDetail} />
+          <Route path={"/residential"} component={DDResidential} />
+          <Route path={"/commercial"} component={DDCommercial} />
+          <Route path={"/contact"} component={DDContact} />
+          <Route path={"/blog"} component={DDBlog} />
+          <Route path={"/blog/:slug"} component={DDBlogPost} />
+          <Route path={"/quote"} component={DDQuote} />
+          <Route path={"/service-area"} component={DDServiceArea} />
+          <Route path={"/service-area/:townSlug"} component={DDTownLanding} />
 
-        {/* Fallback */}
-        <Route path={"/404"} component={NotFound} />
-        <Route component={NotFound} />
-      </Switch>
-    </Suspense>
-    </>  
+          {/* Fallback */}
+          <Route path={"/404"} component={NotFound} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
+    </WouterRouter>
   );
 }
 
