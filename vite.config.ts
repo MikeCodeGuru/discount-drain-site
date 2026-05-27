@@ -168,37 +168,7 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-    rollupOptions: {
-      output: {
-        manualChunks: (id: string) => {
-          // React core — loaded on every page, keep together
-          if (id.includes("node_modules/react/") || id.includes("node_modules/react-dom/")) {
-            return "vendor-react";
-          }
-          // Radix UI primitives (large — Dialog, Select, Tooltip, etc.)
-          if (id.includes("node_modules/@radix-ui/")) {
-            return "vendor-radix";
-          }
-          // Lucide icons — large icon library
-          if (id.includes("node_modules/lucide-react/")) {
-            return "vendor-icons";
-          }
-          // Routing + state utilities
-          if (
-            id.includes("node_modules/wouter/") ||
-            id.includes("node_modules/clsx/") ||
-            id.includes("node_modules/class-variance-authority/") ||
-            id.includes("node_modules/tailwind-merge/")
-          ) {
-            return "vendor-utils";
-          }
-          // Everything else in node_modules goes into a general vendor chunk
-          if (id.includes("node_modules/")) {
-            return "vendor-misc";
-          }
-        },
-      },
-    },
+    rollupOptions: {},
   },
   server: {
     host: true,
