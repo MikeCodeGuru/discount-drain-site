@@ -35,9 +35,6 @@ const DDBlogPost        = lazy(() => import("@/pages/dd/DDBlogPost"));
 const DDServiceArea     = lazy(() => import("@/pages/dd/DDServiceArea"));
 const DDTownLanding     = lazy(() => import("@/pages/dd/DDTownLanding"));
 
-// Admin CMS (rarely visited — always lazy)
-const DDAdmin           = lazy(() => import("@/pages/dd/DDAdmin"));
-
 // ─── Router ──────────────────────────────────────────────────────────────────
 
 function Router() {
@@ -61,9 +58,6 @@ function Router() {
         <Route path={"/quote"} component={DDQuote} />
         <Route path={"/service-area"} component={DDServiceArea} />
         <Route path={"/service-area/:townSlug"} component={DDTownLanding} />
-
-        {/* Admin CMS */}
-        <Route path={"/admin"} component={DDAdmin} />
 
         {/* Fallback */}
         <Route path={"/404"} component={NotFound} />
