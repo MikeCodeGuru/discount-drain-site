@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Discount Drain</title>
+    <script>
+      // GitHub Pages SPA redirect trick (sessionStorage variant).
+      // When GitHub Pages returns a 404 for a deep link such as
+      //   /discount-drain-site/about
+      // this page saves the full URL to sessionStorage and redirects to the
+      // repository root (/discount-drain-site/). The main index.html then
+      // reads sessionStorage and uses history.replaceState to restore the
+      // original path so the React/wouter router can handle it.
+      sessionStorage.redirect = location.href;
+      location.replace(
+        location.protocol + '//' + location.hostname +
+        (location.port ? ':' + location.port : '') +
+        '/discount-drain-site/'
+      );
+    </script>
+  </head>
+  <body>
+    Redirecting…
+  </body>
+</html>

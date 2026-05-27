@@ -91,6 +91,17 @@
     }
     </script>
 
+    <!-- GitHub Pages SPA redirect: decode path from query string set by 404.html -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
     <!-- Third-party resource hints: dns-prefetch + preconnect for runtime domains -->
     <!-- CloudFront CDN: serves hero images and service images used on every page -->
     <link rel="dns-prefetch" href="https://d2xsxph8kpxj0f.cloudfront.net" />
